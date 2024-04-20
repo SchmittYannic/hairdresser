@@ -140,6 +140,10 @@ nav {
     font-weight: bold;
 }
 
+.text-left {
+    text-align: left !important;
+}
+
 .text-right {
     text-align: right !important;
 }
@@ -282,6 +286,17 @@ body .designRow > .container > .col {
     line-height: 1.15em;
     margin-top: 9px;
     margin-bottom: 5px;
+}
+
+.subtitle {
+    font-weight: 700;
+    color: var(--primaryColor);
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    text-align: left;
+    padding-bottom: 4px;
 }
 
 .autospacer {
@@ -434,6 +449,11 @@ body .designRow > .container > .col {
     margin-left: auto;
 }
 
+#heartImg {
+    max-width: 40%;
+    margin-right: auto;
+}
+
 #layout-a-text1 {
     background-color: rgba(216, 198, 185, 0.31);
     border-style: solid;
@@ -495,7 +515,16 @@ body .designRow > .container > .col {
     background-position: 50% 50%;
 }
 
+#product-of-month-title-section {
+    padding-top: 45px;
+    padding-bottom: 30px;
+}
+
 @media only screen and (max-width: 1199px) {
+    .headline {
+        font-size: 35px;
+    }
+
     #layout-a-text1,
     #layout-a-text2,
     #layout-a-text3,
@@ -542,6 +571,10 @@ body .designRow > .container > .col {
     #modernImg,
     #professionellImg {
         max-width: 50%;
+    }
+
+    #heartImg {
+        max-width: 60%;
     }
 }
 
@@ -601,6 +634,13 @@ body .designRow > .container > .col {
         border-color: rgba(216, 198, 185, 0.1);
         padding-top: 150px;
         padding-bottom: 150px;
+    }
+
+    #heartImg {
+        max-width: 50%;
+        padding-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { FaPhone } from "react-icons/fa6"
-import { showpony, kreativ, modern, professionell } from "../assets"
+import { showpony, kreativ, modern, professionell, heart } from "../assets"
 
 const Frontpage = () => {
     return (
@@ -281,6 +281,31 @@ const Frontpage = () => {
                                     className="module image"
                                     src={professionell}
                                     alt="professionell"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="product-of-month-title-section" className="row">
+                        <div className="container container-fixed">
+                            <div className="col col-lg-6 col-sm-12 col-md-7">
+                                <div className="module text">
+                                    <h2 className="headline text-left">
+                                        Unser Produkt des Monats
+                                    </h2>
+                                </div>
+                                <div className="module text">
+                                    <p className="subtitle">
+                                        Kevin.Murphy - doo.over
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="col col-lg-6 col-md-5 col-sm-12">
+                                <img
+                                    id="heartImg"
+                                    className="module image"
+                                    src={heart}
+                                    alt="Herz"
                                 />
                             </div>
                         </div>
