@@ -294,6 +294,20 @@ body .designRow > .container > .col {
     text-align: right;
 }
 
+#frontpage {
+    margin-bottom: 0px;
+    padding-bottom: 35px;
+}
+
+#team-img {
+    background-image: url("/teamimg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 0%;
+    padding-top: 400px;
+    padding-bottom: 400px;
+}
+
 @media only screen and (max-width: 1199px) {
     #page-header {
         padding-left: 15px;
@@ -302,6 +316,12 @@ body .designRow > .container > .col {
 
     #header-logo {
         max-width: 60%;
+    }
+
+    #team-img {
+        border-style: solid;
+        padding-top: 200px;
+        padding-bottom: 200px;
     }
 }
 
