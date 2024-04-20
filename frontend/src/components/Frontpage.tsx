@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import { FaPhone } from "react-icons/fa6"
-import showpony from "../assets/showpony.png"
-import kreativ from "../assets/kreativ.png"
+import { showpony, kreativ, modern } from "../assets"
 
 const Frontpage = () => {
     return (
@@ -176,6 +175,71 @@ const Frontpage = () => {
                                     alt="kreativ"
                                 />
                             </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="container w-full">
+                            <div id="layout-a-text3" className="col col-md-6 col-lg-6 col-sm-12">
+                                <div className="module text">
+                                    <h2 className="headline">
+                                        Farbe
+                                    </h2>
+                                </div>
+                                <div className="module text">
+                                    <p>
+                                        <span className="bold">
+                                            Leuchtende Strähnen, natürliche Farbreflexe, blond oder rosa ... für Sie finden wir den Look, der zu Ihnen passt.
+                                        </span>
+                                    </p>
+                                    <p>&nbsp;</p>
+                                    <p>
+                                        Wir bieten Ihnen Luxus für Ihr Haar. Dabei setzen wir auf hochwertige Farben, beispielsweise die aktuelle&nbsp;
+                                        <a 
+                                            className="tertiary-color"
+                                            href="http://colormebykm.com/"
+                                            target="_blank"
+                                        >
+                                            COLOR.ME
+                                        </a>
+                                        &nbsp;Spitzenhaarfarbe von&nbsp;
+                                        <a 
+                                            className="tertiary-color"
+                                            href="http://de.kevinmurphy.com.au/"
+                                            target="_blank"
+                                        >
+                                            KEVIN.MURPHY
+                                        </a>
+                                        . Schonend für Ihr Haar und sensible Kopfhaut. Erfahren Sie hier mehr über die&nbsp;
+                                        <Link
+                                            className="tertiary-color"
+                                            to={"/salon"}
+                                        >
+                                            Produkte
+                                        </Link>
+                                        , die wir verwenden.
+                                    </p>
+                                </div>
+                                <Link
+                                    className="module button"
+                                    to={"/colour"}
+                                >
+                                    <span>Farbe in Bildern</span>
+                                </Link>
+                                <img
+                                    id="modernImg"
+                                    className="module image"
+                                    src={modern}
+                                    alt="modern"
+                                />
+                            </div>
+                            <a 
+                                id="layout-a-image3"
+                                className="col col-md-6 col-lg-6 col-sm-12"
+                                href="https://unsplash.com/de/fotos/weisse-und-rosa-etikettierte-flaschen-Yo6tVaQHAho"
+                                target="_blank"
+                                title="Foto von Nick Scott auf Unsplash"
+                            ></a>
                         </div>
                     </div>
                 </div>

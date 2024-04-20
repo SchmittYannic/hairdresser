@@ -423,7 +423,8 @@ body .designRow > .container > .col {
     margin-left: auto;
 }
 
-#kreativImg {
+#kreativImg,
+#modernImg {
     max-width: 35%;
     margin-left: auto;
 }
@@ -460,9 +461,24 @@ body .designRow > .container > .col {
     background-position: 50% 50%;
 }
 
+#layout-a-text3 {
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+}
+
+#layout-a-image3 {
+    background-image: url("/kevinmurphyproduct2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
 @media only screen and (max-width: 1199px) {
     #layout-a-text1,
-    #layout-a-text2 {
+    #layout-a-text2,
+    #layout-a-text3 {
         padding-left: 50px;
         padding-top: 50px;
         padding-bottom: 50px;
@@ -496,7 +512,8 @@ body .designRow > .container > .col {
     }
 
     #showponyImg,
-    #kreativImg {
+    #kreativImg,
+    #modernImg {
         max-width: 50%;
     }
 }
@@ -515,7 +532,8 @@ body .designRow > .container > .col {
     }
 
     #layout-a-text1,
-    #layout-a-text2 {
+    #layout-a-text2,
+    #layout-a-text3 {
         border-style: solid;
         padding-left: 15px;
         padding-top: 15px;
