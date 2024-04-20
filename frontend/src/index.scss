@@ -345,15 +345,6 @@ body .designRow > .container > .col {
     }
 }
 
-.layout-a-text-section {
-    background-color: rgba(216, 198, 185, 0.31);
-    border-style: solid;
-    padding-left: 100px;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    padding-right: 100px;
-}
-
 #page-header {
     background-color: var(--headerBgColor);
     background-size: cover;
@@ -432,6 +423,20 @@ body .designRow > .container > .col {
     margin-left: auto;
 }
 
+#kreativImg {
+    max-width: 35%;
+    margin-left: auto;
+}
+
+#layout-a-text1 {
+    background-color: rgba(216, 198, 185, 0.31);
+    border-style: solid;
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+}
+
 #layout-a-image1 {
     background-color: rgba(216, 198, 185, 0.31);
     background-image: url("/showponyproduct.jpg");
@@ -440,8 +445,24 @@ body .designRow > .container > .col {
     background-position: 50% 50%;
 }
 
+#layout-a-text2 {
+    background-color: rgba(230, 219, 215, 0.3);
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+}
+
+#layout-a-image2 {
+    background-image: url("/kevinmurphyproduct.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
 @media only screen and (max-width: 1199px) {
-    .layout-a-text-section {
+    #layout-a-text1,
+    #layout-a-text2 {
         padding-left: 50px;
         padding-top: 50px;
         padding-bottom: 50px;
@@ -468,7 +489,14 @@ body .designRow > .container > .col {
         margin-bottom: 20px;
     }
 
-    #showponyImg {
+    #kreativBtn {
+        width: 70%;
+        margin-bottom: 20px;
+        margin-right: auto;
+    }
+
+    #showponyImg,
+    #kreativImg {
         max-width: 50%;
     }
 }
@@ -482,7 +510,7 @@ body .designRow > .container > .col {
         font-size: 25px;
     }
 
-    .layout-a-text-section {
+    #layout-a-text1 {
         border-style: solid;
         padding-left: 15px;
         padding-top: 15px;

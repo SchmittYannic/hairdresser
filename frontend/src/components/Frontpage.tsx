@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { FaPhone } from "react-icons/fa6"
 import showpony from "../assets/showpony.png"
+import kreativ from "../assets/kreativ.png"
 
 const Frontpage = () => {
     return (
@@ -83,7 +84,7 @@ const Frontpage = () => {
 
                     <div className="row">
                         <div className="container w-full">
-                            <div className="layout-a-text-section col col-md-6 col-lg-6 col-sm-12">
+                            <div id="layout-a-text1" className="col col-md-6 col-lg-6 col-sm-12">
                                 <div className="module text">
                                     <h2 className="headline">
                                         <span className="tertiary-color">
@@ -133,6 +134,48 @@ const Frontpage = () => {
                                 target="_blank"
                                 title="Image by freepik"
                             ></a>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="container w-full">
+                            <a 
+                                id="layout-a-image2"
+                                className="col col-md-6 col-lg-6 col-sm-12"
+                                href="https://www.freepik.com/free-photo/aloe-vera-cucumber-with-beauty-cream_4514527.htm"
+                                target="_blank"
+                                title="Image by freepik"
+                            ></a>
+
+                            <div id="layout-a-text2" className="col col-md-6 col-lg-6 col-sm-12">
+                                <div className="module text">
+                                    <h2 className="headline">Frisuren</h2>
+                                </div>
+                                <div id="m1824" className="module text">
+                                    <p className="bodytext">
+                                        <span className="bold">Ob kurz oder lang, lockig oder glatt</span> - Wir zaubern Ihre Traumfrisur.
+                                    </p>
+                                    <p className="bodytext">&nbsp;</p>
+                                    <p className="bodytext">
+                                        Sie stehen bei uns im Mittelpunkt. In unserer professionellen Typberatung besprechen wir Ihre Vorstellungen und Wünsche. Unseren Friseursalon verlassen Sie erst, wenn wir Sie glücklich gemacht haben.
+                                    </p>
+                                </div>
+                                <Link
+                                    id="kreativBtn"
+                                    className="module button"
+                                    to={"/styling"}
+                                >
+                                    <span>
+                                        Vorher-/Nacher-Bilder
+                                    </span>
+                                </Link>
+                                <img
+                                    id="kreativImg"
+                                    className="module image"
+                                    src={kreativ}
+                                    alt=""
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
