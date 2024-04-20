@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { FaPhone } from "react-icons/fa6"
-import { showpony, kreativ, modern } from "../assets"
+import { showpony, kreativ, modern, professionell } from "../assets"
 
 const Frontpage = () => {
     return (
@@ -240,6 +240,49 @@ const Frontpage = () => {
                                 target="_blank"
                                 title="Foto von Nick Scott auf Unsplash"
                             ></a>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="container w-full">
+                            <a 
+                                id="layout-a-image4"
+                                className="col col-md-6 col-lg-6 col-sm-12"
+                                href="https://unsplash.com/de/fotos/foto-der-innenansicht-des-salons-PtOfbGkU3uI"
+                                target="_blank"
+                                title="Foto von Guilherme Petri auf Unsplash"
+                            ></a>
+                            <div id="layout-a-text4" className="col col-md-6 col-lg-6 col-sm-12">
+                                <div className="module text">
+                                    <h2 className="headline">
+                                        Salon
+                                    </h2>
+                                </div>
+                                <div className="module text">
+                                    <p>
+                                        <span className="bold">
+                                            Ein Besuch bei uns ist mehr als nur ein Friseurtermin.
+                                        </span>
+                                    </p>
+                                    <p>&nbsp;</p>
+                                    <p>
+                                        Deshalb geben wir alles, damit Sie sich bei uns wohlfühlen. Genießen Sie ihre kleine Auszeit - wir machen es Ihnen hübsch.
+                                    </p>
+                                </div>
+                                <Link
+                                    id="professionellBtn"
+                                    className="module button"
+                                    to={"/salon"}
+                                >
+                                    <span>Schauen Sie bei uns rein</span>
+                                </Link>
+                                <img
+                                    id="professionellImg"
+                                    className="module image"
+                                    src={professionell}
+                                    alt="professionell"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

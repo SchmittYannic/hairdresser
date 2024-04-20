@@ -429,6 +429,11 @@ body .designRow > .container > .col {
     margin-left: auto;
 }
 
+#professionellImg {
+    max-width: 50%;
+    margin-left: auto;
+}
+
 #layout-a-text1 {
     background-color: rgba(216, 198, 185, 0.31);
     border-style: solid;
@@ -475,10 +480,26 @@ body .designRow > .container > .col {
     background-position: 50% 50%;
 }
 
+#layout-a-text4 {
+    background-color: rgba(230, 219, 215, 0.17);
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+}
+
+#layout-a-image4 {
+    background-image: url("/salon.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
 @media only screen and (max-width: 1199px) {
     #layout-a-text1,
     #layout-a-text2,
-    #layout-a-text3 {
+    #layout-a-text3,
+    #layout-a-text4 {
         padding-left: 50px;
         padding-top: 50px;
         padding-bottom: 50px;
@@ -511,9 +532,15 @@ body .designRow > .container > .col {
         margin-right: auto;
     }
 
+    #professionellBtn {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
     #showponyImg,
     #kreativImg,
-    #modernImg {
+    #modernImg,
+    #professionellImg {
         max-width: 50%;
     }
 }
@@ -533,7 +560,8 @@ body .designRow > .container > .col {
 
     #layout-a-text1,
     #layout-a-text2,
-    #layout-a-text3 {
+    #layout-a-text3,
+    #layout-a-text4 {
         border-style: solid;
         padding-left: 15px;
         padding-top: 15px;
@@ -560,7 +588,9 @@ body .designRow > .container > .col {
     }
 
     #layout-a-image1,
-    #layout-a-image2 {
+    #layout-a-image2,
+    #layout-a-image3,
+    #layout-a-image4 {
         margin-left: 0px;
         margin-right: 0px;
         border-style: solid;
