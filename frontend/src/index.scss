@@ -5,6 +5,8 @@
     --headerBgColor: rgba(216, 198, 185, 0.95);
     --primaryColor: #000;
     --secondaryColor: #5d5d5d;
+    --tertiaryColor: #b6a398;
+    --primaryBgColor: #fff;
 }
 
 *, 
@@ -32,7 +34,7 @@ body {
         text-decoration: none;
 
         &:hover {
-            color: var(--primaryColor);
+            color: var(--primaryColor) !important;
         }
     }
 }
@@ -149,6 +151,10 @@ nav {
     color: var(--secondaryColor) !important;
 }
 
+.tertiary-color {
+    color: var(--tertiaryColor) !important;
+}
+
 .col {
     position: relative;
     padding-left: 15px;
@@ -201,9 +207,9 @@ body .designRow > .container > .col {
 .button {
     border-width: 0px;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: var(--primaryBgColor);
     font-weight: 700;
-    color: #b6a398;
+    color: var(--tertiaryColor);
     text-align: center;
     text-transform: uppercase;
     border-left-width: 5px;
@@ -214,7 +220,7 @@ body .designRow > .container > .col {
     border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    border-color: #b6a398;
+    border-color: var(--tertiaryColor);
     margin-top: 40px;
     padding-left: 40px;
     padding-top: 10px;
@@ -229,7 +235,7 @@ body .designRow > .container > .col {
 
     &:hover {       
         background-color: rgba(216, 198, 185, 0.15);
-        color: #b6a398;         
+        color: var(--tertiaryColor);         
     }
 }
 
@@ -263,7 +269,7 @@ body .designRow > .container > .col {
 }
 
 .preamble {
-    color: #b6a398;
+    color: var(--tertiaryColor);
     font-size: 18px;
     letter-spacing: 0.05em;
     text-align: left;
@@ -429,12 +435,6 @@ body .designRow > .container > .col {
     }
 
     nav {
-        &::before {
-            color: #FFF;
-            font-size: 40px;
-            line-height: 1em;
-        }
-
         ul {
             margin: 0;
             padding: 0;

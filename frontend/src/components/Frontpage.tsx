@@ -48,12 +48,12 @@ const Frontpage = () => {
                                     </p>
                                     <p className="text-center">&nbsp;</p>
                                     <p className="text-center">
-                                        <span className="secondary-color">
+                                        <span>
                                             <FaPhone />                                         
                                         </span>
                                         &nbsp;
-                                        <span className="secondary-color">
-                                            <a href="tel:000000000">
+                                        <span>
+                                            <a className="tertiary-color" href="tel:000000000">
                                                 <span className="monoglobalWrap">
                                                     00000 0000
                                                 </span>
