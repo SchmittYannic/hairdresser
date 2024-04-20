@@ -67,14 +67,11 @@ nav {
         flex-direction: column;
     }
 
-    &::before {
-        color: #e6dbd7;
-    }
-
     > ul li {
         text-align: left;
 
         a {
+            display: inline-block;
             text-transform: uppercase;
             border-bottom-width: 4px;
             margin-left: 15px;
@@ -320,10 +317,6 @@ body .designRow > .container > .col {
                 display: inline-block;
                 text-align: left;
                 position: relative;
-
-                a {
-                    display: inline-block;
-                }
             }
         }
     }
