@@ -142,9 +142,9 @@ const Frontpage = () => {
                             <a 
                                 id="layout-a-image2"
                                 className="col col-md-6 col-lg-6 col-sm-12"
-                                href="https://www.freepik.com/free-photo/aloe-vera-cucumber-with-beauty-cream_4514527.htm"
+                                href="https://unsplash.com/de/fotos/zwei-weisse-und-schwarz-etikettierte-flaschen-EekAcoEhYGU"
                                 target="_blank"
-                                title="Image by freepik"
+                                title="Foto von Nick Scott auf Unsplash"
                             ></a>
 
                             <div id="layout-a-text2" className="col col-md-6 col-lg-6 col-sm-12">
@@ -173,7 +173,7 @@ const Frontpage = () => {
                                     id="kreativImg"
                                     className="module image"
                                     src={kreativ}
-                                    alt=""
+                                    alt="kreativ"
                                 />
                             </div>
                         </div>
