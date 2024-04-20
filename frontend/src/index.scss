@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
 
+:root {
+    --menuBtnHeight: 40px;
+    --headerBgColor: rgba(216, 198, 185, 0.95);
+    --secondaryColor: #5d5d5d;
+}
+
 *, 
 *::after, 
 *::before {
@@ -42,10 +48,23 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 nav {
+    position: relative;
+
     ul, ol {
         list-style: none;
         list-style-image: none;
         list-style-image: none;
+        display: none;
+        position: absolute;
+        right: -15px;
+        top: calc(100% + 20px);
+        background-color: var(--headerBgColor);
+    }
+
+    .navContainer.open {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
     }
 
     &::before {
@@ -53,6 +72,8 @@ nav {
     }
 
     > ul li {
+        text-align: left;
+
         a {
             text-transform: uppercase;
             border-bottom-width: 4px;
@@ -68,7 +89,7 @@ nav {
         }
 
         > a {
-            color: #5d5d5d;
+            color: var(--secondaryColor);
             transition: all 0.25s linear 0s;
 
             &:hover {
@@ -196,7 +217,7 @@ body .designRow > .container > .col {
             color: #000;
 
             &:hover {
-                color: #5d5d5d;
+                color: var(--secondaryColor);
             }
 
             svg {
@@ -214,8 +235,24 @@ body .designRow > .container > .col {
     text-align: left;
 }
 
+.menuBtn {
+    width: 35px;
+    height: var(--menuBtnHeight);
+    background-color: transparent;
+    cursor: pointer;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover svg {
+        color: var(--secondaryColor);
+    }
+}
+
 #page-header {
-    background-color: rgba(216, 198, 185, 0.95);
+    background-color: var(--headerBgColor);
     background-size: cover;
     background-position: 50% 50%;
     padding-left: 150px;
@@ -244,7 +281,7 @@ body .designRow > .container > .col {
 }
 
 #main-navigation {
-    text-align: center;
+    text-align: right;
 }
 
 @media only screen and (max-width: 1199px) {
@@ -277,7 +314,6 @@ body .designRow > .container > .col {
         ul {
             margin: 0;
             padding: 0;
-            position: relative;
     
             li {
                 list-style: none;
@@ -294,6 +330,27 @@ body .designRow > .container > .col {
 }
 
 @media only screen and (min-width: 1200px) {
+    #main-navigation {
+        text-align: center;
+    }
+
+    nav .navContainer.open {
+        display: block;
+        padding: 0;
+    }
+
+    nav ul, nav ol {
+        display: block;
+        position: relative;
+        background-color: unset;
+        top: unset;
+        right: unset;
+    }
+
+    .menuBtn {
+        display: none;
+    }
+
     .col-lg-9 {
         width: 75%;
     }

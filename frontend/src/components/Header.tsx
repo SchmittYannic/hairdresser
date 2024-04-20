@@ -1,10 +1,19 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { FaPhone } from "react-icons/fa6"
 import { FaInstagram } from "react-icons/fa"
 import { FaFacebookF } from "react-icons/fa"
+import { MdClose } from "react-icons/md"
+import { TfiMenu } from "react-icons/tfi";
 import logo from "../assets/logo.png"
 
 const Header = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleMenuClicked = () => {
+        setIsMenuOpen(!isMenuOpen);
+    }
+
     return (
         <header>
             <div id="page-header" className="row">
@@ -61,7 +70,14 @@ const Header = () => {
                                 </ul>
 
                                 <nav id="main-navigation" className="module nav">
-                                    <ul className="navContainer">
+                                    <button
+                                        className="menuBtn"
+                                        type="button"
+                                        onClick={handleMenuClicked}
+                                    >
+                                        {isMenuOpen ? <MdClose /> : <TfiMenu />}
+                                    </button>
+                                    <ul className={`navContainer ${isMenuOpen ? "open" : ""}`}>
                                         <li className="active">
                                             <Link to={"/"}>Willkommen</Link>   
                                         </li>
