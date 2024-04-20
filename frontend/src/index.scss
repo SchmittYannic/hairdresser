@@ -34,7 +34,7 @@ body {
         text-decoration: none;
 
         &:hover {
-            color: var(--primaryColor) !important;
+            color: var(--primaryColor);
         }
     }
 }
@@ -152,7 +152,7 @@ nav {
 }
 
 .tertiary-color {
-    color: var(--tertiaryColor) !important;
+    color: var(--tertiaryColor);
 }
 
 .col {
@@ -275,6 +275,14 @@ body .designRow > .container > .col {
     text-align: left;
 }
 
+.headline {
+    color: var(--tertiaryColor);
+    font-size: 40px;
+    line-height: 1.15em;
+    margin-top: 9px;
+    margin-bottom: 5px;
+}
+
 .autospacer {
     -ms-flex: 1 auto;
     flex: 1 auto;
@@ -334,6 +342,15 @@ body .designRow > .container > .col {
     &:hover svg {
         color: var(--secondaryColor);
     }
+}
+
+.layout-a-text-section {
+    background-color: rgba(216, 198, 185, 0.31);
+    border-style: solid;
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
 }
 
 #page-header {
@@ -408,7 +425,28 @@ body .designRow > .container > .col {
     }
 }
 
+#showponyImg {
+    margin-top: 15px;
+    max-width: 35%;
+    margin-left: auto;
+}
+
+#layout-a-image1 {
+    background-color: rgba(216, 198, 185, 0.31);
+    background-image: url("/showponyproduct.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
 @media only screen and (max-width: 1199px) {
+    .layout-a-text-section {
+        padding-left: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        padding-right: 50px;
+    }
+
     #page-header {
         padding-left: 15px;
         padding-right: 15px;
@@ -423,11 +461,72 @@ body .designRow > .container > .col {
         padding-top: 200px;
         padding-bottom: 200px;
     }
+
+    #showponyBtn {
+        width: 70%;
+        margin-bottom: 20px;
+    }
+
+    #showponyImg {
+        max-width: 50%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .button {      
+        font-size: 14px;      
+    }
+
+    .darkspottext {
+        font-size: 25px;
+    }
+
+    .layout-a-text-section {
+        border-style: solid;
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-right: 15px;
+    }
+
+    #cta-frontpage {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #m1910 {
+        margin-top: 20px;
+    }
+
+    #showponyBtn {
+        width: 100%;
+        margin-left: auto;
+        margin-bottom: 20px;
+        margin-right: auto;
+    }
+
+    #layout-a-image1 {
+        margin-left: 0px;
+        margin-right: 0px;
+        border-style: solid;
+        border-left-width: 0px;
+        border-top-width: 0px;
+        border-bottom-width: 15px;
+        border-right-width: 0px;
+        border-color: rgba(216, 198, 185, 0.1);
+        padding-top: 150px;
+        padding-bottom: 150px;
+    }
 }
 
 @media only screen and (min-width: 768px) {
     .col-md-7 {
         width: 58.33333%;
+    }
+
+    .col-md-6 {
+        width: 50%;
     }
 
     .col-md-5 {
@@ -473,6 +572,10 @@ body .designRow > .container > .col {
 
     .col-lg-9 {
         width: 75%;
+    }
+
+    .col-lg-6 {
+        width: 50%;
     }
 
     .col-lg-3 {

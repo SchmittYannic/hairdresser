@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom"
 import { FaPhone } from "react-icons/fa6"
+import showpony from "../assets/showpony.png"
 
 const Frontpage = () => {
     return (
         <main id="frontpage" className="row designRow">
             <div className="container w-full">
                 <div className="col col-sm-12">
-                    <a href="https://www.freepik.com/free-photo/front-view-young-friends-hugging_5965451.htm" target="_blank" title="Image by freepik">
+                    <a 
+                        href="https://www.freepik.com/free-photo/front-view-young-friends-hugging_5965451.htm"
+                        target="_blank"
+                        title="Image by freepik"
+                    >
                         <div id="team-img" className="row"></div>
                     </a>
 
@@ -63,7 +68,7 @@ const Frontpage = () => {
                                     <p className="text-center">&nbsp;</p>
                                 </div>
 
-                                <div className="module text">
+                                <div id="m1910" className="module text">
                                     <p className="bodytext text-center">
                                         Wir freuen uns auf Sie!
                                     </p>
@@ -75,6 +80,61 @@ const Frontpage = () => {
                             </div>
                         </div>
                     </div> 
+
+                    <div className="row">
+                        <div className="container w-full">
+                            <div className="layout-a-text-section col col-md-6 col-lg-6 col-sm-12">
+                                <div className="module text">
+                                    <h2 className="headline">
+                                        <span className="tertiary-color">
+                                            <span className="bold">Neu:</span> Haarverlängerung oder Verdichtung
+                                        </span>
+                                    </h2>
+                                </div>
+
+                                <div className="module text">
+                                    <p>
+                                        <span className="bold">
+                                            Willkommen in einer Welt der unbegrenzten Möglichkeiten
+                                        </span>
+                                    </p>
+                                    <p>&nbsp;</p>
+                                    <p>
+                                        Showpony die neue Dimension der Haarverlängerung oder Verdichtung, die sich nahtlos uns unsichtbar in das natürliche Haar einfügt.
+                                        <br />
+                                        Die Skin Weft Tape Collection ist die unauffälligste Form der Haarverlängerung auf dem Markt.
+                                        <br />
+                                        &nbsp;
+                                        <br />
+                                        Wir zeigen Ihnen gerne die unbegrenzten Möglichkeiten und kreieren Ihnen das Haar, von dem Sie immer geträumt haben.
+                                    </p>
+                                </div>
+
+                                <Link
+                                    id="showponyBtn"
+                                    className="module button"
+                                    to={"/styling"}
+                                >
+                                    <span>Mehr Über Showpony</span>
+                                </Link>
+
+                                <img 
+                                    id="showponyImg"
+                                    className="module image"
+                                    src={showpony}
+                                    alt="showpony logo"
+                                />
+                            </div>
+
+                            <a 
+                                id="layout-a-image1"
+                                className="col col-md-6 col-lg-6 col-sm-12"
+                                href="https://www.freepik.com/free-photo/aloe-vera-cucumber-with-beauty-cream_4514527.htm"
+                                target="_blank"
+                                title="Image by freepik"
+                            ></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
