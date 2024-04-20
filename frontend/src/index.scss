@@ -27,7 +27,7 @@ body {
     overflow-x: hidden;
 
     a {
-        color: #918275;
+        color: var(--secondaryColor);
         text-decoration: none;
 
         &:hover {
@@ -126,6 +126,18 @@ nav {
 
 .w-full {
     width: 100%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.secondary-color {
+    color: var(--secondaryColor) !important;
 }
 
 .col {

@@ -35,14 +35,14 @@ const Header = () => {
                     <div id="header-right" className="col col-sm-7 col-lg-9 col-md-7 flexCol">
                         <div className="flexWrap">
                             <div id="telephone-info" className="module text">
-                                <p className="bodytext" style={{textAlign: "right"}}>
-                                    <span style={{fontWeight: "bold"}}>
+                                <p className="bodytext text-right">
+                                    <span className="bold">
                                         Vereinbaren Sie einen Termin:&nbsp;
-                                        <span style={{color: "rgba(105, 105, 105, 0.8)",}}>                               
+                                        <span className="secondary-color">                               
                                             <FaPhone />                                         
                                         </span>
                                         &nbsp;
-                                        <span style={{color: "#696969"}}>
+                                        <span className="secondary-color">
                                             <a href="tel:000000000">
                                                 <span className="monoglobalWrap">
                                                     00000 0000
