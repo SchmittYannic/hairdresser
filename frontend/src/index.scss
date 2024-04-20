@@ -308,6 +308,10 @@ body .designRow > .container > .col {
     margin: 0 !important;
 }
 
+.image {
+    max-width: 100%;
+}
+
 .iconlist {
     text-align: right;
 
@@ -520,6 +524,40 @@ body .designRow > .container > .col {
     padding-bottom: 30px;
 }
 
+#product-of-month-section {
+    padding-left: 250px;
+    padding-bottom: 40px;
+    padding-right: 250px;
+}
+
+#pom-left-section {
+    background-color: rgba(216, 198, 185, 0.18);
+    padding-left: 80px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    padding-right: 80px;
+}
+
+#hairdresserportraitImg {
+    border-top-left-radius: 250px;
+    border-top-right-radius: 250px;
+    border-bottom-left-radius: 250px;
+    border-bottom-right-radius: 250px;
+    margin-bottom: 30px;
+}
+
+#pom-right-section {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+}
+
+#pomBtn {   
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;    
+}
+
 @media only screen and (max-width: 1199px) {
     .headline {
         font-size: 35px;
@@ -528,7 +566,8 @@ body .designRow > .container > .col {
     #layout-a-text1,
     #layout-a-text2,
     #layout-a-text3,
-    #layout-a-text4 {
+    #layout-a-text4,
+    #pom-left-section {
         padding-left: 50px;
         padding-top: 50px;
         padding-bottom: 50px;
@@ -576,6 +615,15 @@ body .designRow > .container > .col {
     #heartImg {
         max-width: 60%;
     }
+
+    #product-of-month-section {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #pomBtn {
+        width: 80%;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -594,7 +642,8 @@ body .designRow > .container > .col {
     #layout-a-text1,
     #layout-a-text2,
     #layout-a-text3,
-    #layout-a-text4 {
+    #layout-a-text4,
+    #pom-left-section {
         border-style: solid;
         padding-left: 15px;
         padding-top: 15px;
@@ -641,6 +690,14 @@ body .designRow > .container > .col {
         padding-top: 20px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    #pomBtn {
+        width: 100%;
+    }
+
+    #m1492 {
+        margin-bottom: 20px;
     }
 }
 

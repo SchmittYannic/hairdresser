@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom"
 import { FaPhone } from "react-icons/fa6"
-import { showpony, kreativ, modern, professionell, heart } from "../assets"
+import {
+    showpony,
+    kreativ,
+    modern,
+    professionell,
+    heart,
+    hairdresserportrait,
+    hairproduct,
+} from "../assets"
 
 const Frontpage = () => {
     return (
@@ -307,6 +315,64 @@ const Frontpage = () => {
                                     src={heart}
                                     alt="Herz"
                                 />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="product-of-month-section" className="row">
+                        <div className="container container-fixed">
+                            <div
+                                id="pom-left-section"
+                                className="col col-sm-12 col-lg-6 col-md-6"
+                            >
+                                <a
+                                    href="https://unsplash.com/de/fotos/frau-im-weissen-rundhalshemd-lachelnd-IF9TK5Uy-KI"
+                                    target="_blank"
+                                    title="Foto von Jake Nackos auf Unsplash"
+                                >
+                                    <img
+                                        id="hairdresserportraitImg"
+                                        className="module image"
+                                        src={hairdresserportrait}
+                                        alt="hairdresser portrait"
+                                    />
+                                </a>
+                                <div id="m1492" className="module text">
+                                    <p>
+                                        <span className="bold tertiary-color">
+                                            Anna B.:
+                                        </span>
+                                        &nbsp;"Doo.Over ist perfekt für mich. Wenn's mal schnell gehen soll, ist Doo.Over für mich&nbsp;
+                                        <span className="bold">
+                                            "die Friseur aus der Dose"
+                                        </span>
+                                        . Aufgesprüht, kurz durchgestylt - und schon sitzt die Frisur wieder. Und das Spray duftet auch noch ganz toll. Ich mag's."
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                id="pom-right-section"
+                                className="col col-sm-12 col-md-6 col-lg-6"
+                            >
+                                <a
+                                    href="https://unsplash.com/de/fotos/eine-weisse-flasche-nagellack-LzcCJJcYvF8"
+                                    target="_blank"
+                                    title="Foto von Dmitry Vechorko auf Unsplash"
+                                >
+                                    <img
+                                        id="pomImg"
+                                        className="module image"
+                                        src={hairproduct}
+                                        alt="hairproduct"
+                                    />
+                                </a>
+                                <Link
+                                    id="pomBtn"
+                                    className="module button"
+                                    to={"/kontakt"}
+                                >
+                                    <span>Das möchte ich auch haben</span>
+                                </Link>
                             </div>
                         </div>
                     </div>

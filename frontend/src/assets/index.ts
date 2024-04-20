@@ -4,6 +4,8 @@ import modern from "./modern.png"
 import professionell from "./professionell.png"
 import showpony from "./showpony.png"
 import heart from "./heart.png"
+import hairdresserportrait from "./hairdresserportrait.jpg"
+import hairproduct from "./hairproduct.jpg"
 
 export {
     kreativ,
@@ -12,4 +14,6 @@ export {
     professionell,
     showpony,
     heart,
+    hairdresserportrait,
+    hairproduct,
 }
