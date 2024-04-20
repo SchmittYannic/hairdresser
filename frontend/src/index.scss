@@ -125,6 +125,10 @@ nav {
     flex-wrap: wrap;
 }
 
+.container-fixed {
+    width: 100%;
+}
+
 .w-full {
     width: 100%;
 }
@@ -188,6 +192,41 @@ body .designRow > .container > .col {
     padding: 0;
     padding-top: 0px;
     list-style: none;
+}
+
+.button {
+    border-width: 0px;
+    border-radius: 5px;
+    background-color: #fff;
+    font-weight: 700;
+    color: #b6a398;
+    text-align: center;
+    text-transform: uppercase;
+    border-left-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-right-width: 5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-color: #b6a398;
+    margin-top: 40px;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 40px;
+    
+    display: table;
+    text-decoration: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+    &:hover {       
+        background-color: rgba(216, 198, 185, 0.15);
+        color: #b6a398;         
+    }
 }
 
 .text {
@@ -308,6 +347,19 @@ body .designRow > .container > .col {
     padding-bottom: 400px;
 }
 
+#cta-section {
+    background-color: rgba(230, 219, 215, 0.3);
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#cta-frontpage {
+    width: 30%;
+    margin-left: auto;
+    margin-top: 0px;
+    margin-right: auto;
+}
+
 @media only screen and (max-width: 1199px) {
     #page-header {
         padding-left: 15px;
@@ -383,5 +435,10 @@ body .designRow > .container > .col {
 
     .col-lg-3 {
         width: 25%;
+    }
+
+    .container-fixed {
+        max-width: 1170px;
+        margin: 0 auto;
     }
 }
