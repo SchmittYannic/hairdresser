@@ -506,11 +506,16 @@ body .designRow > .container > .col {
         font-size: 14px;      
     }
 
+    .headline {
+        font-size: 20px;
+    }
+
     .darkspottext {
         font-size: 25px;
     }
 
-    #layout-a-text1 {
+    #layout-a-text1,
+    #layout-a-text2 {
         border-style: solid;
         padding-left: 15px;
         padding-top: 15px;
@@ -528,14 +533,16 @@ body .designRow > .container > .col {
         margin-top: 20px;
     }
 
-    #showponyBtn {
+    #showponyBtn,
+    #kreativBtn {
         width: 100%;
         margin-left: auto;
         margin-bottom: 20px;
         margin-right: auto;
     }
 
-    #layout-a-image1 {
+    #layout-a-image1,
+    #layout-a-image2 {
         margin-left: 0px;
         margin-right: 0px;
         border-style: solid;
