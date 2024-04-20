@@ -141,6 +141,10 @@ nav {
     text-align: right !important;
 }
 
+.text-center {
+    text-align: center !important;
+}
+
 .secondary-color {
     color: var(--secondaryColor) !important;
 }
@@ -229,6 +233,19 @@ body .designRow > .container > .col {
     }
 }
 
+.divider {
+    background: url("/trenner.png") repeat;
+    width: 30%;
+    border-top-width: 4px;
+    border-color: #e6dbd7;
+    display: table;
+    margin-left: auto;
+    margin-top: 8px;
+    margin-bottom: 17px;
+    margin-right: auto;
+    height: 1px;
+}
+
 .text {
     margin-bottom: 0px;
     padding-top: 0px;
@@ -236,6 +253,20 @@ body .designRow > .container > .col {
 
 .module.text * {
     word-wrap: break-word;
+}
+
+.darkspottext {
+    color: #000;
+    font-size: 40px;
+    letter-spacing: 0.05em;
+    line-height: 1.2em;
+}
+
+.preamble {
+    color: #b6a398;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    text-align: left;
 }
 
 .autospacer {
@@ -276,7 +307,6 @@ body .designRow > .container > .col {
         }
     }
 }
-
   
 .bodytext {
     color: var(--primaryColor);
@@ -358,6 +388,18 @@ body .designRow > .container > .col {
     margin-left: auto;
     margin-top: 0px;
     margin-right: auto;
+}
+
+#contact-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    .divider {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
 }
 
 @media only screen and (max-width: 1199px) {
