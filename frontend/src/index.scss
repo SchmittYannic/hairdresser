@@ -78,11 +78,11 @@ nav {
             margin-right: 15px;
             padding-top: 4px;
             padding-bottom: 4px;
-        }
 
-        &.active > a {
-            color: #000;
-            border-color: #000;
+            &.active {
+                color: #000;
+                border-color: #000;
+            }
         }
 
         > a {

@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import { FaPhone } from "react-icons/fa6"
 import { FaInstagram } from "react-icons/fa"
 import { FaFacebookF } from "react-icons/fa"
 import { MdClose } from "react-icons/md"
-import { TfiMenu } from "react-icons/tfi";
+import { TfiMenu } from "react-icons/tfi"
 import logo from "../assets/logo.png"
 
 const Header = () => {
@@ -78,29 +78,29 @@ const Header = () => {
                                         {isMenuOpen ? <MdClose /> : <TfiMenu />}
                                     </button>
                                     <ul className={`navContainer ${isMenuOpen ? "open" : ""}`}>
-                                        <li className="active">
-                                            <Link to={"/"}>Willkommen</Link>   
+                                        <li>
+                                            <NavLink to={"/"}>Willkommen</NavLink>   
                                         </li>
                                         <li>
-                                            <Link to={"/"}>Terminbuchung</Link>
+                                            <NavLink to={"/terminbuchung"}>Terminbuchung</NavLink>
                                         </li>
                                         <li>
-                                            <Link to={"/"}>Styling</Link>
+                                            <NavLink to={"/styling"}>Styling</NavLink>
                                         </li>
                                         <li>
-                                            <Link to={"/"}>Colour</Link>
+                                            <NavLink to={"/colour"}>Colour</NavLink>
                                         </li>
                                         <li>
-                                            <Link to={"/"}>Salon</Link>
+                                            <NavLink to={"/salon"}>Salon</NavLink>
                                         </li>
                                         <li>
-                                            <Link to={"/"}>Team</Link>
+                                            <NavLink to={"/team"}>Team</NavLink>
                                         </li>
                                         <li>
-                                            <Link to={"/"}>Jobs</Link>
+                                            <NavLink to={"/jobs"}>Jobs</NavLink>
                                         </li>
                                         <li>
-                                            <Link to={"/"}>Kontakt</Link>
+                                            <NavLink to={"/kontakt"}>Kontakt</NavLink>
                                         </li>
                                     </ul>
                                 </nav>
