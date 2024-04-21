@@ -1,0 +1,22 @@
+@use "../Variables" as v;
+
+.image-slider-container {
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+
+.image-slider-list {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.image-slider-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
