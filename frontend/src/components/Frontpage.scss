@@ -1,0 +1,289 @@
+@use "../Variables" as v;
+
+#frontpage {
+    margin-bottom: 0px;
+    padding-bottom: 35px;
+}
+
+#team-img {
+    background-image: url("/teamimg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 0%;
+    padding-top: 400px;
+    padding-bottom: 400px;
+}
+
+#cta-section {
+    background-color: rgba(230, 219, 215, 0.3);
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#cta-frontpage {
+    width: 30%;
+    margin-left: auto;
+    margin-top: 0px;
+    margin-right: auto;
+}
+
+#contact-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    .divider {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+#showponyImg {
+    margin-top: 15px;
+    max-width: 35%;
+    margin-left: auto;
+}
+
+#kreativImg,
+#modernImg {
+    max-width: 35%;
+    margin-left: auto;
+}
+
+#professionellImg {
+    max-width: 50%;
+    margin-left: auto;
+}
+
+#heartImg {
+    max-width: 40%;
+    margin-right: auto;
+}
+
+#layout-a-text1 {
+    background-color: rgba(216, 198, 185, 0.31);
+    border-style: solid;
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+}
+
+#layout-a-image1 {
+    background-color: rgba(216, 198, 185, 0.31);
+    background-image: url("/showponyproduct.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+#layout-a-text2 {
+    background-color: rgba(230, 219, 215, 0.3);
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+}
+
+#layout-a-image2 {
+    background-image: url("/kevinmurphyproduct.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+#layout-a-text3 {
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+}
+
+#layout-a-image3 {
+    background-image: url("/kevinmurphyproduct2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+#layout-a-text4 {
+    background-color: rgba(230, 219, 215, 0.17);
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+}
+
+#layout-a-image4 {
+    background-image: url("/salon.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+#product-of-month-title-section {
+    padding-top: 45px;
+    padding-bottom: 30px;
+}
+
+#product-of-month-section {
+    padding-left: 250px;
+    padding-bottom: 40px;
+    padding-right: 250px;
+}
+
+#pom-left-section {
+    background-color: rgba(216, 198, 185, 0.18);
+    padding-left: 80px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    padding-right: 80px;
+}
+
+#hairdresserportraitImg {
+    border-top-left-radius: 250px;
+    border-top-right-radius: 250px;
+    border-bottom-left-radius: 250px;
+    border-bottom-right-radius: 250px;
+    margin-bottom: 30px;
+}
+
+#pom-right-section {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+}
+
+#pomBtn {   
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+@media only screen and (max-width: 1199px) {
+    #layout-a-text1,
+    #layout-a-text2,
+    #layout-a-text3,
+    #layout-a-text4,
+    #pom-left-section {
+        padding-left: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        padding-right: 50px;
+    }
+
+    #page-header {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #header-logo {
+        max-width: 60%;
+    }
+
+    #team-img {
+        border-style: solid;
+        padding-top: 200px;
+        padding-bottom: 200px;
+    }
+
+    #showponyBtn {
+        width: 70%;
+        margin-bottom: 20px;
+    }
+
+    #kreativBtn {
+        width: 70%;
+        margin-bottom: 20px;
+        margin-right: auto;
+    }
+
+    #professionellBtn {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    #showponyImg,
+    #kreativImg,
+    #modernImg,
+    #professionellImg {
+        max-width: 50%;
+    }
+
+    #heartImg {
+        max-width: 60%;
+    }
+
+    #product-of-month-section {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #pomBtn {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #layout-a-text1,
+    #layout-a-text2,
+    #layout-a-text3,
+    #layout-a-text4,
+    #pom-left-section {
+        border-style: solid;
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-right: 15px;
+    }
+
+    #cta-frontpage {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #m1910 {
+        margin-top: 20px;
+    }
+
+    #showponyBtn,
+    #kreativBtn {
+        width: 100%;
+        margin-left: auto;
+        margin-bottom: 20px;
+        margin-right: auto;
+    }
+
+    #layout-a-image1,
+    #layout-a-image2,
+    #layout-a-image3,
+    #layout-a-image4 {
+        margin-left: 0px;
+        margin-right: 0px;
+        border-style: solid;
+        border-left-width: 0px;
+        border-top-width: 0px;
+        border-bottom-width: 15px;
+        border-right-width: 0px;
+        border-color: rgba(216, 198, 185, 0.1);
+        padding-top: 150px;
+        padding-bottom: 150px;
+    }
+
+    #heartImg {
+        max-width: 50%;
+        padding-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #pomBtn {
+        width: 100%;
+    }
+
+    #m1492 {
+        margin-bottom: 20px;
+    }
+}

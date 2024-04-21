@@ -9,6 +9,7 @@ import {
     hairdresserportrait,
     hairproduct,
 } from "../assets"
+import "./Frontpage.scss"
 
 const Frontpage = () => {
     return (
