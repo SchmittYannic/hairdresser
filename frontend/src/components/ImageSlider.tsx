@@ -95,23 +95,29 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                         />
                     </li>
                 )}
-            </ul>         
-            <button
-                className="image-slider-arrowbtn left"
-                type="button"
-                title={`${amountperpage === 1 ? "Nächstes Bild" : "Nächste Bilder"}`}
-                onClick={showPrevImgs}
-            >
-                <MdOutlineKeyboardArrowLeft aria-hidden />
-            </button>
-            <button
-                className="image-slider-arrowbtn right"
-                type="button"
-                title={`${amountperpage === 1 ? "Vorheriges Bild" : "Vorherige Bilder"}`}
-                onClick={showNextImgs}
-            >
-                <MdOutlineKeyboardArrowRight aria-hidden />
-            </button>
+            </ul>
+            {
+                amountperpage !== imgs.length && (
+                    <>
+                        <button
+                            className="image-slider-arrowbtn left"
+                            type="button"
+                            title={`${amountperpage === 1 ? "Nächstes Bild" : "Nächste Bilder"}`}
+                            onClick={showPrevImgs}
+                        >
+                            <MdOutlineKeyboardArrowLeft aria-hidden />
+                        </button>
+                        <button
+                            className="image-slider-arrowbtn right"
+                            type="button"
+                            title={`${amountperpage === 1 ? "Vorheriges Bild" : "Vorherige Bilder"}`}
+                            onClick={showNextImgs}
+                        >
+                            <MdOutlineKeyboardArrowRight aria-hidden />
+                        </button>
+                    </>
+                )
+            }    
         </div>
     )
 }
