@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { repeatArray, padArray } from "../utils/functions"
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import "./ImageSlider.scss"
 
 export type SliderImgsType = {
@@ -101,7 +102,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                 title={`${amountperpage === 1 ? "Nächstes Bild" : "Nächste Bilder"}`}
                 onClick={showPrevImgs}
             >
-                &lt;-
+                <MdOutlineKeyboardArrowLeft aria-hidden />
             </button>
             <button
                 className="image-slider-arrowbtn right"
@@ -109,7 +110,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                 title={`${amountperpage === 1 ? "Vorheriges Bild" : "Vorherige Bilder"}`}
                 onClick={showNextImgs}
             >
-                -&rt;
+                <MdOutlineKeyboardArrowRight aria-hidden />
             </button>
         </div>
     )

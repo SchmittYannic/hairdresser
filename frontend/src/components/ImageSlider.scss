@@ -31,12 +31,26 @@
     top: 50%;
     width: 50px;
     height: 50px;
+    color: v.$primaryBgColor;
+    background-color: v.$secondaryBgColor;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translateY(-50%);
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover{
+        background-color: v.$primaryColor;
+    }
 }
 
 .image-slider-arrowbtn.left {
-    left: 0;
+    left: 10px;
 }
 
 .image-slider-arrowbtn.right {
-    right: 0;
+    right: 10px;
 }
