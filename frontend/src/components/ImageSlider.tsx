@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { repeatArray } from "../utils/functions"
+import { repeatArray, padArray } from "../utils/functions"
 import "./ImageSlider.scss"
 
 type ImageSliderPropsType = {
@@ -11,36 +11,67 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
 
     let imglist;
     if (imgs.length % amountperpage !== 0) {
-        imglist = repeatArray(amountperpage, imgs);
+        imglist = padArray(amountperpage, repeatArray(amountperpage, imgs));
     } else {
         imglist = imgs;
     }
 
     const ref = useRef<HTMLDivElement>(null);
-    const [pageIndex, setPageIndex] = useState(0);
+    const [pageIndex, setPageIndex] = useState(1);
     const pagesCount = Math.ceil(imglist.length / amountperpage);
     const imgWidth = String(1/amountperpage * 100) + "%";
 
+    const revertToStart = () => {
+        const list = document.querySelector(".image-slider-list") as HTMLElement;
+        list.style.transition = "none";
+        setPageIndex(1);
+    }
+
+    const skipToEnd = () => {
+        const list = document.querySelector(".image-slider-list") as HTMLElement;
+        list.style.transition = "none";
+        setPageIndex(pagesCount - 2);
+    }
+
     const showPrevImgs = () => {
-        setPageIndex((prev) => {
-            if (prev === 0) return pagesCount - 1
-            return prev - 1
-        })
+        const list = document.querySelector(".image-slider-list") as HTMLElement;
+        list.style.transition = "translate 300ms ease-in-out";
+
+        if (pageIndex === 1) {
+            setPageIndex(0);
+            setTimeout(() => {
+                skipToEnd();
+            }, 300);
+        } else {
+            setPageIndex(pageIndex - 1);
+        }
     };
 
     const showNextImgs = () => {
-        setPageIndex((prev) => {
-            if (prev === pagesCount - 1) return 0
-            return prev + 1
-        })
+        const list = document.querySelector(".image-slider-list") as HTMLElement;
+        list.style.transition = "translate 300ms ease-in-out";
+
+        if (pageIndex === pagesCount - 2) {
+            setPageIndex(pagesCount - 1);
+            setTimeout(() => {
+                revertToStart();
+            }, 300);
+        } else {
+            setPageIndex(pageIndex + 1);
+        }
     };
 
     return (
         <div 
             ref={ref}
             className="image-slider-container"
-        >
-            <ul className="image-slider-list">
+        >           
+            <ul className="image-slider-list"
+                style={{
+                    translate: `${-100 * pageIndex}%`,
+                    transition: "translate 300ms ease-in-out",
+                }}
+            >
                 {imglist.map((img, idx) => 
                     <li 
                         key={idx}
@@ -49,20 +80,22 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                             width: imgWidth,
                             flexGrow: 0,
                             flexShrink: 0,
-                            // flexBasis: "0px",
-                            translate: `${-100 * amountperpage * pageIndex}%`
                         }}
                     >
                         <img
                             className="image-slider-img"
                             src={img}
                             alt=""
+                            title={`img ${idx}`}
                         />
                     </li>
                 )}
-            </ul>
+            </ul>         
             <button
                 style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "0",
                     width: "50px",
                     height: "50px",
                 }}
@@ -72,6 +105,9 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
             </button>
             <button
                 style={{
+                    position: "absolute",
+                    top: "50%",
+                    right: "0",
                     width: "50px",
                     height: "50px",
                 }}
