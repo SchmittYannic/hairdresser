@@ -96,25 +96,17 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                 )}
             </ul>         
             <button
-                style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "0",
-                    width: "50px",
-                    height: "50px",
-                }}
+                className="image-slider-arrowbtn left"
+                type="button"
+                title={`${amountperpage === 1 ? "Nächstes Bild" : "Nächste Bilder"}`}
                 onClick={showPrevImgs}
             >
                 &lt;-
             </button>
             <button
-                style={{
-                    position: "absolute",
-                    top: "50%",
-                    right: "0",
-                    width: "50px",
-                    height: "50px",
-                }}
+                className="image-slider-arrowbtn right"
+                type="button"
+                title={`${amountperpage === 1 ? "Vorheriges Bild" : "Vorherige Bilder"}`}
                 onClick={showNextImgs}
             >
                 -&rt;
