@@ -108,7 +108,7 @@ const Bookingpage = () => {
                             <div className="col col-sm-12">
                                 <ImageSlider
                                     imgs={bookingpageSliderImgs}
-                                    amountperpage={3}
+                                    amountperpage={4}
                                 />
                             </div>
                         </div>
