@@ -13,11 +13,7 @@ const padArray = (num: number, arr: SliderImgsType[]): SliderImgsType[] => {
     if (num > arrLength) throw Error("Error in padArray function: num cant be bigger than arrLength")
     const start = arr.slice(0, num);
     const end = arr.slice(arrLength - num, arrLength);
-    console.log("arr: ", arr.length)
-    console.log("start: ", start)
-    console.log("end: ", end)
     const result: SliderImgsType[] = [...end, ...arr, ...start];
-
     return result
 }
 
