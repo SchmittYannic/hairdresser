@@ -27,6 +27,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
     const [pageIndex, setPageIndex] = useState(1);
     const pagesCount = Math.ceil(imglist.length / amountperpage);
     const imgWidth = String(1/amountperpage * 100) + "%";
+    const transitionStyle = "translate 300ms ease-in-out";
 
     const revertToStart = () => {
         if (!ref.current) return
@@ -45,7 +46,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
     const showPrevImgs = () => {
         if (!ref.current) return
         const list = ref.current;
-        list.style.transition = "translate 300ms ease-in-out";
+        list.style.transition = transitionStyle;
 
         if (pageIndex === 1) {
             setPageIndex(0);
@@ -60,7 +61,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
     const showNextImgs = () => {
         if (!ref.current) return
         const list = ref.current;
-        list.style.transition = "translate 300ms ease-in-out";
+        list.style.transition = transitionStyle;
 
         if (pageIndex === pagesCount - 2) {
             setPageIndex(pagesCount - 1);
@@ -74,20 +75,16 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
 
     return (
         <div className="image-slider-container">           
-            <ul ref={ref} className="image-slider-list"
-                style={{
-                    translate: `${-100 * pageIndex}%`,
-                }}
+            <ul
+                ref={ref}
+                className="image-slider-list"
+                style={{translate: `${-100 * pageIndex}%`}}
             >
                 {imglist.map((img, idx) => 
                     <li 
                         key={idx}
                         className="image-slider-item"
-                        style={{
-                            width: imgWidth,
-                            flexGrow: 0,
-                            flexShrink: 0,
-                        }}
+                        style={{width: imgWidth}}
                     >
                         <img
                             className="image-slider-img"
