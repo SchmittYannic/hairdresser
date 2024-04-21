@@ -2,8 +2,15 @@ import { useRef, useState } from "react"
 import { repeatArray, padArray } from "../utils/functions"
 import "./ImageSlider.scss"
 
+export type SliderImgsType = {
+    id: number,
+    src: string,
+    alt: string,
+    title: string,
+};
+
 type ImageSliderPropsType = {
-    imgs: string[],
+    imgs: SliderImgsType[],
     amountperpage: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10,
 }
 
@@ -84,9 +91,9 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                     >
                         <img
                             className="image-slider-img"
-                            src={img}
-                            alt=""
-                            title={`img ${idx}`}
+                            src={img.src}
+                            alt={img.alt}
+                            title={img.title}
                         />
                     </li>
                 )}
