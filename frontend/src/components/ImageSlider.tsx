@@ -21,7 +21,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
     if (imgs.length % amountperpage !== 0) {
         imglist = padArray(amountperpage, repeatArray(amountperpage, imgs));
     } else {
-        imglist = imgs;
+        imglist = padArray(amountperpage, imgs);
     }
 
     const ref = useRef<HTMLUListElement>(null);
