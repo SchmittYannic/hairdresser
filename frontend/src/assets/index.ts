@@ -6,6 +6,7 @@ import showpony from "./showpony.png"
 import heart from "./heart.png"
 import hairdresserportrait from "./hairdresserportrait.jpg"
 import hairproduct from "./hairproduct.jpg"
+import teamgeist from "./teamgeist.png"
 
 export {
     kreativ,
@@ -16,4 +17,5 @@ export {
     heart,
     hairdresserportrait,
     hairproduct,
+    teamgeist,
 }

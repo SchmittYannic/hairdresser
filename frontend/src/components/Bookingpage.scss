@@ -26,3 +26,80 @@
 #m1437 {
     margin-top: 40px;
 }
+
+#team-section-bookingpage {
+    padding-bottom: 0px;
+}
+
+#teamImg-bookingpage {
+    background-color: rgba(230, 219, 215, 0.3);
+    background-image: url("/teamimgvertical.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+}
+
+#teamText-bookingpage {
+    background-color: rgba(230, 219, 215, 0.3);
+    border-style: solid;
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+}
+
+#m2872 {
+    margin-bottom: 40px;
+}
+
+#teamgeistImg {
+    max-width: 40%;
+    margin-left: auto;
+}
+
+@media only screen and (max-width: 1199px) {
+    #teamText-bookingpage {
+        padding-left: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        padding-right: 50px;
+    }
+
+    #teamBtn-bookingpage {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    #teamgeistImg {
+        max-width: 50%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #cta-section-bookingpage {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    #cta-bookingpage {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #teamImg-bookingpage {
+        padding-top: 250px;
+        padding-bottom: 250px;
+    }
+
+    #teamText-bookingpage {
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-right: 15px;
+    }
+
+    #teamBtn-bookingpage {
+        width: 100%;
+    }
+}
