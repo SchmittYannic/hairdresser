@@ -28,7 +28,8 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
     const [pageIndex, setPageIndex] = useState(1);
     const pagesCount = Math.ceil(imglist.length / amountperpage);
     const imgWidth = String(1/amountperpage * 100) + "%";
-    const transitionStyle = "translate 300ms ease-in-out";
+    const transitionDuration = 300;
+    const transitionStyle = `translate ${transitionDuration}ms ease-in-out`;
 
     const revertToStart = () => {
         if (!ref.current) return
@@ -53,7 +54,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
             setPageIndex(0);
             setTimeout(() => {
                 skipToEnd();
-            }, 300);
+            }, transitionDuration);
         } else {
             setPageIndex(pageIndex - 1);
         }
@@ -68,7 +69,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
             setPageIndex(pagesCount - 1);
             setTimeout(() => {
                 revertToStart();
-            }, 300);
+            }, transitionDuration);
         } else {
             setPageIndex(pageIndex + 1);
         }
