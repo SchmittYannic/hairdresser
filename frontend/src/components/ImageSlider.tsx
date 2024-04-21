@@ -23,25 +23,28 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
         imglist = imgs;
     }
 
-    const ref = useRef<HTMLDivElement>(null);
+    const ref = useRef<HTMLUListElement>(null);
     const [pageIndex, setPageIndex] = useState(1);
     const pagesCount = Math.ceil(imglist.length / amountperpage);
     const imgWidth = String(1/amountperpage * 100) + "%";
 
     const revertToStart = () => {
-        const list = document.querySelector(".image-slider-list") as HTMLElement;
+        if (!ref.current) return
+        const list = ref.current;
         list.style.transition = "none";
         setPageIndex(1);
     }
 
     const skipToEnd = () => {
-        const list = document.querySelector(".image-slider-list") as HTMLElement;
+        if (!ref.current) return
+        const list = ref.current;
         list.style.transition = "none";
         setPageIndex(pagesCount - 2);
     }
 
     const showPrevImgs = () => {
-        const list = document.querySelector(".image-slider-list") as HTMLElement;
+        if (!ref.current) return
+        const list = ref.current;
         list.style.transition = "translate 300ms ease-in-out";
 
         if (pageIndex === 1) {
@@ -55,7 +58,8 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
     };
 
     const showNextImgs = () => {
-        const list = document.querySelector(".image-slider-list") as HTMLElement;
+        if (!ref.current) return
+        const list = ref.current;
         list.style.transition = "translate 300ms ease-in-out";
 
         if (pageIndex === pagesCount - 2) {
@@ -69,14 +73,10 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
     };
 
     return (
-        <div 
-            ref={ref}
-            className="image-slider-container"
-        >           
-            <ul className="image-slider-list"
+        <div className="image-slider-container">           
+            <ul ref={ref} className="image-slider-list"
                 style={{
                     translate: `${-100 * pageIndex}%`,
-                    transition: "translate 300ms ease-in-out",
                 }}
             >
                 {imglist.map((img, idx) => 
