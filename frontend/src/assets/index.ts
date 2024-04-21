@@ -7,6 +7,10 @@ import heart from "./heart.png"
 import hairdresserportrait from "./hairdresserportrait.jpg"
 import hairproduct from "./hairproduct.jpg"
 import teamgeist from "./teamgeist.png"
+import kevinmurphyproduct from "./kevinmurphyproduct.jpg"
+import kevinmurphyproduct2 from "./kevinmurphyproduct2.jpg"
+import hairproducts1 from "./hairproducts1.jpg"
+import hairproducts2 from "./hairproducts2.jpg"
 
 export {
     kreativ,
@@ -18,4 +22,8 @@ export {
     hairdresserportrait,
     hairproduct,
     teamgeist,
+    kevinmurphyproduct,
+    kevinmurphyproduct2,
+    hairproducts1,
+    hairproducts2,
 }
