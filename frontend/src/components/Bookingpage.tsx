@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
+import ImageSlider from "./ImageSlider"
 import { teamgeist } from "../assets"
+import { bookingpageSliderImgs } from "../constants"
 import "./Bookingpage.scss"
 
 const Bookingpage = () => {
@@ -96,6 +98,17 @@ const Bookingpage = () => {
                                     className="module image"
                                     src={teamgeist}
                                     alt="teamgeist"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="container w-full">
+                            <div className="col col-sm-12">
+                                <ImageSlider
+                                    imgs={bookingpageSliderImgs}
+                                    amountperpage={3}
                                 />
                             </div>
                         </div>
