@@ -103,7 +103,7 @@ const Bookingpage = () => {
                         </div>
                     </div>
 
-                    <div className="row">
+                    <div id="images-section-bookingpage" className="row">
                         <div className="container w-full">
                             <div className="col col-sm-12">
                                 <ImageSlider
