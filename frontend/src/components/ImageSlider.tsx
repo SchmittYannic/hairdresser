@@ -27,7 +27,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
     const ref = useRef<HTMLUListElement>(null);
     const [pageIndex, setPageIndex] = useState(1);
     const pagesCount = Math.ceil(imglist.length / amountperpage);
-    const imgWidth = String(1/amountperpage * 100) + "%";
+    const imgWidth = String(1 / amountperpage * 100) + "%";
     const transitionDuration = 300;
     const transitionStyle = `translate ${transitionDuration}ms ease-in-out`;
 
@@ -76,17 +76,17 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
     };
 
     return (
-        <div className="image-slider-container">           
+        <div className="image-slider-container">
             <ul
                 ref={ref}
                 className="image-slider-list"
-                style={{translate: `${-100 * pageIndex}%`}}
+                style={{ translate: `${-100 * pageIndex}%` }}
             >
-                {imglist.map((img, idx) => 
-                    <li 
+                {imglist.map((img, idx) =>
+                    <li
                         key={idx}
                         className="image-slider-item"
-                        style={{width: imgWidth}}
+                        style={{ width: imgWidth }}
                     >
                         <img
                             className="image-slider-img"
@@ -118,7 +118,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                         </button>
                     </>
                 )
-            }    
+            }
         </div>
     )
 }
