@@ -3,6 +3,9 @@ import {
     kevinmurphyproduct2,
     hairproducts1,
     hairproducts2,
+    hairstyle1,
+    hairstyle2,
+    hairstyle3,
 } from "../assets"
 import { SliderImgsType } from "../components/ImageSlider";
 
@@ -32,3 +35,24 @@ export const bookingpageSliderImgs: SliderImgsType[] = [
         title: "",
     },
 ];
+
+export const stylingpageSliderImgs: SliderImgsType[] = [
+    {
+        id: 0,
+        src: hairstyle1,
+        alt: "Frau mit Locken",
+        title: "",
+    },
+    {
+        id: 1,
+        src: hairstyle2,
+        alt: "Hochzeitfrisur von hinten",
+        title: "",
+    },
+    {
+        id: 3,
+        src: hairstyle3,
+        alt: "Frau mit langen glatten Haaren",
+        title: "",
+    },
+]
