@@ -1,8 +1,8 @@
 @use "./Variables" as v;
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
 
-*, 
-*::after, 
+*,
+*::after,
 *::before {
     margin: 0;
     padding: 0;
@@ -31,11 +31,18 @@ body {
     }
 }
 
-p, pre {
+p,
+pre {
     margin: 1em 0;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
     margin: 0;
     padding: 0;
     font-size: inherit;
@@ -45,7 +52,8 @@ h1, h2, h3, h4, h5, h6, p {
 nav {
     position: relative;
 
-    ul, ol {
+    ul,
+    ol {
         list-style: none;
         list-style-image: none;
         list-style-image: none;
@@ -63,7 +71,7 @@ nav {
         z-index: 80;
     }
 
-    > ul li {
+    >ul li {
         text-align: left;
 
         a {
@@ -81,14 +89,14 @@ nav {
             }
         }
 
-        > a {
+        >a {
             color: v.$secondaryColor;
             transition: all 0.25s linear 0s;
 
             &:hover {
                 border-color: v.$primaryColor;
             }
-        }  
+        }
     }
 }
 
@@ -158,7 +166,7 @@ nav {
     padding-right: 15px;
 }
 
-body .designRow > .container > .col {
+body .designRow>.container>.col {
     padding: 0;
     margin: 0;
 }
@@ -223,16 +231,16 @@ body .designRow > .container > .col {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 40px;
-    
+
     display: table;
     text-decoration: none;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
 
-    &:hover {       
+    &:hover {
         background-color: rgba(216, 198, 185, 0.15);
-        color: v.$tertiaryColor;         
+        color: v.$tertiaryColor;
     }
 }
 
@@ -333,7 +341,7 @@ body .designRow > .container > .col {
         }
     }
 }
-  
+
 .bodytext {
     color: v.$primaryColor;
     text-decoration: none;
@@ -400,8 +408,8 @@ body .designRow > .container > .col {
 }
 
 @media only screen and (max-width: 767px) {
-    .button {      
-        font-size: 14px;      
+    .button {
+        font-size: 14px;
     }
 
     .headline {
@@ -430,7 +438,7 @@ body .designRow > .container > .col {
         ul {
             margin: 0;
             padding: 0;
-    
+
             li {
                 list-style: none;
                 display: inline-block;
@@ -451,7 +459,8 @@ body .designRow > .container > .col {
         padding: 0;
     }
 
-    nav ul, nav ol {
+    nav ul,
+    nav ol {
         display: block;
         position: relative;
         background-color: unset;
