@@ -14,6 +14,7 @@ import hairproducts2 from "./hairproducts2.jpg"
 import hairstyle1 from "./hairstyle1.jpg"
 import hairstyle2 from "./hairstyle2.jpg"
 import hairstyle3 from "./hairstyle3.jpg"
+import vorhernachher from "./vorhernachher.png"
 
 export {
     kreativ,
@@ -32,4 +33,5 @@ export {
     hairstyle1,
     hairstyle2,
     hairstyle3,
+    vorhernachher,
 }
