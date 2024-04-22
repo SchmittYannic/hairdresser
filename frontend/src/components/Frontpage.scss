@@ -155,13 +155,14 @@
     background-position: 50% 50%;
 }
 
-#pomBtn {   
+#pomBtn {
     width: 70%;
     margin-left: auto;
-    margin-right: auto;    
+    margin-right: auto;
 }
 
 @media only screen and (max-width: 1199px) {
+
     #layout-a-text1,
     #layout-a-text2,
     #layout-a-text3,
@@ -171,15 +172,6 @@
         padding-top: 50px;
         padding-bottom: 50px;
         padding-right: 50px;
-    }
-
-    #page-header {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    #header-logo {
-        max-width: 60%;
     }
 
     #team-img {
@@ -226,6 +218,7 @@
 }
 
 @media only screen and (max-width: 767px) {
+
     #layout-a-text1,
     #layout-a-text2,
     #layout-a-text3,
