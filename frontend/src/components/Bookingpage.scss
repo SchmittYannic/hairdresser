@@ -60,6 +60,10 @@
 #images-section-bookingpage {
     padding-top: 10px;
     padding-bottom: 15px;
+
+    .image-slider-item {
+        padding: 0 5px;
+    }
 }
 
 @media only screen and (max-width: 1199px) {
