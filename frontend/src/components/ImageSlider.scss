@@ -59,3 +59,29 @@
 .image-slider-arrowbtn.right {
     right: 10px;
 }
+
+.skip-link {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+
+    &:focus-visible {
+        top: 0;
+        left: 5px;
+        border: 1px solid black;
+        background-color: white;
+        padding: 0.5rem;
+        width: auto;
+        height: auto;
+        margin: 0;
+        clip: unset;
+        text-decoration: none;
+        color: black;
+        z-index: 2;
+    }
+}

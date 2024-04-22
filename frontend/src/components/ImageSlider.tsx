@@ -76,7 +76,18 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
     };
 
     return (
-        <div className="image-slider-container">
+        <div className="image-slider-container" aria-label="Image Slider">
+            {
+                amountperpage !== imgs.length && (
+                    <a
+                        className="skip-link"
+                        href={"#after-image-slider-controls"}
+                    >
+                        Skip Image Slider Controls
+                    </a>
+                )
+            }
+
             <ul
                 ref={ref}
                 className="image-slider-list"
@@ -98,6 +109,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                     </li>
                 )}
             </ul>
+
             {
                 amountperpage !== imgs.length && (
                     <>
@@ -122,6 +134,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                     </>
                 )
             }
+            <div id="after-image-slider-controls"></div>
         </div>
     )
 }
