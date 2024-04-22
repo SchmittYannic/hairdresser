@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef, useState, useId } from "react"
 import { repeatArray, padArray } from "../utils/functions"
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import "./ImageSlider.scss"
@@ -26,6 +26,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
 
     const ref = useRef<HTMLUListElement>(null);
     const [pageIndex, setPageIndex] = useState(1);
+    const afterImageSliderControlsId = useId();
     const pagesCount = Math.ceil(imglist.length / amountperpage);
     const imgWidth = String(1 / amountperpage * 100) + "%";
     const transitionDuration = 300;
@@ -81,7 +82,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                 amountperpage !== imgs.length && (
                     <a
                         className="skip-link"
-                        href={"#after-image-slider-controls"}
+                        href={`#${afterImageSliderControlsId}`}
                     >
                         Skip Image Slider Controls
                     </a>
@@ -134,7 +135,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                     </>
                 )
             }
-            <div id="after-image-slider-controls"></div>
+            <div id={afterImageSliderControlsId}></div>
         </div>
     )
 }
