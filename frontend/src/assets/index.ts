@@ -11,6 +11,9 @@ import kevinmurphyproduct from "./kevinmurphyproduct.jpg"
 import kevinmurphyproduct2 from "./kevinmurphyproduct2.jpg"
 import hairproducts1 from "./hairproducts1.jpg"
 import hairproducts2 from "./hairproducts2.jpg"
+import hairstyle1 from "./hairstyle1.jpg"
+import hairstyle2 from "./hairstyle2.jpg"
+import hairstyle3 from "./hairstyle3.jpg"
 
 export {
     kreativ,
@@ -26,4 +29,7 @@ export {
     kevinmurphyproduct2,
     hairproducts1,
     hairproducts2,
+    hairstyle1,
+    hairstyle2,
+    hairstyle3,
 }
