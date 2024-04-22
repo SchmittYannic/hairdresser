@@ -1,0 +1,25 @@
+@use "../Variables" as v;
+
+#stylingpage {
+    margin-bottom: 0px;
+    padding-bottom: 35px;
+}
+
+#images-section-stylingpage {
+    background-color: rgba(230, 219, 215, 0.89);
+    border-style: solid;
+    padding-top: 15px;
+    margin-bottom: 0px;
+    padding-bottom: 15px;
+
+    .image-slider-item {
+        padding: 5px;
+    }
+}
+
+#c5385 {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
