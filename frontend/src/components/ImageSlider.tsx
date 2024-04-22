@@ -87,6 +87,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                         key={idx}
                         className="image-slider-item"
                         style={{ width: imgWidth }}
+                        aria-hidden={`${pageIndex !== Math.floor(idx / amountperpage)}`}
                     >
                         <img
                             className="image-slider-img"
@@ -104,6 +105,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                             className="image-slider-arrowbtn left"
                             type="button"
                             title={`${amountperpage === 1 ? "Nächstes Bild" : "Nächste Bilder"}`}
+                            aria-label={`${amountperpage === 1 ? "Nächstes Bild anzeigen" : "Nächste Bilder anzeigen"}`}
                             onClick={showPrevImgs}
                         >
                             <MdOutlineKeyboardArrowLeft aria-hidden />
@@ -112,6 +114,7 @@ const ImageSlider = ({ imgs, amountperpage }: ImageSliderPropsType) => {
                             className="image-slider-arrowbtn right"
                             type="button"
                             title={`${amountperpage === 1 ? "Vorheriges Bild" : "Vorherige Bilder"}`}
+                            aria-label={`${amountperpage === 1 ? "Vorheriges Bild anzeigen" : "Vorherige Bilder anzeigen"}`}
                             onClick={showNextImgs}
                         >
                             <MdOutlineKeyboardArrowRight aria-hidden />

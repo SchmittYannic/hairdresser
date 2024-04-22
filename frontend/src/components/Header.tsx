@@ -21,12 +21,15 @@ const Header = () => {
                     <div id="header-left" className="col col-sm-5 col-lg-3 col-md-5 flexCol">
                         <div className="module autospacer"></div>
                         <div className="flexWrap">
-                            <Link to={"/"}>
-                                <img 
+                            <Link
+                                to={"/"}
+                                title="Startseite"
+                            >
+                                <img
                                     id="header-logo"
                                     className="module image"
                                     src={logo}
-                                    alt=""
+                                    alt="hairdresser logo"
                                 />
                             </Link>
                         </div>
@@ -38,8 +41,8 @@ const Header = () => {
                                 <p className="bodytext text-right">
                                     <span className="bold">
                                         Vereinbaren Sie einen Termin:&nbsp;
-                                        <span className="secondary-color">                               
-                                            <FaPhone />                                         
+                                        <span className="secondary-color">
+                                            <FaPhone aria-hidden />
                                         </span>
                                         &nbsp;
                                         <span className="secondary-color">
@@ -58,13 +61,21 @@ const Header = () => {
                             <div className="flexWrap">
                                 <ul id="social-icons" className="module iconlist">
                                     <li>
-                                        <a href="https://www.instagram.com" target="_blank">
-                                            <FaInstagram />
+                                        <a
+                                            href="https://www.instagram.com"
+                                            target="_blank"
+                                            title="Instagramprofil öffnen"
+                                        >
+                                            <FaInstagram aria-hidden />
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.facebook.com" target="_blank">
-                                            <FaFacebookF />
+                                        <a
+                                            href="https://www.facebook.com"
+                                            target="_blank"
+                                            title="Facebookprofil öffnen"
+                                        >
+                                            <FaFacebookF aria-hidden />
                                         </a>
                                     </li>
                                 </ul>
@@ -74,12 +85,13 @@ const Header = () => {
                                         className="menuBtn"
                                         type="button"
                                         onClick={handleMenuClicked}
+                                        title={`${isMenuOpen ? "Navigation schließen" : "Navigation öffnen"}`}
                                     >
-                                        {isMenuOpen ? <MdClose /> : <TfiMenu />}
+                                        {isMenuOpen ? <MdClose aria-hidden /> : <TfiMenu aria-hidden />}
                                     </button>
                                     <ul className={`navContainer ${isMenuOpen ? "open" : ""}`}>
                                         <li>
-                                            <NavLink to={"/"}>Willkommen</NavLink>   
+                                            <NavLink to={"/"}>Willkommen</NavLink>
                                         </li>
                                         <li>
                                             <NavLink to={"/terminbuchung"}>Terminbuchung</NavLink>

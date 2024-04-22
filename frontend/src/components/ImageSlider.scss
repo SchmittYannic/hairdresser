@@ -43,7 +43,11 @@
         height: 100%;
     }
 
-    &:hover{
+    &:hover {
+        background-color: v.$primaryColor;
+    }
+
+    &:focus-visible {
         background-color: v.$primaryColor;
     }
 }

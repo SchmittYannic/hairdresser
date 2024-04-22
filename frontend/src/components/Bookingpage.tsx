@@ -56,16 +56,16 @@ const Bookingpage = () => {
                     </div>
 
                     <div id="team-section-bookingpage" className="row">
-                        <div className="container w-full">                
-                            <a 
+                        <div className="container w-full">
+                            <a
                                 id="teamImg-bookingpage"
                                 className="col col-md-6 col-lg-6 col-sm-12"
                                 href="https://www.freepik.com/free-photo/people-taking-selfie-together-registration-day_18301092.htm"
                                 target="_blank"
                                 title="Image by freepik"
                             ></a>
-                            <div 
-                                id="teamText-bookingpage" 
+                            <div
+                                id="teamText-bookingpage"
                                 className="col col-md-6 col-lg-6 col-sm-12"
                             >
                                 <div className="module text">
@@ -83,7 +83,7 @@ const Bookingpage = () => {
                                         Ihnen ein Lächeln ins Gesicht zu zaubern, das ist unser Anspruch. Wir lachen auch selbst viel und zwischendurch legen wir auch mal ein Tänzchen hin. Wir haben Spaß an dem, was wir tun. Und dabei stehen Sie und Ihre Haare im Mittelpunkt. Vertrauen Sie uns.
                                     </p>
                                 </div>
-                                <Link 
+                                <Link
                                     id="teamBtn-bookingpage"
                                     className="module button"
                                     role="button"
@@ -93,7 +93,7 @@ const Bookingpage = () => {
                                         Lernen Sie uns kennen
                                     </span>
                                 </Link>
-                                <img 
+                                <img
                                     id="teamgeistImg"
                                     className="module image"
                                     src={teamgeist}

@@ -16,7 +16,7 @@ const Frontpage = () => {
         <main id="frontpage" className="row designRow">
             <div className="container w-full">
                 <div className="col col-sm-12">
-                    <a 
+                    <a
                         href="https://www.freepik.com/free-photo/front-view-young-friends-hugging_5965451.htm"
                         target="_blank"
                         title="Image by freepik"
@@ -39,7 +39,7 @@ const Frontpage = () => {
                     <div id="contact-section" className="row">
                         <div className="container container-fixed">
                             <div className="col col-sm-12">
-                                <div className="module text" style={{marginBottom: "5px"}}>
+                                <div className="module text" style={{ marginBottom: "5px" }}>
                                     <p className="darkspottext text-center">
                                         Schön, dass Sie uns besuchen!
                                     </p>
@@ -63,7 +63,7 @@ const Frontpage = () => {
                                     <p className="text-center">&nbsp;</p>
                                     <p className="text-center">
                                         <span>
-                                            <FaPhone />                                         
+                                            <FaPhone aria-hidden />
                                         </span>
                                         &nbsp;
                                         <span>
@@ -88,7 +88,7 @@ const Frontpage = () => {
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
 
                     <div className="row">
                         <div className="container w-full">
@@ -127,7 +127,7 @@ const Frontpage = () => {
                                     <span>Mehr Über Showpony</span>
                                 </Link>
 
-                                <img 
+                                <img
                                     id="showponyImg"
                                     className="module image"
                                     src={showpony}
@@ -135,7 +135,7 @@ const Frontpage = () => {
                                 />
                             </div>
 
-                            <a 
+                            <a
                                 id="layout-a-image1"
                                 className="col col-md-6 col-lg-6 col-sm-12"
                                 href="https://www.freepik.com/free-photo/aloe-vera-cucumber-with-beauty-cream_4514527.htm"
@@ -147,7 +147,7 @@ const Frontpage = () => {
 
                     <div className="row">
                         <div className="container w-full">
-                            <a 
+                            <a
                                 id="layout-a-image2"
                                 className="col col-md-6 col-lg-6 col-sm-12"
                                 href="https://unsplash.com/de/fotos/zwei-weisse-und-schwarz-etikettierte-flaschen-EekAcoEhYGU"
@@ -204,7 +204,7 @@ const Frontpage = () => {
                                     <p>&nbsp;</p>
                                     <p>
                                         Wir bieten Ihnen Luxus für Ihr Haar. Dabei setzen wir auf hochwertige Farben, beispielsweise die aktuelle&nbsp;
-                                        <a 
+                                        <a
                                             className="tertiary-color"
                                             href="http://colormebykm.com/"
                                             target="_blank"
@@ -212,7 +212,7 @@ const Frontpage = () => {
                                             COLOR.ME
                                         </a>
                                         &nbsp;Spitzenhaarfarbe von&nbsp;
-                                        <a 
+                                        <a
                                             className="tertiary-color"
                                             href="http://de.kevinmurphy.com.au/"
                                             target="_blank"
@@ -242,7 +242,7 @@ const Frontpage = () => {
                                     alt="modern"
                                 />
                             </div>
-                            <a 
+                            <a
                                 id="layout-a-image3"
                                 className="col col-md-6 col-lg-6 col-sm-12"
                                 href="https://unsplash.com/de/fotos/weisse-und-rosa-etikettierte-flaschen-Yo6tVaQHAho"
@@ -254,7 +254,7 @@ const Frontpage = () => {
 
                     <div className="row">
                         <div className="container w-full">
-                            <a 
+                            <a
                                 id="layout-a-image4"
                                 className="col col-md-6 col-lg-6 col-sm-12"
                                 href="https://unsplash.com/de/fotos/foto-der-innenansicht-des-salons-PtOfbGkU3uI"
