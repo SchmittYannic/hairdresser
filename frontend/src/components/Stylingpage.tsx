@@ -1,7 +1,7 @@
 import { FaInstagram } from "react-icons/fa"
 import ImageSlider from "./ImageSlider"
 import useWindowSize from "../hooks/useWindowSize"
-import { vorhernachher } from "../assets"
+import { vorhernachher, showpony } from "../assets"
 import { stylingpageSliderImgs } from "../constants"
 import "./Stylingpage.scss"
 
@@ -110,6 +110,55 @@ const Stylingpage = () => {
                                     src={vorhernachher}
                                     alt="vorhernachher"
                                 />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="r4619" className="row">
+                        <div className="container container-fixed">
+                            <div className="col col-sm-12">
+                                <div className="module text">
+                                    <h2 className="headline text-left">
+                                        Unsere Produkte - Pflegen und Stylen
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="r1792" className="row">
+                        <div className="container container-fixed">
+                            <div className="col col-sm-12 col-lg-12 col-md-12 flexCol">
+                                <div className="flexWrap">
+                                    <div className="module text">
+                                        <h3 className="subtitle">
+                                            <span className="tertiary-color">
+                                                Willkommen in einer Welt der unbegrenzten Möglichkeiten
+                                            </span>
+                                        </h3>
+                                        <h3 className="subtitle">Showpony</h3>
+                                    </div>
+                                    <div id="m3295" className="module text">
+                                        <p>
+                                            Showpony die neue Dimension der Haarverlängerung oder Verdichtung , die sich nahtlos und unsichtbar in das natürliche Haar einfügt.
+                                            <br />
+                                            Die Skin Weft Tape Collection ist die unauffälligste Form der Haarverlängerung auf dem Markt.
+                                            <br />
+                                            &nbsp;
+                                            <br />
+                                            Wir zeigen Ihnen gerne die unbegrenzten Möglichkeiten und kreieren Ihnen das Haar, von dem Sie immer geträumt haben.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="module autospacer"></div>
+                                <div className="flexWrap">
+                                    <img
+                                        id="m2533"
+                                        className="module image"
+                                        src={showpony}
+                                        alt="Showpony"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

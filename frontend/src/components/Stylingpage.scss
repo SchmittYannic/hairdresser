@@ -73,6 +73,26 @@
     margin-left: auto;
 }
 
+#r4619 {
+    padding-top: 45px;
+    margin-bottom: 0px;
+    padding-bottom: 15px;
+}
+
+#r1792 {
+    padding-bottom: 40px;
+}
+
+#m3295 {
+    margin-bottom: 40px;
+}
+
+#m2533 {
+    max-width: 20%;
+    border-style: solid;
+    margin-left: auto;
+}
+
 @media only screen and (max-width: 1199px) {
     #instagramText-stylingpage {
         padding-left: 50px;
@@ -126,5 +146,9 @@
         max-width: 70%;
         border-style: solid;
         margin-top: 40px;
+    }
+
+    #m2533 {
+        max-width: 40%;
     }
 }
