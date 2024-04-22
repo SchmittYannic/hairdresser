@@ -1,8 +1,13 @@
 import { stylingpageSliderImgs } from "../constants"
 import ImageSlider from "./ImageSlider"
+import useWindowSize from "../hooks/useWindowSize"
 import "./Stylingpage.scss"
 
 const Stylingpage = () => {
+
+    const windowSize = useWindowSize();
+    const sliderImgsPerPage = windowSize.width && windowSize.width > 767 ? 3 : 1;
+
     return (
         <main id="stylingpage" className="row designRow">
             <div className="container w-full">
@@ -12,7 +17,7 @@ const Stylingpage = () => {
                             <div id="c5385" className="col col-sm-12">
                                 <ImageSlider
                                     imgs={stylingpageSliderImgs}
-                                    amountperpage={3}
+                                    amountperpage={sliderImgsPerPage}
                                 />
                             </div>
                         </div>
