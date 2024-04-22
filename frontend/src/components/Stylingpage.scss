@@ -23,3 +23,26 @@
     padding-left: 0px;
     padding-right: 0px;
 }
+
+#r1427 {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+#m2362 {
+    margin-bottom: 5px;
+}
+
+#m2618 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+    #r1427 {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+}
