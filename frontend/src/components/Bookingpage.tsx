@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom"
 import ImageSlider from "./ImageSlider"
+import useWindowSize from "../hooks/useWindowSize"
 import { teamgeist } from "../assets"
 import { bookingpageSliderImgs } from "../constants"
 import "./Bookingpage.scss"
 
 const Bookingpage = () => {
+
+    const windowSize = useWindowSize();
+    const sliderImgsPerPage = windowSize.width && windowSize.width > 767 ? 4 : 2;
+
     return (
         <main id="bookingpage" className="row designRow">
             <div className="container w-full">
@@ -108,7 +113,7 @@ const Bookingpage = () => {
                             <div className="col col-sm-12">
                                 <ImageSlider
                                     imgs={bookingpageSliderImgs}
-                                    amountperpage={4}
+                                    amountperpage={sliderImgsPerPage}
                                 />
                             </div>
                         </div>
