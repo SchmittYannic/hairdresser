@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 import { FaInstagram } from "react-icons/fa"
 import ImageSlider from "./ImageSlider"
 import useWindowSize from "../hooks/useWindowSize"
-import { vorhernachher } from "../assets"
-import { colourpageSliderImgs } from "../constants"
+import { vorhernachher, colorme } from "../assets"
+import { colourpageSliderImgs, colourpageSliderImgs2, colourpageSliderImgs3 } from "../constants"
 import "./Colourpage.scss"
 
 const Colourpage = () => {
@@ -133,6 +133,76 @@ const Colourpage = () => {
                                     className="module image"
                                     src={vorhernachher}
                                     alt="vorhernachher"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="r3708" className="row">
+                        <div className="container container-fixed">
+                            <div className="col col-sm-12">
+                                <div className="module text">
+                                    <h2 className="headline text-left">
+                                        Unsere Produkte - Färben
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="r1061" className="row">
+                        <div className="container container-fixed">
+                            <div className="col col-sm-12 col-lg-12 col-md-12 flexCol">
+                                <div className="flexWrap">
+                                    <div className="module text">
+                                        <h3 className="subtitle">
+                                            <span className="tertiary-color">
+                                                Unglaubliche Haarfarben mit tollem Glanz
+                                            </span>
+                                        </h3>
+                                        <h3 className="subtitle">
+                                            COLOR.ME von KEVIN.MURPHY
+                                        </h3>
+                                    </div>
+                                    <div id="m3473" className="module text">
+                                        <p>
+                                            COLOR.ME von KEVIN.MURPHY kombiniert die Tradition einer wirkungsvollen Haarfarbe mit der Innovation der modernen Wissenschaft und Inhaltsstoffen aus der Natur. COLOR.ME ist eine sanfte ammoniak- und PPD-freie, honigbasierte Haarfarbe mit Sheabutter und Granatapfel, die alle Anforderungen an eine permanente Haarfarbe erfüllt.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="module autospacer"></div>
+                                <div className="flexWrap">
+                                    <ImageSlider
+                                        imgs={colourpageSliderImgs2}
+                                        amountperpage={sliderImgsPerPage}
+                                    />
+                                    <img
+                                        id="m2904"
+                                        className="module image"
+                                        src={colorme}
+                                        alt="COLOR.ME"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="r1019" className="row">
+                        <div className="container container-fixed">
+                            <div className="col col-sm-12">
+                                <div className="module text">
+                                    <h3 className="subtitle">
+                                        KEVIN.MURPHY+ COLOR.ME GLOSS
+                                    </h3>
+                                </div>
+                                <div id="m4298" className="module text">
+                                    <p>
+                                        COLOR.ME GLOSS ist Farbe und Treatment in einem. Die demi-permanenten Nuancen schenken dem Haar unglaublichen Glanz, versorgen es mit tiefenwirksamer Feuchtigkeit und restrukturieren, kräftigen und verdicken die Haarfaser.
+                                    </p>
+                                </div>
+                                <ImageSlider
+                                    imgs={colourpageSliderImgs3}
+                                    amountperpage={sliderImgsPerPage}
                                 />
                             </div>
                         </div>

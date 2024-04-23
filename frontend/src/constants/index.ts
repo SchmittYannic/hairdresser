@@ -8,6 +8,9 @@ import {
     hairstyle1,
     hairstyle2,
     hairstyle3,
+    haircolour1,
+    haircolour2,
+    haircolour3,
     selfcareproducts,
 } from "../assets"
 import { SliderImgsType } from "../components/ImageSlider";
@@ -101,3 +104,45 @@ export const colourpageSliderImgs: SliderImgsType[] = [
         title: "",
     },
 ];
+
+export const colourpageSliderImgs2: SliderImgsType[] = [
+    {
+        id: 0,
+        src: haircolour1,
+        alt: "Frau mit lila Haarfarbe",
+        title: "",
+    },
+    {
+        id: 1,
+        src: haircolour2,
+        alt: "Frau mit gefärbten Haaren",
+        title: "",
+    },
+    {
+        id: 2,
+        src: haircolour3,
+        alt: "Frau bekommt Haare gefärbt",
+        title: "",
+    },
+];
+
+export const colourpageSliderImgs3: SliderImgsType[] = [
+    {
+        id: 0,
+        src: hairproducts4,
+        alt: "Haarprodukte4",
+        title: "",
+    },
+    {
+        id: 1,
+        src: selfcareproducts,
+        alt: "Haarstyling Zubehör",
+        title: "",
+    },
+    {
+        id: 2,
+        src: hairproducts1,
+        alt: "Frontrow Produkte",
+        title: "",
+    },
+]

@@ -68,6 +68,40 @@
     margin-left: auto;
 }
 
+#r3708 {
+    padding-top: 45px;
+}
+
+#r1061 {
+    padding-bottom: 40px;
+
+    .image-slider-item {
+        padding: 5px;
+    }
+}
+
+#m3473 {
+    margin-bottom: 40px;
+}
+
+#m2904 {
+    max-width: 20%;
+    border-style: solid;
+    margin-left: auto;
+}
+
+#r1019 {
+    margin-top: 70px;
+
+    .image-slider-item {
+        padding: 5px;
+    }
+}
+
+#m4298 {
+    margin-bottom: 40px;
+}
+
 @media only screen and (max-width: 1199px) {
     #instagramText-colourpage {
         padding-left: 50px;
@@ -116,5 +150,9 @@
         max-width: 70%;
         border-style: solid;
         margin-top: 30px;
+    }
+
+    #m2904 {
+        max-width: 40%;
     }
 }

@@ -16,8 +16,12 @@ import hairproducts4 from "./hairproducts4.jpg"
 import hairstyle1 from "./hairstyle1.jpg"
 import hairstyle2 from "./hairstyle2.jpg"
 import hairstyle3 from "./hairstyle3.jpg"
+import haircolour1 from "./haircolour1.jpg"
+import haircolour2 from "./haircolour2.jpg"
+import haircolour3 from "./haircolour3.jpg"
 import selfcareproducts from "./selfcareproducts.jpg"
 import vorhernachher from "./vorhernachher.png"
+import colorme from "./colorme.jpg"
 
 export {
     kreativ,
@@ -38,6 +42,10 @@ export {
     hairstyle1,
     hairstyle2,
     hairstyle3,
+    haircolour1,
+    haircolour2,
+    haircolour3,
     selfcareproducts,
     vorhernachher,
+    colorme,
 }
