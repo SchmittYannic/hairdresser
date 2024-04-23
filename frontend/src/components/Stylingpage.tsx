@@ -2,7 +2,7 @@ import { FaInstagram } from "react-icons/fa"
 import ImageSlider from "./ImageSlider"
 import useWindowSize from "../hooks/useWindowSize"
 import { vorhernachher, showpony } from "../assets"
-import { stylingpageSliderImgs } from "../constants"
+import { stylingpageSliderImgs, stylingpageSliderImgs2 } from "../constants"
 import "./Stylingpage.scss"
 
 const Stylingpage = () => {
@@ -157,6 +157,41 @@ const Stylingpage = () => {
                                         className="module image"
                                         src={showpony}
                                         alt="Showpony"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="r4888" className="row">
+                        <div className="container container-fixed">
+                            <div className="col col-sm-12 col-lg-12 col-md-12 flexCol">
+                                <div className="flexWrap">
+                                    <div className="module text">
+                                        <h3 className="subtitle">
+                                            <span className="tertiary-color">
+                                                Die Faszination schöner Haare
+                                            </span>
+                                        </h3>
+                                        <h3 className="subtitle">
+                                            KEVIN.MURPHY
+                                        </h3>
+                                    </div>
+                                    <div id="m3235" className="module text">
+                                        <p>
+                                            Für gesunde, glänzende Haare und ein gelungenes Styling setzen wir auf die Produktlinien von KEVIN.MURPHY, die perfekt auf die Bedürfnisse der unterschiedlichen Haartypen abgestimmt sind. Die passende Pflege erleichtert das Stylen um ein Vielfaches.
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <p>
+                                            Wussten Sie, dass KEVIN.MURPHY von PETA in die Positiv-Liste der Kosmetikhersteller aufgenommen, da ihre Produkte tierversuchsfrei hergestellt werden? Das ist uns wichtig.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="module autospacer"></div>
+                                <div className="flexWrap">
+                                    <ImageSlider
+                                        imgs={stylingpageSliderImgs2}
+                                        amountperpage={sliderImgsPerPage}
                                     />
                                 </div>
                             </div>

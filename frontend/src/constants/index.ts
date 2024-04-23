@@ -3,9 +3,12 @@ import {
     kevinmurphyproduct2,
     hairproducts1,
     hairproducts2,
+    hairproducts3,
+    hairproducts4,
     hairstyle1,
     hairstyle2,
     hairstyle3,
+    selfcareproducts,
 } from "../assets"
 import { SliderImgsType } from "../components/ImageSlider";
 
@@ -55,4 +58,25 @@ export const stylingpageSliderImgs: SliderImgsType[] = [
         alt: "Frau mit langen glatten Haaren",
         title: "",
     },
-]
+];
+
+export const stylingpageSliderImgs2: SliderImgsType[] = [
+    {
+        id: 0,
+        src: hairproducts3,
+        alt: "Haarprodukte3",
+        title: "",
+    },
+    {
+        id: 1,
+        src: hairproducts4,
+        alt: "Haarprodukte4",
+        title: "",
+    },
+    {
+        id: 3,
+        src: selfcareproducts,
+        alt: "Haarstyling Zubehör",
+        title: "",
+    },
+];

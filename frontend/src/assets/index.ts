@@ -11,9 +11,12 @@ import kevinmurphyproduct from "./kevinmurphyproduct.jpg"
 import kevinmurphyproduct2 from "./kevinmurphyproduct2.jpg"
 import hairproducts1 from "./hairproducts1.jpg"
 import hairproducts2 from "./hairproducts2.jpg"
+import hairproducts3 from "./hairproducts3.jpg"
+import hairproducts4 from "./hairproducts4.jpg"
 import hairstyle1 from "./hairstyle1.jpg"
 import hairstyle2 from "./hairstyle2.jpg"
 import hairstyle3 from "./hairstyle3.jpg"
+import selfcareproducts from "./selfcareproducts.jpg"
 import vorhernachher from "./vorhernachher.png"
 
 export {
@@ -30,8 +33,11 @@ export {
     kevinmurphyproduct2,
     hairproducts1,
     hairproducts2,
+    hairproducts3,
+    hairproducts4,
     hairstyle1,
     hairstyle2,
     hairstyle3,
+    selfcareproducts,
     vorhernachher,
 }
