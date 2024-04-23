@@ -80,3 +80,24 @@ export const stylingpageSliderImgs2: SliderImgsType[] = [
         title: "",
     },
 ];
+
+export const colourpageSliderImgs: SliderImgsType[] = [
+    {
+        id: 0,
+        src: kevinmurphyproduct,
+        alt: "Kevin Murphy Produkte 1",
+        title: "",
+    },
+    {
+        id: 1,
+        src: hairproducts3,
+        alt: "Haarprodukte3",
+        title: "",
+    },
+    {
+        id: 3,
+        src: kevinmurphyproduct2,
+        alt: "Kevin Murphy Produkte 2",
+        title: "",
+    },
+];

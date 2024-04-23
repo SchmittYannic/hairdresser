@@ -1,0 +1,19 @@
+@use "../Variables" as v;
+
+#colourpage {
+    margin-bottom: 0px;
+    padding-bottom: 35px;
+}
+
+#r2831 {
+    padding-top: 15px;
+}
+
+#c4745 {
+    padding-left: 0px;
+    padding-right: 0px;
+
+    .image-slider-item {
+        padding: 5px;
+    }
+}
