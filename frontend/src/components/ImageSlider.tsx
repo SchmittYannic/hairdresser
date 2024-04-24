@@ -149,6 +149,7 @@ const ImageSlider = ({
                 {sliderList.map((page, idx) =>
                     <li
                         key={idx}
+                        aria-label={`Image Slider Seite ${idx}`}
                         aria-hidden={`${idx !== pageIndex}`}
                     >
                         <ul
