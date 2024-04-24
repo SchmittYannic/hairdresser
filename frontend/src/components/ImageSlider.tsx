@@ -1,7 +1,7 @@
 import { Children, Fragment, PropsWithChildren, useId, useRef, useState } from "react"
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { splitArray, repeatArray, padArray } from "../utils/functions";
-import "./ImageSlider2.scss"
+import "./ImageSlider.scss"
 
 export type arrayChildrenType = (string | number | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal);
 
