@@ -1,0 +1,130 @@
+@use "../Variables" as v;
+
+.image-slider-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-slider-list {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    >li {
+        width: 100%;
+        height: 100%;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+}
+
+.image-slider-page {
+    list-style: none;
+    display: grid;
+    width: 100%;
+    height: 100%;
+}
+
+.image-slider-item {
+    aspect-ratio: 1 / 1;
+}
+
+.image-slider-link {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.image-slider-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+.image-slider-arrowbtn {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    color: v.$primaryBgColor;
+    background-color: v.$secondaryBgColor;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translateY(-50%);
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover {
+        background-color: v.$primaryColor;
+    }
+
+    &:focus-visible {
+        background-color: v.$primaryColor;
+        outline: auto;
+    }
+}
+
+.image-slider-arrowbtn.left {
+    left: 10px;
+}
+
+.image-slider-arrowbtn.right {
+    right: 10px;
+}
+
+.image-slider-pagebtn-container {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.image-slider-pagebtn {
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    border-color: v.$secondaryBgColor;
+    border-radius: 50%;
+    border-width: 1px;
+    cursor: pointer;
+
+    &.active {
+        background-color: v.$secondaryBgColor;
+    }
+}
+
+.skip-link {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+
+    &:focus-visible {
+        top: 0;
+        left: 5px;
+        border: 1px solid black;
+        background-color: white;
+        padding: 0.5rem;
+        width: auto;
+        height: auto;
+        margin: 0;
+        clip: unset;
+        text-decoration: none;
+        color: black;
+        z-index: 2;
+    }
+}
