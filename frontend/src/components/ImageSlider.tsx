@@ -1,4 +1,12 @@
-import { Children, Fragment, PropsWithChildren, useId, useRef, useState } from "react"
+import {
+    Children,
+    Fragment,
+    PropsWithChildren,
+    useId,
+    useRef,
+    useState,
+    HTMLAttributes,
+} from "react"
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { splitArray, repeatArray, padArray } from "../utils/functions";
 import "./ImageSlider.scss"
@@ -21,7 +29,12 @@ const defaultOptions: OptionsType = {
     dotbuttons: true,
 };
 
-const ImageSlider2 = ({ children, options = defaultOptions }: PropsWithChildren<{ options?: OptionsType }>) => {
+const ImageSlider = ({
+    children,
+    options = defaultOptions,
+    className = "",
+    ...rest
+}: PropsWithChildren<{ options?: OptionsType, className?: string } & Omit<HTMLAttributes<HTMLDivElement>, "className">>) => {
 
     const {
         amountperpage = 1,
@@ -99,7 +112,11 @@ const ImageSlider2 = ({ children, options = defaultOptions }: PropsWithChildren<
     };
 
     return (
-        <div className="image-slider-container" aria-label="Image Slider">
+        <div
+            className={`image-slider-container ${className}`}
+            aria-label="Image Slider"
+            {...rest}
+        >
             {
                 (dotbuttons || arrowbuttons) && (
                     <a
@@ -199,4 +216,4 @@ const ImageSlider2 = ({ children, options = defaultOptions }: PropsWithChildren<
     )
 }
 
-export default ImageSlider2
+export default ImageSlider
