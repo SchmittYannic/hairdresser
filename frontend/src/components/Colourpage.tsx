@@ -9,7 +9,7 @@ import "./Colourpage.scss"
 const Colourpage = () => {
 
     const windowSize = useWindowSize();
-    const sliderImgsPerPage = windowSize.width && windowSize.width > 767 ? 3 : 1;
+    const isLgScreen = windowSize.width && windowSize.width > 767 ? true : false;
 
     return (
         <main id="colourpage" className="row designRow">
@@ -19,9 +19,29 @@ const Colourpage = () => {
                         <div className="container w-full">
                             <div id="c4745" className="col col-sm-12">
                                 <ImageSlider
-                                    imgs={colourpageSliderImgs}
-                                    amountperpage={sliderImgsPerPage}
-                                />
+                                    options={{
+                                        amountperpage: isLgScreen ? 3 : 1,
+                                        arrowbuttons: isLgScreen ? false : true,
+                                        dotbuttons: false,
+                                    }}
+                                >
+                                    {colourpageSliderImgs.map((imgObj, idx) =>
+                                        <a
+                                            className="image-slider-link"
+                                            key={idx}
+                                            target="_blank"
+                                            href={imgObj.href}
+                                            title={imgObj.title}
+                                            tabIndex={-1}
+                                        >
+                                            <img
+                                                className="image-slider-img"
+                                                src={imgObj.src}
+                                                alt={imgObj.alt}
+                                            />
+                                        </a>
+                                    )}
+                                </ImageSlider>
                             </div>
                         </div>
                     </div>
@@ -173,9 +193,29 @@ const Colourpage = () => {
                                 <div className="module autospacer"></div>
                                 <div className="flexWrap">
                                     <ImageSlider
-                                        imgs={colourpageSliderImgs2}
-                                        amountperpage={sliderImgsPerPage}
-                                    />
+                                        options={{
+                                            amountperpage: isLgScreen ? 3 : 1,
+                                            arrowbuttons: isLgScreen ? false : true,
+                                            dotbuttons: false,
+                                        }}
+                                    >
+                                        {colourpageSliderImgs2.map((imgObj, idx) =>
+                                            <a
+                                                className="image-slider-link"
+                                                key={idx}
+                                                target="_blank"
+                                                href={imgObj.href}
+                                                title={imgObj.title}
+                                                tabIndex={-1}
+                                            >
+                                                <img
+                                                    className="image-slider-img"
+                                                    src={imgObj.src}
+                                                    alt={imgObj.alt}
+                                                />
+                                            </a>
+                                        )}
+                                    </ImageSlider>
                                     <img
                                         id="m2904"
                                         className="module image"
@@ -201,9 +241,29 @@ const Colourpage = () => {
                                     </p>
                                 </div>
                                 <ImageSlider
-                                    imgs={colourpageSliderImgs3}
-                                    amountperpage={sliderImgsPerPage}
-                                />
+                                    options={{
+                                        amountperpage: isLgScreen ? 3 : 1,
+                                        arrowbuttons: isLgScreen ? false : true,
+                                        dotbuttons: false,
+                                    }}
+                                >
+                                    {colourpageSliderImgs3.map((imgObj, idx) =>
+                                        <a
+                                            className="image-slider-link"
+                                            key={idx}
+                                            target="_blank"
+                                            href={imgObj.href}
+                                            title={imgObj.title}
+                                            tabIndex={-1}
+                                        >
+                                            <img
+                                                className="image-slider-img"
+                                                src={imgObj.src}
+                                                alt={imgObj.alt}
+                                            />
+                                        </a>
+                                    )}
+                                </ImageSlider>
                             </div>
                         </div>
                     </div>

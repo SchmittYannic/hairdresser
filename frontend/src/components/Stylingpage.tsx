@@ -8,7 +8,7 @@ import "./Stylingpage.scss"
 const Stylingpage = () => {
 
     const windowSize = useWindowSize();
-    const sliderImgsPerPage = windowSize.width && windowSize.width > 767 ? 3 : 1;
+    const isLgScreen = windowSize.width && windowSize.width > 767 ? true : false;
 
     return (
         <main id="stylingpage" className="row designRow">
@@ -18,9 +18,29 @@ const Stylingpage = () => {
                         <div className="container w-full">
                             <div id="c5385" className="col col-sm-12">
                                 <ImageSlider
-                                    imgs={stylingpageSliderImgs}
-                                    amountperpage={sliderImgsPerPage}
-                                />
+                                    options={{
+                                        amountperpage: isLgScreen ? 3 : 1,
+                                        arrowbuttons: isLgScreen ? false : true,
+                                        dotbuttons: false,
+                                    }}
+                                >
+                                    {stylingpageSliderImgs.map((imgObj, idx) =>
+                                        <a
+                                            className="image-slider-link"
+                                            key={idx}
+                                            target="_blank"
+                                            href={imgObj.href}
+                                            title={imgObj.title}
+                                            tabIndex={-1}
+                                        >
+                                            <img
+                                                className="image-slider-img"
+                                                src={imgObj.src}
+                                                alt={imgObj.alt}
+                                            />
+                                        </a>
+                                    )}
+                                </ImageSlider>
                             </div>
                         </div>
                     </div>
@@ -190,9 +210,29 @@ const Stylingpage = () => {
                                 <div className="module autospacer"></div>
                                 <div className="flexWrap">
                                     <ImageSlider
-                                        imgs={stylingpageSliderImgs2}
-                                        amountperpage={sliderImgsPerPage}
-                                    />
+                                        options={{
+                                            amountperpage: isLgScreen ? 3 : 1,
+                                            arrowbuttons: isLgScreen ? false : true,
+                                            dotbuttons: false,
+                                        }}
+                                    >
+                                        {stylingpageSliderImgs2.map((imgObj, idx) =>
+                                            <a
+                                                className="image-slider-link"
+                                                key={idx}
+                                                target="_blank"
+                                                href={imgObj.href}
+                                                title={imgObj.title}
+                                                tabIndex={-1}
+                                            >
+                                                <img
+                                                    className="image-slider-img"
+                                                    src={imgObj.src}
+                                                    alt={imgObj.alt}
+                                                />
+                                            </a>
+                                        )}
+                                    </ImageSlider>
                                 </div>
                             </div>
                         </div>

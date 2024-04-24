@@ -8,7 +8,7 @@ import "./Bookingpage.scss"
 const Bookingpage = () => {
 
     const windowSize = useWindowSize();
-    const sliderImgsPerPage = windowSize.width && windowSize.width > 767 ? 4 : 2;
+    const isLgScreen = windowSize.width && windowSize.width > 767 ? true : false;
 
     return (
         <main id="bookingpage" className="row designRow">
@@ -112,9 +112,30 @@ const Bookingpage = () => {
                         <div className="container w-full">
                             <div className="col col-sm-12">
                                 <ImageSlider
-                                    imgs={bookingpageSliderImgs}
-                                    amountperpage={sliderImgsPerPage}
-                                />
+                                    options={{
+                                        amountperpage: 4,
+                                        columns: isLgScreen ? 4 : 2,
+                                        arrowbuttons: false,
+                                        dotbuttons: false,
+                                    }}
+                                >
+                                    {bookingpageSliderImgs.map((imgObj, idx) =>
+                                        <a
+                                            className="image-slider-link"
+                                            key={idx}
+                                            target="_blank"
+                                            href={imgObj.href}
+                                            title={imgObj.title}
+                                            tabIndex={-1}
+                                        >
+                                            <img
+                                                className="image-slider-img"
+                                                src={imgObj.src}
+                                                alt={imgObj.alt}
+                                            />
+                                        </a>
+                                    )}
+                                </ImageSlider>
                             </div>
                         </div>
                     </div>
