@@ -6,6 +6,7 @@ import {
     useRef,
     useState,
     HTMLAttributes,
+    useEffect,
 } from "react"
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { splitArray, repeatArray, padArray } from "../utils/functions";
@@ -19,6 +20,7 @@ type OptionsType = {
     rows?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10,
     arrowbuttons?: boolean,
     dotbuttons?: boolean,
+    autoDelay?: number,
 };
 
 const defaultOptions: OptionsType = {
@@ -27,6 +29,7 @@ const defaultOptions: OptionsType = {
     rows: 1,
     arrowbuttons: true,
     dotbuttons: true,
+    autoDelay: 0,
 };
 
 const ImageSlider = ({
@@ -42,6 +45,7 @@ const ImageSlider = ({
         rows = 1,
         arrowbuttons = true,
         dotbuttons = true,
+        autoDelay = 0,
     } = options;
 
     const arrayChildren: arrayChildrenType[] = Children.toArray(children);
@@ -110,6 +114,15 @@ const ImageSlider = ({
         list.style.transition = transitionStyle;
         setPageIndex(index);
     };
+
+    useEffect(() => {
+        if (autoDelay === 0) return
+        const switchNextPage = setTimeout(() => {
+            showNextPage();
+        }, autoDelay);
+
+        return () => clearTimeout(switchNextPage);
+    });
 
     return (
         <div
