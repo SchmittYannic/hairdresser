@@ -1,23 +1,37 @@
-import { SliderImgsType } from "../components/ImageSlider";
+import { arrayChildrenType } from "../components/ImageSlider";
 
-const repeatArray = (num: number, arr: SliderImgsType[]): SliderImgsType[] => {
-    const result: SliderImgsType[] = [];
-    for (let i = 0; i < num; i++) {
-        result.push(...arr);
+const splitArray = (array: arrayChildrenType[], number: number): arrayChildrenType[][] => {
+    const arrLength = array.length;
+
+    if (!arrLength) throw Error("Error in splitArray function: arrLength cant be null or undefined")
+    if (arrLength % number !== 0) throw Error("Error in splitArray function: arrLength must be evenly divisible by number without leaving a remainder")
+
+    const result = [];
+    for (let i = 0; i < array.length; i += number) {
+        result.push(array.slice(i, i + number));
     }
     return result;
 }
 
-const padArray = (num: number, arr: SliderImgsType[]): SliderImgsType[] => {
-    const arrLength = arr.length;
-    if (num > arrLength) throw Error("Error in padArray function: num cant be bigger than arrLength")
-    const start = arr.slice(0, num);
-    const end = arr.slice(arrLength - num, arrLength);
-    const result: SliderImgsType[] = [...end, ...arr, ...start];
+const repeatArray = (array: arrayChildrenType[], number: number): arrayChildrenType[] => {
+    const result: arrayChildrenType[] = [];
+    for (let i = 0; i < number; i++) {
+        result.push(...array);
+    }
+    return result;
+}
+
+const padArray = (array: arrayChildrenType[], number: number): arrayChildrenType[] => {
+    const arrLength = array.length;
+    if (number > arrLength) throw Error("Error in padArray function: num cant be bigger than arrLength")
+    const start = array.slice(0, number);
+    const end = array.slice(arrLength - number, arrLength);
+    const result: arrayChildrenType[] = [...end, ...array, ...start];
     return result
 }
 
 export {
+    splitArray,
     repeatArray,
     padArray,
 }
