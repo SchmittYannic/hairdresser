@@ -244,4 +244,39 @@ export const salonpageSliderImgs1: ImageSliderObjectType[] = [
         id: 2,
         ...salon3Obj,
     },
-]
+];
+
+export const salonpageSliderImgs2: ImageSliderObjectType[] = [
+    {
+        id: 0,
+        ...kevinmurphyproduct1Obj,
+    },
+    {
+        id: 1,
+        ...hairproducts2Obj,
+    },
+    {
+        id: 2,
+        ...salon3Obj,
+    },
+    {
+        id: 3,
+        ...kevinmurphyproduct2Obj,
+    },
+    {
+        id: 4,
+        ...haircolour2Obj,
+    },
+    {
+        id: 5,
+        ...salon2Obj,
+    },
+    {
+        id: 6,
+        ...hairproducts3Obj,
+    },
+    {
+        id: 7,
+        ...selfcareproductsObj,
+    },
+];

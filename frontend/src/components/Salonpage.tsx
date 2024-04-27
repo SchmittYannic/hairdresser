@@ -1,9 +1,15 @@
 import ImageSlider from "./ImageSlider"
-import { salonpageSliderImgs1 } from "../constants"
-import "./Salonpage.scss"
+import useWindowSize from "../hooks/useWindowSize"
+import { salonpageSliderImgs1, salonpageSliderImgs2 } from "../constants"
 import { hairdresserportrait3 } from "../assets"
+import "./Salonpage.scss"
 
 const Salonpage = () => {
+
+    const windowSize = useWindowSize();
+    const isXlScreen = windowSize.width && windowSize.width > 1199 ? true : false;
+    const isLgScreen = windowSize.width && windowSize.width > 767 ? true : false;
+
     return (
         <main id="salonpage" className="row designRow">
             <div className="container w-full">
@@ -95,6 +101,39 @@ const Salonpage = () => {
                                         </span>
                                     </p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="r3522" className="row">
+                        <div className="container w-full">
+                            <div className="col col-sm-12">
+                                <ImageSlider
+                                    options={{
+                                        amountperpage: isXlScreen ? 4 : 8,
+                                        arrowbuttons: isXlScreen ? true : false,
+                                        dotbuttons: false,
+                                        columns: isLgScreen ? 4 : 2,
+                                        rows: isXlScreen ? 1 : isLgScreen ? 2 : 4,
+                                    }}
+                                >
+                                    {salonpageSliderImgs2.map((imgObj, idx) =>
+                                        <a
+                                            className="image-slider-link"
+                                            key={idx}
+                                            target="_blank"
+                                            href={imgObj.href}
+                                            title={imgObj.title}
+                                            tabIndex={-1}
+                                        >
+                                            <img
+                                                className="image-slider-img"
+                                                src={imgObj.src}
+                                                alt={imgObj.alt}
+                                            />
+                                        </a>
+                                    )}
+                                </ImageSlider>
                             </div>
                         </div>
                     </div>

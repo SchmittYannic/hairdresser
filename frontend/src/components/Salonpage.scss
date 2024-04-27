@@ -71,6 +71,16 @@
     padding-right: 15px;
 }
 
+#r3522 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #e6dbd7;
+
+    .image-slider-page {
+        gap: 10px;
+    }
+}
+
 @media only screen and (max-width: 1199px) {
     #r3322 {
         .image-slider-img {
@@ -91,5 +101,11 @@
     #r1391 {
         padding-top: 40px;
         padding-bottom: 40px;
+    }
+
+    #r3522 {
+        .image-slider-page {
+            gap: 20px;
+        }
     }
 }
