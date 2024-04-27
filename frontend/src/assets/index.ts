@@ -19,6 +19,9 @@ import hairstyle3 from "./hairstyle3.jpg"
 import haircolour1 from "./haircolour1.jpg"
 import haircolour2 from "./haircolour2.jpg"
 import haircolour3 from "./haircolour3.jpg"
+import salon1 from "./salon1.jpg"
+import salon2 from "./salon2.jpg"
+import salon3 from "./salon3.jpg"
 import selfcareproducts from "./selfcareproducts.jpg"
 import vorhernachher from "./vorhernachher.png"
 import colorme from "./colorme.jpg"
@@ -45,6 +48,9 @@ export {
     haircolour1,
     haircolour2,
     haircolour3,
+    salon1,
+    salon2,
+    salon3,
     selfcareproducts,
     vorhernachher,
     colorme,

@@ -12,6 +12,9 @@ import {
     haircolour2,
     haircolour3,
     selfcareproducts,
+    salon1,
+    salon2,
+    salon3,
 } from "../assets"
 
 type ImageSliderObjectType = {
@@ -113,6 +116,27 @@ const haircolour3Obj: Omit<ImageSliderObjectType, "id"> = {
     title: "Foto von Lera Kogan auf Unsplash",
 };
 
+const salon1Obj: Omit<ImageSliderObjectType, "id"> = {
+    src: salon1,
+    alt: "Hair Salon Frauenbereich",
+    href: "https://unsplash.com/de/fotos/foto-der-innenansicht-des-salons-PtOfbGkU3uI",
+    title: "Foto von Guilherme Petri auf Unsplash",
+};
+
+const salon2Obj: Omit<ImageSliderObjectType, "id"> = {
+    src: salon2,
+    alt: "Hair Salon Männerbereich",
+    href: "https://unsplash.com/de/fotos/ein-raum-gefullt-mit-mobeln-und-blumenvase-auf-einem-tisch-dDhWJLXEZ5I",
+    title: "Foto von Benyamin Bohlouli auf Unsplash",
+};
+
+const salon3Obj: Omit<ImageSliderObjectType, "id"> = {
+    src: salon3,
+    alt: "Hair Salon Männerbereich 2",
+    href: "https://unsplash.com/de/fotos/ein-raum-mit-mobeln-und-einem-grossen-fenster-_C-S7LqxHPw",
+    title: "Foto von Benyamin Bohlouli auf Unsplash",
+};
+
 export const bookingpageSliderImgs: ImageSliderObjectType[] = [
     {
         id: 0,
@@ -206,3 +230,18 @@ export const colourpageSliderImgs3: ImageSliderObjectType[] = [
         ...hairproducts1Obj,
     },
 ];
+
+export const salonpageSliderImgs1: ImageSliderObjectType[] = [
+    {
+        id: 0,
+        ...salon1Obj,
+    },
+    {
+        id: 1,
+        ...salon2Obj,
+    },
+    {
+        id: 2,
+        ...salon3Obj,
+    },
+]

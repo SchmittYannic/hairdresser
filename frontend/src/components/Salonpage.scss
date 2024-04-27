@@ -1,0 +1,30 @@
+@use "../Variables" as v;
+
+#r3322 {
+    .image-slider-item {
+        aspect-ratio: unset;
+    }
+
+    .image-slider-img {
+        min-height: 700px;
+        max-height: 700px;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    #r3322 {
+        .image-slider-img {
+            min-height: 400px;
+            max-height: 400px;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #r3322 {
+        .image-slider-img {
+            min-height: 250px;
+            max-height: 250px;
+        }
+    }
+}
