@@ -1,6 +1,7 @@
 import ImageSlider from "./ImageSlider"
 import { salonpageSliderImgs1 } from "../constants"
 import "./Salonpage.scss"
+import { hairdresserportrait3 } from "../assets"
 
 const Salonpage = () => {
     return (
@@ -32,6 +33,70 @@ const Salonpage = () => {
                                 </a>
                             )}
                         </ImageSlider>
+                    </div>
+
+                    <div id="r1391" className="row">
+                        <div className="container container-fixed">
+                            <div className="col col-sm-12">
+                                <div id="m2496" className="module text">
+                                    <h1 className="darkspottext text-center">
+                                        Bilder sagen mehr als 1000 Worte!
+                                    </h1>
+                                </div>
+                                <div className="module text">
+                                    <p className="preamble text-center">
+                                        <span className="bold">
+                                            hairdresser
+                                        </span>
+                                        &nbsp;- Ihr Friseur in Würzburg
+                                    </p>
+                                </div>
+                                <div id="m2395" className="module divider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="r3020" className="row">
+                        <div className="container container-fixed">
+                            <div id="c2413" className="col col-md-6 col-lg-6 col-sm-12">
+                                <img
+                                    id="m3421"
+                                    className="module image"
+                                    src={hairdresserportrait3}
+                                    alt="Bild von Geschäftsführerin Mirjam Schmid"
+                                />
+                            </div>
+                            <div id="c2336" className="col col-md-6 col-lg-6 col-sm-12">
+                                <div id="m4563" className="module text">
+                                    <h3 className="headline">
+                                        Mirjam Schmid
+                                    </h3>
+                                </div>
+                                <div id="m4992" className="module text">
+                                    <p className="bodytext">
+                                        <span className="bold">
+                                            Inhaberin von hairdresser:
+                                        </span>
+                                    </p>
+                                </div>
+                                <div id="m1554" className="module text">
+                                    <p>
+                                        <span className="bold tertiary-color">
+                                            "hairdresser ist nicht nur ein Wohlfühlort für Sie, es ist der Ort, an dem kreative,
+                                        </span>
+                                        <span className="bold tertiary-color">
+                                            &nbsp;engagierte und temperamentvolle Hairstylisten Ihre Wünsche erfüllen und dabei Freude
+                                        </span>
+                                        <span className="bold tertiary-color">
+                                            &nbsp;bereiten - für Groß und Klein. Sie sollen sich bei uns wohlfühlen. Dafür geben mein Team
+                                        </span>
+                                        <span className="bold tertiary-color">
+                                            &nbsp;und ich alles. Machen Sie sich gerne selbst ein Bild."
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,8 @@ import professionell from "./professionell.png"
 import showpony from "./showpony.png"
 import heart from "./heart.png"
 import hairdresserportrait from "./hairdresserportrait.jpg"
+import hairdresserportrait2 from "./hairdresserportrait2.jpg"
+import hairdresserportrait3 from "./hairdresserportrait3.jpg"
 import hairproduct from "./hairproduct.jpg"
 import teamgeist from "./teamgeist.png"
 import kevinmurphyproduct from "./kevinmurphyproduct.jpg"
@@ -34,6 +36,8 @@ export {
     showpony,
     heart,
     hairdresserportrait,
+    hairdresserportrait2,
+    hairdresserportrait3,
     hairproduct,
     teamgeist,
     kevinmurphyproduct,
