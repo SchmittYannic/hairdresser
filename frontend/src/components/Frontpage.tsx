@@ -27,7 +27,11 @@ const Frontpage = () => {
                     <div id="cta-section" className="row">
                         <div className="container container-fixed">
                             <div className="col col-sm-12">
-                                <Link id="cta-frontpage" className="module button" to="/">
+                                <Link
+                                    id="cta-frontpage"
+                                    className="module button"
+                                    to="/terminbuch/termine"
+                                >
                                     <span>
                                         Jetzt Termin sichern
                                     </span>
