@@ -29,6 +29,7 @@ import salon3 from "./salon3.jpg"
 import selfcareproducts from "./selfcareproducts.jpg"
 import vorhernachher from "./vorhernachher.png"
 import colorme from "./colorme.jpg"
+import bewerbung from "./bewerbung.png"
 
 export {
     kreativ,
@@ -62,4 +63,5 @@ export {
     selfcareproducts,
     vorhernachher,
     colorme,
+    bewerbung,
 }
