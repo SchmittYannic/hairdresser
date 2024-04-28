@@ -1,1 +1,145 @@
 @use "../Variables" as v;
+
+#team-img-jobspage {
+    background-image: url("/teamimg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 0%;
+    padding-top: 400px;
+    padding-bottom: 400px;
+}
+
+#r3643 {
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+#m2260 {
+    margin-bottom: 5px;
+}
+
+#m4165 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#r1680 {
+    padding-bottom: 80px;
+}
+
+#m1995 {
+    max-width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#r4866 {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+
+    ul {
+        font-size: 17px;
+        line-height: 1.7em;
+        padding: 0 0 0 40px;
+        margin: 1em 0;
+    }
+}
+
+#c1759 {
+    background-color: rgba(230, 219, 215, 0.3);
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+}
+
+#m2467 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#c3631 {
+    background-color: rgba(145, 130, 117, 0.26);
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+}
+
+#m2717 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media only screen and (max-width: 1199px) {
+    #team-img-jobspage {
+        padding-top: 200px;
+        padding-bottom: 200px;
+    }
+
+    #r3643 {
+        padding-bottom: 0px;
+    }
+
+    #r1680 {
+        padding-bottom: 40px;
+    }
+
+    #c1759 {
+        padding-left: 35px;
+        padding-top: 35px;
+        padding-bottom: 35px;
+        padding-right: 35px;
+    }
+
+    #m2467 {
+        padding-bottom: 0px;
+    }
+
+    #c3631 {
+        padding-left: 35px;
+        padding-top: 35px;
+        padding-bottom: 35px;
+        padding-right: 35px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #team-img-jobspage {
+        padding-top: 125px;
+        padding-bottom: 125px;
+    }
+
+    #r3643 {
+        padding-top: 25px;
+    }
+
+    #m1995 {
+        max-width: 60%;
+    }
+
+    #c1759 {
+        padding-left: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-right: 20px;
+    }
+
+    #m2467 {
+        padding-top: 0px;
+    }
+
+    #c3631 {
+        padding-left: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-right: 20px;
+    }
+
+    #m2717 {
+        padding-top: 0px;
+    }
+}
