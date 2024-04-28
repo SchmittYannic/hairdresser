@@ -312,6 +312,10 @@ body .designRow>.container>.col {
     max-width: 100%;
 }
 
+.image-container {
+    display: block;
+}
+
 .icon-container {
     display: inline-block;
     vertical-align: middle;
@@ -367,6 +371,14 @@ body .designRow>.container>.col {
     &:hover svg {
         color: v.$secondaryColor;
     }
+}
+
+.custom1 {
+    font-weight: 700;
+    color: #918275;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    line-height: 1.45em;
 }
 
 #page-header {
