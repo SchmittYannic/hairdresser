@@ -6,6 +6,7 @@ import Stylingpage from "./components/Stylingpage"
 import Colourpage from "./components/Colourpage"
 import Salonpage from "./components/Salonpage"
 import Teampage from "./components/Teampage"
+import Jobspage from "./components/Jobspage"
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
 				<Route path="colour" element={<Colourpage />} />
 				<Route path="salon" element={<Salonpage />} />
 				<Route path="team" element={<Teampage />} />
+				<Route path="jobs" element={<Jobspage />} />
 			</Route>
 		</Routes>
 	)
