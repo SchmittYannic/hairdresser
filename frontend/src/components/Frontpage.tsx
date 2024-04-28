@@ -6,8 +6,8 @@ import {
     modern,
     professionell,
     heart,
-    hairdresserportrait,
     hairproduct,
+    hairdresserportrait1square,
 } from "../assets"
 import "./Frontpage.scss"
 
@@ -331,14 +331,16 @@ const Frontpage = () => {
                                 className="col col-sm-12 col-lg-6 col-md-6"
                             >
                                 <a
+                                    id="w_m1276"
+                                    className="image-container"
                                     href="https://unsplash.com/de/fotos/frau-im-weissen-rundhalshemd-lachelnd-IF9TK5Uy-KI"
                                     target="_blank"
                                     title="Foto von Jake Nackos auf Unsplash"
                                 >
                                     <img
-                                        id="hairdresserportraitImg"
+                                        id="m1276"
                                         className="module image"
-                                        src={hairdresserportrait}
+                                        src={hairdresserportrait1square}
                                         alt="hairdresser portrait"
                                     />
                                 </a>
