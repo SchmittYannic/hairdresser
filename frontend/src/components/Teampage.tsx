@@ -193,7 +193,7 @@ const Teampage = () => {
                                         id="m4734"
                                         className="module image"
                                         src={teamgeist}
-                                        alt=""
+                                        alt="teamgeist"
                                     />
                                 </div>
                             </div>
