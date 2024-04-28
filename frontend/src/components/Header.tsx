@@ -12,7 +12,9 @@ const Header = () => {
 
     const handleMenuClicked = () => {
         setIsMenuOpen(!isMenuOpen);
-    }
+    };
+
+    const closeMenu = () => setIsMenuOpen(false);
 
     return (
         <header>
@@ -91,28 +93,68 @@ const Header = () => {
                                     </button>
                                     <ul className={`navContainer ${isMenuOpen ? "open" : ""}`}>
                                         <li>
-                                            <NavLink to={"/"}>Willkommen</NavLink>
+                                            <NavLink
+                                                to={"/"}
+                                                onClick={closeMenu}
+                                            >
+                                                Willkommen
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to={"/terminbuchung"}>Terminbuchung</NavLink>
+                                            <NavLink
+                                                to={"/terminbuchung"}
+                                                onClick={closeMenu}
+                                            >
+                                                Terminbuchung
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to={"/styling"}>Styling</NavLink>
+                                            <NavLink
+                                                to={"/styling"}
+                                                onClick={closeMenu}
+                                            >
+                                                Styling
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to={"/colour"}>Colour</NavLink>
+                                            <NavLink
+                                                to={"/colour"}
+                                                onClick={closeMenu}
+                                            >
+                                                Colour
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to={"/salon"}>Salon</NavLink>
+                                            <NavLink
+                                                to={"/salon"}
+                                                onClick={closeMenu}
+                                            >
+                                                Salon
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to={"/team"}>Team</NavLink>
+                                            <NavLink
+                                                to={"/team"}
+                                                onClick={closeMenu}
+                                            >
+                                                Team
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to={"/jobs"}>Jobs</NavLink>
+                                            <NavLink
+                                                to={"/jobs"}
+                                                onClick={closeMenu}
+                                            >
+                                                Jobs
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to={"/kontakt"}>Kontakt</NavLink>
+                                            <NavLink
+                                                to={"/kontakt"}
+                                                onClick={closeMenu}
+                                            >
+                                                Kontakt
+                                            </NavLink>
                                         </li>
                                     </ul>
                                 </nav>
