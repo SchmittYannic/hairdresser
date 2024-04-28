@@ -1,4 +1,5 @@
 import { ChangeEvent, useRef } from "react"
+import { Link } from "react-router-dom"
 import { bewerbung } from "../assets"
 import "./Applicationform.scss"
 
@@ -159,6 +160,32 @@ const Applicationform = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className="optins clear">
+                            <div className="field w100 optin">
+                                <div className="form_option">
+                                    <input
+                                        id="m2893_optin_field_0"
+                                        type="checkbox"
+                                        name="optin_field_0"
+                                        value={1}
+                                        required
+                                    />
+                                    <label
+                                        className="label_optin_field_0"
+                                        htmlFor="m2893_optin_field_0"
+                                    >
+                                        <Link
+                                            className="optinLink"
+                                            to={"/datenschutzerklaerung"}
+                                        >
+                                            Wir verarbeiten Ihre eingegebenen personenbezogenen Daten ausschließlich zur Beantwortung Ihrer Anfrage. Weitere Informationen zum Datenschutz, insbesondere auch zu Ihren Rechten, finden Sie in unserer Datenschutzerklärung. *
+                                        </Link>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="errors_m2893"></div>
+                        <input className="button" type="submit" value="Bewerbung abschicken" />
                     </form>
 
                     <div id="m4148" className="module text">
