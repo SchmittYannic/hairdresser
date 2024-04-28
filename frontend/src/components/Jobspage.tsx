@@ -1,4 +1,5 @@
 import { heart } from "../assets"
+import Applicationform from "./Applicationform"
 import "./Jobspage.scss"
 
 const Jobspage = () => {
@@ -94,6 +95,8 @@ const Jobspage = () => {
                             </div>
                         </div>
                     </div>
+
+                    <Applicationform />
                 </div>
             </div>
         </main>
