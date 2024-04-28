@@ -4,9 +4,11 @@ import modern from "./modern.png"
 import professionell from "./professionell.png"
 import showpony from "./showpony.png"
 import heart from "./heart.png"
-import hairdresserportrait from "./hairdresserportrait.jpg"
+import hairdresserportrait1 from "./hairdresserportrait1.jpg"
 import hairdresserportrait2 from "./hairdresserportrait2.jpg"
 import hairdresserportrait3 from "./hairdresserportrait3.jpg"
+import hairdresserportrait1square from "./hairdresserportrait1square.jpg"
+import hairdresserportrait3square from "./hairdresserportrait3square.jpg"
 import hairproduct from "./hairproduct.jpg"
 import teamgeist from "./teamgeist.png"
 import kevinmurphyproduct from "./kevinmurphyproduct.jpg"
@@ -35,9 +37,11 @@ export {
     professionell,
     showpony,
     heart,
-    hairdresserportrait,
+    hairdresserportrait1,
     hairdresserportrait2,
     hairdresserportrait3,
+    hairdresserportrait1square,
+    hairdresserportrait3square,
     hairproduct,
     teamgeist,
     kevinmurphyproduct,
