@@ -1,7 +1,31 @@
+import { ChangeEvent, useRef } from "react"
 import { bewerbung } from "../assets"
 import "./Applicationform.scss"
 
 const Applicationform = () => {
+
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const selectedFileText = useRef<HTMLSpanElement>(null);
+
+    const noFileSelectedText = "Keine Datei ausgewählt";
+
+    const handleSelectFileClicked = () => {
+        if (!fileInputRef.current) return
+        fileInputRef.current.click();
+    };
+
+    const handleFileInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (!selectedFileText.current) return
+        const { target } = event;
+        const el = selectedFileText.current;
+        if (!target.files) {
+            el.innerText = noFileSelectedText;
+        } else {
+            const fileCount = target.files.length;
+            el.innerText = fileCount === 1 ? target.files[0].name : fileCount + " Dateien ausgewählt";
+        }
+    };
+
     return (
         <div id="r4179" className="row">
             <div className="container w-full">
@@ -110,21 +134,27 @@ const Applicationform = () => {
                                     Lebenslauf
                                 </label>
                                 <input
+                                    ref={fileInputRef}
                                     id="m2893_field7"
                                     type="file"
                                     name="field_7[]"
-                                    multiple={false}
+                                    multiple={true}
+                                    onChange={handleFileInputChange}
                                 />
                                 <div className="uploadWrapper">
                                     <button
                                         className="uploadBtn bold"
                                         type="button"
+                                        onClick={handleSelectFileClicked}
                                     >
                                         Datei wählen
                                     </button>
                                     &nbsp;
-                                    <span className="uploadText">
-                                        Keine Datei ausgewählt
+                                    <span
+                                        ref={selectedFileText}
+                                        className="uploadText"
+                                    >
+                                        {noFileSelectedText}
                                     </span>
                                 </div>
                             </div>
