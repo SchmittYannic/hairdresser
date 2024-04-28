@@ -1,7 +1,7 @@
 import ImageSlider from "./ImageSlider"
 import useWindowSize from "../hooks/useWindowSize"
 import { salonpageSliderImgs1, salonpageSliderImgs2 } from "../constants"
-import { hairdresserportrait3 } from "../assets"
+import { hairdresserportrait3square } from "../assets"
 import "./Salonpage.scss"
 
 const Salonpage = () => {
@@ -65,12 +65,20 @@ const Salonpage = () => {
                     <div id="r3020" className="row">
                         <div className="container container-fixed">
                             <div id="c2413" className="col col-md-6 col-lg-6 col-sm-12">
-                                <img
-                                    id="m3421"
-                                    className="module image"
-                                    src={hairdresserportrait3}
-                                    alt="Bild von Geschäftsführerin Mirjam Schmid"
-                                />
+                                <a
+                                    id="w_m3421"
+                                    className="image-container"
+                                    href="https://unsplash.com/de/fotos/frau-in-weiss-blau-kariertem-hemd-jzz_3jWMzHA"
+                                    target="_blank"
+                                    title="Foto von Rivage auf Unsplash"
+                                >
+                                    <img
+                                        id="m3421"
+                                        className="module image"
+                                        src={hairdresserportrait3square}
+                                        alt="Inhaberin Mirjam Schmid"
+                                    />
+                                </a>
                             </div>
                             <div id="c2336" className="col col-md-6 col-lg-6 col-sm-12">
                                 <div id="m4563" className="module text">
