@@ -784,6 +784,14 @@ body .designRow>.container>.col {
     text-align: right;
 }
 
+#telephone-info a {
+    color: v.$secondaryColor;
+
+    &:hover {
+        color: v.$primaryColor;
+    }
+}
+
 /* Media queries */
 
 @media only screen and (max-width: 1199px) {
