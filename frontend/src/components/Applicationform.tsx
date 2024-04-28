@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef } from "react"
+import { ChangeEvent, FormEvent, useRef } from "react"
 import { Link } from "react-router-dom"
 import { bewerbung } from "../assets"
 import "./Applicationform.scss"
@@ -27,6 +27,10 @@ const Applicationform = () => {
         }
     };
 
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+    }
+
     return (
         <div id="r4179" className="row">
             <div className="container w-full">
@@ -46,6 +50,7 @@ const Applicationform = () => {
                         action="custom_form"
                         encType="multipart/form-data"
                         data-settings="margin=1"
+                        onSubmit={handleSubmit}
                     >
                         <div className="fields clear">
                             <div className="field w100">
