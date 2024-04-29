@@ -31,6 +31,7 @@ import vorhernachher from "./vorhernachher.png"
 import colorme from "./colorme.jpg"
 import bewerbung from "./bewerbung.png"
 import besuch from "./besuch.png"
+import kontaktformular from "./kontaktformular.png"
 
 export {
     kreativ,
@@ -66,4 +67,5 @@ export {
     colorme,
     bewerbung,
     besuch,
+    kontaktformular,
 }
