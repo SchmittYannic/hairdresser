@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { FaInstagram, FaFacebookF, FaEnvelope } from "react-icons/fa"
 import { besuch } from "../assets"
 import { insertSpace } from "../utils/functions";
+import Kontaktform from "./Kontaktform";
 import "./Kontaktpage.scss"
 
 const Kontaktpage = () => {
@@ -109,6 +110,8 @@ const Kontaktpage = () => {
                             </div>
                         </div>
                     </div>
+
+                    <Kontaktform />
                 </div>
             </div>
         </main>
