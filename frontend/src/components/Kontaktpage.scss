@@ -10,6 +10,7 @@
     margin-right: 0px;
     margin-top: 80px;
     margin-bottom: 60px;
+    padding-bottom: 15px;
 }
 
 #m3265 {
@@ -104,5 +105,69 @@
         &:hover {
             color: v.$tertiaryColor;
         }
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    #r1099 {
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 40px;
+    }
+
+    #m3265 {
+        max-width: 80%;
+    }
+
+    #m1014 {
+        width: 60%;
+    }
+
+    #m3268 {
+        width: 60%;
+    }
+
+    #m1469 {
+        width: 60%;
+    }
+
+    #c3427 {
+        padding-top: 0px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #r1099 {
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    #m3265 {
+        max-width: 100%;
+    }
+
+    #m1014 {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #m3268 {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #m1469 {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #c3427 {
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 }
