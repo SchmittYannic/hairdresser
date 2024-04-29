@@ -30,8 +30,17 @@ const padArray = (array: arrayChildrenType[], number: number): arrayChildrenType
     return result
 }
 
+const insertSpace = (string: string) => {
+    if (typeof string !== "string" || string.length <= 5) {
+        return string; // return the string as is if it's not a string or its length is 5 or less
+    }
+
+    return string.slice(0, 5) + " " + string.slice(5);
+}
+
 export {
     splitArray,
     repeatArray,
     padArray,
+    insertSpace,
 }
