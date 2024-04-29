@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom"
-import { FaEnvelope } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa"
-import { FaFacebookF } from "react-icons/fa"
+import { FaInstagram, FaFacebookF, FaEnvelope } from "react-icons/fa"
 import { besuch } from "../assets"
-import "./Kontaktpage.scss"
 import { insertSpace } from "../utils/functions";
+import "./Kontaktpage.scss"
 
 const Kontaktpage = () => {
 
     const phonenumber = String(import.meta.env.VITE_PHONENUMBER) ?? "000000000";
     const email = String(import.meta.env.VITE_EMAIL) ?? "musteraddress@mail.com";
+    const instagram = String(import.meta.env.VITE_INSTAGRAM) ?? "https://www.instagram.com";
+    const facebook = String(import.meta.env.VITE_FACEBOOK) ?? "https://www.facebook.com";
 
     return (
         <main id="kontaktpage" className="row designRow">
@@ -88,7 +88,7 @@ const Kontaktpage = () => {
                                     <ul id="m2093" className="module iconlist">
                                         <li>
                                             <a
-                                                href="https://www.instagram.com"
+                                                href={instagram}
                                                 target="_blank"
                                                 title="Instagramprofil öffnen"
                                             >
@@ -97,7 +97,7 @@ const Kontaktpage = () => {
                                         </li>
                                         <li>
                                             <a
-                                                href="https://www.facebook.com"
+                                                href={facebook}
                                                 target="_blank"
                                                 title="Facebookprofil öffnen"
                                             >

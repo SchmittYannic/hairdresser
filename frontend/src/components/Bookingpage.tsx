@@ -3,12 +3,14 @@ import ImageSlider from "./ImageSlider"
 import useWindowSize from "../hooks/useWindowSize"
 import { teamgeist } from "../assets"
 import { bookingpageSliderImgs } from "../constants"
+import { insertSpace } from "../utils/functions"
 import "./Bookingpage.scss"
 
 const Bookingpage = () => {
 
     const windowSize = useWindowSize();
     const isLgScreen = windowSize.width && windowSize.width > 767 ? true : false;
+    const phonenumber = String(import.meta.env.VITE_PHONENUMBER) ?? "000000000";
 
     return (
         <main id="bookingpage" className="row designRow">
@@ -45,9 +47,9 @@ const Bookingpage = () => {
                                         <span>
                                             Selbstverständlich können Sie uns auch unter&nbsp;
                                         </span>
-                                        <a className="tertiary-color" href="tel:000000000">
+                                        <a className="tertiary-color" href={`tel:${phonenumber}`}>
                                             <span className="monoglobalWrap">
-                                                00000 0000
+                                                {insertSpace(phonenumber)}
                                             </span>
                                         </a>
                                         <span className="monoglobalWrap">

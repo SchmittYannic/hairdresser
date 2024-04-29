@@ -1,14 +1,18 @@
 import { useState } from "react"
 import { NavLink, Link } from "react-router-dom"
 import { FaPhone } from "react-icons/fa6"
-import { FaInstagram } from "react-icons/fa"
-import { FaFacebookF } from "react-icons/fa"
+import { FaInstagram, FaFacebookF } from "react-icons/fa"
 import { MdClose } from "react-icons/md"
 import { TfiMenu } from "react-icons/tfi"
+import { insertSpace } from "../utils/functions"
 import logo from "../assets/logo.png"
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const phonenumber = String(import.meta.env.VITE_PHONENUMBER) ?? "000000000";
+    const instagram = String(import.meta.env.VITE_INSTAGRAM) ?? "https://www.instagram.com";
+    const facebook = String(import.meta.env.VITE_FACEBOOK) ?? "https://www.facebook.com";
 
     const handleMenuClicked = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -48,9 +52,9 @@ const Header = () => {
                                         </span>
                                         &nbsp;
                                         <span className="secondary-color">
-                                            <a href="tel:000000000">
+                                            <a href={`tel:${phonenumber}`}>
                                                 <span className="monoglobalWrap">
-                                                    00000 0000
+                                                    {insertSpace(phonenumber)}
                                                 </span>
                                             </a>
                                         </span>
@@ -64,7 +68,7 @@ const Header = () => {
                                 <ul id="social-icons" className="module iconlist">
                                     <li>
                                         <a
-                                            href="https://www.instagram.com"
+                                            href={instagram}
                                             target="_blank"
                                             title="Instagramprofil öffnen"
                                         >
@@ -73,7 +77,7 @@ const Header = () => {
                                     </li>
                                     <li>
                                         <a
-                                            href="https://www.facebook.com"
+                                            href={facebook}
                                             target="_blank"
                                             title="Facebookprofil öffnen"
                                         >

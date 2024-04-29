@@ -9,9 +9,13 @@ import {
     hairproduct,
     hairdresserportrait1square,
 } from "../assets"
+import { insertSpace } from "../utils/functions"
 import "./Frontpage.scss"
 
 const Frontpage = () => {
+
+    const phonenumber = String(import.meta.env.VITE_PHONENUMBER) ?? "000000000";
+
     return (
         <main id="frontpage" className="row designRow">
             <div className="container w-full">
@@ -71,9 +75,9 @@ const Frontpage = () => {
                                         </span>
                                         &nbsp;
                                         <span>
-                                            <a className="tertiary-color" href="tel:000000000">
+                                            <a className="tertiary-color" href={`tel:${phonenumber}`}>
                                                 <span className="monoglobalWrap">
-                                                    00000 0000
+                                                    {insertSpace(phonenumber)}
                                                 </span>
                                             </a>
                                         </span>
