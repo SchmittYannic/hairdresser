@@ -30,6 +30,7 @@ import selfcareproducts from "./selfcareproducts.jpg"
 import vorhernachher from "./vorhernachher.png"
 import colorme from "./colorme.jpg"
 import bewerbung from "./bewerbung.png"
+import besuch from "./besuch.png"
 
 export {
     kreativ,
@@ -64,4 +65,5 @@ export {
     vorhernachher,
     colorme,
     bewerbung,
+    besuch,
 }

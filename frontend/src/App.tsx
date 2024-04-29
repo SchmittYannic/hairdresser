@@ -7,6 +7,7 @@ import Colourpage from "./components/Colourpage"
 import Salonpage from "./components/Salonpage"
 import Teampage from "./components/Teampage"
 import Jobspage from "./components/Jobspage"
+import Kontaktpage from "./components/Kontaktpage"
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const App = () => {
 				<Route path="salon" element={<Salonpage />} />
 				<Route path="team" element={<Teampage />} />
 				<Route path="jobs" element={<Jobspage />} />
+				<Route path="kontakt" element={<Kontaktpage />} />
 			</Route>
 		</Routes>
 	)

@@ -1,0 +1,108 @@
+@use "../Variables" as v;
+
+#kontaktpage {
+    margin-bottom: 0px;
+    padding-bottom: 35px;
+}
+
+#r1099 {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 80px;
+    margin-bottom: 60px;
+}
+
+#m3265 {
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#r1918 {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    padding-bottom: 0px;
+}
+
+#c4159 {
+    background-color: rgba(230, 219, 215, 0.25);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#m3960 {
+    margin-bottom: 20px;
+}
+
+#m1014 {
+    width: 80%;
+    margin-left: auto;
+    margin-top: 0px;
+    margin-right: auto;
+}
+
+#c3908 {
+    background-color: rgba(230, 219, 215, 0.25);
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#m4589 {
+    margin-bottom: 20px;
+}
+
+#m3268 {
+    width: 50%;
+    margin-left: auto;
+    margin-top: 0px;
+    margin-right: auto;
+}
+
+#c2267 {
+    background-color: rgba(230, 219, 215, 0.25);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#m4591 {
+    margin-bottom: 20px;
+}
+
+#m1469 {
+    width: 50%;
+    font-size: 14px;
+    margin-left: auto;
+    margin-top: 0px;
+    margin-right: auto;
+}
+
+#c3427 {
+    background-color: rgba(230, 219, 215, 0.25);
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#m2555 {
+    margin-bottom: 20px;
+}
+
+#m2093 {
+    text-align: center;
+
+    svg {
+        color: #918275;
+        width: 35px;
+        height: 40px;
+
+        &:hover {
+            color: v.$tertiaryColor;
+        }
+    }
+}
