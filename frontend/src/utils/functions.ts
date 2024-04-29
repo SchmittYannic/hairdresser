@@ -38,9 +38,30 @@ const insertSpace = (string: string) => {
     return string.slice(0, 5) + " " + string.slice(5);
 }
 
+const isOpenNow = (): boolean => {
+    const now = new Date();
+    const dayOfWeek = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+
+    // Check if it's Tuesday to Friday and within 08:30 - 18:00
+    if (dayOfWeek >= 2 && dayOfWeek <= 5 && (hours > 8 || (hours === 8 && minutes >= 30)) && (hours < 18 || (hours === 18 && minutes <= 0))) {
+        return true;
+    }
+
+    // Check if it's Saturday and within 08:00 - 13:00
+    if (dayOfWeek === 6 && (hours > 8 || (hours === 8 && minutes >= 0)) && (hours < 13 || (hours === 13 && minutes <= 0))) {
+        return true;
+    }
+
+    // Shop is closed
+    return false;
+}
+
 export {
     splitArray,
     repeatArray,
     padArray,
     insertSpace,
+    isOpenNow,
 }
