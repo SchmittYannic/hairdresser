@@ -1,14 +1,5 @@
 @use "../Variables" as v;
 
-#r3309 {
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 80px;
-    margin-bottom: 40px;
-    padding-left: 150px;
-    padding-right: 150px;
-}
-
 #c1954 {
     background-color: #fff;
     border-left-width: 4px;
@@ -36,27 +27,12 @@
 }
 
 @media only screen and (max-width: 1199px) {
-    #r3309 {
-        margin-left: 0px;
-        margin-right: 0px;
-        margin-top: 40px;
-        padding-left: 15px;
-        padding-bottom: 0px;
-        padding-right: 15px;
-    }
-
     #m4169 {
         max-width: 30%;
     }
 }
 
 @media only screen and (max-width: 767px) {
-    #r3309 {
-        margin-left: 0px;
-        margin-right: 0px;
-        margin-bottom: 0px;
-    }
-
     #c1954 {
         margin-top: 15px;
         padding-left: 15px;

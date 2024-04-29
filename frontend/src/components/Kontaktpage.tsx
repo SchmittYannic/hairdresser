@@ -111,7 +111,11 @@ const Kontaktpage = () => {
                         </div>
                     </div>
 
-                    <Kontaktform />
+                    <div id="r3309" className="row">
+                        <div className="container w-full">
+                            <Kontaktform />
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
