@@ -749,6 +749,35 @@ body .designRow>.container>.col {
     display: inline-block;
 }
 
+.opennow {
+    min-height: 10px;
+}
+
+.opennow>span {
+    display: block;
+}
+
+.opennow .closed {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.05em;
+}
+
+.openinghours .dayLabel,
+.openinghours2 .dayLabel {
+    float: left;
+}
+
+.openinghours .ranges,
+.openinghours2 .ranges {
+    float: right;
+    text-align: right;
+}
+
+.openinghours .ranges {
+    margin-bottom: 10px;
+}
+
 /* Header styling */
 
 #page-header {
@@ -803,6 +832,10 @@ body .designRow>.container>.col {
         font-size: 35px;
     }
 
+    .bodytext {
+        color: #000;
+    }
+
     #page-header {
         padding-left: 15px;
         padding-right: 15px;
@@ -824,6 +857,10 @@ body .designRow>.container>.col {
 
     .darkspottext {
         font-size: 25px;
+    }
+
+    .subtitle {
+        font-size: 18px;
     }
 
     .form label {

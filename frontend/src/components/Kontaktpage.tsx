@@ -114,6 +114,67 @@ const Kontaktpage = () => {
                     <div id="r3309" className="row">
                         <div className="container w-full">
                             <Kontaktform />
+
+                            <div id="c2107" className="col col-lg-6 col-sm-12 col-md-12">
+                                <div id="m1398" className="module text">
+                                    <h3 className="subtitle text-left">
+                                        Unsere Öffnungszeiten
+                                    </h3>
+                                </div>
+                                <div id="m3165" className="module opennow">
+                                    <span className="closed">
+                                        Aktuell ist unser Salon geschlossen. Bitte beachten Sie unsere Öffnungszeiten.
+                                    </span>
+                                </div>
+                                <div id="m4503" className="module openinghours">
+                                    <p className="day clear bodytext">
+                                        <span className="dayLabel">Montag</span>
+                                        <span className="ranges">
+                                            <span>Ruhetag</span>
+                                        </span>
+                                    </p>
+                                    <p className="day clear bodytext">
+                                        <span className="dayLabel">Dienstag-Freitag</span>
+                                        <span className="ranges">
+                                            <span>08:30 - 18:00</span>
+                                        </span>
+                                    </p>
+                                    <p className="day clear bodytext">
+                                        <span className="dayLabel">Samstag</span>
+                                        <span className="ranges">
+                                            <span>08:00 - 13:00</span>
+                                        </span>
+                                    </p>
+                                    <p className="subtitle specialDayTitle"></p>
+                                </div>
+                                <div className="module text">
+                                    <p>
+                                        Sie können gerne über unser&nbsp;
+                                        <span className="bold">
+                                            <Link
+                                                style={{ display: "inline-flex" }}
+                                                to={"/terminbuchung"}
+                                            >
+                                                Terminbuchungstool
+                                            </Link>
+                                            &nbsp;
+                                        </span>
+                                        oder&nbsp;
+                                        <span className="bold">
+                                            <a href={`tel:${phonenumber}`}>
+                                                telefonisch
+                                            </a>
+                                            &nbsp;
+                                        </span>
+                                        einen Termin vereinbaren.
+                                    </p>
+                                </div>
+                                <div id="m4530" className="module text">
+                                    <p>
+                                        Nutzen Sie bitte die öffentlichen Parkplätze an der Straße.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
