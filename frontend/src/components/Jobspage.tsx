@@ -1,8 +1,15 @@
 import { heart } from "../assets"
+import { jobspageSliderImgs1 } from "../constants"
+import useWindowSize from "../hooks/useWindowSize"
 import Applicationform from "./Applicationform"
+import ImageSlider from "./ImageSlider"
 import "./Jobspage.scss"
 
 const Jobspage = () => {
+
+    const windowSize = useWindowSize();
+    const isLgScreen = windowSize.width && windowSize.width > 767 ? true : false;
+
     return (
         <main id="jobspage" className="row designRow">
             <div className="container w-full">
@@ -97,6 +104,39 @@ const Jobspage = () => {
                     </div>
 
                     <Applicationform />
+
+                    <div id="r1490" className="row">
+                        <div className="container w-full">
+                            <div className="col col-sm-12">
+                                <ImageSlider
+                                    options={{
+                                        amountperpage: 4,
+                                        arrowbuttons: false,
+                                        dotbuttons: false,
+                                        columns: isLgScreen ? 4 : 2,
+                                        rows: isLgScreen ? 1 : 2,
+                                    }}
+                                >
+                                    {jobspageSliderImgs1.map((imgObj, idx) =>
+                                        <a
+                                            className="image-slider-link"
+                                            key={idx}
+                                            target="_blank"
+                                            href={imgObj.href}
+                                            title={imgObj.title}
+                                            tabIndex={-1}
+                                        >
+                                            <img
+                                                className="image-slider-img"
+                                                src={imgObj.src}
+                                                alt={imgObj.alt}
+                                            />
+                                        </a>
+                                    )}
+                                </ImageSlider>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>

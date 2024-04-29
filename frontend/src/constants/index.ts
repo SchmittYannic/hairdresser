@@ -280,3 +280,22 @@ export const salonpageSliderImgs2: ImageSliderObjectType[] = [
         ...selfcareproductsObj,
     },
 ];
+
+export const jobspageSliderImgs1: ImageSliderObjectType[] = [
+    {
+        id: 0,
+        ...selfcareproductsObj,
+    },
+    {
+        id: 1,
+        ...hairproducts4Obj,
+    },
+    {
+        id: 2,
+        ...hairproducts2Obj,
+    },
+    {
+        id: 3,
+        ...salon1Obj,
+    },
+];
