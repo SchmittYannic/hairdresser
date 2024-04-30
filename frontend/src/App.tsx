@@ -10,11 +10,13 @@ import Jobspage from "./components/Jobspage"
 import Kontaktpage from "./components/Kontaktpage"
 import Impressum from "./components/Impressum"
 import Datenschutz from "./components/Datenschutz"
+import Booking from "./features/booking/Booking"
 
 const App = () => {
 
 	return (
 		<Routes>
+			<Route path="/terminbuch/termine" element={<Booking />} />
 			<Route path="/" element={<Layout />} >
 				<Route index element={<Frontpage />} />
 				<Route path="terminbuchung" element={<Bookingpage />} />
