@@ -117,15 +117,15 @@
     &:focus-visible {
         top: 0;
         left: 5px;
-        border: 1px solid black;
-        background-color: white;
+        border: 1px solid v.$primaryColor;
+        background-color: v.$primaryBgColor;
         padding: 0.5rem;
         width: auto;
         height: auto;
         margin: 0;
         clip: unset;
         text-decoration: none;
-        color: black;
+        color: v.$primaryColor;
         z-index: 2;
     }
 }

@@ -46,7 +46,7 @@
 #c8802 {
     background-color: rgba(216, 198, 185, 0.12);
     background-clip: content-box;
-    border-color: #fff;
+    border-color: v.$primaryBgColor;
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -89,7 +89,7 @@
 #c2259 {
     background-color: rgba(230, 219, 215, 0.42);
     background-clip: content-box;
-    border-color: #fff;
+    border-color: v.$primaryBgColor;
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -97,7 +97,7 @@
 #c3154 {
     background-color: rgba(216, 198, 185, 0.12);
     background-clip: content-box;
-    border-color: #fff;
+    border-color: v.$primaryBgColor;
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -107,7 +107,7 @@
     border-top-width: 15px;
     border-bottom-width: 15px;
     border-right-width: 15px;
-    border-color: #fff;
+    border-color: v.$primaryBgColor;
     padding-left: 40px;
     padding-top: 40px;
     padding-bottom: 40px;

@@ -1,12 +1,12 @@
 @use "../Variables" as v;
 
 #c1954 {
-    background-color: #fff;
+    background-color: v.$primaryBgColor;
     border-left-width: 4px;
     border-top-width: 4px;
     border-bottom-width: 4px;
     border-right-width: 4px;
-    border-color: #d8c6b9;
+    border-color: v.$secondaryBgColor;
     padding-left: 30px;
     padding-top: 30px;
     padding-bottom: 30px;

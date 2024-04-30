@@ -32,7 +32,7 @@
 }
 
 #c2413 {
-    border-color: #fff;
+    border-color: v.$primaryBgColor;
     padding-left: 0px;
     padding-right: 0px;
 }
@@ -80,7 +80,7 @@
 #r3522 {
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: #e6dbd7;
+    background-color: v.$tertiaryBgColor;
 
     .image-slider-page {
         gap: 10px;

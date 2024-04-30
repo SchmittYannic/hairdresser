@@ -337,7 +337,7 @@ body .designRow>.container>.col {
     background: url("/trenner.png") repeat;
     width: 30%;
     border-top-width: 4px;
-    border-color: #e6dbd7;
+    border-color: v.$tertiaryBgColor;
     display: table;
     margin-left: auto;
     margin-top: 8px;
@@ -356,7 +356,7 @@ body .designRow>.container>.col {
 }
 
 .darkspottext {
-    color: #000;
+    color: v.$primaryColor;
     font-size: 40px;
     letter-spacing: 0.05em;
     line-height: 1.2em;
@@ -560,14 +560,14 @@ body .designRow>.container>.col {
     border-top-width: 0px;
     border-bottom-width: 0px;
     border-right-width: 0px;
-    border-color: #000;
+    border-color: v.$primaryColor;
     margin-bottom: 10px;
     margin-right: 0px;
     padding-left: 10px;
     padding-top: 25px;
     padding-bottom: 25px;
     padding-right: 10px;
-    color: #000;
+    color: v.$primaryColor;
     font-size: 16px;
 }
 
@@ -726,7 +726,7 @@ body .designRow>.container>.col {
 .form .uploadWrapper button.uploadBtn,
 .login .uploadWrapper button.uploadBtn {
     border-radius: 3px;
-    color: #000;
+    color: v.$primaryColor;
     border: 1px solid #8f8f9d;
     padding: 3px 5px;
     margin-right: 2px;
@@ -873,18 +873,18 @@ body .designRow>.container>.col {
     }
 
     &.sticky {
-        background-color: #e6dbd7;
+        background-color: v.$tertiaryBgColor;
         border-left-width: 4px;
         border-top-width: 4px;
         border-bottom-width: 4px;
-        border-color: #d8c6b9;
+        border-color: v.$secondaryBgColor;
         padding-left: 10px;
         padding-top: 5px;
         padding-bottom: 5px;
         padding-right: 10px;
 
         .stickyTitle {
-            color: #000;
+            color: v.$primaryColor;
             font-size: 18px;
             margin-left: 10px;
 
@@ -893,11 +893,11 @@ body .designRow>.container>.col {
         .stickyIcon {
             margin-top: 0px;
             margin-bottom: 0px;
-            color: #000;
+            color: v.$primaryColor;
             font-size: 30px;
             width: 50px;
             height: 50px;
-            border-color: #d8c6b9;
+            border-color: v.$secondaryBgColor;
             margin-right: 20px;
             display: inline-flex;
             align-items: center;
@@ -988,7 +988,7 @@ body .designRow>.container>.col {
     }
 
     .bodytext {
-        color: #000;
+        color: v.$primaryColor;
     }
 
     #page-header {
