@@ -70,8 +70,8 @@ const hairstyle2Obj: Omit<ImageSliderObjectType, "id"> = {
 const hairstyle3Obj: Omit<ImageSliderObjectType, "id"> = {
     src: hairstyle3,
     alt: "Frau mit langen glatten Haaren",
-    href: "Image by valuavitaly on Freepik",
-    title: "https://www.freepik.com/free-photo/portrait-beautiful-sexy-woman-with-long-hair-fashion-model-with-straight-hairstyle_11961892.htm",
+    href: "https://www.freepik.com/free-photo/portrait-beautiful-sexy-woman-with-long-hair-fashion-model-with-straight-hairstyle_11961892.htm",
+    title: "Image by valuavitaly on Freepik",
 };
 
 const hairproducts3Obj: Omit<ImageSliderObjectType, "id"> = {
@@ -84,15 +84,15 @@ const hairproducts3Obj: Omit<ImageSliderObjectType, "id"> = {
 const hairproducts4Obj: Omit<ImageSliderObjectType, "id"> = {
     src: hairproducts4,
     alt: "Haarprodukte4",
-    href: "Image by freepik",
-    title: "https://www.freepik.com/free-ai-image/3d-rendering-personal-care-products-fondant-pink_94940306.htm",
+    href: "https://www.freepik.com/free-ai-image/3d-rendering-personal-care-products-fondant-pink_94940306.htm",
+    title: "Image by freepik",
 };
 
 const selfcareproductsObj: Omit<ImageSliderObjectType, "id"> = {
     src: selfcareproducts,
     alt: "Haarstyling Zubehör",
-    href: "Image by freepik",
-    title: "https://www.freepik.com/free-photo/close-up-man-selfcare-products_23668485.htm",
+    href: "https://www.freepik.com/free-photo/close-up-man-selfcare-products_23668485.htm",
+    title: "Image by freepik",
 };
 
 const haircolour1Obj: Omit<ImageSliderObjectType, "id"> = {
