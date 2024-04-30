@@ -9,6 +9,7 @@ const Stylingpage = () => {
 
     const windowSize = useWindowSize();
     const isLgScreen = windowSize.width && windowSize.width > 767 ? true : false;
+    const shopname = String(import.meta.env.VITE_SHOPNAME) ?? "hairdresser";
 
     return (
         <main id="stylingpage" className="row designRow">
@@ -50,7 +51,7 @@ const Stylingpage = () => {
                             <div className="col col-sm-12">
                                 <div id="m2362" className="module text">
                                     <h1 className="darkspottext text-center">
-                                        Styling bei hairdresser
+                                        Styling bei {shopname}
                                     </h1>
                                 </div>
                                 <div className="module text">

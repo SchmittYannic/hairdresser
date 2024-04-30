@@ -9,6 +9,8 @@ const Jobspage = () => {
 
     const windowSize = useWindowSize();
     const isLgScreen = windowSize.width && windowSize.width > 767 ? true : false;
+    const city = String(import.meta.env.VITE_CITY) ?? "Würzburg";
+    const shopname = String(import.meta.env.VITE_SHOPNAME) ?? "hairdresser";
 
     return (
         <main id="jobspage" className="row designRow">
@@ -33,9 +35,9 @@ const Jobspage = () => {
                                 <div className="module text">
                                     <p className="preamble text-center">
                                         <span className="bold">
-                                            hairdresser
+                                            {shopname}
                                         </span>
-                                        - Ihr Friseur in Würzburg
+                                        - Ihr Friseur in {city}
                                     </p>
                                 </div>
                                 <div id="m4165" className="module divider"></div>

@@ -10,6 +10,7 @@ const Colourpage = () => {
 
     const windowSize = useWindowSize();
     const isLgScreen = windowSize.width && windowSize.width > 767 ? true : false;
+    const shopname = String(import.meta.env.VITE_SHOPNAME) ?? "hairdresser";
 
     return (
         <main id="colourpage" className="row designRow">
@@ -51,7 +52,7 @@ const Colourpage = () => {
                             <div className="col col-sm-12">
                                 <div id="m4729" className="module text">
                                     <h1 className="darkspottext text-center">
-                                        Farbe bei hairdresser
+                                        Farbe bei {shopname}
                                     </h1>
                                 </div>
                                 <div className="module text">

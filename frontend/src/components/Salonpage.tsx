@@ -9,6 +9,8 @@ const Salonpage = () => {
     const windowSize = useWindowSize();
     const isXlScreen = windowSize.width && windowSize.width > 1199 ? true : false;
     const isLgScreen = windowSize.width && windowSize.width > 767 ? true : false;
+    const city = String(import.meta.env.VITE_CITY) ?? "Würzburg";
+    const shopname = String(import.meta.env.VITE_SHOPNAME) ?? "hairdresser";
 
     return (
         <main id="salonpage" className="row designRow">
@@ -52,9 +54,9 @@ const Salonpage = () => {
                                 <div className="module text">
                                     <p className="preamble text-center">
                                         <span className="bold">
-                                            hairdresser
+                                            {shopname}
                                         </span>
-                                        &nbsp;- Ihr Friseur in Würzburg
+                                        &nbsp;- Ihr Friseur in {city}
                                     </p>
                                 </div>
                                 <div id="m2395" className="module divider"></div>
@@ -89,7 +91,7 @@ const Salonpage = () => {
                                 <div id="m4992" className="module text">
                                     <p className="bodytext">
                                         <span className="bold">
-                                            Inhaberin von hairdresser:
+                                            Inhaberin von {shopname}:
                                         </span>
                                     </p>
                                 </div>

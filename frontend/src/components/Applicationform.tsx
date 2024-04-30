@@ -8,6 +8,11 @@ const Applicationform = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const selectedFileText = useRef<HTMLSpanElement>(null);
 
+    const shopname = String(import.meta.env.VITE_SHOPNAME) ?? "hairdresser";
+    const city = String(import.meta.env.VITE_CITY) ?? "Würzburg";
+    const plz = String(import.meta.env.VITE_PLZ) ?? "97072";
+    const street = String(import.meta.env.VITE_STREET) ?? "Musterstr. 5";
+
     const noFileSelectedText = "Keine Datei ausgewählt";
 
     const handleSelectFileClicked = () => {
@@ -198,9 +203,9 @@ const Applicationform = () => {
                             Auf Ihre Bewerbung über unser Bewerbungsformular freuen wir uns!
                         </h3>
                         <p>&nbsp;</p>
-                        <p className="bold">hairdresser</p>
-                        <p>Musterstraße. 5</p>
-                        <p>97072 Würzburg</p>
+                        <p className="bold">{shopname}</p>
+                        <p>{street}</p>
+                        <p>{plz} {city}</p>
                         <p>&nbsp;</p>
                         <p>&nbsp;</p>
                     </div>

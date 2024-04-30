@@ -15,6 +15,8 @@ import "./Frontpage.scss"
 const Frontpage = () => {
 
     const phonenumber = String(import.meta.env.VITE_PHONENUMBER) ?? "000000000";
+    const city = String(import.meta.env.VITE_CITY) ?? "Würzburg";
+    const shopname = String(import.meta.env.VITE_SHOPNAME) ?? "hairdresser";
 
     return (
         <main id="frontpage" className="row designRow">
@@ -56,9 +58,9 @@ const Frontpage = () => {
                                 <div className="module text">
                                     <h1 className="preamble text-center">
                                         <span className="bold">
-                                            hairdresser
+                                            {shopname}
                                         </span>
-                                        - Ihr Friseur in Würzburg
+                                        - Ihr Friseur in {city}
                                     </h1>
                                 </div>
 
@@ -91,7 +93,7 @@ const Frontpage = () => {
                                     </p>
                                     <p className="bodytext text-center">&nbsp;</p>
                                     <p className="bodytext text-center">
-                                        Ihr Team von hairdresser
+                                        Ihr Team von {shopname}
                                     </p>
                                 </div>
                             </div>
@@ -351,7 +353,7 @@ const Frontpage = () => {
                                 <div id="m1492" className="module text">
                                     <p>
                                         <span className="bold tertiary-color">
-                                            Anna B.:
+                                            Nina H.:
                                         </span>
                                         &nbsp;"Doo.Over ist perfekt für mich. Wenn's mal schnell gehen soll, ist Doo.Over für mich&nbsp;
                                         <span className="bold">
