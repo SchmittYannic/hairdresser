@@ -1,0 +1,30 @@
+@use "../Variables" as v;
+
+.footertext {
+    color: #000;
+    text-align: center;
+}
+
+#r1138 {
+    background-color: #e1e0e0;
+    padding-bottom: 38px;
+}
+
+#c4127 {
+    padding-top: 40px;
+}
+
+@media only screen and (max-width: 1199px) {
+    #r1138 {
+        padding-bottom: 30px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #c4127 {
+        margin-top: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 20px;
+    }
+}
