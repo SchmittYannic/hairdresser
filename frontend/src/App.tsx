@@ -8,6 +8,8 @@ import Salonpage from "./components/Salonpage"
 import Teampage from "./components/Teampage"
 import Jobspage from "./components/Jobspage"
 import Kontaktpage from "./components/Kontaktpage"
+import Impressum from "./components/Impressum"
+import Datenschutz from "./components/Datenschutz"
 
 const App = () => {
 
@@ -22,6 +24,8 @@ const App = () => {
 				<Route path="team" element={<Teampage />} />
 				<Route path="jobs" element={<Jobspage />} />
 				<Route path="kontakt" element={<Kontaktpage />} />
+				<Route path="impressum" element={<Impressum />} />
+				<Route path="datenschutzerklaerung" element={<Datenschutz />} />
 			</Route>
 		</Routes>
 	)
