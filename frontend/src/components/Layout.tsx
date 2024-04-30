@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Outlet } from "react-router-dom"
+import { Outlet, Link } from "react-router-dom"
 import { IoIosArrowUp } from "react-icons/io";
+import { FaRegCalendarCheck } from "react-icons/fa6";
 import Header from "./Header"
 import Footer from "./Footer"
 
@@ -46,6 +47,20 @@ const Layout = () => {
                         <IoIosArrowUp aria-hidden />
                     </span>
                 </button>
+                <div className="stickyEngagementWrapper top_right">
+                    <Link
+                        id="e7bok"
+                        className="engagement sticky stickylink stickyLink hovereffect"
+                        to={"/terminbuch/termine"}
+                    >
+                        <span className="stickyTitle">
+                            Terminbuchung
+                        </span>
+                        <span className="icon-container stickyIcon">
+                            <FaRegCalendarCheck aria-hidden />
+                        </span>
+                    </Link>
+                </div>
             </div>
         </div>
     )
