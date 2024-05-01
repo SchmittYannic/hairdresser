@@ -257,6 +257,13 @@ hr {
     color: #ffffff;
 }
 
+.bookingFormButton:hover,
+.datefield-button:hover,
+.datefield-today-button:hover {
+    background-color: #f4efeb;
+    color: #DAC8BC;
+}
+
 .bullet-list {
     display: inline-block;
     list-style-type: none;
