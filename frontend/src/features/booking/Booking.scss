@@ -1,0 +1,325 @@
+@use "../../Variables" as v;
+
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    border-width: 0;
+    border-style: solid;
+    border-color: transparent;
+}
+
+input {
+    margin: unset;
+}
+
+hr {
+    margin: 10px 0;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #cccccc;
+}
+
+#booking {
+    margin: 0;
+    padding: 0;
+
+    min-height: 100vh;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    background-image: url("/teamimg.jpg");
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    background-color: #dddddd;
+}
+
+.header {
+    width: 100%;
+    max-height: 160px;
+    margin: 0 0 75px 0;
+}
+
+.header {
+    background-color: #DAC8BC;
+}
+
+.headerInlay {
+    width: 966px;
+    margin: 0 auto 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.headerImage {
+    max-width: 100%;
+    height: auto;
+}
+
+.booking-content {
+    width: 100%;
+    max-width: 966px;
+    margin: 0 auto 40px auto;
+    padding: 26px 0px 10px 0px;
+    background: #f1f1f1;
+}
+
+.pageHeader {
+    position: relative;
+}
+
+.col-1-1,
+.col-2-1,
+.col-2-2 {
+    padding: 0 30px 0 30px;
+    margin: 0 0 30px 0;
+}
+
+.col-2-1,
+.col-2-2 {
+    width: 50%;
+    float: left;
+}
+
+.pageHeaderCaption {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 5px 0;
+}
+
+.pageHeaderInfo {
+    display: block;
+    font-size: 16px;
+    text-align: center;
+}
+
+.horizontal-ruler {
+    height: 2px;
+    width: 100%;
+    margin: 30px 0 0 0;
+    display: block;
+    border: none;
+    background: #ffffff;
+}
+
+.page {
+    animation-name: fadeIn;
+    animation-duration: 300ms;
+    animation-timing-function: ease-out;
+}
+
+.page::after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+.captionLabel {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+
+.infoLabel {
+    display: block;
+    margin-top: 10px;
+}
+
+.bookingForm {
+    margin: 0;
+    padding: 0;
+}
+
+.bookingForm::after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+.bookingFormRow {
+    display: flex;
+    flex-direction: row;
+    clear: both;
+}
+
+.bookingFormLabel {
+    flex: 1 1 150px;
+    text-align: left;
+    border-bottom: 1px solid lightgray;
+    margin: 3px;
+    min-width: 120px;
+}
+
+.bookingFormLabel {
+    width: 35%;
+    min-height: 40px;
+    float: left;
+    margin: 10px 0 0 0;
+    padding: 10px 10px 0 0;
+    word-wrap: break-word;
+    border: none;
+}
+
+.bookingFormField {
+    flex: 1 1 350px;
+    margin: 3px;
+    min-width: 150px;
+}
+
+.bookingFormField {
+    width: 65%;
+    float: right;
+    margin: 10px 0 3px 0;
+    padding: 3px;
+    min-width: unset;
+}
+
+.textfield {
+    display: inline-block;
+    position: relative;
+    margin: 3px;
+    padding: 0px;
+    width: 200px;
+}
+
+.bookingFormField .textfield {
+    margin: 0;
+    width: 100%;
+}
+
+.textfield input {
+    padding: 3px;
+    width: 100%;
+    height: 30px;
+}
+
+.textfield input,
+.datefield-textfield input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    outline-style: none;
+    padding: 0 10px;
+}
+
+.bookingFormField .textfield input,
+.bookingFormField .textfield textarea {
+    padding: 5px;
+}
+
+.textfield input,
+.password input,
+.datefield-textfield input {
+    border: 1px solid #e5e5e5;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.passwordForgottenLink {
+    float: left;
+    width: 100%;
+    margin-top: 15px;
+    color: #DAC8BC;
+    font-style: italic;
+}
+
+.bookingFormButton {
+    min-height: 40px;
+    padding: 10px 40px 10px 40px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    float: right;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    position: relative;
+    box-sizing: border-box;
+    background: #7c7c7c;
+    color: #ffffff;
+}
+
+.bullet-list {
+    display: inline-block;
+    list-style-type: none;
+    margin: 10px;
+}
+
+.bullet-list li {
+    margin: 0 0 5px 0;
+    padding: 0 0 0 15px;
+    position: relative;
+}
+
+.bullet-list li::before {
+    font-family: 'Font Awesome\ 5 Free';
+    content: ">";
+    font-weight: 900;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    color: #DAC8BC;
+}
+
+.clear-row {
+    clear: both;
+}
+
+@media screen and (max-width: 965px) {
+    #booking {
+        min-height: unset;
+        background-image: none !important;
+    }
+
+    .header {
+        margin: 0;
+    }
+
+    .headerInlay {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .pageHeader {
+        padding-top: 10px;
+    }
+
+    .col-2-1 {
+        margin: 0 0 40px;
+    }
+
+    .col-2-1,
+    .col-2-2 {
+        width: 100%;
+        float: left;
+    }
+
+    .col-1-1,
+    .col-2-1,
+    .col-2-2 {
+        padding: 0 15px;
+    }
+
+    .bookingFormButton {
+        padding: 10px 25px 10px 25px;
+    }
+}
