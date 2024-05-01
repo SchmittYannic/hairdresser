@@ -4,6 +4,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import Header from "./Header"
 import Footer from "./Footer"
+import "../index.scss"
 
 const Layout = () => {
 
