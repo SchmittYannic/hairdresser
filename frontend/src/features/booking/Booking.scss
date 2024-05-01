@@ -13,7 +13,8 @@
     border-color: transparent;
 }
 
-input {
+input,
+input[type="text"] {
     margin: unset;
 }
 
