@@ -763,6 +763,13 @@ body .designRow>.container>.col {
     line-height: 1.05em;
 }
 
+.opennow .opened {
+    font-weight: 700;
+    color: v.$tertiaryColor;
+    font-size: 18px;
+    line-height: 1.05em;
+}
+
 .openinghours .dayLabel,
 .openinghours2 .dayLabel {
     float: left;

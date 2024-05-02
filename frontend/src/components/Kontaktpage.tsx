@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { FaInstagram, FaFacebookF, FaEnvelope } from "react-icons/fa"
 import { besuch } from "../assets"
-import { insertSpace } from "../utils/functions";
+import { insertSpace, isOpenNow } from "../utils/functions";
 import Kontaktform from "./Kontaktform";
 import "./Kontaktpage.scss"
 
@@ -11,6 +11,8 @@ const Kontaktpage = () => {
     const email = String(import.meta.env.VITE_EMAIL) ?? "musteraddress@mail.com";
     const instagram = String(import.meta.env.VITE_INSTAGRAM) ?? "https://www.instagram.com";
     const facebook = String(import.meta.env.VITE_FACEBOOK) ?? "https://www.facebook.com";
+
+    const isShopOpen = isOpenNow();
 
     return (
         <main id="kontaktpage" className="row designRow">
@@ -122,9 +124,16 @@ const Kontaktpage = () => {
                                     </h3>
                                 </div>
                                 <div id="m3165" className="module opennow">
-                                    <span className="closed">
-                                        Aktuell ist unser Salon geschlossen. Bitte beachten Sie unsere Öffnungszeiten.
-                                    </span>
+                                    {
+                                        isShopOpen ?
+                                            <span className="opened">
+                                                Wir haben geöffnet!
+                                            </span>
+                                            :
+                                            <span className="closed">
+                                                Aktuell ist unser Salon geschlossen. Bitte beachten Sie unsere Öffnungszeiten.
+                                            </span>
+                                    }
                                 </div>
                                 <div id="m4503" className="module openinghours">
                                     <p className="day clear bodytext">
