@@ -18,6 +18,11 @@ input[type="text"] {
     margin: unset;
 }
 
+input[type="checkbox"] {
+    height: unset;
+    width: unset;
+}
+
 hr {
     margin: 10px 0;
     border-width: 1px 0 0 0;
@@ -42,6 +47,10 @@ hr {
     background-color: #dddddd;
 }
 
+.excluded {
+    display: none !important;
+}
+
 .header {
     width: 100%;
     max-height: 160px;
@@ -64,12 +73,21 @@ hr {
     height: auto;
 }
 
+.bookingFooter {
+    display: flex;
+    margin-top: 30px;
+}
+
 .booking-content {
     width: 100%;
     max-width: 966px;
     margin: 0 auto 40px auto;
     padding: 26px 0px 10px 0px;
     background: #f1f1f1;
+}
+
+.booking-content.small {
+    max-width: 600px;
 }
 
 .pageHeader {
@@ -265,6 +283,10 @@ hr {
     color: #DAC8BC;
 }
 
+.backButton {
+    float: left;
+}
+
 .bullet-list {
     display: inline-block;
     list-style-type: none;
@@ -289,6 +311,62 @@ hr {
 
 .clear-row {
     clear: both;
+}
+
+.bookingSelectbox {
+    padding: 3px;
+    min-width: 200px;
+    max-width: 200px;
+    height: 30px;
+    line-height: 16px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: Tahoma, Geneva, sans-serif;
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px 0 0 6px;
+}
+
+.bookingFormField .bookingSelectbox {
+    margin: 0;
+    padding: 5px;
+}
+
+.bookingCheckbox {
+    margin-top: 6px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.agbCheckbox {
+    height: auto !important;
+    font-size: 11px;
+}
+
+.newsletterCheckbox {
+    font-size: 11px;
+    height: 25px !important;
+}
+
+.bookingCheckbox {
+    height: 40px;
+}
+
+.checkbox-cb {
+    flex: 0 0 auto;
+    margin-right: 8px;
+    cursor: pointer;
+    cursor: pointer;
+}
+
+.bookingCheckbox-text {
+    flex: 1 1 auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 @media screen and (max-width: 965px) {
