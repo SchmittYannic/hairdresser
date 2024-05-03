@@ -11,7 +11,7 @@ const password = Joi.string()
     .message("Password must contain at least one lowercase letter")
     .pattern(new RegExp(/.*\d.*/))
     .message("Password must contain at least one digit")
-    .pattern(new RegExp(/.*[!@#$%^&-_*].*/))
+    .pattern(new RegExp(/.*[!@#$%^&*_\-].*/))
     .message("Password must contain at least one special character")
     .required()
     .messages({
