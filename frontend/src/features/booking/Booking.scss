@@ -369,6 +369,19 @@ hr {
     user-select: none;
 }
 
+.termsAndConditionsContainer {
+    width: 100%;
+    height: 260px;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+
+    iframe {
+        width: 100%;
+        height: 95%;
+        background: white;
+    }
+}
+
 @media screen and (max-width: 965px) {
     #booking {
         min-height: unset;

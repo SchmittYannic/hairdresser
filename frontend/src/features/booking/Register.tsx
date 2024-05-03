@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { activeTabType } from "./Booking"
 
 type RegisterPropsType = {
@@ -5,6 +6,12 @@ type RegisterPropsType = {
 }
 
 const Register = ({ callback }: RegisterPropsType) => {
+
+    const handleAGBClicked = (e: MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        callback("agb")
+    }
+
     return (
         <>
             <div className="col-2-1">
@@ -157,7 +164,12 @@ const Register = ({ callback }: RegisterPropsType) => {
                                 />
                                 <span className="bookingCheckbox-text">
                                     Den Inhalt der&nbsp;
-                                    <a href="">AGB und Datenschutzerklärung</a>
+                                    <a
+                                        href=""
+                                        onClick={handleAGBClicked}
+                                    >
+                                        AGB und Datenschutzerklärung
+                                    </a>
                                     &nbsp;habe ich zur Kenntnis genommen und erkläre mich damit einverstanden.
                                 </span>
                             </div>
