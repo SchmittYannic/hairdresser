@@ -2,18 +2,19 @@ import { MouseEvent } from "react";
 import { activeTabType } from "./Booking"
 
 type RegisterPropsType = {
-    callback: React.Dispatch<React.SetStateAction<activeTabType>>;
+    activeTab: activeTabType,
+    callback: React.Dispatch<React.SetStateAction<activeTabType>>,
 }
 
-const Register = ({ callback }: RegisterPropsType) => {
+const Register = ({ activeTab, callback }: RegisterPropsType) => {
 
     const handleAGBClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        callback("agb")
+        callback("agb");
     }
 
     return (
-        <>
+        <div className={`page${activeTab === "register" ? "" : " excluded"}`}>
             <div className="col-2-1">
                 <span className="captionLabel">
                     Ihre Kontaktdaten
@@ -228,7 +229,7 @@ const Register = ({ callback }: RegisterPropsType) => {
                     <span>Registrieren</span>
                 </button>
             </div>
-        </>
+        </div>
     )
 }
 

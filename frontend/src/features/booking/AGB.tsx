@@ -1,17 +1,18 @@
 import { activeTabType } from "./Booking"
 
 type AGBPropsType = {
-    callback: React.Dispatch<React.SetStateAction<activeTabType>>;
+    activeTab: activeTabType,
+    callback: React.Dispatch<React.SetStateAction<activeTabType>>,
 }
 
-const AGB = ({ callback }: AGBPropsType) => {
+const AGB = ({ activeTab, callback }: AGBPropsType) => {
 
     const handleBackButtonClicked = () => {
         callback("register");
     }
 
     return (
-        <>
+        <div className={`page${activeTab === "agb" ? "" : " excluded"}`}>
             <div className="col-2-1">
                 <span className="captionLabel">
                     AGB
@@ -38,7 +39,7 @@ const AGB = ({ callback }: AGBPropsType) => {
                 </button>
                 <div className="clear-row"></div>
             </div>
-        </>
+        </div>
     )
 }
 

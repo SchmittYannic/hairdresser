@@ -1,12 +1,12 @@
 import { activeTabType } from "./Booking"
 
 type ResetPasswordPropsType = {
-    callback: React.Dispatch<React.SetStateAction<activeTabType>>;
+    callback: React.Dispatch<React.SetStateAction<activeTabType>>,
 }
 
 const ResetPassword = ({ callback }: ResetPasswordPropsType) => {
     return (
-        <>
+        <div className="page">
             <div className="col-1-1">
                 <span className="infoLabel">
                     Wenn Sie Ihr Passwort nicht mehr wissen, können Sie es hier zurücksetzen. Geben Sie dazu Ihre E-Mail-Adresse ein.
@@ -45,7 +45,7 @@ const ResetPassword = ({ callback }: ResetPasswordPropsType) => {
                 </button>
                 <div className="clear-row"></div>
             </div>
-        </>
+        </div>
     )
 }
 

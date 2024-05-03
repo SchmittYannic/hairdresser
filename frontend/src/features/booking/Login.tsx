@@ -6,7 +6,7 @@ type LoginPropsType = {
 
 const Login = ({ callback }: LoginPropsType) => {
     return (
-        <>
+        <div className="page">
             <div className="col-2-1">
                 <span className="captionLabel">
                     Sie sind bereits registriert?
@@ -93,7 +93,7 @@ const Login = ({ callback }: LoginPropsType) => {
                 </form>
             </div>
             <div className="clear-row"></div>
-        </>
+        </div>
     )
 }
 

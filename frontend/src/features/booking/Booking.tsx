@@ -39,21 +39,10 @@ const Booking = () => {
                     </div>
                 </div>
                 <div className="pageMaster">
-                    <div className={`page${activeTab !== "login" ? " excluded" : ""}`}>
-                        <Login callback={setActiveTab} />
-                    </div>
-
-                    <div className={`page${activeTab !== "register" ? " excluded" : ""}`}>
-                        <Register callback={setActiveTab} />
-                    </div>
-
-                    <div className={`page${activeTab !== "reset" ? " excluded" : ""}`}>
-                        <ResetPassword callback={setActiveTab} />
-                    </div>
-
-                    <div className={`page${activeTab !== "agb" ? " excluded" : ""}`}>
-                        <AGB callback={setActiveTab} />
-                    </div>
+                    {activeTab === "login" && <Login callback={setActiveTab} />}
+                    {activeTab === "reset" && <ResetPassword callback={setActiveTab} />}
+                    {(activeTab === "register" || activeTab === "agb") && <Register activeTab={activeTab} callback={setActiveTab} />}
+                    {(activeTab === "register" || activeTab === "agb") && <AGB activeTab={activeTab} callback={setActiveTab} />}
                 </div>
                 <div className="bookingFooter"></div>
             </main>
