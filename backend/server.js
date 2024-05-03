@@ -8,18 +8,25 @@ import { logger, logEvents } from "./middleware/logger.js";
 import errorHandler from "./middleware/errorHandler.js";
 import cors from "cors";
 import corsOptions from "./config/corsOptions.js";
+import rootRoute from "./routes/root.js";
+import userRoutes from "./routes/userRoutes.js";
 
 /* Configurations */
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
+app.disable('x-powered-by');
 const PORT = process.env.PORT || 3500;
 console.log(process.env.NODE_ENV);
 connectDB();
 app.use(logger);
 app.use(cors(corsOptions));
 app.use(express.json());
+
+/* ROUTES */
+app.use("/", rootRoute);
+app.use("/users", userRoutes);
 
 app.use(errorHandler);
 
