@@ -4,10 +4,6 @@ const userSchema = new mongoose.Schema(
     {
         email: {
             type: String,
-            validate: {
-                validator: email => User.doesNotExist({ email }),
-                message: "Email already exists"
-            },
             required: true,
         },
         password: {
@@ -35,7 +31,7 @@ const userSchema = new mongoose.Schema(
             required: true,
         },
         phonenumber: {
-            type: Number,
+            type: String,
             required: true,
         },
         validated: {
