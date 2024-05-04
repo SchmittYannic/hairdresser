@@ -1,6 +1,9 @@
 import Joi from "joi";
 
-const email = Joi.string().email().required();
+const email = Joi.string().email().required().messages({
+    "string.empty": "Email is required",
+    "any.required": "Email is required"
+});
 
 const password = Joi.string()
     .pattern(new RegExp(/^.{6,16}$/))
