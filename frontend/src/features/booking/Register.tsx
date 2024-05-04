@@ -1,5 +1,6 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 import { activeTabType } from "./Booking"
+import useCreateNewUser from "../../hooks/useCreateNewUser";
 
 type RegisterPropsType = {
     activeTab: activeTabType,
@@ -8,10 +9,45 @@ type RegisterPropsType = {
 
 const Register = ({ activeTab, callback }: RegisterPropsType) => {
 
+    const { mutate, isLoading, isError, isSuccess } = useCreateNewUser();
+    const [title, setTitle] = useState<string>("- Bitte wählen -");
+    const [lastname, setLastname] = useState<string>("");
+    const [firstname, setFirstname] = useState<string>("");
+    const [birthday, setBirthday] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [phonenumber, setPhonenumber] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [passwordrepeat, setPasswordrepeat] = useState<string>("");
+    const [agb, setAgb] = useState<boolean>(false);
+    const [reminderemail, setReminderemail] = useState<boolean>(true);
+    const [birthdayemail, setBirthdayemail] = useState<boolean>(true);
+    const [newsletter, setNewsletter] = useState<boolean>(false);
+
     const handleAGBClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         callback("agb");
     }
+
+    const handleRegisterClicked = async () => {
+        if (title !== "Herr" && title !== "Frau" && title !== "Divers") return
+
+        mutate({
+            title,
+            "email": "test3@web.de",
+            "password": "Uest1dssd-",
+            "lastname": "hallo",
+            "firstname": "tetsg",
+            "birthday": "12.12.2000",
+            "phonenumber": "6365464465",
+            "reminderemail": false,
+            "birthdayemail": false,
+            "newsletter": false
+        })
+    }
+
+    console.log(isLoading)
+    console.log(isError)
+    console.log(isSuccess)
 
     return (
         <div className={`page${activeTab === "register" ? "" : " excluded"}`}>
@@ -28,6 +64,7 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                             <select
                                 id="genderSelectbox"
                                 className="bookingSelectbox"
+                                onChange={(e) => setTitle(e.target.value)}
                             >
                                 <option className="selectbox-item">
                                     - Bitte wählen -
@@ -54,6 +91,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                                     autoCapitalize="none"
                                     type="text"
                                     maxLength={80}
+                                    value={lastname}
+                                    onChange={(e) => setLastname(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -68,6 +107,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                                     autoCapitalize="none"
                                     type="text"
                                     maxLength={80}
+                                    value={firstname}
+                                    onChange={(e) => setFirstname(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -83,6 +124,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                                     type="text"
                                     maxLength={10}
                                     placeholder="tt.mm.(jjjj)"
+                                    value={birthday}
+                                    onChange={(e) => setBirthday(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -97,6 +140,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                                     autoCapitalize="none"
                                     type="text"
                                     maxLength={80}
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -111,6 +156,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                                     autoCapitalize="none"
                                     type="text"
                                     maxLength={80}
+                                    value={phonenumber}
+                                    onChange={(e) => setPhonenumber(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -134,6 +181,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                                     type="passwort"
                                     maxLength={80}
                                     autoComplete="on"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -149,6 +198,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                                     type="passwort"
                                     maxLength={80}
                                     autoComplete="on"
+                                    value={passwordrepeat}
+                                    onChange={(e) => setPasswordrepeat(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -162,6 +213,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                                 <input
                                     className="checkbox-cb"
                                     type="checkbox"
+                                    checked={agb}
+                                    onChange={(e) => setAgb(e.target.checked)}
                                 />
                                 <span className="bookingCheckbox-text">
                                     Den Inhalt der&nbsp;
@@ -185,6 +238,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                             <input
                                 className="checkbox-cb"
                                 type="checkbox"
+                                checked={reminderemail}
+                                onChange={(e) => setReminderemail(e.target.checked)}
                             />
                             <span className="bookingCheckbox-text">
                                 Ich möchte Terminerinnerungen per E-Mail erhalten.
@@ -195,6 +250,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                             <input
                                 className="checkbox-cb"
                                 type="checkbox"
+                                checked={birthdayemail}
+                                onChange={(e) => setBirthdayemail(e.target.checked)}
                             />
                             <span className="bookingCheckbox-text">
                                 Ich möchte Geburtstagswünsche per E-Mail erhalten.
@@ -205,6 +262,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                             <input
                                 className="checkbox-cb"
                                 type="checkbox"
+                                checked={newsletter}
+                                onChange={(e) => setNewsletter(e.target.checked)}
                             />
                             <span className="bookingCheckbox-text">
                                 Ich möchte Informationen von II wie Lewring per E-Mail erhalten.
@@ -225,6 +284,7 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                 <button
                     className="registerButton bookingFormButton"
                     type="button"
+                    onClick={handleRegisterClicked}
                 >
                     <span>Registrieren</span>
                 </button>
