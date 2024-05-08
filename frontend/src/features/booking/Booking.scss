@@ -415,6 +415,14 @@ hr {
     text-align: right;
 }
 
+.success-label {
+    display: table;
+    margin: 0 auto;
+    padding: 5px 10px;
+    background-color: rgb(150, 228, 34);
+    border-radius: 5px;
+}
+
 .error-label {
     color: #DAC8BC;
 }
