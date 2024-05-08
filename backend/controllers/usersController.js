@@ -9,7 +9,7 @@ const createNewUser = async (req, res) => {
     try {
         const { email } = req.body
 
-        const duplicateEmail = await User.findOne({ email }).lean().exec();
+        const duplicateEmail = await User.findOne({ email: email.toLowerCase() }).lean().exec();
 
         if (duplicateEmail) {
             return res.status(409).json({ message: "E-Mail wird bereits verwendet", key: "email" });
