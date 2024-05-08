@@ -44,11 +44,11 @@ const title = Joi.string()
     .required()
 
 const birthday = Joi.date()
-    .less("now")
+    .greater("now")
     .required()
     .messages({
         "date.base": "Birthday is required",
-        "date.less": "Birthday cant be in the future",
+        "date.greater": "Birthday cant be in the future",
         "any.required": "Birthday is required",
     })
 
