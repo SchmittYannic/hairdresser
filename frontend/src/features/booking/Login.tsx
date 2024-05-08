@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { activeTabType } from "./Booking"
 import useLogin from "../../hooks/useLogin";
+import AsyncButton from "../../components/ui/AsyncButton";
 import { LoginDataType } from "../../utils/types";
 import Loginschema from "../../validation/Loginschema";
 
@@ -116,13 +117,13 @@ const Login = ({ callback }: LoginPropsType) => {
                         >
                             Passwort vergessen?
                         </a>
-                        <button
+                        <AsyncButton
                             className="bookingFormButton"
                             type="submit"
-                            disabled={isLoading}
+                            isLoading={isLoading}
                         >
-                            <span>Anmelden</span>
-                        </button>
+                            Anmelden
+                        </AsyncButton>
                     </div>
                 </div>
                 <div className="col-2-2">
