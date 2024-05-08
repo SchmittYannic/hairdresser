@@ -31,7 +31,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
         formState: { errors },
     } = useForm<UserDataType>({
         resolver: yupResolver(Registerschema),
-    })
+    });
+
     const onSubmit: SubmitHandler<UserDataType> = (data) => {
         const {
             title,
@@ -59,6 +60,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
             newsletter,
         });
     };
+
+    const isServerError = (isError && !isAxiosError(errorApi) || isError && isAxiosError(errorApi) && !errorApi.response);
 
     const handleAGBClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
@@ -372,7 +375,7 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                 {
                     isSuccess &&
                     <div className="col-1-1">
-                        <span className="success-label" role="alert">
+                        <span className="success-msg" role="alert">
                             {responseApi.message}
                             . Weiter zu&nbsp;
                             <a
@@ -381,6 +384,22 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                             >
                                 Login
                             </a>
+                        </span>
+                    </div>
+                }
+                {
+                    isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.key === undefined &&
+                    <div className="col-1-1">
+                        <span className="error-msg" role="alert">
+                            {errorApi.response.data.message}
+                        </span>
+                    </div>
+                }
+                {
+                    isServerError &&
+                    <div className="col-1-1">
+                        <span className="error-msg" role="alert">
+                            Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
                         </span>
                     </div>
                 }
