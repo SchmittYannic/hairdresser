@@ -415,16 +415,25 @@ hr {
     text-align: right;
 }
 
-.success-label {
+.error-label {
+    color: #DAC8BC;
+}
+
+.error-msg {
+    display: table;
+    margin: 0 auto;
+    padding: 5px 10px;
+    background-color: rgb(236, 55, 55);
+    color: white;
+    border-radius: 5px;
+}
+
+.success-msg {
     display: table;
     margin: 0 auto;
     padding: 5px 10px;
     background-color: rgb(150, 228, 34);
     border-radius: 5px;
-}
-
-.error-label {
-    color: #DAC8BC;
 }
 
 @media screen and (max-width: 965px) {
