@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
-import { register } from "../validations/user.js";
+import { register } from "../validation/user.js";
 
 // @desc Create new user
 // @route POST /users
