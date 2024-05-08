@@ -367,6 +367,7 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                     <button
                         className="registerButton bookingFormButton"
                         type="submit"
+                        disabled={isLoading}
                     >
                         <span>Registrieren</span>
                     </button>

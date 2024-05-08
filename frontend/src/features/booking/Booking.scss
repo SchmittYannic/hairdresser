@@ -283,6 +283,11 @@ hr {
     color: #DAC8BC;
 }
 
+.bookingFormButton:disabled {
+    background-color: black;
+    cursor: not-allowed;
+}
+
 .backButton {
     float: left;
 }
