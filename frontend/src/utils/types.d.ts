@@ -12,3 +12,8 @@ export type UserDataType = {
     birthdayemail: boolean,
     newsletter: boolean,
 }
+
+export type LoginDataType = {
+    email: string,
+    password: string,
+}
