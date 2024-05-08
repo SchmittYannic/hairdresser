@@ -85,7 +85,7 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                                 <select
                                     id="genderSelectbox"
                                     className={`bookingSelectbox${errors.title ? " error" : ""}`}
-                                    {...register("title", { required: true })}
+                                    {...register("title")}
                                 >
                                     <option className="selectbox-item" value="">
                                         - Bitte wählen -
