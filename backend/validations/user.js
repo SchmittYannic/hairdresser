@@ -55,7 +55,7 @@ const birthday = Joi.date()
 const phonenumber = Joi.string()
     .pattern(new RegExp(/^\d+$/))
     .message("Phonenumber must only consist of numbers")
-    .pattern(/^\d{7,15}$/)
+    .pattern(new RegExp(/^\d{7,15}$/))
     .message("Phonenumber must be between 7 and 15 digits long")
     .required()
     .messages({
