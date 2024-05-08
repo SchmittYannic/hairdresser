@@ -1,23 +1,11 @@
 import { useMutation } from "react-query"
 import { isAxiosError } from "axios"
 import api from "../api/"
-
-type UserDataType = {
-    email: string
-    password: string,
-    title: string,
-    lastname: string,
-    firstname: string,
-    birthday: string,
-    phonenumber: string,
-    reminderemail: boolean,
-    birthdayemail: boolean,
-    newsletter: boolean,
-}
+import { UserDataType } from "../utils/types"
 
 const useCreateNewUser = () => {
 
-    const createNewUser = async (userData: UserDataType) => {
+    const createNewUser = async (userData: Omit<UserDataType, "passwordrepeat" | "agb">) => {
         const response = await api.post("/users", userData)
         return response.data
     }

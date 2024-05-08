@@ -5,25 +5,11 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { activeTabType } from "./Booking"
 import useCreateNewUser from "../../hooks/useCreateNewUser"
 import Registerschema from "../../validation/Registerschema"
+import { UserDataType } from "../../utils/types";
 
 type RegisterPropsType = {
     activeTab: activeTabType,
     callback: React.Dispatch<React.SetStateAction<activeTabType>>,
-}
-
-type FormInputs = {
-    title: string,
-    email: string,
-    password: string,
-    passwordrepeat: string,
-    lastname: string,
-    firstname: string,
-    birthday: string,
-    phonenumber: string,
-    agb: boolean,
-    reminderemail: boolean,
-    birthdayemail: boolean,
-    newsletter: boolean,
 }
 
 const Register = ({ activeTab, callback }: RegisterPropsType) => {
@@ -35,10 +21,10 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
         handleSubmit,
         setError,
         formState: { errors },
-    } = useForm<FormInputs>({
+    } = useForm<UserDataType>({
         resolver: yupResolver(Registerschema),
     })
-    const onSubmit: SubmitHandler<FormInputs> = (data) => {
+    const onSubmit: SubmitHandler<UserDataType> = (data) => {
         const {
             title,
             lastname,
