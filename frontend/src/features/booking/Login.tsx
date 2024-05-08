@@ -14,7 +14,7 @@ type LoginPropsType = {
 
 const Login = ({ callback }: LoginPropsType) => {
 
-    const { mutate, isLoading, isError, isSuccess, error: errorApi } = useLogin();
+    const { mutate, isLoading, isError, error: errorApi } = useLogin();
 
     const {
         register,
@@ -28,6 +28,8 @@ const Login = ({ callback }: LoginPropsType) => {
     const onSubmit: SubmitHandler<LoginDataType> = (data) => {
         mutate(data);
     };
+
+    const isServerError = (isError && !isAxiosError(errorApi) || isError && isAxiosError(errorApi) && !errorApi.response);
 
     useEffect(() => {
         if (!isError) return
@@ -117,6 +119,27 @@ const Login = ({ callback }: LoginPropsType) => {
                         >
                             Passwort vergessen?
                         </a>
+                        <div className="clear-row"></div>
+                        {
+                            isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.key === undefined &&
+                            <span
+                                className="error-msg"
+                                role="alert"
+                                style={{ margin: "15px auto" }}
+                            >
+                                {errorApi.response.data.message}
+                            </span>
+                        }
+                        {
+                            isServerError &&
+                            <span
+                                className="error-msg"
+                                role="alert"
+                                style={{ margin: "15px auto" }}
+                            >
+                                Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
+                            </span>
+                        }
                         <AsyncButton
                             className="bookingFormButton"
                             type="submit"
