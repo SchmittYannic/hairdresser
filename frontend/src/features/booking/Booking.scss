@@ -274,6 +274,21 @@ hr {
     box-sizing: border-box;
     background: #7c7c7c;
     color: #ffffff;
+    -webkit-transition: visibility 1s ease-in-out;
+    -moz-transition: visibility 1s ease-in-out;
+    -ms-transition: visibility 1s ease-in-out;
+    -o-transition: visibility 1s ease-in-out;
+    transition: visibility 1s ease-in-out;
+
+    .hidden {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .visible {
+        visibility: visible;
+        opacity: 1;
+    }
 }
 
 .bookingFormButton:hover,
@@ -284,7 +299,7 @@ hr {
 }
 
 .bookingFormButton:disabled {
-    background-color: black;
+    background-color: #7c7c7c;
     cursor: not-allowed;
 }
 
