@@ -15,7 +15,7 @@ const useLogin = () => {
             if (isAxiosError(error) && error.response) {
                 console.error(error.response.data.message)
             } else {
-                console.error(error)
+                console.error("An error occured in useLogin")
             }
         }
     })
