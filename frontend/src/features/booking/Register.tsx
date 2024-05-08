@@ -1,294 +1,391 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect } from "react"
+import { useForm, SubmitHandler } from "react-hook-form"
+import { isAxiosError } from "axios";
+import { yupResolver } from "@hookform/resolvers/yup"
 import { activeTabType } from "./Booking"
-import useCreateNewUser from "../../hooks/useCreateNewUser";
+import useCreateNewUser from "../../hooks/useCreateNewUser"
+import Registerschema from "../../validation/Registerschema"
 
 type RegisterPropsType = {
     activeTab: activeTabType,
     callback: React.Dispatch<React.SetStateAction<activeTabType>>,
 }
 
+type FormInputs = {
+    title: string,
+    email: string,
+    password: string,
+    passwordrepeat: string,
+    lastname: string,
+    firstname: string,
+    birthday: string,
+    phonenumber: string,
+    agb: boolean,
+    reminderemail: boolean,
+    birthdayemail: boolean,
+    newsletter: boolean,
+}
+
 const Register = ({ activeTab, callback }: RegisterPropsType) => {
 
-    const { mutate, isLoading, isError, isSuccess } = useCreateNewUser();
-    const [title, setTitle] = useState<string>("- Bitte wählen -");
-    const [lastname, setLastname] = useState<string>("");
-    const [firstname, setFirstname] = useState<string>("");
-    const [birthday, setBirthday] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [phonenumber, setPhonenumber] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const [passwordrepeat, setPasswordrepeat] = useState<string>("");
-    const [agb, setAgb] = useState<boolean>(false);
-    const [reminderemail, setReminderemail] = useState<boolean>(true);
-    const [birthdayemail, setBirthdayemail] = useState<boolean>(true);
-    const [newsletter, setNewsletter] = useState<boolean>(false);
+    const { mutate, isLoading, isError, isSuccess, error: errorApi } = useCreateNewUser();
+
+    const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors },
+    } = useForm<FormInputs>({
+        resolver: yupResolver(Registerschema),
+    })
+    const onSubmit: SubmitHandler<FormInputs> = (data) => {
+        const {
+            title,
+            lastname,
+            firstname,
+            birthday,
+            email,
+            phonenumber,
+            password,
+            reminderemail,
+            birthdayemail,
+            newsletter,
+        } = data;
+
+        mutate({
+            title,
+            lastname,
+            firstname,
+            birthday,
+            email,
+            phonenumber,
+            password,
+            reminderemail,
+            birthdayemail,
+            newsletter,
+        });
+    };
 
     const handleAGBClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         callback("agb");
     }
 
-    const handleRegisterClicked = async () => {
-        if (title !== "Herr" && title !== "Frau" && title !== "Divers") return
+    useEffect(() => {
+        if (!isError) return
+        if (!isAxiosError(errorApi)) return
+        if (!errorApi.response) return
+        if (errorApi.response.data.key !== "email") return
 
-        mutate({
-            title,
-            "email": "test3@web.de",
-            "password": "Uest1dssd-",
-            "lastname": "hallo",
-            "firstname": "tetsg",
-            "birthday": "12.12.2000",
-            "phonenumber": "6365464465",
-            "reminderemail": false,
-            "birthdayemail": false,
-            "newsletter": false
+        setError("email", {
+            type: "inuse",
+            message: errorApi.response.data.message,
         })
-    }
-
-    console.log(isLoading)
-    console.log(isError)
-    console.log(isSuccess)
+    }, [setError, isError])
 
     return (
         <div className={`page${activeTab === "register" ? "" : " excluded"}`}>
-            <div className="col-2-1">
-                <span className="captionLabel">
-                    Ihre Kontaktdaten
-                </span>
-                <form className="bookingForm">
-                    <div className="bookingFormRow">
-                        <span className="bookingFormLabel">
-                            Anrede
-                        </span>
-                        <div className="bookingFormField">
-                            <select
-                                id="genderSelectbox"
-                                className="bookingSelectbox"
-                                onChange={(e) => setTitle(e.target.value)}
-                            >
-                                <option className="selectbox-item">
-                                    - Bitte wählen -
-                                </option>
-                                <option className="selectbox-item">
-                                    Herr
-                                </option>
-                                <option className="selectbox-item">
-                                    Frau
-                                </option>
-                                <option className="selectbox-item">
-                                    Divers
-                                </option>
-                            </select>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="col-2-1">
+                    <span className="captionLabel">
+                        Ihre Kontaktdaten
+                    </span>
+                    <div className="bookingForm">
+                        <div className="bookingFormRow">
+                            <span className="bookingFormLabel">
+                                Anrede
+                            </span>
+                            <div className="bookingFormField">
+                                <select
+                                    id="genderSelectbox"
+                                    className={`bookingSelectbox${errors.title ? " error" : ""}`}
+                                    {...register("title", { required: true })}
+                                >
+                                    <option className="selectbox-item" value="">
+                                        - Bitte wählen -
+                                    </option>
+                                    <option className="selectbox-item" value="Herr">
+                                        Herr
+                                    </option>
+                                    <option className="selectbox-item" value="Frau">
+                                        Frau
+                                    </option>
+                                    <option className="selectbox-item" value="Divers">
+                                        Divers
+                                    </option>
+                                </select>
+                                {
+                                    errors.title &&
+                                    <span id="genderSelectbox-error" className="error-label" role="alert">
+                                        {errors.title.message}
+                                    </span>
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div className="bookingFormRow">
-                        <span className="bookingFormLabel">
-                            Nachname
-                        </span>
-                        <div className="bookingFormField">
-                            <div className="textfield">
-                                <input
-                                    autoCapitalize="none"
-                                    type="text"
-                                    maxLength={80}
-                                    value={lastname}
-                                    onChange={(e) => setLastname(e.target.value)}
-                                />
+                        <div className="bookingFormRow">
+                            <span className="bookingFormLabel">
+                                Nachname
+                            </span>
+                            <div className="bookingFormField">
+                                <div
+                                    className={`textfield${errors.lastname ? " error" : ""}`}
+                                >
+                                    <input
+                                        autoCapitalize="none"
+                                        type="text"
+                                        maxLength={80}
+                                        {...register("lastname")}
+                                    />
+                                </div>
+                                {
+                                    errors.lastname &&
+                                    <span className="error-label" role="alert">
+                                        {errors.lastname.message}
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        <div className="bookingFormRow">
+                            <span className="bookingFormLabel">
+                                Vorname
+                            </span>
+                            <div className="bookingFormField">
+                                <div
+                                    className={`textfield${errors.firstname ? " error" : ""}`}
+                                >
+                                    <input
+                                        autoCapitalize="none"
+                                        type="text"
+                                        maxLength={80}
+                                        {...register("firstname")}
+                                    />
+                                </div>
+                                {
+                                    errors.firstname &&
+                                    <span className="error-label" role="alert">
+                                        {errors.firstname.message}
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        <div className="bookingFormRow">
+                            <span className="bookingFormLabel">
+                                Geburtstag
+                            </span>
+                            <div className="bookingFormField">
+                                <div
+                                    className={`textfield${errors.birthday ? " error" : ""}`}
+                                >
+                                    <input
+                                        autoCapitalize="none"
+                                        type="text"
+                                        placeholder="tt.mm.jjjj"
+                                        maxLength={10}
+                                        {...register("birthday")}
+                                    />
+                                </div>
+                                {
+                                    errors.birthday &&
+                                    <span className="error-label" role="alert">
+                                        {errors.birthday.message}
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        <div className="bookingFormRow">
+                            <span className="bookingFormLabel">
+                                E-Mail-Adresse
+                            </span>
+                            <div className="bookingFormField">
+                                <div
+                                    className={`textfield${errors.email ? " error" : ""}`}
+                                >
+                                    <input
+                                        autoCapitalize="none"
+                                        type="text"
+                                        maxLength={80}
+                                        {...register("email")}
+                                    />
+                                </div>
+                                {
+                                    errors.email &&
+                                    <span className="error-label" role="alert">
+                                        {errors.email.message}
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        <div className="bookingFormRow">
+                            <span className="bookingFormLabel">
+                                Handynummer
+                            </span>
+                            <div className="bookingFormField">
+                                <div
+                                    className={`textfield${errors.phonenumber ? " error" : ""}`}
+                                >
+                                    <input
+                                        autoCapitalize="none"
+                                        type="text"
+                                        maxLength={80}
+                                        {...register("phonenumber")}
+                                    />
+                                </div>
+                                {
+                                    errors.phonenumber &&
+                                    <span className="error-label" role="alert">
+                                        {errors.phonenumber.message}
+                                    </span>
+                                }
                             </div>
                         </div>
                     </div>
-                    <div className="bookingFormRow">
-                        <span className="bookingFormLabel">
-                            Vorname
-                        </span>
-                        <div className="bookingFormField">
-                            <div className="textfield">
-                                <input
-                                    autoCapitalize="none"
-                                    type="text"
-                                    maxLength={80}
-                                    value={firstname}
-                                    onChange={(e) => setFirstname(e.target.value)}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="bookingFormRow">
-                        <span className="bookingFormLabel">
-                            Geburtstag
-                        </span>
-                        <div className="bookingFormField">
-                            <div className="textfield">
-                                <input
-                                    autoCapitalize="none"
-                                    type="text"
-                                    maxLength={10}
-                                    placeholder="tt.mm.(jjjj)"
-                                    value={birthday}
-                                    onChange={(e) => setBirthday(e.target.value)}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="bookingFormRow">
-                        <span className="bookingFormLabel">
-                            E-Mail-Adresse
-                        </span>
-                        <div className="bookingFormField">
-                            <div className="textfield">
-                                <input
-                                    autoCapitalize="none"
-                                    type="text"
-                                    maxLength={80}
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="bookingFormRow">
-                        <span className="bookingFormLabel">
-                            Handynummer
-                        </span>
-                        <div className="bookingFormField">
-                            <div className="textfield">
-                                <input
-                                    autoCapitalize="none"
-                                    type="text"
-                                    maxLength={80}
-                                    value={phonenumber}
-                                    onChange={(e) => setPhonenumber(e.target.value)}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </div>
 
-            <div className="col-2-2">
-                <span className="captionLabel">
-                    &nbsp;
-                </span>
-                <form className="bookingForm">
-                    <div className="bookingFormRow">
-                        <span className="bookingFormLabel">
-                            Passwort
-                        </span>
-                        <div className="bookingFormField">
-                            <div className="textfield">
-                                <input
-                                    autoCapitalize="none"
-                                    type="passwort"
-                                    maxLength={80}
-                                    autoComplete="on"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
+                <div className="col-2-2">
+                    <span className="captionLabel">
+                        &nbsp;
+                    </span>
+                    <div className="bookingForm">
+                        <div className="bookingFormRow">
+                            <span className="bookingFormLabel">
+                                Passwort
+                            </span>
+                            <div className="bookingFormField">
+                                <div
+                                    className={`textfield${errors.password ? " error" : ""}`}
+                                >
+                                    <input
+                                        autoCapitalize="none"
+                                        type="password"
+                                        maxLength={80}
+                                        autoComplete="on"
+                                        {...register("password")}
+                                    />
+                                </div>
+                                {
+                                    errors.password &&
+                                    <span className="error-label" role="alert">
+                                        {errors.password.message}
+                                    </span>
+                                }
                             </div>
                         </div>
-                    </div>
-                    <div className="bookingFormRow">
-                        <span className="bookingFormLabel">
-                            Passwort wiederholen
-                        </span>
-                        <div className="bookingFormField">
-                            <div className="textfield">
-                                <input
-                                    autoCapitalize="none"
-                                    type="passwort"
-                                    maxLength={80}
-                                    autoComplete="on"
-                                    value={passwordrepeat}
-                                    onChange={(e) => setPasswordrepeat(e.target.value)}
-                                />
+                        <div className="bookingFormRow">
+                            <span className="bookingFormLabel">
+                                Passwort wiederholen
+                            </span>
+                            <div className="bookingFormField">
+                                <div
+                                    className={`textfield${errors.passwordrepeat ? " error" : ""}`}
+                                >
+                                    <input
+                                        autoCapitalize="none"
+                                        type="password"
+                                        maxLength={80}
+                                        autoComplete="on"
+                                        {...register("passwordrepeat")}
+                                    />
+                                </div>
+                                {
+                                    errors.passwordrepeat &&
+                                    <span className="error-label" role="alert">
+                                        {errors.passwordrepeat.message}
+                                    </span>
+                                }
                             </div>
                         </div>
-                    </div>
-                    <div className="bookingFormRow">
-                        <span className="bookingFormLabel">
-                            AGB und Datenschutz
+                        <div className="bookingFormRow">
+                            <span className="bookingFormLabel">
+                                AGB und Datenschutz
+                            </span>
+                            <div className="bookingFormField">
+                                <div
+                                    className={`agbCheckbox bookingCheckbox${errors.agb ? " error" : ""}`}
+                                >
+                                    <input
+                                        className="checkbox-cb"
+                                        type="checkbox"
+                                        {...register("agb", { required: true })}
+                                    />
+                                    <span className="bookingCheckbox-text">
+                                        Den Inhalt der&nbsp;
+                                        <a
+                                            href=""
+                                            onClick={handleAGBClicked}
+                                        >
+                                            AGB und Datenschutzerklärung
+                                        </a>
+                                        &nbsp;habe ich zur Kenntnis genommen und erkläre mich damit einverstanden.
+                                    </span>
+                                </div>
+                                {
+                                    errors.agb &&
+                                    <span className="error-label" role="alert">
+                                        {errors.agb.message}
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        <span className="captionLabel">
+                            Benachrichtigungen
                         </span>
-                        <div className="bookingFormField">
-                            <div className="agbCheckbox bookingCheckbox">
+                        <div className="container"></div>
+                        <div className="container">
+                            <div className="newsletterCheckbox bookingCheckbox">
                                 <input
                                     className="checkbox-cb"
                                     type="checkbox"
-                                    checked={agb}
-                                    onChange={(e) => setAgb(e.target.checked)}
+                                    {...register("reminderemail")}
+                                    defaultChecked
                                 />
                                 <span className="bookingCheckbox-text">
-                                    Den Inhalt der&nbsp;
-                                    <a
-                                        href=""
-                                        onClick={handleAGBClicked}
-                                    >
-                                        AGB und Datenschutzerklärung
-                                    </a>
-                                    &nbsp;habe ich zur Kenntnis genommen und erkläre mich damit einverstanden.
+                                    Ich möchte Terminerinnerungen per E-Mail erhalten.
+                                </span>
+                            </div>
+                            <div className="clear-row"></div>
+                            <div className="newsletterCheckbox bookingCheckbox">
+                                <input
+                                    className="checkbox-cb"
+                                    type="checkbox"
+                                    {...register("birthdayemail")}
+                                    defaultChecked
+                                />
+                                <span className="bookingCheckbox-text">
+                                    Ich möchte Geburtstagswünsche per E-Mail erhalten.
+                                </span>
+                            </div>
+                            <div className="clear-row"></div>
+                            <div className="newsletterCheckbox bookingCheckbox">
+                                <input
+                                    className="checkbox-cb"
+                                    type="checkbox"
+                                    {...register("newsletter")}
+                                />
+                                <span className="bookingCheckbox-text">
+                                    Ich möchte Informationen von hairdresser per E-Mail erhalten.
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <span className="captionLabel">
-                        Benachrichtigungen
-                    </span>
-                    <div className="container"></div>
-                    <div className="container">
-                        <div className="newsletterCheckbox bookingCheckbox">
-                            <input
-                                className="checkbox-cb"
-                                type="checkbox"
-                                checked={reminderemail}
-                                onChange={(e) => setReminderemail(e.target.checked)}
-                            />
-                            <span className="bookingCheckbox-text">
-                                Ich möchte Terminerinnerungen per E-Mail erhalten.
-                            </span>
-                        </div>
-                        <div className="clear-row"></div>
-                        <div className="newsletterCheckbox bookingCheckbox">
-                            <input
-                                className="checkbox-cb"
-                                type="checkbox"
-                                checked={birthdayemail}
-                                onChange={(e) => setBirthdayemail(e.target.checked)}
-                            />
-                            <span className="bookingCheckbox-text">
-                                Ich möchte Geburtstagswünsche per E-Mail erhalten.
-                            </span>
-                        </div>
-                        <div className="clear-row"></div>
-                        <div className="newsletterCheckbox bookingCheckbox">
-                            <input
-                                className="checkbox-cb"
-                                type="checkbox"
-                                checked={newsletter}
-                                onChange={(e) => setNewsletter(e.target.checked)}
-                            />
-                            <span className="bookingCheckbox-text">
-                                Ich möchte Informationen von II wie Lewring per E-Mail erhalten.
-                            </span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div className="clear-row"></div>
-            <div className="col-1-1">
-                <button
-                    className="backButton bookingFormButton"
-                    type="button"
-                    onClick={() => callback("login")}
-                >
-                    <span>Zurück</span>
-                </button>
-                <button
-                    className="registerButton bookingFormButton"
-                    type="button"
-                    onClick={handleRegisterClicked}
-                >
-                    <span>Registrieren</span>
-                </button>
-            </div>
+                </div>
+
+                <div className="clear-row"></div>
+                <div className="col-1-1">
+                    <button
+                        className="backButton bookingFormButton"
+                        type="button"
+                        onClick={() => callback("login")}
+                    >
+                        <span>Zurück</span>
+                    </button>
+                    <button
+                        className="registerButton bookingFormButton"
+                        type="submit"
+                    >
+                        <span>Registrieren</span>
+                    </button>
+                </div>
+            </form>
         </div>
     )
 }
