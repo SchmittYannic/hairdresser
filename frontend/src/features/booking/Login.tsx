@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { isAxiosError } from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { activeTabType } from "./Booking"
@@ -26,6 +28,30 @@ const Login = ({ callback }: LoginPropsType) => {
         mutate(data);
     };
 
+    useEffect(() => {
+        if (!isError) return
+        if (!isAxiosError(errorApi)) return
+        if (!errorApi.response) return
+        if (errorApi.response.data.key !== "email") return
+
+        setError("email", {
+            type: "emailNotFound",
+            message: errorApi.response.data.message,
+        })
+    }, [setError, isError])
+
+    useEffect(() => {
+        if (!isError) return
+        if (!isAxiosError(errorApi)) return
+        if (!errorApi.response) return
+        if (errorApi.response.data.key !== "password") return
+
+        setError("password", {
+            type: "passwortNoMatch",
+            message: errorApi.response.data.message,
+        })
+    }, [setError, isError])
+
     return (
         <div className="page">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -42,7 +68,7 @@ const Login = ({ callback }: LoginPropsType) => {
                                 E-Mail-Adresse
                             </span>
                             <div className="bookingFormField">
-                                <div className="textfield">
+                                <div className={`textfield${errors.email ? " error" : ""}`}>
                                     <input
                                         autoCapitalize="none"
                                         type="text"
@@ -63,7 +89,7 @@ const Login = ({ callback }: LoginPropsType) => {
                                 Passwort
                             </span>
                             <div className="bookingFormField">
-                                <div className="textfield">
+                                <div className={`textfield${errors.password ? " error" : ""}`}>
                                     <input
                                         autoCapitalize="none"
                                         type="password"
