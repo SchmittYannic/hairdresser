@@ -15,7 +15,14 @@ type RegisterPropsType = {
 
 const Register = ({ activeTab, callback }: RegisterPropsType) => {
 
-    const { mutate, isLoading, isError, isSuccess, error: errorApi } = useCreateNewUser();
+    const {
+        mutate,
+        isLoading,
+        isError,
+        isSuccess,
+        error: errorApi,
+        data: responseApi,
+    } = useCreateNewUser();
 
     const {
         register,
@@ -56,6 +63,11 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
     const handleAGBClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         callback("agb");
+    }
+
+    const handleLoginClicked = (e: MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        callback("login");
     }
 
     useEffect(() => {
@@ -357,6 +369,21 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                 </div>
 
                 <div className="clear-row"></div>
+                {
+                    isSuccess &&
+                    <div className="col-1-1">
+                        <span className="success-label" role="alert">
+                            {responseApi.message}
+                            . Weiter zu&nbsp;
+                            <a
+                                href=""
+                                onClick={handleLoginClicked}
+                            >
+                                Login
+                            </a>
+                        </span>
+                    </div>
+                }
                 <div className="col-1-1">
                     <button
                         className="backButton bookingFormButton"
