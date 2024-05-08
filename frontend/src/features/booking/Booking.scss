@@ -382,6 +382,23 @@ hr {
     }
 }
 
+.error {
+    border: 2px solid #DAC8BC !important;
+}
+
+.error-label {
+    display: block;
+    padding: 5px;
+    color: red;
+    font-style: italic;
+    font-size: 90%;
+    text-align: right;
+}
+
+.error-label {
+    color: #DAC8BC;
+}
+
 @media screen and (max-width: 965px) {
     #booking {
         min-height: unset;
