@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import { register } from "../validations/user.js";
 
@@ -25,7 +26,33 @@ const createNewUser = async (req, res) => {
     }
 
     try {
-        const user = await User.create(req.body);
+        const {
+            title,
+            lastname,
+            firstname,
+            birthday,
+            email,
+            phonenumber,
+            password,
+            reminderemail,
+            birthdayemail,
+            newsletter,
+        } = req.body
+
+        const hashedPwd = await bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUNDS));
+
+        const user = await User.create({
+            title,
+            lastname,
+            firstname,
+            birthday,
+            email,
+            phonenumber,
+            password: hashedPwd,
+            reminderemail,
+            birthdayemail,
+            newsletter,
+        });
 
         if (user) {
             // created user successfully
