@@ -11,13 +11,14 @@ const createNewUser = async (req, res) => {
         const duplicateEmail = await User.findOne({ email }).lean().exec();
 
         if (duplicateEmail) {
-            return res.status(409).json({ message: "E-Mail wird bereits verwendet" });
+            return res.status(409).json({ message: "E-Mail wird bereits verwendet", key: "email" });
         }
         await register.validateAsync(req.body);
     } catch (err) {
         if (err.name === "ValidationError") {
             const errMsg = err.details.reduce((acc, error) => acc + error.message, "");
-            return res.status(400).json({ message: errMsg });
+            const errKey = err.details.reduce((acc, error) => acc + error.context.key, "");
+            return res.status(400).json({ message: errMsg, key: errKey });
         } else {
             return res.status(400).json({ message: "Etwas ist schiefgelaufen" });
         }
