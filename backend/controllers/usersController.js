@@ -46,7 +46,7 @@ const createNewUser = async (req, res) => {
             lastname,
             firstname,
             birthday,
-            email,
+            email: email.toLowerCase(),
             phonenumber,
             password: hashedPwd,
             reminderemail,
