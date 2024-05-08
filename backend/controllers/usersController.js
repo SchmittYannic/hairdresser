@@ -56,7 +56,7 @@ const createNewUser = async (req, res) => {
 
         if (user) {
             // created user successfully
-            return res.status(201).json({ message: `Neuer Nutzer ${user.email} erstellt` });
+            return res.status(201).json({ message: "Registrierung erfolgreich" });
         } else {
             return res.status(400).json({ message: "Konnte keinen neuen Nutzer erstellen" });
         }
