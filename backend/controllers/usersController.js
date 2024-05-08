@@ -21,7 +21,7 @@ const createNewUser = async (req, res) => {
             const errKey = err.details.reduce((acc, error) => acc + error.context.key, "");
             return res.status(400).json({ message: errMsg, key: errKey });
         } else {
-            return res.status(400).json({ message: "Etwas ist schiefgelaufen" });
+            return res.status(400).json({ message: "Etwas ist schiefgelaufen. Versuchen Sie es später erneut." });
         }
     }
 
@@ -58,10 +58,10 @@ const createNewUser = async (req, res) => {
             // created user successfully
             return res.status(201).json({ message: "Registrierung erfolgreich" });
         } else {
-            return res.status(400).json({ message: "Konnte keinen neuen Nutzer erstellen" });
+            return res.status(400).json({ message: "Etwas ist schiefgelaufen. Versuchen Sie es später erneut." });
         }
     } catch (error) {
-        return res.status(400).json({ message: "Konnte keinen neuen Nutzer erstellen" })
+        return res.status(400).json({ message: "Etwas ist schiefgelaufen. Versuchen Sie es später erneut." })
     }
 };
 
