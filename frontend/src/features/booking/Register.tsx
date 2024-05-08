@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { isAxiosError } from "axios";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { activeTabType } from "./Booking"
+import AsyncButton from "../../components/ui/AsyncButton";
 import useCreateNewUser from "../../hooks/useCreateNewUser"
 import Registerschema from "../../validation/Registerschema"
 import { UserDataType } from "../../utils/types";
@@ -364,13 +365,13 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                     >
                         <span>Zurück</span>
                     </button>
-                    <button
+                    <AsyncButton
                         className="registerButton bookingFormButton"
                         type="submit"
-                        disabled={isLoading}
+                        isLoading={isLoading}
                     >
-                        <span>Registrieren</span>
-                    </button>
+                        Registrieren
+                    </AsyncButton>
                 </div>
             </form>
         </div>
