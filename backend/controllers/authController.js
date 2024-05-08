@@ -30,7 +30,7 @@ const login = async (req, res) => {
             const errKey = err.details.reduce((acc, error) => acc + error.context.key, "");
             return res.status(400).json({ message: errMsg, key: errKey });
         } else {
-            return res.status(400).json({ message: "Etwas ist schiefgelaufen" });
+            return res.status(400).json({ message: "Etwas ist schiefgelaufen. Versuchen Sie es später erneut." });
         }
     }
 }
