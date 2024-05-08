@@ -5,7 +5,7 @@ import api from "../api/"
 type UserDataType = {
     email: string
     password: string,
-    title: "Herr" | "Frau" | "Divers",
+    title: string,
     lastname: string,
     firstname: string,
     birthday: string,
