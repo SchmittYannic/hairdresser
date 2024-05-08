@@ -8,7 +8,7 @@ const email = Yup.string().email("ungültiges Email-Format")
 
 const password = Yup.string()
     .required(requiredMsg)
-    .max(80, "password darf nicht mehr als 80 Zeichen lang sein")
+    .max(80, "Passwort darf nicht mehr als 80 Zeichen lang sein")
     .matches(/^.{6,16}$/, "Passwort muss zwischen 6 und 16 Zeichen lang sein")
     .matches(/.*[A-Z].*/, "Passwort muss mindestens einen Großbuchstaben enthalten")
     .matches(/.*[a-z].*/, "Passwort muss mindestens einen Kleinbuchstaben enthalten")
@@ -25,7 +25,7 @@ const password = Yup.string()
 
 const passwordrepeat = Yup.string()
     .required(requiredMsg)
-    .max(80, "password darf nicht mehr als 80 Zeichen lang sein")
+    .max(80, "Passwort darf nicht mehr als 80 Zeichen lang sein")
     .oneOf([Yup.ref("password")], "Feld muss mit Passwort übereinstimmen")
 
 const lastname = Yup.string()
