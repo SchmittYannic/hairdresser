@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
-import { register } from "../validation/user.js";
+import userschema from "../validation/userschema.js";
 
 // @desc Create new user
 // @route POST /users
@@ -14,7 +14,7 @@ const createNewUser = async (req, res) => {
         if (duplicateEmail) {
             return res.status(409).json({ message: "E-Mail wird bereits verwendet", key: "email" });
         }
-        await register.validateAsync(req.body);
+        await userschema.validateAsync(req.body);
     } catch (err) {
         if (err.name === "ValidationError") {
             const errMsg = err.details.reduce((acc, error) => acc + error.message, "");

@@ -1,6 +1,7 @@
 import Joi from "joi";
 
 const email = Joi.string().email().required().messages({
+    "string.email": "ungültiges Email-Format",
     "string.empty": "Email is required",
     "any.required": "Email is required"
 });
@@ -74,7 +75,7 @@ const newsletter = Joi.boolean().required().messages({
     "any.required": "Newsletter optionfield is required"
 })
 
-export const register = Joi.object().keys({
+export default Joi.object().keys({
     email,
     password,
     title,
