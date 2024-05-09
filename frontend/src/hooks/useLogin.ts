@@ -2,8 +2,11 @@ import { isAxiosError } from "axios"
 import { useMutation } from "react-query"
 import api from "../api"
 import { LoginDataType } from "../utils/types"
+import useSessionContext from "./useSessionContext"
 
 const useLogin = () => {
+    const { setUserInfo } = useSessionContext();
+
     const login = async (userData: LoginDataType) => {
         const response = await api.post("/auth", userData)
         return response.data
@@ -11,6 +14,9 @@ const useLogin = () => {
 
     return useMutation({
         mutationFn: login,
+        onSuccess: ({ userInfo }) => {
+            setUserInfo(userInfo)
+        },
         onError: (error) => {
             if (isAxiosError(error) && error.response) {
                 console.error(error.response.data.message)
