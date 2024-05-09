@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt"
 import User from "../models/User.js"
 import loginschema from "../validation/loginschema.js"
-import { sessionizeUser } from "../utils/helpers.js";
+import { sessionizeUser, parseError } from "../utils/helpers.js";
 
 // @desc login
 // @route POST /
@@ -25,9 +25,16 @@ const login = async (req, res) => {
 
         const sessionUser = sessionizeUser(foundUser)
         req.session.user = sessionUser
-        console.log(req.session)
 
-        return res.status(200).json({ message: "login success", sessionUser })
+        const userInfo = {
+            ...sessionUser,
+            lastname: foundUser.lastname,
+            firstname: foundUser.firstname,
+            cookie_expires: req.session.cookie._expires,
+            cookie_originalMaxAge: req.session.cookie.originalMaxAge,
+        }
+
+        return res.status(200).json({ message: "login success", userInfo })
     } catch (err) {
         return res.status(400).send(parseError(err));
     }
@@ -41,7 +48,7 @@ const logout = (req, res) => {
 
     try {
         const user = session.user;
-        console.log(user)
+
         if (user) {
             session.destroy(err => {
                 if (err) throw (err);
@@ -49,10 +56,11 @@ const logout = (req, res) => {
                 res.send(user);
             });
         } else {
-            throw new Error('Something went wrong');
+            throw new Error("Session already expired");
+            //return res.status(200).json({ message: "session expired" })
         }
     } catch (err) {
-        res.status(422).send(parseError(err));
+        return res.status(422).send(parseError(err));
     }
 }
 
@@ -61,7 +69,7 @@ const logout = (req, res) => {
 // @access Public
 const loggedIn = (req, res) => {
     const { session } = req
-    return res.status(200).json({ message: "ok", ...session.user });
+    return res.status(200).json({ message: "Nutzer noch logged in", ...session.user });
 }
 
 export {
