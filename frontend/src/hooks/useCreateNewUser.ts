@@ -5,7 +5,7 @@ import { UserDataType } from "../utils/types"
 
 const useCreateNewUser = () => {
 
-    const createNewUser = async (userData: Omit<UserDataType, "passwordrepeat" | "agb">) => {
+    const createNewUser = async (userData: Omit<UserDataType, "passwordrepeat" | "agb" | "birthday"> & { birthday: Date }) => {
         const response = await api.post("/users", userData)
         return response.data
     }
