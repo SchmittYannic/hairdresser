@@ -47,11 +47,16 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
             newsletter,
         } = data;
 
+        const parts = birthday.split(".");
+        const birthdayAsDate = new Date(parseInt(parts[2], 10),
+            parseInt(parts[1], 10) - 1,
+            parseInt(parts[0], 10));
+
         mutate({
             title,
             lastname,
             firstname,
-            birthday,
+            birthday: birthdayAsDate,
             email,
             phonenumber,
             password,
@@ -77,7 +82,8 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
         if (!isError) return
         if (!isAxiosError(errorApi)) return
         if (!errorApi.response) return
-        if (errorApi.response.data.key !== "email") return
+        if (!errorApi.response.data.context) return
+        if (errorApi.response.data.context.key !== "email") return
 
         setError("email", {
             type: "inuse",
@@ -388,7 +394,7 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                     </div>
                 }
                 {
-                    isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.key === undefined &&
+                    isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.context && errorApi.response.data.context.key === undefined &&
                     <div className="col-1-1">
                         <span className="error-msg" role="alert">
                             {errorApi.response.data.message}

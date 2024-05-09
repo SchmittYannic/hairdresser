@@ -35,7 +35,8 @@ const Login = ({ callback }: LoginPropsType) => {
         if (!isError) return
         if (!isAxiosError(errorApi)) return
         if (!errorApi.response) return
-        if (errorApi.response.data.key !== "email") return
+        if (!errorApi.response.data.context) return
+        if (errorApi.response.data.context.key !== "email") return
 
         setError("email", {
             type: "emailNotFound",
@@ -47,7 +48,8 @@ const Login = ({ callback }: LoginPropsType) => {
         if (!isError) return
         if (!isAxiosError(errorApi)) return
         if (!errorApi.response) return
-        if (errorApi.response.data.key !== "password") return
+        if (!errorApi.response.data.context) return
+        if (errorApi.response.data.context.key !== "password") return
 
         setError("password", {
             type: "passwortNoMatch",
@@ -121,7 +123,7 @@ const Login = ({ callback }: LoginPropsType) => {
                         </a>
                         <div className="clear-row"></div>
                         {
-                            isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.key === undefined &&
+                            isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.context && errorApi.response.data.context.key === undefined &&
                             <span
                                 className="error-msg"
                                 role="alert"
