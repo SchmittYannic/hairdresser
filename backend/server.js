@@ -23,6 +23,7 @@ app.disable('x-powered-by');
 const PORT = process.env.PORT || 3500;
 console.log(process.env.NODE_ENV);
 connectDB();
+const db = mongoose.connection;
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
@@ -33,7 +34,7 @@ app.use(session({
     saveUninitialized: false, //This complies with laws that require permission before setting a cookie.
     resave: false, //This prevents unnecessary re-saves if the session wasn’t modified.
     store: MongoStore.create({
-        mongoUrl: process.env.DATABASE_URI,
+        client: db.getClient(),
         collection: 'session',
         ttl: parseInt(process.env.SESS_LIFETIME) ?? 20 * 60 //time to life in seconds.
     }),
@@ -52,13 +53,13 @@ app.use("/auth", authRoutes);
 app.use(errorHandler);
 
 // listening for the open event
-mongoose.connection.once("open", () => {
+db.once("open", () => {
     console.log("Connected to MongoDB");
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
 
 // listen to error
-mongoose.connection.on("error", err => {
+db.on("error", err => {
     console.log(err);
     logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log');
 });
