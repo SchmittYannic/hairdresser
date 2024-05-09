@@ -7,6 +7,7 @@ import Register from "./Register";
 import ResetPassword from "./ResetPassword";
 import AGB from "./AGB";
 import Dashboard from "./Dashboard";
+import Countdown from "../../components/Countdown";
 import { logo } from "../../assets";
 import "./Booking.scss";
 
@@ -54,11 +55,12 @@ const Booking = () => {
                         <span className="pageHeaderInfo">
                             {activeTab === "login" && "Hier können Sie Ihre nächsten Termine schnell und einfach online buchen - rund um die Uhr, auch am Wochenende."}
                         </span>
-                        <div className="sessionTimeoutLabelContainer">
-                            <span className="sessionTimeoutLabel">
-                                Logout in:
-                            </span>
-                        </div>
+                        {
+                            activeTab === "dashboard" &&
+                            <div className="sessionTimeoutLabelContainer">
+                                <Countdown />
+                            </div>
+                        }
                         {
                             activeTab === "dashboard" &&
                             <div className="headerButtonContainer">
