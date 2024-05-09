@@ -28,19 +28,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(session({
-    name: "sid",
-    secret: "secret!session",
+    name: process.env.SESS_NAME,
+    secret: process.env.SESS_SECRET,
     saveUninitialized: false, //This complies with laws that require permission before setting a cookie.
     resave: false, //This prevents unnecessary re-saves if the session wasn’t modified.
     store: MongoStore.create({
         mongoUrl: process.env.DATABASE_URI,
         collection: 'session',
-        ttl: 1 //parseInt(1000 * 60 * 60 * 2) / 1000
+        ttl: parseInt(process.env.SESS_LIFETIME) ?? 20 * 60 //time to life in seconds.
     }),
     cookie: {
         sameSite: true,
         secure: process.env.NODE_ENV === 'production',
-        maxAge: 1000//parseInt(1000 * 60 * 60 * 2)
+        maxAge: parseInt(process.env.SESS_LIFETIME) * 1000
     }
 }));
 
