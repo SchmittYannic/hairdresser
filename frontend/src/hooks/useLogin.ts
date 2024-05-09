@@ -5,7 +5,7 @@ import { LoginDataType } from "../utils/types"
 
 const useLogin = () => {
     const login = async (userData: LoginDataType) => {
-        const response = await api.post("/auth/login", userData)
+        const response = await api.post("/auth", userData)
         return response.data
     }
 
