@@ -1,8 +1,8 @@
 import { isAxiosError } from "axios"
 import { useMutation } from "react-query"
 import api from "../api"
-import { LoginDataType } from "../utils/types"
 import useSessionContext from "./useSessionContext"
+import { LoginDataType } from "../utils/types"
 
 const useLogin = () => {
     const { setUserInfo } = useSessionContext();
