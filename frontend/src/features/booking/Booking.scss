@@ -121,6 +121,72 @@ hr {
     text-align: center;
 }
 
+.sessionTimeoutLabelContainer {
+    position: absolute;
+    top: -6px;
+    right: 24px;
+    padding: 0 3px;
+}
+
+.sessionTimeoutLabel {
+    font-size: 70%;
+    font-style: italic;
+    line-height: 14px;
+}
+
+.bookingButton {
+    margin: 3px;
+    min-width: 30px;
+    min-height: 40px;
+    padding: 10px 40px 10px 40px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    float: right;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.headerButtonContainer {
+    position: absolute;
+    top: -30px;
+    right: 24px;
+    padding: 0px;
+
+    .logoutButton {
+        padding: 0;
+        font-weight: 700;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .inverseButton {
+        color: #999999 !important;
+
+        &:hover {
+            color: #DAC8BC !important;
+        }
+    }
+
+    .icon-gap {
+        margin-left: 5px;
+    }
+}
+
+.inverseButton {
+    background: none !important;
+}
+
 .horizontal-ruler {
     height: 2px;
     width: 100%;
@@ -474,6 +540,10 @@ hr {
     }
 
     .bookingFormButton {
+        padding: 10px 25px 10px 25px;
+    }
+
+    .bookingButton {
         padding: 10px 25px 10px 25px;
     }
 }
