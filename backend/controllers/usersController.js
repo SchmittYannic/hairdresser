@@ -63,7 +63,15 @@ const createNewUser = async (req, res) => {
 
         req.session.user = sessionUser;
 
-        return res.status(201).json({ message: "Registrierung erfolgreich", sessionUser });
+        const userInfo = {
+            ...sessionUser,
+            lastname: user.lastname,
+            firstname: user.firstname,
+            cookie_expires: req.session.cookie._expires,
+            cookie_originalMaxAge: req.session.cookie.originalMaxAge,
+        }
+
+        return res.status(201).json({ message: "Registrierung erfolgreich", userInfo });
     } catch (err) {
         return res.status(400).send(parseError(err));
     }
