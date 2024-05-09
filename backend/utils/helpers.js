@@ -4,5 +4,8 @@ export const parseError = err => {
 };
 
 export const sessionizeUser = user => {
-    return { userId: user.id ?? user._id.toString(), email: user.email };
+    return {
+        userId: user.id ?? user._id.toString(),
+        email: user.email,
+    };
 }
