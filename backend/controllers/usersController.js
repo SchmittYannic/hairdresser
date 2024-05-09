@@ -1,30 +1,12 @@
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import userschema from "../validation/userschema.js";
+import { sessionizeUser, parseError } from "../utils/helpers.js";
 
 // @desc Create new user
 // @route POST /users
 // @access Public
 const createNewUser = async (req, res) => {
-    try {
-        const { email } = req.body
-
-        const duplicateEmail = await User.findOne({ email: email.toLowerCase() }).lean().exec();
-
-        if (duplicateEmail) {
-            return res.status(409).json({ message: "E-Mail wird bereits verwendet", key: "email" });
-        }
-        await userschema.validateAsync(req.body);
-    } catch (err) {
-        if (err.name === "ValidationError") {
-            const errMsg = err.details.reduce((acc, error) => acc + error.message, "");
-            const errKey = err.details.reduce((acc, error) => acc + error.context.key, "");
-            return res.status(400).json({ message: errMsg, key: errKey });
-        } else {
-            return res.status(400).json({ message: "Etwas ist schiefgelaufen. Versuchen Sie es später erneut." });
-        }
-    }
-
     try {
         const {
             title,
@@ -38,6 +20,25 @@ const createNewUser = async (req, res) => {
             birthdayemail,
             newsletter,
         } = req.body
+
+        await userschema.validateAsync({
+            title,
+            lastname,
+            firstname,
+            birthday,
+            email,
+            phonenumber,
+            password,
+            reminderemail,
+            birthdayemail,
+            newsletter,
+        });
+
+        const duplicateEmail = await User.findOne({ email: email.toLowerCase() }).lean().exec();
+
+        if (duplicateEmail) {
+            return res.status(409).json({ message: "E-Mail wird bereits verwendet", context: { key: "email" } });
+        }
 
         const hashedPwd = await bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUNDS));
 
@@ -54,14 +55,17 @@ const createNewUser = async (req, res) => {
             newsletter,
         });
 
-        if (user) {
-            // created user successfully
-            return res.status(201).json({ message: "Registrierung erfolgreich" });
-        } else {
-            return res.status(400).json({ message: "Etwas ist schiefgelaufen. Versuchen Sie es später erneut." });
+        if (!user) {
+            return res.status(400).json({ message: "Konnte neuen Nutzer nicht in der Datenbank anlegen." });
         }
-    } catch (error) {
-        return res.status(400).json({ message: "Etwas ist schiefgelaufen. Versuchen Sie es später erneut." })
+
+        const sessionUser = sessionizeUser(user);
+
+        req.session.user = sessionUser;
+
+        return res.status(201).json({ message: "Registrierung erfolgreich", sessionUser });
+    } catch (err) {
+        return res.status(400).send(parseError(err));
     }
 };
 
