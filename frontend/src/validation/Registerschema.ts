@@ -50,7 +50,7 @@ const birthday = Yup.string()
         if (!value) return false;
         return /^(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).\d{4}$/.test(value);
     })
-    .test("is-date", "Das Geburtsdatum muss im Format tt.mm.jjjj angegeben werde", value => {
+    .test("is-date", "Das Geburtsdatum muss im Format tt.mm.jjjj angegeben werden", value => {
         if (!value) return false;
         const parts = value.split(".");
         const date = new Date(parseInt(parts[2], 10),
