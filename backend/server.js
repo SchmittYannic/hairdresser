@@ -4,6 +4,8 @@ import path from "path";
 import express from "express";
 import connectDB from "./config/dbConn.js";
 import mongoose from "mongoose";
+import session from "express-session";
+import MongoStore from "connect-mongo"
 import { logger, logEvents } from "./middleware/logger.js";
 import errorHandler from "./middleware/errorHandler.js";
 import cors from "cors";
@@ -22,8 +24,25 @@ const PORT = process.env.PORT || 3500;
 console.log(process.env.NODE_ENV);
 connectDB();
 app.use(logger);
+app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(session({
+    name: "sid",
+    secret: "secret!session",
+    saveUninitialized: false, //This complies with laws that require permission before setting a cookie.
+    resave: false, //This prevents unnecessary re-saves if the session wasn’t modified.
+    store: MongoStore.create({
+        mongoUrl: process.env.DATABASE_URI,
+        collection: 'session',
+        ttl: 1 //parseInt(1000 * 60 * 60 * 2) / 1000
+    }),
+    cookie: {
+        sameSite: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 1000//parseInt(1000 * 60 * 60 * 2)
+    }
+}));
 
 /* ROUTES */
 app.use("/", rootRoute);
