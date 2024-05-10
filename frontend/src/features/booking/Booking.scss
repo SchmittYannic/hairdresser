@@ -569,6 +569,12 @@ hr {
     margin: 20px 0;
 }
 
+.deleteAccountLabel {
+    margin: 5px;
+    padding: 5px;
+    display: inline-block;
+}
+
 @media screen and (max-width: 965px) {
     #booking {
         min-height: unset;
