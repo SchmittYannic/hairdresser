@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt"
 import User from "../models/User.js"
 import loginschema from "../validation/loginschema.js"
-import { sessionizeUser, parseError } from "../utils/helpers.js";
+import { sessionizeUser, parseError, birthdayToString } from "../utils/helpers.js";
 
 // @desc login
 // @route POST /
@@ -28,8 +28,14 @@ const login = async (req, res) => {
 
         const userInfo = {
             ...sessionUser,
+            title: foundUser.title,
             lastname: foundUser.lastname,
             firstname: foundUser.firstname,
+            birthday: birthdayToString(foundUser.birthday),
+            phonenumber: foundUser.phonenumber,
+            reminderemail: foundUser.reminderemail,
+            birthdayemail: foundUser.birthdayemail,
+            newsletter: foundUser.newsletter,
             cookie_expires: req.session.cookie._expires,
             cookie_originalMaxAge: req.session.cookie.originalMaxAge,
         }
@@ -75,8 +81,14 @@ const loggedIn = async ({ session }, res) => {
 
         const userInfo = {
             ...session.user,
+            title: foundUser.title,
             lastname: foundUser.lastname,
             firstname: foundUser.firstname,
+            birthday: birthdayToString(foundUser.birthday),
+            phonenumber: foundUser.phonenumber,
+            reminderemail: foundUser.reminderemail,
+            birthdayemail: foundUser.birthdayemail,
+            newsletter: foundUser.newsletter,
             cookie_expires: session.cookie._expires,
             cookie_originalMaxAge: session.cookie.originalMaxAge,
         }

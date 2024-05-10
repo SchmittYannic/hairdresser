@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import userschema from "../validation/userschema.js";
-import { sessionizeUser, parseError } from "../utils/helpers.js";
+import { sessionizeUser, parseError, birthdayToString } from "../utils/helpers.js";
 
 // @desc Create new user
 // @route POST /users
@@ -65,8 +65,14 @@ const createNewUser = async (req, res) => {
 
         const userInfo = {
             ...sessionUser,
+            title: user.title,
             lastname: user.lastname,
             firstname: user.firstname,
+            birthday: birthdayToString(user.birthday),
+            phonenumber: user.phonenumber,
+            reminderemail: user.reminderemail,
+            birthdayemail: user.birthdayemail,
+            newsletter: user.newsletter,
             cookie_expires: req.session.cookie._expires,
             cookie_originalMaxAge: req.session.cookie.originalMaxAge,
         }

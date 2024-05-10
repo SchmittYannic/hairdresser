@@ -10,8 +10,14 @@ import {
 type StateType = {
     userId: string,
     email: string,
+    title: string,
     lastname: string,
     firstname: string,
+    birthday: string,
+    phonenumber: string,
+    reminderemail: string,
+    birthdayemail: string,
+    newsletter: string,
     cookie_expires: string,
     cookie_originalMaxAge: string,
 }
@@ -25,8 +31,14 @@ type SessionContextType = {
 const defaultState: StateType = {
     userId: "",
     email: "",
+    title: "",
     lastname: "",
     firstname: "",
+    birthday: "",
+    phonenumber: "",
+    reminderemail: "",
+    birthdayemail: "",
+    newsletter: "",
     cookie_expires: "",
     cookie_originalMaxAge: "",
 }
