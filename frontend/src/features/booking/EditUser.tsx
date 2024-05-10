@@ -361,6 +361,14 @@ const EditUser = () => {
                     </div>
                 </div>
                 <div className="clear-row"></div>
+                {
+                    isSuccess &&
+                    <div className="col-1-1">
+                        <span className="success-msg" role="alert">
+                            {responseApi.message}
+                        </span>
+                    </div>
+                }
                 <div className="col-1-1">
                     <button
                         className="backButton bookingFormButton"
