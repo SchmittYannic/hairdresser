@@ -15,9 +15,9 @@ type UserInfoType = {
     firstname: string,
     birthday: string,
     phonenumber: string,
-    reminderemail: string,
-    birthdayemail: string,
-    newsletter: string,
+    reminderemail: boolean,
+    birthdayemail: boolean,
+    newsletter: boolean,
 }
 
 type activeTabType = "login" | "register" | "reset" | "agb" | "dashboard" | "editUser";
@@ -45,9 +45,9 @@ const defaultUserInfo: UserInfoType = {
     firstname: "",
     birthday: "",
     phonenumber: "",
-    reminderemail: "",
-    birthdayemail: "",
-    newsletter: "",
+    reminderemail: false,
+    birthdayemail: false,
+    newsletter: false,
 }
 
 const defaultCookieInfo: CookieInfoType = {
