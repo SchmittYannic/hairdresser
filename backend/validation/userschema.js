@@ -1,12 +1,12 @@
 import Joi from "joi";
 
-const email = Joi.string().email().required().messages({
+export const emailschema = Joi.string().email().required().messages({
     "string.email": "ungültiges Email-Format",
     "string.empty": "Email is required",
     "any.required": "Email is required"
 });
 
-const password = Joi.string()
+export const passwordschema = Joi.string()
     .pattern(new RegExp(/^.{6,16}$/))
     .message("Password must be between 6 and 16 characters long")
     .pattern(new RegExp(/.*[A-Z].*/))
@@ -23,19 +23,19 @@ const password = Joi.string()
         "any.required": "Password is required"
     });
 
-const lastname = Joi.string().max(80).required().messages({
+export const lastnameschema = Joi.string().max(80).required().messages({
     "string.max": "Lastname cant be longer than 80 characters",
     "string.empty": "Lastname is required",
     "any.required": "Lastname is required",
 });
 
-const firstname = Joi.string().max(80).required().messages({
+export const firstnameschema = Joi.string().max(80).required().messages({
     "string.max": "Firstname cant be longer than 80 characters",
     "string.empty": "Firstname is required",
     "any.required": "Firstname is required",
 });
 
-const title = Joi.string()
+export const titleschema = Joi.string()
     .pattern(new RegExp(/^(Herr|Frau|Divers)$/))
     .messages({
         "string.pattern.base": "Title must be either Herr, Frau or Divers",
@@ -44,7 +44,7 @@ const title = Joi.string()
     })
     .required()
 
-const birthday = Joi.date()
+export const birthdayschema = Joi.date()
     .less("now")
     .required()
     .messages({
@@ -53,7 +53,7 @@ const birthday = Joi.date()
         "any.required": "Birthday is required",
     })
 
-const phonenumber = Joi.string()
+export const phonenumberschema = Joi.string()
     .pattern(new RegExp(/^\d+$/))
     .message("Phonenumber must only consist of numbers")
     .pattern(new RegExp(/^\d{7,15}$/))
@@ -63,27 +63,27 @@ const phonenumber = Joi.string()
         "any.required": "Phonenumber is required",
     })
 
-const reminderemail = Joi.boolean().required().messages({
+export const reminderemailschema = Joi.boolean().required().messages({
     "any.required": "Reminder email optionfield is required"
 })
 
-const birthdayemail = Joi.boolean().required().messages({
+export const birthdayemailschema = Joi.boolean().required().messages({
     "any.required": "Birthday email optionfield is required"
 })
 
-const newsletter = Joi.boolean().required().messages({
+export const newsletterschema = Joi.boolean().required().messages({
     "any.required": "Newsletter optionfield is required"
 })
 
-export default Joi.object().keys({
-    email,
-    password,
-    title,
-    lastname,
-    firstname,
-    birthday,
-    phonenumber,
-    reminderemail,
-    birthdayemail,
-    newsletter,
+export const userschema = Joi.object().keys({
+    email: emailschema,
+    password: passwordschema,
+    title: titleschema,
+    lastname: lastnameschema,
+    firstname: firstnameschema,
+    birthday: birthdayschema,
+    phonenumber: phonenumberschema,
+    reminderemail: reminderemailschema,
+    birthdayemail: birthdayemailschema,
+    newsletter: newsletterschema,
 });
