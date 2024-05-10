@@ -7,7 +7,7 @@ import {
     useState,
 } from "react";
 
-type StateType = {
+type UserInfoType = {
     userId: string,
     email: string,
     title: string,
@@ -18,17 +18,22 @@ type StateType = {
     reminderemail: string,
     birthdayemail: string,
     newsletter: string,
+}
+
+type CookieInfoType = {
     cookie_expires: string,
     cookie_originalMaxAge: string,
 }
 
 type SessionContextType = {
-    userInfo: StateType,
-    setUserInfo: React.Dispatch<React.SetStateAction<StateType>>,
-    resetUserInfo: Function,
+    userInfo: UserInfoType,
+    setUserInfo: React.Dispatch<React.SetStateAction<UserInfoType>>,
+    cookieInfo: CookieInfoType,
+    setCookieInfo: React.Dispatch<React.SetStateAction<CookieInfoType>>
+    resetState: Function,
 }
 
-const defaultState: StateType = {
+const defaultUserInfo: UserInfoType = {
     userId: "",
     email: "",
     title: "",
@@ -39,37 +44,45 @@ const defaultState: StateType = {
     reminderemail: "",
     birthdayemail: "",
     newsletter: "",
+}
+
+const defaultCookieInfo: CookieInfoType = {
     cookie_expires: "",
     cookie_originalMaxAge: "",
 }
 
 const initContextState = {
-    userInfo: defaultState,
+    userInfo: defaultUserInfo,
     setUserInfo: () => { },
-    resetUserInfo: () => { },
+    cookieInfo: defaultCookieInfo,
+    setCookieInfo: () => { },
+    resetState: () => { },
 };
 
 export const SessionContext = createContext<SessionContextType>(initContextState);
 
 export const SessionProvider = ({ children }: PropsWithChildren): ReactElement => {
 
-    const [userInfo, setUserInfo] = useState<StateType>(defaultState);
+    const [userInfo, setUserInfo] = useState<UserInfoType>(defaultUserInfo);
+    const [cookieInfo, setCookieInfo] = useState<CookieInfoType>(defaultCookieInfo);
     const timeout: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> = useRef<ReturnType<typeof setTimeout>>();
 
-    const resetUserInfo = () => {
-        setUserInfo(defaultState);
+    const resetState = () => {
+        setUserInfo(defaultUserInfo);
+        setCookieInfo(defaultCookieInfo);
     }
 
     useEffect(() => {
         if (timeout.current) clearTimeout(timeout.current);
         if (userInfo.userId === "") return
+        if (cookieInfo.cookie_expires === "") return
 
         const now = new Date();
-        const expirationDate = new Date(userInfo.cookie_expires);
+        const expirationDate = new Date(cookieInfo.cookie_expires);
         const timediff = expirationDate.getTime() - now.getTime();
 
         timeout.current = setTimeout(() => {
-            resetUserInfo();
+            resetState();
         }, timediff);
 
         return () => {
@@ -82,7 +95,9 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
             value={{
                 userInfo,
                 setUserInfo,
-                resetUserInfo,
+                cookieInfo,
+                setCookieInfo,
+                resetState,
             }}
         >
             {children}

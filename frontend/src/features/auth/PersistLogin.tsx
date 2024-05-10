@@ -6,7 +6,7 @@ import api from "../../api";
 
 const PersistLogin = () => {
 
-    const { setUserInfo } = useSessionContext();
+    const { setUserInfo, setCookieInfo } = useSessionContext();
 
     const persist = async () => {
         const response = await api.get("/auth", { withCredentials: true })
@@ -17,8 +17,9 @@ const PersistLogin = () => {
         queryFn: persist,
         retry: false,
         refetchOnWindowFocus: false,
-        onSuccess: ({ userInfo }) => {
-            setUserInfo(userInfo)
+        onSuccess: ({ userInfo, cookieInfo }) => {
+            setUserInfo(userInfo);
+            setCookieInfo(cookieInfo);
         },
     })
 

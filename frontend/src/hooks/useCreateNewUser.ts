@@ -5,7 +5,7 @@ import useSessionContext from "./useSessionContext"
 import { UserDataType } from "../utils/types"
 
 const useCreateNewUser = () => {
-    const { setUserInfo } = useSessionContext();
+    const { setUserInfo, setCookieInfo } = useSessionContext();
 
     const createNewUser = async (userData: Omit<UserDataType, "passwordrepeat" | "agb" | "birthday"> & { birthday: Date }) => {
         const response = await api.post("/users", userData, { withCredentials: true })
@@ -14,8 +14,9 @@ const useCreateNewUser = () => {
 
     return useMutation({
         mutationFn: createNewUser,
-        onSuccess: ({ userInfo }) => {
-            setUserInfo(userInfo)
+        onSuccess: ({ userInfo, cookieInfo }) => {
+            setUserInfo(userInfo);
+            setCookieInfo(cookieInfo);
         },
         onError: (error) => {
             if (isAxiosError(error) && error.response) {

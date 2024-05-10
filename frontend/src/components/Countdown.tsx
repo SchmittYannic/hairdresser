@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import useSessionContext from "../hooks/useSessionContext"
 
 const Countdown = () => {
-    const { userInfo } = useSessionContext();
-    const countDownDate = new Date(userInfo.cookie_expires).getTime();
+    const { cookieInfo } = useSessionContext();
+    const countDownDate = new Date(cookieInfo.cookie_expires).getTime();
 
     const [countDown, setCountDown] = useState(
         countDownDate - new Date().getTime()

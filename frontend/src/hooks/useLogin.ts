@@ -5,7 +5,7 @@ import useSessionContext from "./useSessionContext"
 import { LoginDataType } from "../utils/types"
 
 const useLogin = () => {
-    const { setUserInfo } = useSessionContext();
+    const { setUserInfo, setCookieInfo } = useSessionContext();
 
     const login = async (userData: LoginDataType) => {
         const response = await api.post("/auth", userData, { withCredentials: true })
@@ -14,8 +14,9 @@ const useLogin = () => {
 
     return useMutation({
         mutationFn: login,
-        onSuccess: ({ userInfo }) => {
-            setUserInfo(userInfo)
+        onSuccess: ({ userInfo, cookieInfo }) => {
+            setUserInfo(userInfo);
+            setCookieInfo(cookieInfo);
         },
         onError: (error) => {
             if (isAxiosError(error) && error.response) {

@@ -36,11 +36,14 @@ const login = async (req, res) => {
             reminderemail: foundUser.reminderemail,
             birthdayemail: foundUser.birthdayemail,
             newsletter: foundUser.newsletter,
+        }
+
+        const cookieInfo = {
             cookie_expires: req.session.cookie._expires,
             cookie_originalMaxAge: req.session.cookie.originalMaxAge,
         }
 
-        return res.status(200).json({ message: "login success", userInfo })
+        return res.status(200).json({ message: "login success", userInfo, cookieInfo })
     } catch (err) {
         return res.status(400).send(parseError(err));
     }
@@ -89,11 +92,14 @@ const loggedIn = async ({ session }, res) => {
             reminderemail: foundUser.reminderemail,
             birthdayemail: foundUser.birthdayemail,
             newsletter: foundUser.newsletter,
+        }
+
+        const cookieInfo = {
             cookie_expires: session.cookie._expires,
             cookie_originalMaxAge: session.cookie.originalMaxAge,
         }
 
-        return res.status(200).json({ message: "Nutzer noch logged in", userInfo });
+        return res.status(200).json({ message: "Nutzer noch logged in", userInfo, cookieInfo });
     } catch (error) {
         return res.status(400).json({ message: "Fehler in loggedIn function" });
     }

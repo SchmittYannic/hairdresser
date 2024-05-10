@@ -73,11 +73,14 @@ const createNewUser = async (req, res) => {
             reminderemail: user.reminderemail,
             birthdayemail: user.birthdayemail,
             newsletter: user.newsletter,
+        }
+
+        const cookieInfo = {
             cookie_expires: req.session.cookie._expires,
             cookie_originalMaxAge: req.session.cookie.originalMaxAge,
         }
 
-        return res.status(201).json({ message: "Registrierung erfolgreich", userInfo });
+        return res.status(201).json({ message: "Registrierung erfolgreich", userInfo, cookieInfo });
     } catch (err) {
         return res.status(400).send(parseError(err));
     }

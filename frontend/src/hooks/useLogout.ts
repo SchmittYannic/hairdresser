@@ -4,7 +4,7 @@ import api from "../api"
 import useSessionContext from "./useSessionContext"
 
 const useLogout = () => {
-    const { resetUserInfo } = useSessionContext();
+    const { resetState } = useSessionContext();
 
     const logout = async () => {
         const response = await api.delete("/auth", { withCredentials: true })
@@ -14,7 +14,7 @@ const useLogout = () => {
     return useMutation({
         mutationFn: logout,
         onSettled: () => {
-            resetUserInfo();
+            resetState();
         },
         onError: (error) => {
             if (isAxiosError(error) && error.response) {
