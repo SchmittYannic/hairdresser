@@ -7,7 +7,7 @@ const useLogout = () => {
     const { resetUserInfo } = useSessionContext();
 
     const logout = async () => {
-        const response = await api.delete("/auth")
+        const response = await api.delete("/auth", { withCredentials: true })
         return response.data
     }
 

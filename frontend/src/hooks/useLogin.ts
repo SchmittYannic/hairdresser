@@ -8,7 +8,7 @@ const useLogin = () => {
     const { setUserInfo } = useSessionContext();
 
     const login = async (userData: LoginDataType) => {
-        const response = await api.post("/auth", userData)
+        const response = await api.post("/auth", userData, { withCredentials: true })
         return response.data
     }
 

@@ -8,7 +8,7 @@ const useCreateNewUser = () => {
     const { setUserInfo } = useSessionContext();
 
     const createNewUser = async (userData: Omit<UserDataType, "passwordrepeat" | "agb" | "birthday"> & { birthday: Date }) => {
-        const response = await api.post("/users", userData)
+        const response = await api.post("/users", userData, { withCredentials: true })
         return response.data
     }
 
