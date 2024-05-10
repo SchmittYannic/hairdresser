@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom"
+import PersistLogin from "./features/auth/PersistLogin"
 import Layout from "./components/Layout"
 import Frontpage from "./components/Frontpage"
 import Bookingpage from "./components/Bookingpage"
@@ -16,7 +17,9 @@ const App = () => {
 
 	return (
 		<Routes>
-			<Route path="/terminbuch/termine" element={<Booking />} />
+			<Route element={<PersistLogin />}>
+				<Route path="/terminbuch/termine" element={<Booking />} />
+			</Route>
 			<Route path="/" element={<Layout />} >
 				<Route index element={<Frontpage />} />
 				<Route path="terminbuchung" element={<Bookingpage />} />
