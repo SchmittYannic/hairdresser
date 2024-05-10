@@ -50,6 +50,7 @@ const Booking = () => {
                             {activeTab === "reset" && "Passwort zurücksetzen"}
                             {activeTab === "agb" && "AGB und Datenschutzerklärung"}
                             {activeTab === "dashboard" && "Terminübersicht"}
+                            {activeTab === "editUser" && "Benachrichtigungen und Kontaktdaten ändern"}
                         </span>
                         <span className="pageHeaderInfo">
                             {activeTab === "login" && "Hier können Sie Ihre nächsten Termine schnell und einfach online buchen - rund um die Uhr, auch am Wochenende."}
