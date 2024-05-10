@@ -1,12 +1,17 @@
 import Joi from "joi";
 
-export const emailschema = Joi.string().email().required().messages({
-    "string.email": "ungültiges Email-Format",
-    "string.empty": "Email is required",
-    "any.required": "Email is required"
-});
+export const emailschema = Joi.string()
+    .email()
+    .required()
+    .label("email")
+    .messages({
+        "string.email": "ungültiges Email-Format",
+        "string.empty": "Email is required",
+        "any.required": "Email is required"
+    });
 
 export const passwordschema = Joi.string()
+    .label("password")
     .pattern(new RegExp(/^.{6,16}$/))
     .message("Password must be between 6 and 16 characters long")
     .pattern(new RegExp(/.*[A-Z].*/))
@@ -23,19 +28,28 @@ export const passwordschema = Joi.string()
         "any.required": "Password is required"
     });
 
-export const lastnameschema = Joi.string().max(80).required().messages({
-    "string.max": "Lastname cant be longer than 80 characters",
-    "string.empty": "Lastname is required",
-    "any.required": "Lastname is required",
-});
+export const lastnameschema = Joi.string()
+    .label("lastname")
+    .max(80)
+    .required()
+    .messages({
+        "string.max": "Lastname cant be longer than 80 characters",
+        "string.empty": "Lastname is required",
+        "any.required": "Lastname is required",
+    });
 
-export const firstnameschema = Joi.string().max(80).required().messages({
-    "string.max": "Firstname cant be longer than 80 characters",
-    "string.empty": "Firstname is required",
-    "any.required": "Firstname is required",
-});
+export const firstnameschema = Joi.string()
+    .label("firstname")
+    .max(80)
+    .required()
+    .messages({
+        "string.max": "Firstname cant be longer than 80 characters",
+        "string.empty": "Firstname is required",
+        "any.required": "Firstname is required",
+    });
 
 export const titleschema = Joi.string()
+    .label("title")
     .pattern(new RegExp(/^(Herr|Frau|Divers)$/))
     .messages({
         "string.pattern.base": "Title must be either Herr, Frau or Divers",
@@ -45,6 +59,7 @@ export const titleschema = Joi.string()
     .required()
 
 export const birthdayschema = Joi.date()
+    .label("birthday")
     .less("now")
     .required()
     .messages({
@@ -54,6 +69,7 @@ export const birthdayschema = Joi.date()
     })
 
 export const phonenumberschema = Joi.string()
+    .label("phonenumber")
     .pattern(new RegExp(/^\d+$/))
     .message("Phonenumber must only consist of numbers")
     .pattern(new RegExp(/^\d{7,15}$/))
@@ -63,17 +79,26 @@ export const phonenumberschema = Joi.string()
         "any.required": "Phonenumber is required",
     })
 
-export const reminderemailschema = Joi.boolean().required().messages({
-    "any.required": "Reminder email optionfield is required"
-})
+export const reminderemailschema = Joi.boolean()
+    .label("reminderemail")
+    .required()
+    .messages({
+        "any.required": "Reminder email optionfield is required"
+    })
 
-export const birthdayemailschema = Joi.boolean().required().messages({
-    "any.required": "Birthday email optionfield is required"
-})
+export const birthdayemailschema = Joi.boolean()
+    .label("birthdayemail")
+    .required()
+    .messages({
+        "any.required": "Birthday email optionfield is required"
+    })
 
-export const newsletterschema = Joi.boolean().required().messages({
-    "any.required": "Newsletter optionfield is required"
-})
+export const newsletterschema = Joi.boolean()
+    .label("newsletter")
+    .required()
+    .messages({
+        "any.required": "Newsletter optionfield is required"
+    })
 
 export const userschema = Joi.object().keys({
     email: emailschema,
