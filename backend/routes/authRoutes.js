@@ -5,7 +5,7 @@ import requireAuth from "../middleware/requireAuth.js"
 const router = express.Router();
 
 router.route("/")
-    .get(loggedIn)
+    .get(requireAuth, loggedIn)
     .post(login)
     .delete(requireAuth, logout)
 
