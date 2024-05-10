@@ -20,6 +20,8 @@ type UserInfoType = {
     newsletter: string,
 }
 
+type activeTabType = "login" | "register" | "reset" | "agb" | "dashboard" | "editUser";
+
 type CookieInfoType = {
     cookie_expires: string,
     cookie_originalMaxAge: string,
@@ -29,7 +31,9 @@ type SessionContextType = {
     userInfo: UserInfoType,
     setUserInfo: React.Dispatch<React.SetStateAction<UserInfoType>>,
     cookieInfo: CookieInfoType,
-    setCookieInfo: React.Dispatch<React.SetStateAction<CookieInfoType>>
+    setCookieInfo: React.Dispatch<React.SetStateAction<CookieInfoType>>,
+    activeTab: activeTabType,
+    setActiveTab: React.Dispatch<React.SetStateAction<activeTabType>>,
     resetState: Function,
 }
 
@@ -51,11 +55,15 @@ const defaultCookieInfo: CookieInfoType = {
     cookie_originalMaxAge: "",
 }
 
+const defaultActiveTab: activeTabType = "login";
+
 const initContextState = {
     userInfo: defaultUserInfo,
     setUserInfo: () => { },
     cookieInfo: defaultCookieInfo,
     setCookieInfo: () => { },
+    activeTab: defaultActiveTab,
+    setActiveTab: () => { },
     resetState: () => { },
 };
 
@@ -65,6 +73,7 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
 
     const [userInfo, setUserInfo] = useState<UserInfoType>(defaultUserInfo);
     const [cookieInfo, setCookieInfo] = useState<CookieInfoType>(defaultCookieInfo);
+    const [activeTab, setActiveTab] = useState<activeTabType>(defaultActiveTab)
     const timeout: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> = useRef<ReturnType<typeof setTimeout>>();
 
     const resetState = () => {
@@ -97,6 +106,8 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
                 setUserInfo,
                 cookieInfo,
                 setCookieInfo,
+                activeTab,
+                setActiveTab,
                 resetState,
             }}
         >

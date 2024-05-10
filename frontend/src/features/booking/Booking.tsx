@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MdLogout } from "react-icons/md";
 import useSessionContext from "../../hooks/useSessionContext";
 import useLogout from "../../hooks/useLogout";
@@ -11,13 +11,10 @@ import Countdown from "../../components/Countdown";
 import { logo } from "../../assets";
 import "./Booking.scss";
 
-export type activeTabType = "login" | "register" | "reset" | "agb" | "dashboard" | "editUser";
-
 const Booking = () => {
 
-    const { userInfo } = useSessionContext();
+    const { userInfo, activeTab, setActiveTab } = useSessionContext();
     const { mutate } = useLogout();
-    const [activeTab, setActiveTab] = useState<activeTabType>("login");
 
     const isDashboard = (activeTab === "dashboard" || activeTab === "editUser")
 
@@ -84,11 +81,11 @@ const Booking = () => {
                     </div>
                 </div>
                 <div className="pageMaster">
-                    {activeTab === "login" && <Login callback={setActiveTab} />}
-                    {activeTab === "reset" && <ResetPassword callback={setActiveTab} />}
-                    {(activeTab === "register" || activeTab === "agb") && <Register activeTab={activeTab} callback={setActiveTab} />}
-                    {(activeTab === "register" || activeTab === "agb") && <AGB activeTab={activeTab} callback={setActiveTab} />}
-                    {isDashboard && <Dashboard activeTab={activeTab} callback={setActiveTab} />}
+                    {activeTab === "login" && <Login />}
+                    {activeTab === "reset" && <ResetPassword />}
+                    {(activeTab === "register" || activeTab === "agb") && <Register />}
+                    {(activeTab === "register" || activeTab === "agb") && <AGB />}
+                    {isDashboard && <Dashboard />}
                 </div>
                 <div className="bookingFooter"></div>
             </main>
