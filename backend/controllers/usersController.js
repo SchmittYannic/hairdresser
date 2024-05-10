@@ -117,21 +117,21 @@ const updateUser = async (req, res) => {
         if (password !== "" || oldpassword !== "") {
             //user tries changing password without giving oldpassword
             if (password !== "" && oldpassword === "") {
-                return res.status(400).json({ message: "Passwortänderung benötigt altes Passwort", context: { key: "oldpassword" } });
+                return res.status(400).json({ message: "Passwortänderung benötigt altes Passwort", context: { label: "oldpassword" } });
             }
             //user tries changing password without giving a new password
             if (password === "" && oldpassword !== "") {
-                return res.status(400).json({ message: "Passwortänderung benötigt neues Passwort", context: { key: "password" } });
+                return res.status(400).json({ message: "Passwortänderung benötigt neues Passwort", context: { label: "password" } });
             }
             //see if password fits the schema
             await passwordschema.validateAsync(password);
             //see if oldpassword matches password in database
             const match = await bcrypt.compare(oldpassword, foundUser.password);
             if (!match) {
-                return res.status(401).json({ message: "Ungültiges Passwort", context: { key: "oldpassword" } });
+                return res.status(401).json({ message: "Ungültiges Passwort", context: { label: "oldpassword" } });
             }
             //if matches hash new password
-            newHashedPw = await bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUNDS));
+            const newHashedPw = await bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUNDS));
             foundUser.password = newHashedPw
         }
 
@@ -181,9 +181,7 @@ const updateUser = async (req, res) => {
 
         const sessionUser = sessionizeUser(updateUser);
 
-        req.session.touch(() => {
-            req.session.user = sessionUser;
-        })
+        req.session.user = sessionUser;
 
         const userInfo = {
             ...sessionUser,
