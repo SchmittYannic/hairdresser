@@ -67,9 +67,24 @@ const logout = (req, res) => {
 // @desc loggedIn
 // @route GET /
 // @access Public
-const loggedIn = (req, res) => {
-    const { session } = req
-    return res.status(200).json({ message: "Nutzer noch logged in", ...session.user });
+const loggedIn = async ({ session }, res) => {
+    try {
+        const { userId } = session.user
+
+        const foundUser = await User.findById(userId).lean().exec();
+
+        const userInfo = {
+            ...session.user,
+            lastname: foundUser.lastname,
+            firstname: foundUser.firstname,
+            cookie_expires: session.cookie._expires,
+            cookie_originalMaxAge: session.cookie.originalMaxAge,
+        }
+
+        return res.status(200).json({ message: "Nutzer noch logged in", userInfo });
+    } catch (error) {
+        return res.status(400).json({ message: "Fehler in loggedIn function" });
+    }
 }
 
 export {
