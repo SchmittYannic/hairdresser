@@ -58,7 +58,11 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
 
         timeout.current = setTimeout(() => {
             resetUserInfo();
-        }, timediff)
+        }, timediff);
+
+        return () => {
+            if (timeout.current) clearTimeout(timeout.current);
+        }
     }, [userInfo]);
 
     return (
