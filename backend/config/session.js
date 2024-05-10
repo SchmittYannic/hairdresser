@@ -12,7 +12,7 @@ const sessionConfig = (db) => {
             ttl: parseInt(process.env.SESS_LIFETIME) ?? 20 * 60 //time to life in seconds.
         }),
         cookie: {
-            sameSite: "strict",
+            sameSite: "none",
             secure: process.env.NODE_ENV === "production",
             maxAge: parseInt(process.env.SESS_LIFETIME) * 1000
         }
