@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { MdLogout } from "react-icons/md";
 import useSessionContext from "../../hooks/useSessionContext";
 import useLogout from "../../hooks/useLogout";
@@ -13,7 +12,7 @@ import "./Booking.scss";
 
 const Booking = () => {
 
-    const { userInfo, activeTab, setActiveTab } = useSessionContext();
+    const { activeTab } = useSessionContext();
     const { mutate } = useLogout();
 
     const isDashboard = (activeTab === "dashboard" || activeTab === "editUser")
