@@ -5,7 +5,7 @@ import express from "express";
 import connectDB from "./config/dbConn.js";
 import mongoose from "mongoose";
 import session from "express-session";
-import MongoStore from "connect-mongo"
+import sessionConfig from "./config/session.js";
 import { logger, logEvents } from "./middleware/logger.js";
 import errorHandler from "./middleware/errorHandler.js";
 import cors from "cors";
@@ -28,22 +28,7 @@ app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(session({
-    name: process.env.SESS_NAME,
-    secret: process.env.SESS_SECRET,
-    saveUninitialized: false, //This complies with laws that require permission before setting a cookie.
-    resave: false, //This prevents unnecessary re-saves if the session wasn’t modified.
-    store: MongoStore.create({
-        client: db.getClient(),
-        collection: 'session',
-        ttl: parseInt(process.env.SESS_LIFETIME) ?? 20 * 60 //time to life in seconds.
-    }),
-    cookie: {
-        sameSite: true,
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: parseInt(process.env.SESS_LIFETIME) * 1000
-    }
-}));
+app.use(session(sessionConfig(db)));
 
 /* ROUTES */
 app.use("/", rootRoute);
