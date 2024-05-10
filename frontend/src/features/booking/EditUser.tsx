@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { isAxiosError } from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import useSessionContext from "../../hooks/useSessionContext";
@@ -57,6 +59,18 @@ const EditUser = () => {
             newsletter,
         })
     }
+
+    useEffect(() => {
+        if (!isError) return
+        if (!isAxiosError(errorApi)) return
+        if (!errorApi.response) return
+        if (!errorApi.response.data.context) return
+        if (!errorApi.response.data.context.label) return
+
+        setError(errorApi.response.data.context.label, {
+            message: errorApi.response.data.message,
+        })
+    }, [setError, isError])
 
     return (
         <div className="page">
