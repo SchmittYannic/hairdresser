@@ -42,7 +42,7 @@ const login = async (req, res) => {
 
 // @desc logout
 // @route DELETE /
-// @access Public
+// @access Private
 const logout = (req, res) => {
     const { session } = req
 
