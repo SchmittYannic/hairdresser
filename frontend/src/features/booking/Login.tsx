@@ -2,18 +2,15 @@ import { useEffect } from "react";
 import { isAxiosError } from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
-import { activeTabType } from "./Booking"
+import useSessionContext from "../../hooks/useSessionContext";
 import useLogin from "../../hooks/useLogin";
 import AsyncButton from "../../components/ui/AsyncButton";
 import { LoginDataType } from "../../utils/types";
 import Loginschema from "../../validation/Loginschema";
 
-type LoginPropsType = {
-    callback: React.Dispatch<React.SetStateAction<activeTabType>>;
-}
+const Login = () => {
 
-const Login = ({ callback }: LoginPropsType) => {
-
+    const { setActiveTab } = useSessionContext();
     const { mutate, isLoading, isError, error: errorApi } = useLogin();
 
     const {
@@ -116,7 +113,7 @@ const Login = ({ callback }: LoginPropsType) => {
                             href=""
                             onClick={(e) => {
                                 e.preventDefault();
-                                callback("reset");
+                                setActiveTab("reset");
                             }}
                         >
                             Passwort vergessen?
@@ -174,7 +171,7 @@ const Login = ({ callback }: LoginPropsType) => {
                             <button
                                 className="bookingFormButton"
                                 type="button"
-                                onClick={() => callback("register")}
+                                onClick={() => setActiveTab("register")}
                             >
                                 <span>Registrieren</span>
                             </button>

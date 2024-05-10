@@ -1,10 +1,9 @@
-import { activeTabType } from "./Booking"
+import useSessionContext from "../../hooks/useSessionContext"
 
-type ResetPasswordPropsType = {
-    callback: React.Dispatch<React.SetStateAction<activeTabType>>,
-}
+const ResetPassword = () => {
 
-const ResetPassword = ({ callback }: ResetPasswordPropsType) => {
+    const { setActiveTab } = useSessionContext();
+
     return (
         <div className="page">
             <div className="col-1-1">
@@ -33,7 +32,7 @@ const ResetPassword = ({ callback }: ResetPasswordPropsType) => {
                 <button
                     className="backButton bookingFormButton"
                     type="button"
-                    onClick={() => callback("login")}
+                    onClick={() => setActiveTab("login")}
                 >
                     <span>Zurück</span>
                 </button>

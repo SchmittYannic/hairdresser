@@ -2,18 +2,14 @@ import { MouseEvent, useEffect } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { isAxiosError } from "axios";
 import { yupResolver } from "@hookform/resolvers/yup"
-import { activeTabType } from "./Booking"
+import useSessionContext from "../../hooks/useSessionContext";
 import AsyncButton from "../../components/ui/AsyncButton";
 import useCreateNewUser from "../../hooks/useCreateNewUser"
 import Registerschema from "../../validation/Registerschema"
 import { UserDataType } from "../../utils/types";
 
-type RegisterPropsType = {
-    activeTab: activeTabType,
-    callback: React.Dispatch<React.SetStateAction<activeTabType>>,
-}
-
-const Register = ({ activeTab, callback }: RegisterPropsType) => {
+const Register = () => {
+    const { activeTab, setActiveTab } = useSessionContext()
 
     const {
         mutate,
@@ -70,12 +66,12 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
 
     const handleAGBClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        callback("agb");
+        setActiveTab("agb");
     }
 
     const handleLoginClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        callback("login");
+        setActiveTab("login");
     }
 
     useEffect(() => {
@@ -413,7 +409,7 @@ const Register = ({ activeTab, callback }: RegisterPropsType) => {
                     <button
                         className="backButton bookingFormButton"
                         type="button"
-                        onClick={() => callback("login")}
+                        onClick={() => setActiveTab("login")}
                     >
                         <span>Zurück</span>
                     </button>

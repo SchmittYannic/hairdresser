@@ -1,19 +1,14 @@
 import { MouseEvent } from "react";
 import useSessionContext from "../../hooks/useSessionContext"
-import { activeTabType } from "./Booking";
+import EditUser from "./EditUser";
 
-type DashboardPropsType = {
-    activeTab: activeTabType,
-    callback: React.Dispatch<React.SetStateAction<activeTabType>>
-}
+const Dashboard = () => {
 
-const Dashboard = ({ activeTab, callback }: DashboardPropsType) => {
-
-    const { userInfo } = useSessionContext();
+    const { userInfo, activeTab, setActiveTab } = useSessionContext();
 
     const handleEditUserClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        callback("editUser");
+        setActiveTab("editUser");
     }
 
     return (
@@ -92,6 +87,7 @@ const Dashboard = ({ activeTab, callback }: DashboardPropsType) => {
                 </div>
                 <div className="clear-row"></div>
             </div>
+            {activeTab === "editUser" && <EditUser />}
         </>
     )
 }

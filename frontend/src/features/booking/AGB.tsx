@@ -1,14 +1,11 @@
-import { activeTabType } from "./Booking"
+import useSessionContext from "../../hooks/useSessionContext"
 
-type AGBPropsType = {
-    activeTab: activeTabType,
-    callback: React.Dispatch<React.SetStateAction<activeTabType>>,
-}
+const AGB = () => {
 
-const AGB = ({ activeTab, callback }: AGBPropsType) => {
+    const { activeTab, setActiveTab } = useSessionContext();
 
     const handleBackButtonClicked = () => {
-        callback("register");
+        setActiveTab("register");
     }
 
     return (
