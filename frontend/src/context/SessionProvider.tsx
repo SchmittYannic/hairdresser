@@ -99,6 +99,12 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
         }
     }, [userInfo]);
 
+    useEffect(() => {
+        if (userInfo.userId === "") {
+            setActiveTab("login")
+        }
+    }, [userInfo])
+
     return (
         <SessionContext.Provider
             value={{

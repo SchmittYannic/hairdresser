@@ -5,7 +5,7 @@ import useSessionContext from "./useSessionContext"
 import { LoginDataType } from "../utils/types"
 
 const useLogin = () => {
-    const { setUserInfo, setCookieInfo } = useSessionContext();
+    const { setUserInfo, setCookieInfo, setActiveTab } = useSessionContext();
 
     const login = async (userData: LoginDataType) => {
         const response = await api.post("/auth", userData, { withCredentials: true })
@@ -17,6 +17,7 @@ const useLogin = () => {
         onSuccess: ({ userInfo, cookieInfo }) => {
             setUserInfo(userInfo);
             setCookieInfo(cookieInfo);
+            setActiveTab("dashboard");
         },
         onError: (error) => {
             if (isAxiosError(error) && error.response) {

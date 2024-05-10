@@ -22,14 +22,6 @@ const Booking = () => {
         mutate();
     }
 
-    useEffect(() => {
-        if (userInfo.userId === "") {
-            setActiveTab("login")
-        } else {
-            setActiveTab("dashboard");
-        }
-    }, [userInfo])
-
     return (
         <div id="booking">
             <header className="header">
