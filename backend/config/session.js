@@ -8,12 +8,12 @@ const sessionConfig = (db) => {
         resave: false, //This prevents unnecessary re-saves if the session wasn’t modified.
         store: MongoStore.create({
             client: db.getClient(),
-            collection: 'session',
+            collection: "session",
             ttl: parseInt(process.env.SESS_LIFETIME) ?? 20 * 60 //time to life in seconds.
         }),
         cookie: {
-            sameSite: true,
-            secure: process.env.NODE_ENV === 'production',
+            sameSite: "strict",
+            secure: process.env.NODE_ENV === "production",
             maxAge: parseInt(process.env.SESS_LIFETIME) * 1000
         }
     }
