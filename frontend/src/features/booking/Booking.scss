@@ -502,6 +502,73 @@ hr {
     border-radius: 5px;
 }
 
+.customerContainer {
+    display: flex;
+}
+
+.infoContainer {
+    flex: 1 1 auto;
+}
+
+.infoLabel {
+    display: block;
+    margin-top: 10px;
+}
+
+.contactLabel {
+    font-size: 80%;
+    font-style: italic;
+    line-height: 14px;
+}
+
+.currentAppointmentsContainer {
+    margin-bottom: 30px;
+}
+
+.noAppointmentsLabel {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    font-style: italic;
+    padding: 3px 10px;
+}
+
+.list {
+    display: inline-block;
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 30px;
+    background-color: #ffffff;
+    border: 1px solid #aaaaaa;
+    text-align: left;
+    line-height: 16px;
+    cursor: default;
+    overflow-y: scroll;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.appointmentList {
+    border: none;
+    overflow: auto;
+    line-height: 22px;
+    max-width: none;
+    background: #f1f1f1 !important;
+}
+
+.newAppointmentContainer {
+    margin-bottom: 30px;
+}
+
+.appointmentPage .newAppointmentContainer .buttonRow {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
 @media screen and (max-width: 965px) {
     #booking {
         min-height: unset;
