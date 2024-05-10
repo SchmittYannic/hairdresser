@@ -11,13 +11,15 @@ import Countdown from "../../components/Countdown";
 import { logo } from "../../assets";
 import "./Booking.scss";
 
-export type activeTabType = "login" | "register" | "reset" | "agb" | "dashboard";
+export type activeTabType = "login" | "register" | "reset" | "agb" | "dashboard" | "editUser";
 
 const Booking = () => {
 
     const { userInfo } = useSessionContext();
     const { mutate } = useLogout();
     const [activeTab, setActiveTab] = useState<activeTabType>("login");
+
+    const isDashboard = (activeTab === "dashboard" || activeTab === "editUser")
 
     const handleLogoutClicked = () => {
         mutate();
@@ -56,13 +58,13 @@ const Booking = () => {
                             {activeTab === "login" && "Hier können Sie Ihre nächsten Termine schnell und einfach online buchen - rund um die Uhr, auch am Wochenende."}
                         </span>
                         {
-                            activeTab === "dashboard" &&
+                            isDashboard &&
                             <div className="sessionTimeoutLabelContainer">
                                 <Countdown />
                             </div>
                         }
                         {
-                            activeTab === "dashboard" &&
+                            isDashboard &&
                             <div className="headerButtonContainer">
                                 <button
                                     className="inverseButton bookingButton logoutButton"
@@ -86,7 +88,7 @@ const Booking = () => {
                     {activeTab === "reset" && <ResetPassword callback={setActiveTab} />}
                     {(activeTab === "register" || activeTab === "agb") && <Register activeTab={activeTab} callback={setActiveTab} />}
                     {(activeTab === "register" || activeTab === "agb") && <AGB activeTab={activeTab} callback={setActiveTab} />}
-                    {activeTab === "dashboard" && <Dashboard />}
+                    {isDashboard && <Dashboard activeTab={activeTab} callback={setActiveTab} />}
                 </div>
                 <div className="bookingFooter"></div>
             </main>
