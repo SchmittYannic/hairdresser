@@ -1,4 +1,6 @@
+import { MouseEvent } from "react";
 import { MdLogout } from "react-icons/md";
+import { ImCheckmark } from "react-icons/im";
 import useSessionContext from "../../hooks/useSessionContext";
 import useLogout from "../../hooks/useLogout";
 import Login from "./Login";
@@ -12,14 +14,19 @@ import "./Booking.scss";
 
 const Booking = () => {
 
-    const { activeTab } = useSessionContext();
+    const { activeTab, setActiveTab } = useSessionContext();
     const { mutate } = useLogout();
 
-    const isDashboard = (activeTab === "dashboard" || activeTab === "editUser" || activeTab === "services");
-    const isAppointmentBooking = activeTab === "services";
+    const isDashboard = (activeTab === "dashboard" || activeTab === "editUser" || activeTab === "services" || activeTab === "bookdate");
+    const isAppointmentBooking = (activeTab === "services" || activeTab === "bookdate");
 
     const handleLogoutClicked = () => {
         mutate();
+    }
+
+    const handleStep1Clicked = (e: MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        setActiveTab("services");
     }
 
     return (
@@ -43,7 +50,7 @@ const Booking = () => {
                             {activeTab === "agb" && "AGB und Datenschutzerklärung"}
                             {activeTab === "dashboard" && "Terminübersicht"}
                             {activeTab === "editUser" && "Benachrichtigungen und Kontaktdaten ändern"}
-                            {activeTab === "services" && "Neuer Termin"}
+                            {isAppointmentBooking && "Neuer Termin"}
                         </span>
                         <span className="pageHeaderInfo">
                             {activeTab === "login" && "Hier können Sie Ihre nächsten Termine schnell und einfach online buchen - rund um die Uhr, auch am Wochenende."}
@@ -54,15 +61,31 @@ const Booking = () => {
                                 <div className="progressSteps">
                                     <div className="step">
                                         <a
-                                            className="act"
+                                            className={`${activeTab === "services" ? "act" : "done"}`}
                                             href=""
+                                            onClick={activeTab !== "services" ? handleStep1Clicked : () => { }}
                                         >
-                                            1
+                                            {activeTab === "services"
+                                                ? 1 :
+                                                <span className="icon-container">
+                                                    <ImCheckmark aria-hidden />
+                                                </span>
+                                            }
                                         </a>
                                         <span>Leistungen wählen</span>
                                     </div>
                                     <div className="step">
-                                        <a href="">2</a>
+                                        <a
+                                            className={`${activeTab === "bookdate" ? "act" : activeTab === "services" ? "" : "done"}`}
+                                            href=""
+                                        >
+                                            {(activeTab === "bookdate" || activeTab === "services")
+                                                ? 2 :
+                                                <span className="icon-container">
+                                                    <ImCheckmark aria-hidden />
+                                                </span>
+                                            }
+                                        </a>
                                         <span>Termin wählen</span>
                                     </div>
                                     <div className="step">
