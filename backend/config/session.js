@@ -5,7 +5,8 @@ const sessionConfig = (db) => {
         name: process.env.SESS_NAME,
         secret: process.env.SESS_SECRET,
         saveUninitialized: false, //This complies with laws that require permission before setting a cookie.
-        resave: false, //This prevents unnecessary re-saves if the session wasn’t modified.
+        resave: true,
+        rolling: true,
         store: MongoStore.create({
             client: db.getClient(),
             collection: "session",
