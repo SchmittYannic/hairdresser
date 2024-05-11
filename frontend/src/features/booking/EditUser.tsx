@@ -60,6 +60,8 @@ const EditUser = () => {
         })
     }
 
+    const isServerError = (isError && !isAxiosError(errorApi) || isError && isAxiosError(errorApi) && !errorApi.response);
+
     useEffect(() => {
         if (!isError) return
         if (!isAxiosError(errorApi)) return
@@ -366,6 +368,14 @@ const EditUser = () => {
                     <div className="col-1-1">
                         <span className="success-msg" role="alert">
                             {responseApi.message}
+                        </span>
+                    </div>
+                }
+                {
+                    isServerError &&
+                    <div className="col-1-1">
+                        <span className="error-msg" role="alert">
+                            Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
                         </span>
                     </div>
                 }
