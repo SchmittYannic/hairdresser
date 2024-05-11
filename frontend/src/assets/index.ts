@@ -32,6 +32,7 @@ import colorme from "./colorme.jpg"
 import bewerbung from "./bewerbung.png"
 import besuch from "./besuch.png"
 import kontaktformular from "./kontaktformular.png"
+import staffarbitrary from "./staffarbitrary.jpg"
 
 export {
     kreativ,
@@ -68,4 +69,5 @@ export {
     bewerbung,
     besuch,
     kontaktformular,
+    staffarbitrary,
 }
