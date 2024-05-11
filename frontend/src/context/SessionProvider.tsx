@@ -20,7 +20,7 @@ type UserInfoType = {
     newsletter: boolean,
 }
 
-type activeTabType = "login" | "register" | "reset" | "agb" | "dashboard" | "editUser";
+type activeTabType = "login" | "register" | "reset" | "agb" | "dashboard" | "editUser" | "services";
 
 type CookieInfoType = {
     cookie_expires: string,
