@@ -1,6 +1,11 @@
-import { FaInfoCircle } from "react-icons/fa";
+import { offeredColorationServices, offeredCuttingServices, offeredShavingServices } from "../../constants";
+import useServiceContext from "../../hooks/useServiceContext";
+import ServiceDialog from "./dialogs/ServiceDialog";
 
 const Services = () => {
+
+    const { serviceInfo } = useServiceContext();
+
     return (
         <div className="servicesPage page">
             <div className="col-1-1">
@@ -14,79 +19,23 @@ const Services = () => {
                         <span className="category">
                             Schneiden
                         </span>
-                    </div>
-                    <div className="list-item">
-                        <div className="serviceContainer active">
-                            <span className="serviceLabel">
-                                Schneiden (ca. 30 min.)
-                            </span>
-                            <span className="staffLabel excluded">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div className="list-item">
-                        <div className="serviceContainer active">
-                            <span className="serviceLabel">
-                                Kinderschnitt bis 6 Jahre (ca. 30 min.)
-                            </span>
-                            <span className="staffLabel excluded">
-
+                        {offeredCuttingServices.map((service) =>
+                            <ServiceDialog
+                                key={service.service_id}
+                                service={service}
+                            />
+                        )}
+                        <div className="list-item">
+                            <span className="category">
+                                Bartpflege
                             </span>
                         </div>
-                    </div>
-                    <div className="list-item">
-                        <div className="serviceContainer active">
-                            <span className="serviceLabel">
-                                Kinderschnitt von 7 bis 12 Jahre (ca. 30 min.)
-                            </span>
-                            <span className="staffLabel excluded">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div className="list-item">
-                        <div className="serviceContainer active">
-                            <span className="serviceLabel">
-                                Teenagerschnitt von 12 bis 14 Jahre (ca. 30 min.)
-                            </span>
-                            <span className="staffLabel excluded">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div className="list-item">
-                        <div className="serviceContainer active">
-                            <span className="serviceLabel">
-                                Cornrows (ca. 60 min.)
-                            </span>
-                            <span className="staffLabel excluded">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div className="list-item">
-                        <span className="category">
-                            Bartpflege
-                        </span>
-                    </div>
-                    <div className="list-item">
-                        <div className="serviceContainer active">
-                            <span className="serviceLabel">
-                                Cornrows (ca. 60 min.)
-                            </span>
-                            <span className="staffLabel excluded">
-
-                            </span>
-                        </div>
-                        <a
-                            className="infoLink"
-                            href=""
-                        >
-                            <span className="icon-container">
-                                <FaInfoCircle aria-hidden />
-                            </span>
-                        </a>
+                        {offeredShavingServices.map((service) =>
+                            <ServiceDialog
+                                key={service.service_id}
+                                service={service}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
@@ -97,44 +46,12 @@ const Services = () => {
                             Coloration / Dauerwelle
                         </span>
                     </div>
-                    <div className="list-item">
-                        <div className="serviceContainer active">
-                            <span className="serviceLabel">
-                                Greyblending (ca. 30 min.)
-                            </span>
-                            <span className="staffLabel excluded">
-
-                            </span>
-                        </div>
-                        <a
-                            className="infoLink"
-                            href=""
-                        >
-                            <span className="icon-container">
-                                <FaInfoCircle aria-hidden />
-                            </span>
-                        </a>
-                    </div>
-                    <div className="list-item">
-                        <div className="serviceContainer active">
-                            <span className="serviceLabel">
-                                Dauerwelle (ca. 45 min.)
-                            </span>
-                            <span className="staffLabel excluded">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div className="list-item">
-                        <div className="serviceContainer active">
-                            <span className="serviceLabel">
-                                Coloration (ca. 30 min.)
-                            </span>
-                            <span className="staffLabel excluded">
-
-                            </span>
-                        </div>
-                    </div>
+                    {offeredColorationServices.map((service) =>
+                        <ServiceDialog
+                            key={service.service_id}
+                            service={service}
+                        />
+                    )}
                 </div>
             </div>
             <div className="clear-row"></div>
@@ -154,7 +71,7 @@ const Services = () => {
                 <button
                     className="bookingFormButton"
                     type="button"
-                    disabled={true}
+                    disabled={serviceInfo.service_name === ""}
                 >
                     <span>Weiter</span>
                 </button>
