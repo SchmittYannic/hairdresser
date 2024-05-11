@@ -15,7 +15,8 @@ const Booking = () => {
     const { activeTab } = useSessionContext();
     const { mutate } = useLogout();
 
-    const isDashboard = (activeTab === "dashboard" || activeTab === "editUser")
+    const isDashboard = (activeTab === "dashboard" || activeTab === "editUser" || activeTab === "services");
+    const isAppointmentBooking = activeTab === "services";
 
     const handleLogoutClicked = () => {
         mutate();
@@ -42,10 +43,35 @@ const Booking = () => {
                             {activeTab === "agb" && "AGB und Datenschutzerklärung"}
                             {activeTab === "dashboard" && "Terminübersicht"}
                             {activeTab === "editUser" && "Benachrichtigungen und Kontaktdaten ändern"}
+                            {activeTab === "services" && "Neuer Termin"}
                         </span>
                         <span className="pageHeaderInfo">
                             {activeTab === "login" && "Hier können Sie Ihre nächsten Termine schnell und einfach online buchen - rund um die Uhr, auch am Wochenende."}
                         </span>
+                        {
+                            isAppointmentBooking &&
+                            <div className="progressBar">
+                                <div className="progressSteps">
+                                    <div className="step">
+                                        <a
+                                            className="act"
+                                            href=""
+                                        >
+                                            1
+                                        </a>
+                                        <span>Leistungen wählen</span>
+                                    </div>
+                                    <div className="step">
+                                        <a href="">2</a>
+                                        <span>Termin wählen</span>
+                                    </div>
+                                    <div className="step">
+                                        <a href="">3</a>
+                                        <span>Termin bestätigen</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                         {
                             isDashboard &&
                             <div className="sessionTimeoutLabelContainer">
