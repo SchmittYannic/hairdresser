@@ -1,6 +1,7 @@
 import { MouseEvent } from "react";
 import useSessionContext from "../../hooks/useSessionContext"
 import EditUser from "./EditUser";
+import Services from "./Services";
 
 const Dashboard = () => {
 
@@ -63,6 +64,7 @@ const Dashboard = () => {
                             <button
                                 className="bookingFormButton"
                                 type="button"
+                                onClick={() => setActiveTab("services")}
                             >
                                 <span>Neuer Termin</span>
                             </button>
@@ -88,6 +90,7 @@ const Dashboard = () => {
                 <div className="clear-row"></div>
             </div>
             {activeTab === "editUser" && <EditUser />}
+            {activeTab === "services" && <Services />}
         </>
     )
 }
