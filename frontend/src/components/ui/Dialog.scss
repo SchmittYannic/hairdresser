@@ -1,0 +1,52 @@
+.dialog__background {
+    position: fixed;
+    inset: 0 0 0 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 98;
+}
+
+.dialog {
+    position: fixed;
+    left: 50%;
+    padding: 20px 10px 15px 10px;
+    background: #ffffff;
+    border: 2px solid #cccccc;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    white-space: pre-wrap;
+    animation-name: fadeIn;
+    animation-duration: 300ms;
+    animation-timing-function: ease-out;
+}
+
+.dialog__close {
+    width: 32px;
+    height: 32px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #ffffff;
+    font-style: normal;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    border: none;
+    background: #7c7c7c;
+}
+
+.dialog__caption {
+    display: block;
+    margin: 0 0 20px 0;
+    padding: 5px 40px 5px 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    background: none;
+    color: inherit;
+}
+
+.dialog__content {
+    padding: 1px;
+}
