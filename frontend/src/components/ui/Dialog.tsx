@@ -1,4 +1,5 @@
 import { HTMLAttributes, PropsWithChildren, useEffect, useRef, useState, MouseEvent } from "react"
+import ReactDOM from "react-dom";
 import FocusTrap from "focus-trap-react"
 import { MdClose } from "react-icons/md";
 import "./Dialog.scss"
@@ -27,7 +28,7 @@ const Dialog = ({
         }
     }, []);
 
-    return (
+    return ReactDOM.createPortal(
         <FocusTrap>
             <div className={`dialog__background ${className}`} {...rest}>
                 <div
@@ -52,7 +53,8 @@ const Dialog = ({
 
                 </div>
             </div>
-        </FocusTrap>
+        </FocusTrap>,
+        document.body
     )
 }
 
