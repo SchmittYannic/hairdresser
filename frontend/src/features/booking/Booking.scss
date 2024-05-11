@@ -551,6 +551,10 @@ hr {
     -khtml-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    .list-item.selectionMode {
+        cursor: pointer;
+    }
 }
 
 .appointmentList {
@@ -611,6 +615,11 @@ hr {
         background: #ffffff;
         color: #333333;
 
+        &.selected {
+            font-weight: 600;
+            cursor: pointer;
+        }
+
         .serviceLabel {
             display: inline-block;
             width: 65%;
@@ -628,6 +637,17 @@ hr {
             font-style: italic;
             font-weight: 400;
         }
+
+        .checkmark {
+            position: absolute;
+            top: 8px;
+            left: 12px;
+
+            svg {
+                width: 14px;
+                height: 22px;
+            }
+        }
     }
 
     .active:hover {
@@ -635,6 +655,11 @@ hr {
         color: #DAC8BC !important;
         font-weight: 600;
         cursor: pointer;
+    }
+
+    .selected {
+        background-color: #f4efeb !important;
+        color: #DAC8BC !important;
     }
 }
 
@@ -729,6 +754,70 @@ hr {
             font-weight: 600;
             color: #7c7c7c;
         }
+    }
+}
+
+.staffList {
+    flex: 0 1 210px;
+    margin: 0px;
+    background: none;
+    border: none;
+    min-width: 320px;
+    max-width: none;
+    max-height: 350px;
+    overflow-y: auto;
+
+    .list-item {
+        display: flex;
+        align-items: center;
+        padding: 5px 0 5px 0;
+        margin: 1px;
+        font-weight: 600;
+        border-top: 1px solid #cccccc;
+
+        &:last-child {
+            border-bottom: 1px solid #cccccc;
+        }
+
+        &:hover {
+            background-color: #f4efeb;
+            color: #DAC8Bc;
+        }
+
+        img {
+            min-width: 75px;
+            width: 75px;
+            vertical-align: middle;
+        }
+
+        span {
+            flex: 1 1 auto;
+            padding: 5px 20px;
+            max-width: 400px;
+        }
+    }
+}
+
+.dialog {
+    .dialog_button_container {
+        margin: 0;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .description {
+        display: block;
+        margin: 0 0 20px 0;
+        max-width: 370px;
+        max-height: 150px;
+        overflow-y: auto;
+        max-height: 200px;
+    }
+
+    .duration {
+        display: block;
+        font-weight: 700;
+        font-style: italic;
     }
 }
 
