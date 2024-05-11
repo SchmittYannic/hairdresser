@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import {
     kevinmurphyproduct,
     kevinmurphyproduct2,
@@ -299,3 +300,109 @@ export const jobspageSliderImgs1: ImageSliderObjectType[] = [
         ...salon1Obj,
     },
 ];
+
+export type OfferedServiceType = {
+    service_id: number,
+    service_name: string,
+    service_label: string,
+    employees: string[],
+    service_info?: ReactElement,
+}
+
+export const offeredCuttingServices: OfferedServiceType[] = [
+    {
+        service_id: 0,
+        service_name: "Schneiden",
+        service_label: "Schneiden (ca. 30 min.)",
+        employees: ["Mirjam Schmid", "Nina Helm", "Hannah Geier"],
+    },
+    {
+        service_id: 1,
+        service_name: "KindU6",
+        service_label: "Kinderschnitt bis 6 Jahre (ca. 30 min.)",
+        employees: ["Mirjam Schmid", "Nina Helm", "Hannah Geier"],
+    },
+    {
+        service_id: 2,
+        service_name: "KindU12",
+        service_label: "Kinderschnitt von 7 bis 12 Jahre (ca. 30 min.)",
+        employees: ["Mirjam Schmid", "Nina Helm", "Hannah Geier"],
+    },
+    {
+        service_id: 3,
+        service_name: "TeenU14",
+        service_label: "Teenagerschnitt von 12 bis 14 Jahre (ca. 30 min.)",
+        employees: ["Mirjam Schmid", "Nina Helm", "Hannah Geier"],
+    },
+    {
+        service_id: 4,
+        service_name: "Cornrows",
+        service_label: "Cornrows (ca. 60 min.)",
+        employees: ["Mirjam Schmid", "Nina Helm", "Hannah Geier"],
+    },
+];
+
+const RasurInfo = (): ReactElement => (
+    <>
+        <div className="dialog__caption ">
+            Rasur
+        </div>
+        <div className="dialog__content">
+            <span className="description">
+                Nassrasur / Konturen
+            </span>
+            <span className="duration">
+                Dauer ca. 30 min.
+            </span>
+        </div>
+        <div className="dialog_button_container"></div>
+    </>
+);
+
+const GrayBlendingInfo = (): ReactElement => (
+    <>
+        <div className="dialog__caption ">
+            Grayblending
+        </div>
+        <div className="dialog__content">
+            <span className="description">
+                Natürliche Grauabdeckung
+            </span>
+            <span className="duration">
+                Dauer ca. 30 min.
+            </span>
+        </div>
+    </>
+)
+
+export const offeredShavingServices: OfferedServiceType[] = [
+    {
+        service_id: 5,
+        service_name: "Rasur",
+        service_label: "Rasur (ca. 30 min.)",
+        employees: ["Mirjam Schmid", "Nina Helm", "Hannah Geier"],
+        service_info: <RasurInfo />,
+    },
+];
+
+export const offeredColorationServices: OfferedServiceType[] = [
+    {
+        service_id: 6,
+        service_name: "Greyblending",
+        service_label: "Greyblending (ca. 30 min.)",
+        employees: ["Mirjam Schmid", "Nina Helm", "Hannah Geier"],
+        service_info: <GrayBlendingInfo />,
+    },
+    {
+        service_id: 7,
+        service_name: "Dauerwelle",
+        service_label: "Dauerwelle (ca. 45 min.)",
+        employees: ["Mirjam Schmid", "Nina Helm", "Hannah Geier"],
+    },
+    {
+        service_id: 8,
+        service_name: "Coloration",
+        service_label: "Coloration (ca. 30 min.)",
+        employees: ["Mirjam Schmid", "Nina Helm", "Hannah Geier"],
+    },
+]
