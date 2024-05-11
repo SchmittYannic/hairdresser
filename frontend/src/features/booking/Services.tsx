@@ -1,10 +1,17 @@
 import { offeredColorationServices, offeredCuttingServices, offeredShavingServices } from "../../constants";
 import useServiceContext from "../../hooks/useServiceContext";
+import useSessionContext from "../../hooks/useSessionContext";
 import ServiceDialog from "./dialogs/ServiceDialog";
 
 const Services = () => {
 
-    const { serviceInfo } = useServiceContext();
+    const { serviceInfo, resetServiceInfo } = useServiceContext();
+    const { setActiveTab } = useSessionContext();
+
+    const handleBackButtonClicked = () => {
+        resetServiceInfo();
+        setActiveTab("dashboard");
+    }
 
     return (
         <div className="servicesPage page">
@@ -65,6 +72,7 @@ const Services = () => {
                 <button
                     className="backButton bookingFormButton"
                     type="button"
+                    onClick={handleBackButtonClicked}
                 >
                     <span>Zurück</span>
                 </button>
