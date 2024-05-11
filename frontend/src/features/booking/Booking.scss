@@ -590,6 +590,19 @@ hr {
             margin: 20px 0 10px 0;
             display: inline-block;
         }
+
+        .infoLink {
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            color: #DAC8BC;
+
+            svg {
+                display: block;
+                width: 24px;
+                height: 25px;
+            }
+        }
     }
 
     .serviceContainer {

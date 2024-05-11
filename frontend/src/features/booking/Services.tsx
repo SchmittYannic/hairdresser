@@ -1,3 +1,4 @@
+import { FaInfoCircle } from "react-icons/fa";
 
 const Services = () => {
     return (
@@ -78,7 +79,14 @@ const Services = () => {
 
                             </span>
                         </div>
-                        <a href=""></a>
+                        <a
+                            className="infoLink"
+                            href=""
+                        >
+                            <span className="icon-container">
+                                <FaInfoCircle aria-hidden />
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -98,7 +106,14 @@ const Services = () => {
 
                             </span>
                         </div>
-                        <a href=""></a>
+                        <a
+                            className="infoLink"
+                            href=""
+                        >
+                            <span className="icon-container">
+                                <FaInfoCircle aria-hidden />
+                            </span>
+                        </a>
                     </div>
                     <div className="list-item">
                         <div className="serviceContainer active">
