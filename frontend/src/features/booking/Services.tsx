@@ -11,7 +11,11 @@ const Services = () => {
     const handleBackButtonClicked = () => {
         resetServiceInfo();
         setActiveTab("dashboard");
-    }
+    };
+
+    const handleNextButtonClicked = () => {
+        setActiveTab("bookdate");
+    };
 
     return (
         <div className="servicesPage page">
@@ -79,6 +83,7 @@ const Services = () => {
                 <button
                     className="bookingFormButton"
                     type="button"
+                    onClick={handleNextButtonClicked}
                     disabled={serviceInfo.service_name === ""}
                 >
                     <span>Weiter</span>
