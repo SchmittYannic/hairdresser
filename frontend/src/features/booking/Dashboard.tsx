@@ -2,7 +2,6 @@ import { MouseEvent } from "react";
 import useSessionContext from "../../hooks/useSessionContext"
 import EditUser from "./EditUser";
 import Services from "./Services";
-import Bookdate from "./Bookdate";
 
 const Dashboard = () => {
 
@@ -91,8 +90,7 @@ const Dashboard = () => {
                 <div className="clear-row"></div>
             </div>
             {activeTab === "editUser" && <EditUser />}
-            {activeTab === "services" && <Services />}
-            {activeTab === "bookdate" && <Bookdate />}
+            {(activeTab === "services" || activeTab === "bookdate") && <Services />}
         </>
     )
 }
