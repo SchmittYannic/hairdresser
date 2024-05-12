@@ -6,6 +6,8 @@ import {
     startschema,
     endschema,
     availableServices,
+    customerschema,
+    employeeschema,
 } from "../validation/appointmentschema.js"
 import { isAppointmentConflict } from "./helpers.js";
 import Appointment from "../models/Appointment.js";
@@ -24,27 +26,13 @@ const availableCustomers = [
 const availableEmployeesRegex = new RegExp(`^(${availableEmployees.map(employee => employee.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`);
 const availableCustomersRegex = new RegExp(`^(${availableCustomers.map(customer => customer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`);
 
-const fakecustomerschema = Joi.string()
-    .label("employee")
-    .regex(new RegExp(/^[0-9a-fA-F]{24}$/))
-    .message("Keine valide Kunden Id")
+const fakecustomerschema = customerschema
     .regex(availableCustomersRegex)
     .message("Nur bekannte Kunden")
-    .messages({
-        "string.empty": "Kunden Id ist erforderlich",
-        "any.required": "Kunden Id ist erforderlich"
-    });
 
-const fakeemployeeschema = Joi.string()
-    .label("employee")
-    .regex(new RegExp(/^[0-9a-fA-F]{24}$/))
-    .message("Keine valide Mitarbeiter Id")
+const fakeemployeeschema = employeeschema
     .regex(availableEmployeesRegex)
     .message("Nur bekannte Mitarbeiter")
-    .messages({
-        "string.empty": "Mitarbeiter Id ist erforderlich",
-        "any.required": "Mitarbeiter Id ist erforderlich"
-    });
 
 const fakeschema = Joi.object({
     customer: fakecustomerschema.required(),
