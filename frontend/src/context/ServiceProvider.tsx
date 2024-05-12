@@ -13,12 +13,16 @@ const defaultServiceInfo: ServiceInfoType = {
 type ServiceContextType = {
     serviceInfo: ServiceInfoType,
     setServiceInfo: React.Dispatch<React.SetStateAction<ServiceInfoType>>,
+    appointment: Date | undefined,
+    setAppointment: React.Dispatch<React.SetStateAction<Date | undefined>>,
     resetServiceInfo: () => void,
 }
 
 const initContextState = {
     serviceInfo: defaultServiceInfo,
     setServiceInfo: () => { },
+    appointment: undefined,
+    setAppointment: () => { },
     resetServiceInfo: () => { },
 }
 
@@ -26,6 +30,7 @@ export const ServiceContext = createContext<ServiceContextType>(initContextState
 
 export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement => {
     const [serviceInfo, setServiceInfo] = useState<ServiceInfoType>(defaultServiceInfo);
+    const [appointment, setAppointment] = useState<Date | undefined>(undefined);
 
     const resetServiceInfo = () => {
         setServiceInfo(defaultServiceInfo);
@@ -36,6 +41,8 @@ export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement =
             value={{
                 serviceInfo,
                 setServiceInfo,
+                appointment,
+                setAppointment,
                 resetServiceInfo,
             }}
         >
