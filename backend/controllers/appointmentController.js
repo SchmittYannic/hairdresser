@@ -7,19 +7,24 @@ import Appointment from "../models/Appointment.js";
 // @route GET /appointment
 // @access Private
 const getAppointments = async (req, res) => {
+    const cookieInfo = {
+        cookie_expires: req.session.cookie._expires,
+        cookie_originalMaxAge: req.session.cookie.originalMaxAge,
+    }
+
     try {
         const { employee } = req.body
 
         if (employee) {
             await employeeschema.validateAsync(employee)
             const foundAppointments = await Appointment.find({ employee });
-            res.status(200).json({ message: "Success", appointments: foundAppointments })
+            res.status(200).json({ message: "Success", cookieInfo, appointments: foundAppointments })
         } else {
             const appointments = await Appointment.find();
-            res.status(200).json({ message: "Success", appointments: appointments })
+            res.status(200).json({ message: "Success", cookieInfo, appointments: appointments })
         }
     } catch (error) {
-        return res.status(400).json({ message: "Fehler beim Abrufen der Daten" });
+        return res.status(400).json({ message: "Fehler beim Abrufen der Daten", cookieInfo });
     }
 }
 
@@ -27,6 +32,11 @@ const getAppointments = async (req, res) => {
 // @route POST /appointment
 // @access Private
 const createNewAppointment = async (req, res) => {
+    const cookieInfo = {
+        cookie_expires: req.session.cookie._expires,
+        cookie_originalMaxAge: req.session.cookie.originalMaxAge,
+    }
+
     try {
         const {
             customer,
@@ -37,7 +47,7 @@ const createNewAppointment = async (req, res) => {
         } = req.body;
 
         if (req.session.user.userId !== customer) {
-            return res.status(401).json({ message: "Nicht autorisiert einen Termin zu buchen" });
+            return res.status(401).json({ message: "Nicht autorisiert einen Termin zu buchen", cookieInfo });
         }
 
         const startAsDate = new Date(start);
@@ -47,7 +57,7 @@ const createNewAppointment = async (req, res) => {
         const endAsDate = new Date(startAsDate.getTime() + duration * 60000);
 
         if ((endAsDate - startAsDate) / 60000 !== parseInt(duration)) {
-            return res.status(400).json({ message: "Enddatum muss duration minutes after Startdatum liegen", context: { key: "end" } });
+            return res.status(400).json({ message: "Enddatum muss duration minutes after Startdatum liegen", context: { key: "end" }, cookieInfo });
         }
 
         await appointmentschema.validateAsync({
@@ -62,25 +72,25 @@ const createNewAppointment = async (req, res) => {
         const foundCustomer = await User.findById(customer).lean().exec();
 
         if (!foundCustomer) {
-            return res.status(400).json({ message: "Konnte Kunde nicht in Datenbank finden" });
+            return res.status(400).json({ message: "Konnte Kunde nicht in Datenbank finden", cookieInfo });
         }
 
         const foundEmployee = await User.findById(employee).lean().exec();
 
         if (!foundEmployee) {
-            return res.status(400).json({ message: "Konnte Mitarbeiter nicht in Datenbank finden" });
+            return res.status(400).json({ message: "Konnte Mitarbeiter nicht in Datenbank finden", cookieInfo });
         }
 
         if (!foundEmployee.roles.includes("Employee")) {
-            return res.status(400).json({ message: "Die gefundene Person ist nicht als Mitarbeiter autorisiert" });
+            return res.status(400).json({ message: "Die gefundene Person ist nicht als Mitarbeiter autorisiert", cookieInfo });
         }
 
         if (await hasUpcomingAppointments(customer)) {
-            return res.status(400).json({ message: "Termin konnte nicht gebucht werden, da der Kunde bereits einen offenen Termin besitzt" });
+            return res.status(400).json({ message: "Termin konnte nicht gebucht werden, da der Kunde bereits einen offenen Termin besitzt", cookieInfo });
         }
 
         if (await isAppointmentConflict(employee, customer, startAsDate, endAsDate)) {
-            return res.status(400).json({ message: "Termin konnte nicht gebucht werden, da er im Konflikt mit einem existierenden Termins steht" });
+            return res.status(400).json({ message: "Termin konnte nicht gebucht werden, da er im Konflikt mit einem existierenden Termins steht", cookieInfo });
         }
 
         const appointment = await Appointment.create({
@@ -93,12 +103,12 @@ const createNewAppointment = async (req, res) => {
         })
 
         if (!appointment) {
-            return res.status(400).json({ message: "Konnte keinen neuen Termin in der Datenbank anlegen." });
+            return res.status(400).json({ message: "Konnte keinen neuen Termin in der Datenbank anlegen.", cookieInfo });
         }
 
-        return res.status(200).json({ message: "Termin gebucht" });
+        return res.status(200).json({ message: "Termin gebucht", cookieInfo });
     } catch (err) {
-        return res.status(400).send(parseError(err));
+        return res.status(400).send({ ...parseError(err), cookieInfo });
     }
 };
 

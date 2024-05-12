@@ -90,6 +90,11 @@ const createNewUser = async (req, res) => {
 // @route PATCH /users
 // @access Private
 const updateUser = async (req, res) => {
+    const cookieInfo = {
+        cookie_expires: req.session.cookie._expires,
+        cookie_originalMaxAge: req.session.cookie.originalMaxAge,
+    }
+
     try {
         const { userId } = req.session.user
 
@@ -110,25 +115,25 @@ const updateUser = async (req, res) => {
         const foundUser = await User.findById(userId).exec();
 
         if (!foundUser) {
-            return res.status(400).json({ message: "Konnte Nutzer id nicht in Datenbank finden" });
+            return res.status(400).json({ message: "Konnte Nutzer id nicht in Datenbank finden", cookieInfo });
         }
 
         //user wants to change password
         if (password !== "" || oldpassword !== "") {
             //user tries changing password without giving oldpassword
             if (password !== "" && oldpassword === "") {
-                return res.status(400).json({ message: "Passwortänderung benötigt altes Passwort", context: { label: "oldpassword" } });
+                return res.status(400).json({ message: "Passwortänderung benötigt altes Passwort", context: { label: "oldpassword" }, cookieInfo });
             }
             //user tries changing password without giving a new password
             if (password === "" && oldpassword !== "") {
-                return res.status(400).json({ message: "Passwortänderung benötigt neues Passwort", context: { label: "password" } });
+                return res.status(400).json({ message: "Passwortänderung benötigt neues Passwort", context: { label: "password" }, cookieInfo });
             }
             //see if password fits the schema
             await passwordschema.validateAsync(password);
             //see if oldpassword matches password in database
             const match = await bcrypt.compare(oldpassword, foundUser.password);
             if (!match) {
-                return res.status(401).json({ message: "Ungültiges Passwort", context: { label: "oldpassword" } });
+                return res.status(401).json({ message: "Ungültiges Passwort", context: { label: "oldpassword" }, cookieInfo });
             }
             //if matches hash new password
             const newHashedPw = await bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUNDS));
@@ -195,14 +200,9 @@ const updateUser = async (req, res) => {
             newsletter: updateUser.newsletter,
         }
 
-        const cookieInfo = {
-            cookie_expires: req.session.cookie._expires,
-            cookie_originalMaxAge: req.session.cookie.originalMaxAge,
-        }
-
         return res.status(200).json({ message: "Änderung erfolgreich", userInfo, cookieInfo });
     } catch (err) {
-        return res.status(400).send(parseError(err));
+        return res.status(400).send({ ...parseError(err), cookieInfo });
     }
 }
 

@@ -77,6 +77,11 @@ const logout = (req, res) => {
 // @route GET /
 // @access Public
 const loggedIn = async ({ session }, res) => {
+    const cookieInfo = {
+        cookie_expires: session.cookie._expires,
+        cookie_originalMaxAge: session.cookie.originalMaxAge,
+    }
+
     try {
         const { userId } = session.user
 
@@ -94,14 +99,9 @@ const loggedIn = async ({ session }, res) => {
             newsletter: foundUser.newsletter,
         }
 
-        const cookieInfo = {
-            cookie_expires: session.cookie._expires,
-            cookie_originalMaxAge: session.cookie.originalMaxAge,
-        }
-
         return res.status(200).json({ message: "Nutzer noch logged in", userInfo, cookieInfo });
     } catch (error) {
-        return res.status(400).json({ message: "Fehler in loggedIn function" });
+        return res.status(400).json({ message: "Fehler in loggedIn function", cookieInfo });
     }
 }
 
