@@ -391,6 +391,7 @@ const EditUser = () => {
                         className="contactSaveButton bookingFormButton"
                         type="submit"
                         isLoading={isLoading}
+                        disabled={isLoading}
                     >
                         Speichern
                     </AsyncButton>

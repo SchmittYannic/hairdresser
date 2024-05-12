@@ -417,6 +417,7 @@ const Register = () => {
                         className="registerButton bookingFormButton"
                         type="submit"
                         isLoading={isLoading}
+                        disabled={isLoading}
                     >
                         Registrieren
                     </AsyncButton>

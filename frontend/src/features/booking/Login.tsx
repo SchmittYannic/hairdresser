@@ -143,6 +143,7 @@ const Login = () => {
                             className="bookingFormButton"
                             type="submit"
                             isLoading={isLoading}
+                            disabled={isLoading}
                         >
                             Anmelden
                         </AsyncButton>
