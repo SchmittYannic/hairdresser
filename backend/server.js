@@ -6,6 +6,7 @@ import connectDB from "./config/dbConn.js";
 import mongoose from "mongoose";
 import session from "express-session";
 import sessionConfig from "./config/session.js";
+import cron from "node-cron"
 import { logger, logEvents } from "./middleware/logger.js";
 import errorHandler from "./middleware/errorHandler.js";
 import cors from "cors";
@@ -14,6 +15,7 @@ import rootRoute from "./routes/root.js";
 import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js"
+import { moveExpiredAppointments } from "./utils/helpers.js";
 
 /* Configurations */
 dotenv.config();
@@ -30,6 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(session(sessionConfig(db)));
+cron.schedule("0 0 * * * *", async () => await moveExpiredAppointments(db));
 
 /* ROUTES */
 app.use("/", rootRoute);
