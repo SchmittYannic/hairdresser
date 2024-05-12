@@ -6,6 +6,7 @@ import {
     useRef,
     useState,
 } from "react";
+import useLogout from "../hooks/useLogout";
 
 type UserInfoType = {
     userId: string,
@@ -71,6 +72,7 @@ export const SessionContext = createContext<SessionContextType>(initContextState
 
 export const SessionProvider = ({ children }: PropsWithChildren): ReactElement => {
 
+    const { mutate: triggerLogout } = useLogout()
     const [userInfo, setUserInfo] = useState<UserInfoType>(defaultUserInfo);
     const [cookieInfo, setCookieInfo] = useState<CookieInfoType>(defaultCookieInfo);
     const [activeTab, setActiveTab] = useState<activeTabType>(defaultActiveTab)
@@ -91,7 +93,7 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
         const timediff = expirationDate.getTime() - now.getTime();
 
         timeout.current = setTimeout(() => {
-            resetState();
+            triggerLogout();
         }, timediff);
 
         return () => {
