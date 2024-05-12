@@ -438,14 +438,14 @@ const availableEmployees = [
 
 type availableEmployeesKeyType = typeof availableEmployees[number];
 
-type employeesType = {
+export type employeeType = {
     id: availableEmployeesKeyType,
     firstname: string,
     lastname: string,
     skills: availableServicesKeyType[]
 }
 
-export const employees: employeesType[] = [
+export const employees: employeeType[] = [
     {
         id: "66401720b8fb65815722ab38",
         firstname: "Mirjam",

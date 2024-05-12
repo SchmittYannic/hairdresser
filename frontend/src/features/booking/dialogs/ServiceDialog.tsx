@@ -4,7 +4,7 @@ import { ImCheckmark } from "react-icons/im";
 import useServiceContext from "../../../hooks/useServiceContext";
 import Dialog from "../../../components/ui/Dialog"
 import { staffarbitrary } from "../../../assets";
-import { OfferedServiceType, employees } from "../../../constants";
+import { OfferedServiceType, employeeType, employees } from "../../../constants";
 
 type ServiceDialogPropsType = {
     service: OfferedServiceType,
@@ -24,13 +24,21 @@ const ServiceDialog = ({ service }: ServiceDialogPropsType) => {
         }
     }
 
-    const handleEmployeeClicked = (e: MouseEvent, name: string) => {
+    const handleEmployeeClicked = (e: MouseEvent, employee: employeeType | null) => {
         e.stopPropagation();
         setServiceInfo((prev) => {
             const newState = { ...prev }
             newState["service_name"] = service.service_name
             newState["service_duration"] = service.service_duration
-            newState["employee_name"] = name
+            if (employee) {
+                newState["employee_id"] = employee.id
+                newState["employee_firstname"] = employee.firstname
+                newState["employee_lastname"] = employee.lastname
+            } else {
+                newState["employee_id"] = ""
+                newState["employee_firstname"] = ""
+                newState["employee_lastname"] = ""
+            }
             return newState
         });
         setIsOpen(false);
@@ -59,7 +67,7 @@ const ServiceDialog = ({ service }: ServiceDialogPropsType) => {
                         {service.service_label}
                     </span>
                     <span className={`staffLabel${serviceInfo.service_name !== service.service_name ? " excluded" : ""}`}>
-                        - {serviceInfo.employee_name}
+                        - {serviceInfo.employee_firstname} {serviceInfo.employee_lastname}
                     </span>
                 </div>
                 {
@@ -92,7 +100,7 @@ const ServiceDialog = ({ service }: ServiceDialogPropsType) => {
                             <div className="staffList list">
                                 <div
                                     className="list-item selectionMode"
-                                    onClick={(e) => handleEmployeeClicked(e, "beliebig")}
+                                    onClick={(e) => handleEmployeeClicked(e, null)}
                                 >
                                     <img src={staffarbitrary} alt="staff" />
                                     <span>- beliebig -</span>
@@ -103,7 +111,7 @@ const ServiceDialog = ({ service }: ServiceDialogPropsType) => {
                                             <div
                                                 key={employee.id}
                                                 className="list-item selectionMode"
-                                                onClick={(e) => handleEmployeeClicked(e, employee.id)}
+                                                onClick={(e) => handleEmployeeClicked(e, employee)}
                                             >
                                                 <img src={staffarbitrary} alt="staff" />
                                                 <span>{employee.firstname} {employee.lastname}</span>
