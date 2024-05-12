@@ -4,7 +4,7 @@ import { ImCheckmark } from "react-icons/im";
 import useServiceContext from "../../../hooks/useServiceContext";
 import Dialog from "../../../components/ui/Dialog"
 import { staffarbitrary } from "../../../assets";
-import { OfferedServiceType } from "../../../constants";
+import { OfferedServiceType, employees } from "../../../constants";
 
 type ServiceDialogPropsType = {
     service: OfferedServiceType,
@@ -97,16 +97,20 @@ const ServiceDialog = ({ service }: ServiceDialogPropsType) => {
                                     <img src={staffarbitrary} alt="staff" />
                                     <span>- beliebig -</span>
                                 </div>
-                                {service.employees.map((employee, idx) =>
-                                    <div
-                                        key={idx}
-                                        className="list-item selectionMode"
-                                        onClick={(e) => handleEmployeeClicked(e, employee)}
-                                    >
-                                        <img src={staffarbitrary} alt="staff" />
-                                        <span>{employee}</span>
-                                    </div>
-                                )}
+                                {employees.map((employee) => {
+                                    if (employee.skills.includes(service.service_name)) {
+                                        return (
+                                            <div
+                                                key={employee.id}
+                                                className="list-item selectionMode"
+                                                onClick={(e) => handleEmployeeClicked(e, employee.id)}
+                                            >
+                                                <img src={staffarbitrary} alt="staff" />
+                                                <span>{employee.firstname} {employee.lastname}</span>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                         </div>
                     </Dialog>

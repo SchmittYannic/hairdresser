@@ -430,3 +430,32 @@ export const offeredColorationServices: OfferedServiceType[] = [
         employees: ["Mirjam Schmid", "Nina Helm", "Hannah Geier"],
     },
 ];
+
+const availableEmployees = [
+    "66401720b8fb65815722ab38",
+    "66403f93eef48844b222489c",
+] as const;
+
+type availableEmployeesKeyType = typeof availableEmployees[number];
+
+type employeesType = {
+    id: availableEmployeesKeyType,
+    firstname: string,
+    lastname: string,
+    skills: availableServicesKeyType[]
+}
+
+export const employees: employeesType[] = [
+    {
+        id: "66401720b8fb65815722ab38",
+        firstname: "Mirjam",
+        lastname: "Schmid",
+        skills: ["Schneiden", "KindU12"],
+    },
+    {
+        id: "66403f93eef48844b222489c",
+        firstname: "Hannah",
+        lastname: "Geier",
+        skills: ["Schneiden", "TeenU14"],
+    },
+]
