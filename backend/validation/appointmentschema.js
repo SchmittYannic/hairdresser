@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-const availableServices = [
+export const availableServices = [
     "Schneiden",
     "KindU6",
     "KindU12",
@@ -14,7 +14,7 @@ const availableServices = [
 
 const availableServicesRegex = new RegExp(`^(${availableServices.map(service => service.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`);
 
-const customerschema = Joi.string()
+export const customerschema = Joi.string()
     .label("customer")
     .regex(new RegExp(/^[0-9a-fA-F]{24}$/))
     .message("Keine valide Kunden Id")
@@ -23,7 +23,7 @@ const customerschema = Joi.string()
         "any.required": "Kunden Id ist erforderlich"
     });
 
-const employeeschema = Joi.string()
+export const employeeschema = Joi.string()
     .label("employee")
     .regex(new RegExp(/^[0-9a-fA-F]{24}$/))
     .message("Keine valide Mitarbeiter Id")
@@ -32,7 +32,7 @@ const employeeschema = Joi.string()
         "any.required": "Mitarbeiter Id ist erforderlich"
     });
 
-const servicenameschema = Joi.string()
+export const servicenameschema = Joi.string()
     .label("service_name")
     .max(80)
     .regex(availableServicesRegex)
@@ -65,7 +65,7 @@ export const startschema = Joi.date()
         "any.required": "Startdatum ist erforderlich",
     })
 
-const endschema = Joi.date()
+export const endschema = Joi.date()
     .label("end")
     .greater("now")
     .messages({
