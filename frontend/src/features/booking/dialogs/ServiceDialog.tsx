@@ -29,6 +29,7 @@ const ServiceDialog = ({ service }: ServiceDialogPropsType) => {
         setServiceInfo((prev) => {
             const newState = { ...prev }
             newState["service_name"] = service.service_name
+            newState["service_duration"] = service.service_duration
             newState["employee_name"] = name
             return newState
         });

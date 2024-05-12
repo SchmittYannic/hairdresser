@@ -2,11 +2,13 @@ import { PropsWithChildren, ReactElement, createContext, useState } from "react"
 
 type ServiceInfoType = {
     service_name: string,
+    service_duration: number,
     employee_name: string,
 }
 
 const defaultServiceInfo: ServiceInfoType = {
     service_name: "",
+    service_duration: 0,
     employee_name: "",
 }
 
