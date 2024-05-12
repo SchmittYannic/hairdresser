@@ -16,6 +16,7 @@ import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js"
 import { moveExpiredAppointments } from "./utils/helpers.js";
+import { insertFakeData } from "./utils/fakedata.js";
 
 /* Configurations */
 dotenv.config();
@@ -33,6 +34,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(session(sessionConfig(db)));
 cron.schedule("0 0 * * * *", async () => await moveExpiredAppointments(db));
+//cron.schedule("*/10 * * * * *", async () => await insertFakeData(10))
 
 /* ROUTES */
 app.use("/", rootRoute);
