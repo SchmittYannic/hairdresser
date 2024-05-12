@@ -17,18 +17,18 @@ setLogger({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <SessionProvider>
-            <ServiceProvider>
-                <BrowserRouter>
-                    <ScrollToTop>
-                        <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+            <ScrollToTop>
+                <QueryClientProvider client={queryClient}>
+                    <SessionProvider>
+                        <ServiceProvider>
                             <Routes>
                                 <Route path="/*" element={<App />} />
                             </Routes>
-                        </QueryClientProvider>
-                    </ScrollToTop>
-                </BrowserRouter>
-            </ServiceProvider>
-        </SessionProvider>
+                        </ServiceProvider>
+                    </SessionProvider>
+                </QueryClientProvider>
+            </ScrollToTop>
+        </BrowserRouter>
     </React.StrictMode>,
 )
