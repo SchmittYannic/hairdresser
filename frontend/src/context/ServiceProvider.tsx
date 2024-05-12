@@ -8,7 +8,7 @@ type ServiceInfoType = {
 
 const defaultServiceInfo: ServiceInfoType = {
     service_name: "",
-    service_duration: 0,
+    service_duration: 30,
     employee_name: "",
 }
 
