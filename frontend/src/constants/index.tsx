@@ -301,9 +301,23 @@ export const jobspageSliderImgs1: ImageSliderObjectType[] = [
     },
 ];
 
+const availableServices = [
+    "Schneiden",
+    "KindU6",
+    "KindU12",
+    "TeenU14",
+    "Cornrows",
+    "Rasur",
+    "Greyblending",
+    "Dauerwelle",
+    "Coloration",
+] as const
+
+type availableServicesKeyType = typeof availableServices[number];
+
 export type OfferedServiceType = {
     service_id: number,
-    service_name: string,
+    service_name: availableServicesKeyType,
     service_label: string,
     service_duration: number,
     employees: string[],
