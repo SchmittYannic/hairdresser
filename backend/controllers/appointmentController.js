@@ -1,4 +1,4 @@
-import { appointmentschema, durationschema, startschema } from "../validation/appointmentschema.js"
+import { appointmentschema, durationschema, startschema, employeeschema } from "../validation/appointmentschema.js"
 import { parseError, isAppointmentConflict, hasUpcomingAppointments } from "../utils/helpers.js";
 import User from "../models/User.js";
 import Appointment from "../models/Appointment.js";
@@ -7,7 +7,20 @@ import Appointment from "../models/Appointment.js";
 // @route GET /appointment
 // @access Private
 const getAppointments = async (req, res) => {
+    try {
+        const { employee } = req.body
 
+        if (employee) {
+            await employeeschema.validateAsync(employee)
+            const foundAppointments = await Appointment.find({ employee });
+            res.status(200).json({ message: "Success", appointments: foundAppointments })
+        } else {
+            const appointments = await Appointment.find();
+            res.status(200).json({ message: "Success", appointments: appointments })
+        }
+    } catch (error) {
+        return res.status(400).json({ message: "Fehler beim Abrufen der Daten" });
+    }
 }
 
 // @desc Create new appointment
