@@ -13,6 +13,7 @@ import corsOptions from "./config/corsOptions.js";
 import rootRoute from "./routes/root.js";
 import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import appointmentRoutes from "./routes/appointmentRoutes.js"
 
 /* Configurations */
 dotenv.config();
@@ -34,6 +35,7 @@ app.use(session(sessionConfig(db)));
 app.use("/", rootRoute);
 app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
+app.use("/appointment", appointmentRoutes);
 
 app.use(errorHandler);
 
