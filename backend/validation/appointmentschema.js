@@ -43,7 +43,7 @@ const servicenameschema = Joi.string()
         "any.required": "Name der Dienstleistung ist erforderlich"
     });
 
-const durationschema = Joi.number()
+export const durationschema = Joi.number()
     .label("duration")
     .integer()
     .positive()
@@ -54,10 +54,10 @@ const durationschema = Joi.number()
         "any.required": "Dauer ist erforderlich",
     })
 
-const startschema = Joi.date()
+export const startschema = Joi.date()
     .label("start")
     .greater("now")
-    .less(Joi.date().min(new Date().getTime() + (3 * 30 * 24 * 60 * 60 * 1000)))
+    .less(new Date().getTime() + (3 * 30 * 24 * 60 * 60 * 1000))
     .messages({
         "date.base": "Startdatum ist erforderlich",
         "date.greater": "Startdatum kann nicht in der Vergangenheit liegen",
@@ -68,11 +68,6 @@ const startschema = Joi.date()
 const endschema = Joi.date()
     .label("end")
     .greater("now")
-    .when("start", {
-        is: Joi.date().required(),
-        then: Joi.date().min(Joi.ref("start", { adjust: (value) => value.getTime() + duration * 60000 })),
-        otherwise: Joi.date().min("now")
-    })
     .messages({
         "date.base": "Enddatum ist erforderlich",
         "date.greater": "Enddatum kann nicht in der Vergangenheit liegen",
