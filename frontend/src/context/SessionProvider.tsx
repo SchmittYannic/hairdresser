@@ -102,6 +102,10 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
     useEffect(() => {
         if (userInfo.userId === "") {
             setActiveTab("login")
+        } else {
+            if (activeTab === "login" || activeTab === "register" || activeTab === "reset" || activeTab === "agb") {
+                setActiveTab("dashboard")
+            }
         }
     }, [userInfo])
 

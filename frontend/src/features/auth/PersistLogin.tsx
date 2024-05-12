@@ -6,7 +6,7 @@ import api from "../../api";
 
 const PersistLogin = () => {
 
-    const { setUserInfo, setCookieInfo, setActiveTab } = useSessionContext();
+    const { setUserInfo, setCookieInfo } = useSessionContext();
 
     const persist = async () => {
         const response = await api.get("/auth", { withCredentials: true })
@@ -20,7 +20,6 @@ const PersistLogin = () => {
         onSuccess: ({ userInfo, cookieInfo }) => {
             setUserInfo(userInfo);
             setCookieInfo(cookieInfo);
-            setActiveTab("dashboard");
         },
     })
 
