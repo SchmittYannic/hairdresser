@@ -1,3 +1,4 @@
+import { logEvents } from "../middleware/logger.js";
 import Appointment from "../models/Appointment.js";
 
 export const parseError = err => {
@@ -63,4 +64,22 @@ export const hasUpcomingAppointments = async (customer) => {
         //console.error("Error checking for upcoming appointments:", error);
         return false; // Return false if there's an error
     }
-}
+};
+
+export const moveExpiredAppointments = async (db) => {
+    try {
+        const appointmentsCollection = db.collection("appointments");
+        //console.log(appointmentsCollection)
+        const archivedAppointmentsCollection = db.collection("archivedappointments");
+        //console.log(archivedAppointmentsCollection)
+
+        const expiredAppointments = await appointmentsCollection.find({ end: { $lt: new Date() } }).toArray();
+
+        await archivedAppointmentsCollection.insertMany(expiredAppointments);
+
+        await appointmentsCollection.deleteMany({ _id: { $in: expiredAppointments.map(appt => appt._id) } })
+        console.log('Expired appointments moved to archivedAppointments collection.');
+    } catch (err) {
+        logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log');
+    }
+};
