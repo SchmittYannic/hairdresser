@@ -5,23 +5,17 @@ import {
     servicenameschema,
     startschema,
     endschema,
-    availableServices,
     customerschema,
     employeeschema,
 } from "../validation/appointmentschema.js"
 import { isAppointmentConflict } from "./helpers.js";
 import Appointment from "../models/Appointment.js";
+import {
+    availableCustomers,
+    availableServices,
+    availableEmployees,
+} from "../config/constants.js";
 
-
-const availableEmployees = [
-    "66401720b8fb65815722ab38",
-    "66403f93eef48844b222489c",
-];
-
-const availableCustomers = [
-    "663d237c7d1a2c31d6b93f78",
-    "663eab633c669f771382674e",
-];
 
 const availableEmployeesRegex = new RegExp(`^(${availableEmployees.map(employee => employee.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`);
 const availableCustomersRegex = new RegExp(`^(${availableCustomers.map(customer => customer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`);

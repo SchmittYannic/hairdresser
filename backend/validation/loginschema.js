@@ -1,6 +1,5 @@
 import Joi from "joi";
-
-const requiredMsg = "Bitte ausfüllen";
+import { requiredMsg } from "../config/constants.js";
 
 const email = Joi.string().email().required().messages({
     "string.email": "ungültiges Email-Format",

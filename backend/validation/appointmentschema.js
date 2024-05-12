@@ -1,16 +1,6 @@
 import Joi from "joi";
+import { availableServices } from "../config/constants.js";
 
-export const availableServices = [
-    "Schneiden",
-    "KindU6",
-    "KindU12",
-    "TeenU14",
-    "Cornrows",
-    "Rasur",
-    "Greyblending",
-    "Dauerwelle",
-    "Coloration",
-];
 
 const availableServicesRegex = new RegExp(`^(${availableServices.map(service => service.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`);
 
