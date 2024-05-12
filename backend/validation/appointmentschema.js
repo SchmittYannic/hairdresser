@@ -57,9 +57,11 @@ const durationschema = Joi.number()
 const startschema = Joi.date()
     .label("start")
     .greater("now")
+    .less(Joi.date().min(new Date().getTime() + (3 * 30 * 24 * 60 * 60 * 1000)))
     .messages({
         "date.base": "Startdatum ist erforderlich",
         "date.greater": "Startdatum kann nicht in der Vergangenheit liegen",
+        "date.less": "Startdatum kann nicht mehr als 3 Monate in die Zukunft liegen",
         "any.required": "Startdatum ist erforderlich",
     })
 
