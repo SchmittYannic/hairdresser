@@ -3,6 +3,13 @@ import { parseError, isAppointmentConflict, hasUpcomingAppointments } from "../u
 import User from "../models/User.js";
 import Appointment from "../models/Appointment.js";
 
+// @desc Get all upcoming appointments
+// @route GET /appointment
+// @access Private
+const getAppointments = async (req, res) => {
+
+}
+
 // @desc Create new appointment
 // @route POST /appointment
 // @access Private
@@ -15,6 +22,10 @@ const createNewAppointment = async (req, res) => {
             duration,
             start,
         } = req.body;
+
+        if (req.session.user.userId !== customer) {
+            return res.status(401).json({ message: "Nicht autorisiert einen Termin zu buchen" });
+        }
 
         const startAsDate = new Date(start);
         await startschema.validateAsync(startAsDate);
@@ -79,5 +90,6 @@ const createNewAppointment = async (req, res) => {
 };
 
 export {
+    getAppointments,
     createNewAppointment,
 }
