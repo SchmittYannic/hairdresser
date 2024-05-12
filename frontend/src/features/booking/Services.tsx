@@ -9,7 +9,7 @@ import Bookdate from "./Bookdate";
 
 const Services = () => {
 
-    const { refetch, isLoading, isError, data } = useGetAllAppointments();
+    const { refetch, isLoading, isError } = useGetAllAppointments();
     const { serviceInfo, resetServiceInfo } = useServiceContext();
     const { activeTab, setActiveTab } = useSessionContext();
 
@@ -106,7 +106,7 @@ const Services = () => {
                     <div className="clear-row"></div>
                 </div>
             </div>
-            {activeTab === "bookdate" && <Bookdate data={data} />}
+            {activeTab === "bookdate" && <Bookdate />}
         </>
     )
 }
