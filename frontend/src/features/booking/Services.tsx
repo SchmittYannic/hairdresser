@@ -1,10 +1,14 @@
 import { offeredColorationServices, offeredCuttingServices, offeredShavingServices } from "../../constants";
+import useGetAllAppointments from "../../hooks/useGetAllAppointments";
 import useServiceContext from "../../hooks/useServiceContext";
 import useSessionContext from "../../hooks/useSessionContext";
 import ServiceDialog from "./dialogs/ServiceDialog";
+import AsyncButton from "../../components/ui/AsyncButton";
+
 
 const Services = () => {
 
+    const { refetch, isLoading, isError } = useGetAllAppointments();
     const { serviceInfo, resetServiceInfo } = useServiceContext();
     const { setActiveTab } = useSessionContext();
 
@@ -14,7 +18,7 @@ const Services = () => {
     };
 
     const handleNextButtonClicked = () => {
-        setActiveTab("bookdate");
+        refetch();
     };
 
     return (
@@ -72,6 +76,14 @@ const Services = () => {
                 </span>
             </div>
             <div className="clear-row"></div>
+            {
+                isError &&
+                <div className="col-1-1">
+                    <span className="error-msg" role="alert">
+                        Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
+                    </span>
+                </div>
+            }
             <div className="col-1-1">
                 <button
                     className="backButton bookingFormButton"
@@ -80,14 +92,15 @@ const Services = () => {
                 >
                     <span>Zurück</span>
                 </button>
-                <button
+                <AsyncButton
                     className="bookingFormButton"
                     type="button"
                     onClick={handleNextButtonClicked}
-                    disabled={serviceInfo.service_name === ""}
+                    isLoading={isLoading}
+                    disabled={serviceInfo.service_name === "" || isLoading}
                 >
-                    <span>Weiter</span>
-                </button>
+                    Weiter
+                </AsyncButton>
                 <div className="clear-row"></div>
             </div>
         </div>
