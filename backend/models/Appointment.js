@@ -28,7 +28,7 @@ const appointmentSchema = new mongoose.Schema(
             type: Date,
             required: true,
             validate: {
-                validator: (end) => {
+                validator: function (end) {
                     // Calculate the difference in minutes between 'start' and 'end'
                     const diffMinutes = Math.abs((end - this.start) / (1000 * 60));
                     // Check if the difference is equal to the specified 'duration'
