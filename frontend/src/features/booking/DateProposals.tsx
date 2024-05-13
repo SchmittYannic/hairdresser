@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useServiceContext from "../../hooks/useServiceContext"
 import { FreeTimeslotType } from "../../utils/types";
-import { weekdaysAbr } from "../../constants";
+import DateSlot from "./DateSlot";
 
 const DateProposals = () => {
     const { appointment, freeTimeslots } = useServiceContext();
@@ -42,24 +42,9 @@ const DateProposals = () => {
                 <hr className="horizontal-ruler" />
             </div>
             <div className="proposalsList ">
-                {slots.map((slot, idx) => {
-                    const endDate = new Date(slot.endDate);
-                    const startDate = new Date(slot.startDate);
-                    const startDateString = startDate.toISOString().slice(0, 10);
-                    const startDateParts = startDateString.split("-");
-                    const formatedDate = startDateParts[2] + "." + startDateParts[1] + "." + startDateParts[0];
-                    const starttime = startDate.toLocaleTimeString().slice(0, 5);
-                    const endtime = endDate.toLocaleTimeString().slice(0, 5);
-
-                    return (
-                        <div key={idx} className="list-item selectionMode">
-                            {weekdaysAbr[startDate.getDay() - 1]} {formatedDate}
-                            <span className="time">
-                                {starttime} - {endtime}
-                            </span>
-                        </div>
-                    )
-                })}
+                {slots.map((slot, idx) =>
+                    <DateSlot key={idx} slot={slot} />
+                )}
             </div>
         </>
     )
