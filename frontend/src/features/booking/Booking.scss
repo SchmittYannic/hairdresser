@@ -833,6 +833,29 @@ hr {
     }
 }
 
+.proposalsList {
+    max-height: 400px;
+    margin: 20px 0;
+    overflow-y: scroll;
+
+    .list-item {
+        padding: 5px 22px 5px 22px;
+        background: #ffffff;
+        margin: 0 0 2px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #f4efeb;
+            color: #DAC8Bc;
+        }
+
+        .time {
+            margin: 0 0 0 15px;
+            font-weight: 600;
+        }
+    }
+}
+
 @media screen and (max-width: 965px) {
     #booking {
         min-height: unset;
