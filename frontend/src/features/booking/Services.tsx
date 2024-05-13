@@ -1,5 +1,4 @@
 import { offeredColorationServices, offeredCuttingServices, offeredShavingServices } from "../../constants";
-import useGetAllAppointments from "../../hooks/useGetAllAppointments";
 import useServiceContext from "../../hooks/useServiceContext";
 import useSessionContext from "../../hooks/useSessionContext";
 import ServiceDialog from "./dialogs/ServiceDialog";
@@ -9,8 +8,13 @@ import Bookdate from "./Bookdate";
 
 const Services = () => {
 
-    const { refetch, isLoading, isError } = useGetAllAppointments();
-    const { serviceInfo, resetServiceInfo } = useServiceContext();
+    const {
+        serviceInfo,
+        resetServiceInfo,
+        triggerGetFreeSlots,
+        isGetFreeSlotsError,
+        isGetFreeSlotsLoading
+    } = useServiceContext();
     const { activeTab, setActiveTab } = useSessionContext();
 
     const handleBackButtonClicked = () => {
@@ -19,7 +23,10 @@ const Services = () => {
     };
 
     const handleNextButtonClicked = () => {
-        refetch();
+        triggerGetFreeSlots({
+            employee: serviceInfo.employee_id,
+            duration: serviceInfo.service_duration,
+        });
     };
 
     return (
@@ -79,7 +86,7 @@ const Services = () => {
                 </div>
                 <div className="clear-row"></div>
                 {
-                    isError &&
+                    isGetFreeSlotsError &&
                     <div className="col-1-1">
                         <span className="error-msg" role="alert">
                             Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
@@ -98,8 +105,8 @@ const Services = () => {
                         className="bookingFormButton"
                         type="button"
                         onClick={handleNextButtonClicked}
-                        isLoading={isLoading}
-                        disabled={serviceInfo.service_name === "" || isLoading}
+                        isLoading={isGetFreeSlotsLoading}
+                        disabled={serviceInfo.service_name === "" || isGetFreeSlotsLoading}
                     >
                         Weiter
                     </AsyncButton>
