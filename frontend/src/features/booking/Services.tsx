@@ -4,6 +4,7 @@ import useSessionContext from "../../hooks/useSessionContext";
 import ServiceDialog from "./dialogs/ServiceDialog";
 import AsyncButton from "../../components/ui/AsyncButton";
 import Bookdate from "./Bookdate";
+import { useEffect } from "react";
 
 
 const Services = () => {
@@ -13,7 +14,8 @@ const Services = () => {
         resetServiceInfo,
         triggerGetFreeSlots,
         isGetFreeSlotsError,
-        isGetFreeSlotsLoading
+        isGetFreeSlotsLoading,
+        setAppointment,
     } = useServiceContext();
     const { activeTab, setActiveTab } = useSessionContext();
 
@@ -28,6 +30,13 @@ const Services = () => {
             duration: serviceInfo.service_duration,
         });
     };
+
+    useEffect(() => {
+        return () => {
+            resetServiceInfo();
+            setAppointment(undefined);
+        }
+    }, [])
 
     return (
         <>
