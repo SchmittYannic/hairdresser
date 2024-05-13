@@ -2,31 +2,33 @@ import { appointmentschema, durationschema, startschema, employeeschema } from "
 import { parseError, isAppointmentConflict, hasUpcomingAppointments } from "../utils/helpers.js";
 import User from "../models/User.js";
 import Appointment from "../models/Appointment.js";
+import { generateFreeTimeSlots } from "../utils/generateFreeSlots.js";
+import { availableEmployees } from "../config/constants.js";
 
 // @desc Get all upcoming appointments
 // @route GET /appointment
 // @access Private
-const getAppointments = async (req, res) => {
-    const cookieInfo = {
-        cookie_expires: req.session.cookie._expires,
-        cookie_originalMaxAge: req.session.cookie.originalMaxAge,
-    }
+// const getAppointments = async (req, res) => {
+//     const cookieInfo = {
+//         cookie_expires: req.session.cookie._expires,
+//         cookie_originalMaxAge: req.session.cookie.originalMaxAge,
+//     }
 
-    try {
-        const { employee } = req.body
+//     try {
+//         const { employee } = req.body
 
-        if (employee) {
-            await employeeschema.validateAsync(employee)
-            const foundAppointments = await Appointment.find({ employee });
-            res.status(200).json({ message: "Success", cookieInfo, appointments: foundAppointments })
-        } else {
-            const appointments = await Appointment.find();
-            res.status(200).json({ message: "Success", cookieInfo, appointments: appointments })
-        }
-    } catch (error) {
-        return res.status(400).json({ message: "Fehler beim Abrufen der Daten", cookieInfo });
-    }
-}
+//         if (employee) {
+//             await employeeschema.validateAsync(employee)
+//             const foundAppointments = await Appointment.find({ employee });
+//             res.status(200).json({ message: "Success", cookieInfo, appointments: foundAppointments })
+//         } else {
+//             const appointments = await Appointment.find();
+//             res.status(200).json({ message: "Success", cookieInfo, appointments: appointments })
+//         }
+//     } catch (error) {
+//         return res.status(400).json({ message: "Fehler beim Abrufen der Daten", cookieInfo });
+//     }
+// }
 
 // @desc Create new appointment
 // @route POST /appointment
@@ -112,7 +114,46 @@ const createNewAppointment = async (req, res) => {
     }
 };
 
+// @desc Get all upcoming appointments filtered by employee
+// @route POST /appointment/filter
+// @access Private
+const getAllFreeTimeSlotsByEmployee = async (req, res) => {
+    const cookieInfo = {
+        cookie_expires: req.session.cookie._expires,
+        cookie_originalMaxAge: req.session.cookie.originalMaxAge,
+    }
+
+    try {
+        const { employee, duration } = req.body
+        if (!duration) {
+            return res.status(400).json({ message: "Keine Dauer angegeben", cookieInfo })
+        }
+
+        if (employee) {
+            await employeeschema.validateAsync(employee);
+            const foundAppointments = await Appointment.find({ employee });
+
+            const freeTimeslots = generateFreeTimeSlots(90, duration, foundAppointments, employee);
+
+            return res.status(200).json({ message: "okay", freeTimeslots, cookieInfo })
+        } else {
+            const freeTimeslots = [];
+
+            for (let idx in availableEmployees) {
+                const employee = availableEmployees[idx];
+                const foundAppointments = await Appointment.find({ employee });
+                const freeTimeslotsByEmployee = generateFreeTimeSlots(90, duration, foundAppointments, employee);
+                freeTimeslots.push(...freeTimeslotsByEmployee);
+            }
+
+            return res.status(200).json({ message: "okay", freeTimeslots, cookieInfo })
+        }
+    } catch (err) {
+        return res.status(400).send({ ...parseError(err), cookieInfo });
+    }
+}
+
 export {
-    getAppointments,
     createNewAppointment,
+    getAllFreeTimeSlotsByEmployee,
 }
