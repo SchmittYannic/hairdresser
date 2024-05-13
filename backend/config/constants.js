@@ -22,9 +22,52 @@ const availableServices = [
     "Coloration",
 ];
 
+const weekdays = [
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday",
+];
+
+const openingtimes = {
+    monday: {
+        openingtime: "",
+        closingtime: "",
+    },
+    tuesday: {
+        openingtime: "08:30",
+        closingtime: "18:00",
+    },
+    wednesday: {
+        openingtime: "08:30",
+        closingtime: "18:00",
+    },
+    thursday: {
+        openingtime: "08:30",
+        closingtime: "18:00",
+    },
+    friday: {
+        openingtime: "08:30",
+        closingtime: "18:00",
+    },
+    saturday: {
+        openingtime: "08:00",
+        closingtime: "13:00",
+    },
+    sunday: {
+        openingtime: "",
+        closingtime: "",
+    },
+};
+
 export {
     availableCustomers,
     availableEmployees,
     availableServices,
     requiredMsg,
+    weekdays,
+    openingtimes,
 }
