@@ -18,6 +18,16 @@ import {
     salon3,
 } from "../assets"
 
+export const weekdaysAbr = [
+    "Mo.",
+    "Di.",
+    "Mi.",
+    "Do.",
+    "Fr.",
+    "Sa.",
+    "So.",
+] as const;
+
 const availableServices = [
     "Schneiden",
     "KindU6",
