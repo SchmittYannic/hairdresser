@@ -43,17 +43,19 @@ const DateProposals = () => {
             </div>
             <div className="proposalsList ">
                 {slots.map((slot, idx) => {
-                    const date = new Date(slot.startDate);
-                    const dateString = date.toISOString().slice(0, 10);
-                    const dateparts = dateString.split("-");
-                    const formatedDate = dateparts[2] + "." + dateparts[1] + "." + dateparts[0];
-                    const time = date.toISOString().slice(11, 16);
+                    const endDate = new Date(slot.endDate);
+                    const startDate = new Date(slot.startDate);
+                    const startDateString = startDate.toISOString().slice(0, 10);
+                    const startDateParts = startDateString.split("-");
+                    const formatedDate = startDateParts[2] + "." + startDateParts[1] + "." + startDateParts[0];
+                    const starttime = startDate.toLocaleTimeString().slice(0, 5);
+                    const endtime = endDate.toLocaleTimeString().slice(0, 5);
 
                     return (
                         <div key={idx} className="list-item selectionMode">
-                            {weekdaysAbr[date.getDay() - 1]} {formatedDate}
+                            {weekdaysAbr[startDate.getDay() - 1]} {formatedDate}
                             <span className="time">
-                                {time}
+                                {starttime} - {endtime}
                             </span>
                         </div>
                     )
