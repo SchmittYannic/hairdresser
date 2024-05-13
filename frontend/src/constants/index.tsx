@@ -18,6 +18,49 @@ import {
     salon3,
 } from "../assets"
 
+const availableServices = [
+    "Schneiden",
+    "KindU6",
+    "KindU12",
+    "TeenU14",
+    "Cornrows",
+    "Rasur",
+    "Greyblending",
+    "Dauerwelle",
+    "Coloration",
+] as const;
+
+type availableServicesKeyType = typeof availableServices[number];
+
+const availableEmployees = [
+    "66401720b8fb65815722ab38",
+    "66403f93eef48844b222489c",
+] as const;
+
+type availableEmployeesKeyType = typeof availableEmployees[number];
+
+export type employeeType = {
+    id: availableEmployeesKeyType,
+    firstname: string,
+    lastname: string,
+    skills: availableServicesKeyType[]
+};
+
+export const employees: employeeType[] = [
+    {
+        id: "66401720b8fb65815722ab38",
+        firstname: "Mirjam",
+        lastname: "Schmid",
+        skills: ["Schneiden", "KindU12"],
+    },
+    {
+        id: "66403f93eef48844b222489c",
+        firstname: "Hannah",
+        lastname: "Geier",
+        skills: ["Schneiden", "TeenU14"],
+    },
+];
+
 type ImageSliderObjectType = {
     id: number,
     src: string,
@@ -301,20 +344,6 @@ export const jobspageSliderImgs1: ImageSliderObjectType[] = [
     },
 ];
 
-const availableServices = [
-    "Schneiden",
-    "KindU6",
-    "KindU12",
-    "TeenU14",
-    "Cornrows",
-    "Rasur",
-    "Greyblending",
-    "Dauerwelle",
-    "Coloration",
-] as const
-
-type availableServicesKeyType = typeof availableServices[number];
-
 export type OfferedServiceType = {
     service_id: number,
     service_name: availableServicesKeyType,
@@ -430,32 +459,3 @@ export const offeredColorationServices: OfferedServiceType[] = [
         employees: ["Mirjam Schmid", "Nina Helm", "Hannah Geier"],
     },
 ];
-
-const availableEmployees = [
-    "66401720b8fb65815722ab38",
-    "66403f93eef48844b222489c",
-] as const;
-
-type availableEmployeesKeyType = typeof availableEmployees[number];
-
-export type employeeType = {
-    id: availableEmployeesKeyType,
-    firstname: string,
-    lastname: string,
-    skills: availableServicesKeyType[]
-}
-
-export const employees: employeeType[] = [
-    {
-        id: "66401720b8fb65815722ab38",
-        firstname: "Mirjam",
-        lastname: "Schmid",
-        skills: ["Schneiden", "KindU12"],
-    },
-    {
-        id: "66403f93eef48844b222489c",
-        firstname: "Hannah",
-        lastname: "Geier",
-        skills: ["Schneiden", "TeenU14"],
-    },
-]
