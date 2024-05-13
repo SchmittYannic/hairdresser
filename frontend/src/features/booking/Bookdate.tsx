@@ -2,51 +2,13 @@ import { DayPicker } from "react-day-picker"
 import { de } from "date-fns/locale";
 import useSessionContext from "../../hooks/useSessionContext";
 import useServiceContext from "../../hooks/useServiceContext";
+import DateProposals from "./DateProposals";
 import "./Calendar.scss"
-
-// const CustomDay = (props: DayProps) => {
-//     const buttonRef: RefObject<HTMLButtonElement> = useRef(null);
-//     const {
-//         activeModifiers,
-//         isHidden,
-//         isButton,
-//         buttonProps,
-//         divProps,
-//     } = useDayRender(props.date, props.displayMonth, buttonRef)
-
-//     //console.log(activeModifiers)
-
-//     if (isHidden) {
-//         return (<></>)
-//     } else if (isButton) {
-//         return (
-//             <button
-//                 ref={buttonRef}
-//                 {...buttonProps}
-//                 //className=""
-//                 role="gridcell"
-//                 tabIndex={-1}
-//             >
-//                 <span>
-//                     1
-//                 </span>
-//             </button>
-//         )
-//     } else {
-//         return (
-//             <div
-//                 {...divProps}
-//             >
-
-//             </div>
-//         )
-//     }
-// }
 
 const Bookdate = () => {
 
     const { setActiveTab } = useSessionContext();
-    const { appointment, setAppointment } = useServiceContext();
+    const { appointment, setAppointment, freeTimeslots } = useServiceContext();
 
     const handleBackButtonClicked = () => {
         setActiveTab("services");
@@ -82,6 +44,23 @@ const Bookdate = () => {
         return date > futureDate;
     };
 
+    const isBooked = (date: Date) => {
+        // Convert dateString to a string in 'YYYY-MM-DD' format for comparison
+        const dateString = date.toISOString().slice(0, 10);
+        //Iterate through each object
+        for (let timeslot of freeTimeslots) {
+            // Convert startDate of the object to a string in 'YYYY-MM-DD' format for comparison
+            const startDate = new Date(timeslot.startDate)
+            const startDateString = startDate.toISOString().slice(0, 10);
+
+            // Check if the startDate of the object is on the same date as the given date
+            if (startDateString === dateString) {
+                return false; // Object exists with a startDate on the given date
+            }
+        }
+        return true; // No object found with a startDate on the given date
+    }
+
     return (
         <div className="page">
             <div className="col-2-1">
@@ -94,11 +73,13 @@ const Bookdate = () => {
                         pastDate: isPastDate,
                         today: isSameDay,
                         futureDate: isTooFarIntoFuture,
+                        booked: isBooked,
                     }}
                     modifiersClassNames={{
                         pastDate: "past-date",
                         today: "today",
                         futureDate: "future-date",
+                        booked: "booked",
                     }}
                     selected={appointment}
                     onSelect={setAppointment}
@@ -117,14 +98,7 @@ const Bookdate = () => {
                 <span className="captionLabel">
                     Bitte wählen Sie einen Termin
                 </span>
-                <div className="proposalsFeedback ">
-                    <hr className="horizontal-ruler" />
-                    <span className="infoLabel">
-                        {appointment ? "" : "Sie haben noch keinen Tag gewählt"}
-                    </span>
-                    <hr className="horizontal-ruler" />
-                </div>
-                <div className="proposalsList "></div>
+                <DateProposals />
             </div>
             <div className="clear-row"></div>
             <div className="col-1-1">
