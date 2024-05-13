@@ -821,6 +821,18 @@ hr {
     }
 }
 
+.proposalsFeedback {
+    .infoLabel {
+        font-weight: normal;
+        font-style: italic;
+        padding-left: 20px;
+    }
+
+    .horizontal-ruler {
+        margin: 20px 0px;
+    }
+}
+
 @media screen and (max-width: 965px) {
     #booking {
         min-height: unset;
