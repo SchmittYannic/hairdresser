@@ -23,13 +23,13 @@ const availableServices = [
 ];
 
 const weekdays = [
+    "sunday",
     "monday",
     "tuesday",
     "wednesday",
     "thursday",
     "friday",
     "saturday",
-    "sunday",
 ];
 
 const openingtimes = {

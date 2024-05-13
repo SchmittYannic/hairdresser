@@ -45,13 +45,18 @@ const Bookdate = () => {
     };
 
     const isBooked = (date: Date) => {
-        // Convert dateString to a string in 'YYYY-MM-DD' format for comparison
-        const dateString = date.toISOString().slice(0, 10);
+        const day = ("0" + date.getDate()).slice(-2);
+        const month = ("0" + (date.getMonth() + 1)).slice(-2);
+        const year = date.getFullYear();
+        const dateString = day + "." + month + "." + year;
+
         //Iterate through each object
         for (let timeslot of freeTimeslots) {
-            // Convert startDate of the object to a string in 'YYYY-MM-DD' format for comparison
             const startDate = new Date(timeslot.startDate)
-            const startDateString = startDate.toISOString().slice(0, 10);
+            const startDay = ("0" + startDate.getDate()).slice(-2);
+            const startMonth = ("0" + (startDate.getMonth() + 1)).slice(-2);
+            const startYear = startDate.getFullYear();
+            const startDateString = startDay + "." + startMonth + "." + startYear;
 
             // Check if the startDate of the object is on the same date as the given date
             if (startDateString === dateString) {

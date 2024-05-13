@@ -19,13 +19,13 @@ import {
 } from "../assets"
 
 export const weekdaysAbr = [
+    "So.",
     "Mo.",
     "Di.",
     "Mi.",
     "Do.",
     "Fr.",
     "Sa.",
-    "So.",
 ] as const;
 
 const availableServices = [

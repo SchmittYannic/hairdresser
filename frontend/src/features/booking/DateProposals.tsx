@@ -8,12 +8,19 @@ const DateProposals = () => {
     const [slots, setSlots] = useState<FreeTimeslotType[]>([]);
 
     const getFreeSlotsOfDay = (date: Date) => {
-        const dateString = date.toISOString().slice(0, 10);
-        let freeSlots = [];
+        const day = ("0" + date.getDate()).slice(-2);
+        const month = ("0" + (date.getMonth() + 1)).slice(-2);
+        const year = date.getFullYear();
+        const dateString = day + "." + month + "." + year;
+
+        let freeSlots = []
 
         for (let timeslot of freeTimeslots) {
             const startDate = new Date(timeslot.startDate)
-            const startDateString = startDate.toISOString().slice(0, 10);
+            const startDay = ("0" + startDate.getDate()).slice(-2);
+            const startMonth = ("0" + (startDate.getMonth() + 1)).slice(-2);
+            const startYear = startDate.getFullYear();
+            const startDateString = startDay + "." + startMonth + "." + startYear;
 
             if (startDateString === dateString) {
                 freeSlots.push(timeslot);
