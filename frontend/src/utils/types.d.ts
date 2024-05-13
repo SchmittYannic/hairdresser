@@ -32,3 +32,14 @@ export type EditUserType = {
     birthdayemail: boolean,
     newsletter: boolean,
 }
+
+export type FilterFreeSlotDataType = {
+    employee: string,
+    duration: number,
+}
+
+export type FreeTimeslotType = {
+    employee: string,
+    startDate: Date,
+    endDate: Date,
+}
