@@ -113,7 +113,19 @@ const Bookdate = () => {
                     </span>
                 </div>
             </div>
-            <div className="col-2-2"></div>
+            <div className="col-2-2">
+                <span className="captionLabel">
+                    Bitte wählen Sie einen Termin
+                </span>
+                <div className="proposalsFeedback ">
+                    <hr className="horizontal-ruler" />
+                    <span className="infoLabel">
+                        {appointment ? "" : "Sie haben noch keinen Tag gewählt"}
+                    </span>
+                    <hr className="horizontal-ruler" />
+                </div>
+                <div className="proposalsList "></div>
+            </div>
             <div className="clear-row"></div>
             <div className="col-1-1">
                 <button
