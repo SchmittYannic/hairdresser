@@ -94,6 +94,7 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
 
         timeout.current = setTimeout(() => {
             triggerLogout();
+            resetState();
         }, timediff);
 
         return () => {
