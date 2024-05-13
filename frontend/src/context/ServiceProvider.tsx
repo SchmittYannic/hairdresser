@@ -1,4 +1,7 @@
 import { PropsWithChildren, ReactElement, createContext, useState } from "react"
+import useGetFreeSlots from "../hooks/useGetFreeSlots"
+import { UseMutateFunction } from "react-query"
+import { FilterFreeSlotDataType, FreeTimeslotType } from "../utils/types"
 
 type ServiceInfoType = {
     service_name: string,
@@ -22,6 +25,10 @@ type ServiceContextType = {
     appointment: Date | undefined,
     setAppointment: React.Dispatch<React.SetStateAction<Date | undefined>>,
     resetServiceInfo: () => void,
+    triggerGetFreeSlots: UseMutateFunction<any, unknown, FilterFreeSlotDataType, unknown>,
+    isGetFreeSlotsError: boolean,
+    isGetFreeSlotsLoading: boolean,
+    freeTimeslots: FreeTimeslotType[],
 }
 
 const initContextState = {
@@ -30,6 +37,10 @@ const initContextState = {
     appointment: undefined,
     setAppointment: () => { },
     resetServiceInfo: () => { },
+    triggerGetFreeSlots: () => { },
+    isGetFreeSlotsError: false,
+    isGetFreeSlotsLoading: false,
+    freeTimeslots: [],
 }
 
 export const ServiceContext = createContext<ServiceContextType>(initContextState);
@@ -37,6 +48,12 @@ export const ServiceContext = createContext<ServiceContextType>(initContextState
 export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement => {
     const [serviceInfo, setServiceInfo] = useState<ServiceInfoType>(defaultServiceInfo);
     const [appointment, setAppointment] = useState<Date | undefined>(undefined);
+    const {
+        mutate: triggerGetFreeSlots,
+        isError: isGetFreeSlotsError,
+        isLoading: isGetFreeSlotsLoading,
+        data: freeTimeslots,
+    } = useGetFreeSlots();
 
     const resetServiceInfo = () => {
         setServiceInfo(defaultServiceInfo);
@@ -50,6 +67,10 @@ export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement =
                 appointment,
                 setAppointment,
                 resetServiceInfo,
+                triggerGetFreeSlots,
+                isGetFreeSlotsError,
+                isGetFreeSlotsLoading,
+                freeTimeslots,
             }}
         >
             {children}
