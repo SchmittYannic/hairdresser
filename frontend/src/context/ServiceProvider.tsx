@@ -52,7 +52,8 @@ export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement =
         mutate: triggerGetFreeSlots,
         isError: isGetFreeSlotsError,
         isLoading: isGetFreeSlotsLoading,
-        data: freeTimeslots,
+        isSuccess: isGetFreeSlotsSuccess,
+        data,
     } = useGetFreeSlots();
 
     const resetServiceInfo = () => {
@@ -70,7 +71,7 @@ export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement =
                 triggerGetFreeSlots,
                 isGetFreeSlotsError,
                 isGetFreeSlotsLoading,
-                freeTimeslots,
+                freeTimeslots: isGetFreeSlotsSuccess ? data.freeTimeslots : [],
             }}
         >
             {children}
