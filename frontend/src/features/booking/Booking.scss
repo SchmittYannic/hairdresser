@@ -936,6 +936,82 @@ hr {
     }
 }
 
+.appointmentList {
+    border: none;
+    overflow: auto;
+    line-height: 22px;
+    max-width: none;
+    background: #f1f1f1 !important;
+
+    .list-item {
+        padding: 5px;
+    }
+
+    .appointmentListItem {
+        padding: 10px 0 10px 35px;
+        border-top: 2px solid #ffffff;
+        position: relative;
+        cursor: default;
+
+        .headerContainer {
+            cursor: pointer;
+        }
+
+        .title {
+            display: block;
+            font-weight: 700;
+        }
+
+        .plusButton {
+            position: absolute;
+            top: 1px;
+            left: -3px;
+            margin: 0;
+            padding: 0;
+            background: none !important;
+            font-size: 24px;
+            color: #DAC8BC;
+        }
+
+        .details {
+            padding-top: 20px;
+            cursor: pointer;
+        }
+
+        .services {
+            display: block;
+        }
+
+        .dateContainer {
+            display: flex;
+        }
+
+        .dateLabel {
+            flex: 0 0 110px;
+        }
+
+        .dateField {
+            flex: 1 1 auto;
+            font-weight: 700;
+        }
+    }
+}
+
+// .appointmentList {
+//     border: none;
+//     overflow: auto;
+//     line-height: 22px;
+//     max-width: none;
+//     background: #f1f1f1 !important;
+
+//     .appointment {
+//         margin: 0 0 3px 0;
+//         position: relative;
+//         background: #ffffff;
+//         color: #333333;
+//     }
+// }
+
 @media screen and (max-width: 965px) {
     #booking {
         min-height: unset;
