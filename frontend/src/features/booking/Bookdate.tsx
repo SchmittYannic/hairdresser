@@ -2,14 +2,22 @@ import { DayPicker } from "react-day-picker"
 import { de } from "date-fns/locale";
 import useSessionContext from "../../hooks/useSessionContext";
 import useServiceContext from "../../hooks/useServiceContext";
+import { FilterTimeType } from "../../context/ServiceProvider";
 import DateProposals from "./DateProposals";
 import MultiRangeSlider from "../../components/ui/MultiRangeSlider";
+import { proposalDateRangeValues } from "../../constants";
 import "./Calendar.scss"
 
 const Bookdate = () => {
 
     const { setActiveTab } = useSessionContext();
-    const { appointment, setAppointment, freeTimeslots } = useServiceContext();
+    const {
+        appointment,
+        setAppointment,
+        filterTime,
+        setFilterTime,
+        freeTimeslots,
+    } = useServiceContext();
 
     const handleBackButtonClicked = () => {
         setActiveTab("services");
@@ -67,6 +75,13 @@ const Bookdate = () => {
         return true; // No object found with a startDate on the given date
     }
 
+    const handleMultiRangeSliderChange = ({ min, max }: FilterTimeType) => {
+        setFilterTime({
+            min,
+            max,
+        })
+    }
+
     return (
         <div className="page">
             <div className="col-2-1">
@@ -105,16 +120,16 @@ const Bookdate = () => {
                     </span>
                     <div className="proposalsRangeSlider">
                         <div className="proposalsRangeSliderLabel">
-                            Test
+                            {filterTime.min}
                         </div>
                         <MultiRangeSlider
                             min="08:00"
-                            max={"08:00"}
-                            rangeValues={["08:00", "08:30", "09:00", "09:30", "10:00", "10:30"]}
-                            onChange={({ min, max }: { min: string, max: string }) => console.log(`min = ${min}, max = ${max}`)}
+                            max="18:00"
+                            rangeValues={proposalDateRangeValues}
+                            onChange={handleMultiRangeSliderChange}
                         />
                         <div className="proposalsRangeSliderLabel">
-                            Test
+                            {filterTime.max}
                         </div>
                     </div>
                 </div>
