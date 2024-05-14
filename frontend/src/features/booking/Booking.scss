@@ -866,6 +866,30 @@ hr {
     }
 }
 
+.proposalsFilterContainer {
+    margin: 10px 0 0 0;
+
+    .label {
+        margin: 10px 0 0 0;
+        padding: 5px;
+        display: inline-block;
+        font-weight: 600;
+        transform: translate(0px, -7px);
+    }
+
+    .proposalsRangeSlider {
+        margin: 0 0 10px 0;
+        width: 100%;
+        display: inline-flex;
+    }
+
+    .proposalsRangeSliderLabel {
+        text-align: center;
+        margin: 1px 10px;
+        width: 32px;
+    }
+}
+
 @media screen and (max-width: 965px) {
     #booking {
         min-height: unset;
