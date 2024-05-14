@@ -7,11 +7,15 @@ import {
     offeredShavingServices,
     weekdaysAbr
 } from "../../constants";
+import { ChangeEvent, useEffect, useState } from "react";
+import useCreateAppointment from "../../hooks/useCreateAppointment";
 
 const Confirmdate = () => {
 
     const { setActiveTab, userInfo } = useSessionContext();
-    const { appointment, serviceInfo } = useServiceContext();
+    const { appointment, serviceInfo, remarks, setRemarks } = useServiceContext();
+    const { mutate, isLoading, isError, isSuccess } = useCreateAppointment();
+    const [textareaValue, setTextareaValue] = useState(remarks);
 
     const allOfferedServices = [...offeredCuttingServices, ...offeredColorationServices, ...offeredShavingServices];
 
@@ -31,8 +35,27 @@ const Confirmdate = () => {
     };
 
     const handleNextButtonClicked = () => {
-
+        mutate({
+            customer: userInfo.userId,
+            employee: serviceInfo.employee_id,
+            service_name: serviceInfo.service_name,
+            duration: serviceInfo.service_duration,
+            start: appointment,
+            remarks: remarks,
+        });
     }
+
+    const handleTextareaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        setTextareaValue(event.target.value)
+    }
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setRemarks(textareaValue);
+        }, 1000);
+
+        return () => clearTimeout(timeout)
+    }, [textareaValue]);
 
     return (
         <div className="submitPage page">
@@ -129,7 +152,11 @@ const Confirmdate = () => {
                         Möchten Sie uns noch etwas mitteilen?
                     </span>
                     <div className="remarksTextarea textfield">
-                        <textarea maxLength={255}></textarea>
+                        <textarea
+                            value={textareaValue}
+                            onChange={handleTextareaChange}
+                            maxLength={255}
+                        ></textarea>
                     </div>
                 </div>
             </div>
@@ -152,8 +179,8 @@ const Confirmdate = () => {
                     className="bookingFormButton"
                     type="button"
                     onClick={handleNextButtonClicked}
-                    isLoading={false}
-                    disabled={true}
+                    isLoading={isLoading}
+                    disabled={isLoading}
                 >
                     Bestätigen
                 </AsyncButton>
