@@ -3,7 +3,7 @@ import { parseError, isAppointmentConflict, hasUpcomingAppointments } from "../u
 import User from "../models/User.js";
 import Appointment from "../models/Appointment.js";
 import { generateFreeTimeSlots } from "../utils/generateFreeSlots.js";
-import { availableEmployees } from "../config/constants.js";
+import { availableEmployees, employeesInfo } from "../config/constants.js";
 
 // @desc Create new appointment
 // @route POST /appointment
@@ -102,9 +102,13 @@ const getAllFreeTimeSlotsByEmployee = async (req, res) => {
     }
 
     try {
-        const { employee, duration } = req.body
+        const { employee, duration, service_name } = req.body
         if (!duration) {
             return res.status(400).json({ message: "Keine Dauer angegeben", cookieInfo })
+        }
+
+        if (!service_name) {
+            return res.status(400).json({ message: "Keine Dienstleistung angegeben", cookieInfo })
         }
 
         if (employee) {
@@ -119,9 +123,11 @@ const getAllFreeTimeSlotsByEmployee = async (req, res) => {
 
             for (let idx in availableEmployees) {
                 const employee = availableEmployees[idx];
-                const foundAppointments = await Appointment.find({ employee });
-                const freeTimeslotsByEmployee = generateFreeTimeSlots(90, duration, foundAppointments, employee);
-                freeTimeslots.push(...freeTimeslotsByEmployee);
+                if (employeesInfo[employee].skills.includes(service_name)) {
+                    const foundAppointments = await Appointment.find({ employee });
+                    const freeTimeslotsByEmployee = generateFreeTimeSlots(90, duration, foundAppointments, employee);
+                    freeTimeslots.push(...freeTimeslotsByEmployee);
+                }
             }
 
             return res.status(200).json({ message: "okay", freeTimeslots, cookieInfo })
