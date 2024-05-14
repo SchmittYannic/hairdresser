@@ -836,7 +836,7 @@ hr {
 .proposalsList {
     max-height: 400px;
     margin: 20px 0;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     .list-item {
         padding: 5px 22px 5px 22px;
