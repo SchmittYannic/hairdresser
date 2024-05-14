@@ -5,31 +5,6 @@ import Appointment from "../models/Appointment.js";
 import { generateFreeTimeSlots } from "../utils/generateFreeSlots.js";
 import { availableEmployees } from "../config/constants.js";
 
-// @desc Get all upcoming appointments
-// @route GET /appointment
-// @access Private
-// const getAppointments = async (req, res) => {
-//     const cookieInfo = {
-//         cookie_expires: req.session.cookie._expires,
-//         cookie_originalMaxAge: req.session.cookie.originalMaxAge,
-//     }
-
-//     try {
-//         const { employee } = req.body
-
-//         if (employee) {
-//             await employeeschema.validateAsync(employee)
-//             const foundAppointments = await Appointment.find({ employee });
-//             res.status(200).json({ message: "Success", cookieInfo, appointments: foundAppointments })
-//         } else {
-//             const appointments = await Appointment.find();
-//             res.status(200).json({ message: "Success", cookieInfo, appointments: appointments })
-//         }
-//     } catch (error) {
-//         return res.status(400).json({ message: "Fehler beim Abrufen der Daten", cookieInfo });
-//     }
-// }
-
 // @desc Create new appointment
 // @route POST /appointment
 // @access Private

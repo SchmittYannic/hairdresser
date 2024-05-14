@@ -5,7 +5,6 @@ import { createNewAppointment, getAllFreeTimeSlotsByEmployee } from "../controll
 const router = express.Router();
 
 router.route("/")
-    //.get(requireAuth, getAppointments)
     .post(requireAuth, createNewAppointment)
 
 router.route("/filter")
