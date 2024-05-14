@@ -21,7 +21,7 @@ type UserInfoType = {
     newsletter: boolean,
 }
 
-type activeTabType = "login" | "register" | "reset" | "agb" | "dashboard" | "editUser" | "services" | "bookdate";
+type activeTabType = "login" | "register" | "reset" | "agb" | "dashboard" | "editUser" | "services" | "bookdate" | "confirmdate";
 
 type CookieInfoType = {
     cookie_expires: string,
