@@ -1,29 +1,41 @@
-.multi-slider-container {
-    position: relative;
-    margin: 5px 0px;
-    width: 100%;
+:root {
+    --container-height: calc(var(--thumb-height) + var(--thumb-margin-top));
+    --thumb-height: 20px;
+    --thumb-width: 20px;
+    --thumb-margin-top: 4px;
+    --slider-height: 10px;
 }
 
-.slider {
+.multi-slider-container {
+    border: none;
+    border-radius: 5px;
+    height: var(--container-height);
+    flex: 1 1 auto;
     position: relative;
-    width: 200px;
 }
 
 .slider__track,
 .slider__range {
     border-radius: 3px;
-    height: 5px;
+    height: var(--slider-height);
     position: absolute;
+    top: calc(var(--container-height) / 2);
+    transform: translate(0, -50%);
+}
+
+.slider {
+    position: relative;
+    width: 100%;
 }
 
 .slider__track {
-    background-color: #ced4da;
+    background-color: #cccccc;
     width: 100%;
     z-index: 1;
 }
 
 .slider__range {
-    background-color: #9fe5e1;
+    background-color: #ffffff;
     z-index: 2;
 }
 
@@ -37,8 +49,9 @@
 .thumb {
     pointer-events: none;
     position: absolute;
+    top: calc(var(--container-height) / 2);
     height: 0;
-    width: 200px;
+    width: 100%;
     outline: none;
 }
 
@@ -54,47 +67,30 @@
     z-index: 5;
 }
 
-
 /* For Chrome browsers */
 .thumb::-webkit-slider-thumb {
-    background-color: #f1f5f7;
+    background-color: #DAC8BC;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 1px 1px #ced4da;
+    //box-shadow: 0 0 1px 1px #ced4da;
     cursor: pointer;
-    height: 18px;
-    width: 18px;
-    margin-top: 4px;
+    height: var(--thumb-height);
+    width: var(--thumb-width);
+    margin-top: var(--thumb-margin-top);
     pointer-events: all;
     position: relative;
 }
 
 /* For Firefox browsers */
 .thumb::-moz-range-thumb {
-    background-color: #f1f5f7;
+    background-color: #DAC8BC;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 1px 1px #ced4da;
+    //box-shadow: 0 0 1px 1px #ced4da;
     cursor: pointer;
-    height: 18px;
-    width: 18px;
-    margin-top: 4px;
+    height: var(--thumb-height);
+    width: var(--thumb-width);
+    margin-top: var(--thumb-margin-top);
     pointer-events: all;
     position: relative;
-}
-
-.slider__left-value,
-.slider__right-value {
-    color: #dee2e6;
-    font-size: 12px;
-    margin-top: 20px;
-    position: absolute;
-}
-
-.slider__left-value {
-    left: 6px;
-}
-
-.slider__right-value {
-    right: -4px;
 }
