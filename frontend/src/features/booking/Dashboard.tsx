@@ -2,10 +2,11 @@ import { MouseEvent } from "react";
 import useSessionContext from "../../hooks/useSessionContext"
 import EditUser from "./EditUser";
 import Services from "./Services";
+import Appointment from "./Appointment";
 
 const Dashboard = () => {
 
-    const { userInfo, activeTab, setActiveTab } = useSessionContext();
+    const { userInfo, activeTab, setActiveTab, nextAppointment } = useSessionContext();
 
     const isAppointmentBooking = (activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
 
@@ -48,12 +49,20 @@ const Dashboard = () => {
                         <span className="captionLabel">
                             Ihre nächsten Termine
                         </span>
-                        <span className={`appointmentList list excluded`}>
-
+                        <span className={`appointmentList list${nextAppointment.length === 0 ? " exluded" : ""}`}>
+                            {nextAppointment.map((appointment) =>
+                                <Appointment
+                                    key={appointment._id}
+                                    appointment={appointment}
+                                />
+                            )}
                         </span>
-                        <span className="noAppointmentsLabel">
-                            - keine gebuchten Termine -
-                        </span>
+                        {
+                            nextAppointment.length === 0 &&
+                            <span className="noAppointmentsLabel">
+                                - keine gebuchten Termine -
+                            </span>
+                        }
                     </div>
                     <div className="newAppointmentContainer">
                         <span className="captionLabel">
