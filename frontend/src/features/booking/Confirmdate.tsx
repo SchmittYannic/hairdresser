@@ -37,6 +37,13 @@ const Confirmdate = () => {
         year: "numeric"
     };
     const dateString = appointment?.toLocaleDateString("de-DE", options);
+    const startDateHours = appointment ? ("0" + appointment.getHours()).slice(-2) : "";
+    const startDateMinutes = appointment ? ("0" + appointment.getMinutes()).slice(-2) : "";
+    const startDateTime = appointment ? startDateHours + ":" + startDateMinutes : "";
+    const endDate = appointment ? new Date(appointment.getTime() + serviceInfo.service_duration * 60000) : undefined;
+    const endDateHours = endDate ? ("0" + endDate.getHours()).slice(-2) : "";
+    const endDateMinutes = endDate ? ("0" + endDate.getMinutes()).slice(-2) : "";
+    const endDateTime = endDate ? endDateHours + ":" + endDateMinutes : "";
 
     const handleBackButtonClicked = () => {
         setActiveTab("bookdate");
@@ -85,7 +92,7 @@ const Confirmdate = () => {
                             <span className="label">
                                 {abrDay} {dateString}
                                 <br />
-                                Test
+                                {startDateTime} - {endDateTime}
                             </span>
                         </div>
                     </div>
@@ -191,12 +198,13 @@ const Confirmdate = () => {
                             {errorApi.response.data.message}
                         </span>
                     </div>
-                    :
-                    <div className="col-1-1">
-                        <span className="error-msg" role="alert">
-                            Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
-                        </span>
-                    </div>
+                    : isError ?
+                        <div className="col-1-1">
+                            <span className="error-msg" role="alert">
+                                Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
+                            </span>
+                        </div>
+                        : <></>
             }
             <div className="col-1-1">
                 <button
