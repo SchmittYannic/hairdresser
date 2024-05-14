@@ -17,8 +17,8 @@ const Booking = () => {
     const { activeTab, setActiveTab } = useSessionContext();
     const { mutate } = useLogout();
 
-    const isDashboard = (activeTab === "dashboard" || activeTab === "editUser" || activeTab === "services" || activeTab === "bookdate");
-    const isAppointmentBooking = (activeTab === "services" || activeTab === "bookdate");
+    const isDashboard = (activeTab === "dashboard" || activeTab === "editUser" || activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
+    const isAppointmentBooking = (activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
 
     const handleLogoutClicked = () => {
         mutate();
@@ -89,7 +89,12 @@ const Booking = () => {
                                         <span>Termin wählen</span>
                                     </div>
                                     <div className="step">
-                                        <a href="">3</a>
+                                        <a
+                                            className={`${activeTab === "confirmdate" ? "act" : ""}`}
+                                            href=""
+                                        >
+                                            3
+                                        </a>
                                         <span>Termin bestätigen</span>
                                     </div>
                                 </div>

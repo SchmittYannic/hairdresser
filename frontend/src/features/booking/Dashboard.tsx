@@ -7,6 +7,8 @@ const Dashboard = () => {
 
     const { userInfo, activeTab, setActiveTab } = useSessionContext();
 
+    const isAppointmentBooking = (activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
+
     const handleEditUserClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         setActiveTab("editUser");
@@ -90,7 +92,7 @@ const Dashboard = () => {
                 <div className="clear-row"></div>
             </div>
             {activeTab === "editUser" && <EditUser />}
-            {(activeTab === "services" || activeTab === "bookdate") && <Services />}
+            {isAppointmentBooking && <Services />}
         </>
     )
 }

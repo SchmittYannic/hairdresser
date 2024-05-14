@@ -122,7 +122,7 @@ const Services = () => {
                     <div className="clear-row"></div>
                 </div>
             </div>
-            {activeTab === "bookdate" && <Bookdate />}
+            {activeTab === "bookdate" || activeTab === "confirmdate" && <Bookdate />}
         </>
     )
 }

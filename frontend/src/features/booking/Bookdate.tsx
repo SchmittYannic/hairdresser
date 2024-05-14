@@ -3,6 +3,7 @@ import { de } from "date-fns/locale";
 import useSessionContext from "../../hooks/useSessionContext";
 import useServiceContext from "../../hooks/useServiceContext";
 import DateProposals from "./DateProposals";
+import Confirmdate from "./Confirmdate";
 import MultiRangeSlider from "../../components/ui/MultiRangeSlider";
 import { FilterTimeType } from "../../utils/types";
 import { proposalDateRangeValues } from "../../constants";
@@ -10,7 +11,7 @@ import "./Calendar.scss"
 
 const Bookdate = () => {
 
-    const { setActiveTab } = useSessionContext();
+    const { activeTab, setActiveTab } = useSessionContext();
     const {
         appointment,
         setAppointment,
@@ -19,8 +20,21 @@ const Bookdate = () => {
         freeTimeslots,
     } = useServiceContext();
 
+    const isSlotSelected = appointment?.getHours() !== 0;
+
     const handleBackButtonClicked = () => {
         setActiveTab("services");
+    };
+
+    const handleNextButtonClicked = () => {
+        setActiveTab("confirmdate");
+    };
+
+    const handleMultiRangeSliderChange = ({ min, max }: FilterTimeType) => {
+        setFilterTime({
+            min,
+            max,
+        })
     };
 
     const isPastDate = (date: Date) => {
@@ -75,89 +89,86 @@ const Bookdate = () => {
         return true; // No object found with a startDate on the given date
     }
 
-    const handleMultiRangeSliderChange = ({ min, max }: FilterTimeType) => {
-        setFilterTime({
-            min,
-            max,
-        })
-    }
-
     return (
-        <div className="page">
-            <div className="col-2-1">
-                <span className="captionLabel">
-                    Bitte wählen Sie einen Tag
-                </span>
-                <DayPicker
-                    mode="single"
-                    modifiers={{
-                        pastDate: isPastDate,
-                        today: isSameDay,
-                        futureDate: isTooFarIntoFuture,
-                        booked: isBooked,
-                    }}
-                    modifiersClassNames={{
-                        pastDate: "past-date",
-                        today: "today",
-                        futureDate: "future-date",
-                        booked: "booked",
-                    }}
-                    selected={appointment}
-                    onSelect={setAppointment}
-                    locale={de}
-                />
-                <div className="calendarLegend">
-                    <span className="busyInfo">
-                        keine Termine
+        <>
+            <div className={`page${activeTab === "bookdate" ? "" : " excluded"}`}>
+                <div className="col-2-1">
+                    <span className="captionLabel">
+                        Bitte wählen Sie einen Tag
                     </span>
-                    <span className="freeInfo">
-                        Termine verfügbar
-                    </span>
-                </div>
-                <div className="proposalsFilterContainer">
-                    <span className="label">
-                        Hier können Sie den Zeitraum Ihrer Verfügbarkeit einschränken
-                    </span>
-                    <div className="proposalsRangeSlider">
-                        <div className="proposalsRangeSliderLabel">
-                            {filterTime.min}
-                        </div>
-                        <MultiRangeSlider
-                            min="08:00"
-                            max="18:00"
-                            rangeValues={proposalDateRangeValues}
-                            onChange={handleMultiRangeSliderChange}
-                        />
-                        <div className="proposalsRangeSliderLabel">
-                            {filterTime.max}
+                    <DayPicker
+                        mode="single"
+                        modifiers={{
+                            pastDate: isPastDate,
+                            today: isSameDay,
+                            futureDate: isTooFarIntoFuture,
+                            booked: isBooked,
+                        }}
+                        modifiersClassNames={{
+                            pastDate: "past-date",
+                            today: "today",
+                            futureDate: "future-date",
+                            booked: "booked",
+                        }}
+                        selected={appointment}
+                        onSelect={setAppointment}
+                        locale={de}
+                    />
+                    <div className="calendarLegend">
+                        <span className="busyInfo">
+                            keine Termine
+                        </span>
+                        <span className="freeInfo">
+                            Termine verfügbar
+                        </span>
+                    </div>
+                    <div className="proposalsFilterContainer">
+                        <span className="label">
+                            Hier können Sie den Zeitraum Ihrer Verfügbarkeit einschränken
+                        </span>
+                        <div className="proposalsRangeSlider">
+                            <div className="proposalsRangeSliderLabel">
+                                {filterTime.min}
+                            </div>
+                            <MultiRangeSlider
+                                min="08:00"
+                                max="18:00"
+                                rangeValues={proposalDateRangeValues}
+                                onChange={handleMultiRangeSliderChange}
+                            />
+                            <div className="proposalsRangeSliderLabel">
+                                {filterTime.max}
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div className="col-2-2">
+                    <span className="captionLabel">
+                        Bitte wählen Sie einen Termin
+                    </span>
+                    <DateProposals />
+                </div>
+                <div className="clear-row"></div>
+                <div className="col-1-1">
+                    <button
+                        className="backButton bookingFormButton"
+                        type="button"
+                        onClick={handleBackButtonClicked}
+                    >
+                        <span>Zurück</span>
+                    </button>
+                    <button
+                        className="bookingFormButton"
+                        type="button"
+                        onClick={handleNextButtonClicked}
+                        disabled={!isSlotSelected}
+                    >
+                        <span>Weiter</span>
+                    </button>
+                </div>
             </div>
-            <div className="col-2-2">
-                <span className="captionLabel">
-                    Bitte wählen Sie einen Termin
-                </span>
-                <DateProposals />
-            </div>
-            <div className="clear-row"></div>
-            <div className="col-1-1">
-                <button
-                    className="backButton bookingFormButton"
-                    type="button"
-                    onClick={handleBackButtonClicked}
-                >
-                    <span>Zurück</span>
-                </button>
-                <button
-                    className="bookingFormButton"
-                    type="button"
-                    disabled={true}
-                >
-                    <span>Weiter</span>
-                </button>
-            </div>
-        </div>
+            {activeTab === "confirmdate" && <Confirmdate />}
+        </>
     )
 }
 
