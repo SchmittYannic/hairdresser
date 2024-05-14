@@ -46,6 +46,15 @@ export type FreeTimeslotType = {
     endDate: Date,
 }
 
+export type AppointmentDataType = {
+    customer: string,
+    employee: string,
+    service_name: string,
+    duration: number,
+    start: Date | undefined,
+    remarks: string,
+}
+
 export type AvailableEmployeesKeyType = typeof availableEmployees[number];
 
 export type AvailableServicesKeyType = typeof availableServices[number];
