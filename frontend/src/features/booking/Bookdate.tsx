@@ -1,4 +1,4 @@
-import { DayPicker } from "react-day-picker"
+import { DayPicker, SelectSingleEventHandler } from "react-day-picker"
 import { de } from "date-fns/locale";
 import useSessionContext from "../../hooks/useSessionContext";
 import useServiceContext from "../../hooks/useServiceContext";
@@ -17,6 +17,7 @@ const Bookdate = () => {
         setAppointment,
         filterTime,
         setFilterTime,
+        setSelectedEmployee,
         freeTimeslots,
     } = useServiceContext();
 
@@ -36,6 +37,11 @@ const Bookdate = () => {
             max,
         })
     };
+
+    const handleSelectCalendar: SelectSingleEventHandler = (day: Date | undefined) => {
+        setSelectedEmployee("");
+        setAppointment(day);
+    }
 
     const isPastDate = (date: Date) => {
         const today = new Date();
@@ -111,7 +117,7 @@ const Bookdate = () => {
                             booked: "booked",
                         }}
                         selected={appointment}
-                        onSelect={setAppointment}
+                        onSelect={handleSelectCalendar}
                         locale={de}
                     />
                     <div className="calendarLegend">

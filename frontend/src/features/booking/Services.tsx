@@ -16,8 +16,10 @@ const Services = () => {
         isGetFreeSlotsError,
         isGetFreeSlotsLoading,
         setAppointment,
+        setSelectedEmployee,
         setRemarks,
     } = useServiceContext();
+
     const { activeTab, setActiveTab } = useSessionContext();
 
     const handleBackButtonClicked = () => {
@@ -36,6 +38,7 @@ const Services = () => {
         return () => {
             resetServiceInfo();
             setAppointment(undefined);
+            setSelectedEmployee("");
             setRemarks("");
         }
     }, [])
