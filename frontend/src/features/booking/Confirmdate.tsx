@@ -1,3 +1,4 @@
+import { isAxiosError } from "axios";
 import useServiceContext from "../../hooks/useServiceContext";
 import useSessionContext from "../../hooks/useSessionContext";
 import AsyncButton from "../../components/ui/AsyncButton"
@@ -14,8 +15,17 @@ const Confirmdate = () => {
 
     const { setActiveTab, userInfo } = useSessionContext();
     const { appointment, serviceInfo, remarks, setRemarks } = useServiceContext();
-    const { mutate, isLoading, isError, isSuccess } = useCreateAppointment();
+    const {
+        mutate,
+        isLoading,
+        isError,
+        isSuccess,
+        data: responseApi,
+        error: errorApi,
+    } = useCreateAppointment();
     const [textareaValue, setTextareaValue] = useState(remarks);
+
+    const isServerError = (isError && !isAxiosError(errorApi) || isError && isAxiosError(errorApi) && !errorApi.response);
 
     const allOfferedServices = [...offeredCuttingServices, ...offeredColorationServices, ...offeredShavingServices];
 
@@ -167,6 +177,22 @@ const Confirmdate = () => {
                     alle Preise inkl. Mwst.
                 </span>
             </div>
+            {
+                isSuccess &&
+                <div className="col-1-1">
+                    <span className="success-msg" role="alert">
+                        {responseApi.message}
+                    </span>
+                </div>
+            }
+            {
+                isServerError &&
+                <div className="col-1-1">
+                    <span className="error-msg" role="alert">
+                        Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
+                    </span>
+                </div>
+            }
             <div className="col-1-1">
                 <button
                     className="backButton bookingFormButton"
