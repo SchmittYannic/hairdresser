@@ -21,7 +21,7 @@ import {
     ninahelm,
     simonehomann,
 } from "../assets"
-import { EmployeeType, OfferedServiceType } from "../utils/types";
+import { AllServicesInfoType, EmployeeType, EmployeesInfoType, OfferedServiceType } from "../utils/types";
 
 export const weekdaysAbr = [
     "So.",
@@ -51,6 +51,29 @@ export const availableEmployees = [
     "66403f93eef48844b222489c",
     "6642f2ca23c54c42bf7d7f2d",
 ] as const;
+
+export const employeesInfo: EmployeesInfoType = {
+    "66401720b8fb65815722ab38": {
+        firstname: "Mirjam",
+        lastname: "Schmid",
+        skills: ["Schneiden", "KindU12", "TeenU14", "Greyblending", "Dauerwelle", "Coloration"],
+    },
+    "6642f2eb23c54c42bf7d7f30": {
+        firstname: "Nina",
+        lastname: "Helm",
+        skills: ["Schneiden", "KindU6", "KindU12", "TeenU14", "Cornrows", "Rasur"],
+    },
+    "66403f93eef48844b222489c": {
+        firstname: "Hannah",
+        lastname: "Geier",
+        skills: ["Schneiden", "TeenU14", "Cornrows", "Rasur", "Greyblending", "Dauerwelle", "Coloration"],
+    },
+    "6642f2ca23c54c42bf7d7f2d": {
+        firstname: "Simone",
+        lastname: "Homann",
+        skills: ["Schneiden", "TeenU14", "Cornrows", "Rasur"],
+    }
+};
 
 export const employees: EmployeeType[] = [
     {
@@ -427,6 +450,45 @@ export const jobspageSliderImgs1: ImageSliderObjectType[] = [
     },
 ];
 
+
+export const allServicesInfo: AllServicesInfoType = {
+    Schneiden: {
+        service_label: "Schneiden (ca. 30 min.)",
+        service_duration: 30,
+    },
+    KindU6: {
+        service_label: "Kinderschnitt bis 6 Jahre (ca. 30 min.)",
+        service_duration: 30,
+    },
+    KindU12: {
+        service_label: "Kinderschnitt von 7 bis 12 Jahre (ca. 30 min.)",
+        service_duration: 30,
+    },
+    TeenU14: {
+        service_label: "Teenagerschnitt von 12 bis 14 Jahre (ca. 30 min.)",
+        service_duration: 30,
+    },
+    Cornrows: {
+        service_label: "Cornrows (ca. 60 min.)",
+        service_duration: 60,
+    },
+    Rasur: {
+        service_label: "Rasur (ca. 30 min.)",
+        service_duration: 30,
+    },
+    Grayblending: {
+        service_label: "Greyblending (ca. 30 min.)",
+        service_duration: 30,
+    },
+    Dauerwelle: {
+        service_label: "Dauerwelle (ca. 45 min.)",
+        service_duration: 45,
+    },
+    Coloration: {
+        service_label: "Coloration (ca. 30 min.)",
+        service_duration: 30,
+    }
+}
 
 export const offeredCuttingServices: OfferedServiceType[] = [
     {

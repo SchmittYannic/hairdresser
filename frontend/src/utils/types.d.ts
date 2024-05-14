@@ -58,6 +58,19 @@ export type AppointmentDataType = {
     remarks: string,
 }
 
+export type AppointmentType = {
+    _id: string,
+    employee: string,
+    customer: string,
+    service_name: AvailableServicesKeyType,
+    duration: number,
+    remarks: string,
+    start: string,
+    end: string,
+    createdAt: string,
+    updatedAt: string,
+}
+
 export type AvailableEmployeesKeyType = typeof availableEmployees[number];
 
 export type AvailableServicesKeyType = typeof availableServices[number];
@@ -73,6 +86,21 @@ export type EmployeeType = {
     description: string[],
     quote: string,
 };
+
+export type EmployeesInfoType = {
+    [key: AvailableEmployeesKeyType]: {
+        firstname: string,
+        lastname: string,
+        skills: AvailableServicesKeyType[],
+    }
+}
+
+export type AllServicesInfoType = {
+    [key: AvailableServicesKeyType]: {
+        service_label: string,
+        service_duration: number,
+    }
+}
 
 export type OfferedServiceType = {
     service_id: number,
