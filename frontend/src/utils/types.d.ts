@@ -38,6 +38,7 @@ export type EditUserType = {
 export type FilterFreeSlotDataType = {
     employee: string,
     duration: number,
+    service_name: string,
 }
 
 export type FreeTimeslotType = {
