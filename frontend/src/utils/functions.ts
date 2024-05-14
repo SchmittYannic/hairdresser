@@ -58,10 +58,21 @@ const isOpenNow = (): boolean => {
     return false;
 }
 
+//parseTime in HH:MM format
+const parseTime = (timeString: string) => {
+    const timePattern = /^\d{2}:\d{2}$/;
+    if (!timePattern.test(timeString)) {
+        throw new Error("Invalid time format. Please provide time in HH:MM format.");
+    }
+    const [hours, minutes] = timeString.split(":");
+    return new Date(0, 0, 0, parseInt(hours), parseInt(minutes));
+}
+
 export {
     splitArray,
     repeatArray,
     padArray,
     insertSpace,
     isOpenNow,
+    parseTime,
 }
