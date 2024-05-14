@@ -13,11 +13,13 @@ type ServiceDialogPropsType = {
 
 const ServiceDialog = ({ service }: ServiceDialogPropsType) => {
 
-    const { serviceInfo, setServiceInfo, resetServiceInfo } = useServiceContext();
+    const { serviceInfo, setServiceInfo, resetServiceInfo, setAppointment } = useServiceContext();
     const [isOpen, setIsOpen] = useState(false);
     const [isInfoOpen, setIsInfoOpen] = useState(false);
 
     const handleServiceClicked = () => {
+        setAppointment(undefined); //reset appointment in case user went back to step 1 and selected new option
+
         if (serviceInfo.service_name === service.service_name) {
             resetServiceInfo()
         } else {
