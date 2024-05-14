@@ -7,7 +7,7 @@ import {
     professionell,
     heart,
     hairproduct,
-    hairdresserportrait1square,
+    ninahelmsquare,
 } from "../assets"
 import { insertSpace } from "../utils/functions"
 import "./Frontpage.scss"
@@ -346,7 +346,7 @@ const Frontpage = () => {
                                     <img
                                         id="m1276"
                                         className="module image"
-                                        src={hairdresserportrait1square}
+                                        src={ninahelmsquare}
                                         alt="hairdresser portrait"
                                     />
                                 </a>

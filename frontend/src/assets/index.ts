@@ -5,10 +5,10 @@ import professionell from "./professionell.png"
 import showpony from "./showpony.png"
 import heart from "./heart.png"
 import ninahelm from "./ninahelm.jpg"
+import ninahelmsquare from "./ninahelmsquare.jpg"
 import hannahgeier from "./hannahgeier.jpg"
 import mirjamschmid from "./mirjamschmid.jpg"
-import hairdresserportrait1square from "./hairdresserportrait1square.jpg"
-import hairdresserportrait3square from "./hairdresserportrait3square.jpg"
+import mirjamschmidsquare from "./mirjamschmidsquare.jpg"
 import simonehomann from "./simonehomann.jpg"
 import hairproduct from "./hairproduct.jpg"
 import teamgeist from "./teamgeist.png"
@@ -43,10 +43,10 @@ export {
     showpony,
     heart,
     ninahelm,
+    ninahelmsquare,
     hannahgeier,
     mirjamschmid,
-    hairdresserportrait1square,
-    hairdresserportrait3square,
+    mirjamschmidsquare,
     simonehomann,
     hairproduct,
     teamgeist,

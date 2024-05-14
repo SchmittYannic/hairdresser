@@ -1,7 +1,7 @@
 import ImageSlider from "./ImageSlider"
 import useWindowSize from "../hooks/useWindowSize"
 import { salonpageSliderImgs1, salonpageSliderImgs2 } from "../constants"
-import { hairdresserportrait3square } from "../assets"
+import { mirjamschmidsquare } from "../assets"
 import "./Salonpage.scss"
 
 const Salonpage = () => {
@@ -77,7 +77,7 @@ const Salonpage = () => {
                                     <img
                                         id="m3421"
                                         className="module image"
-                                        src={hairdresserportrait3square}
+                                        src={mirjamschmidsquare}
                                         alt="Inhaberin Mirjam Schmid"
                                     />
                                 </a>
