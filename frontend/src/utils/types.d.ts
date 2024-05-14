@@ -55,6 +55,11 @@ export type EmployeeType = {
     firstname: string,
     lastname: string,
     skills: AvailableServicesKeyType[],
+    img: string,
+    imglink: string,
+    imgtitle: string,
+    description: string[],
+    quote: string,
 };
 
 export type OfferedServiceType = {
