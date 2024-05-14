@@ -1,6 +1,8 @@
+import { ChangeEvent, useEffect, useState } from "react";
 import { isAxiosError } from "axios";
 import useServiceContext from "../../hooks/useServiceContext";
 import useSessionContext from "../../hooks/useSessionContext";
+import useCreateAppointment from "../../hooks/useCreateAppointment";
 import AsyncButton from "../../components/ui/AsyncButton"
 import {
     offeredColorationServices,
@@ -8,8 +10,6 @@ import {
     offeredShavingServices,
     weekdaysAbr
 } from "../../constants";
-import { ChangeEvent, useEffect, useState } from "react";
-import useCreateAppointment from "../../hooks/useCreateAppointment";
 
 const Confirmdate = () => {
 
@@ -24,8 +24,6 @@ const Confirmdate = () => {
         error: errorApi,
     } = useCreateAppointment();
     const [textareaValue, setTextareaValue] = useState(remarks);
-
-    const isServerError = (isError && !isAxiosError(errorApi) || isError && isAxiosError(errorApi) && !errorApi.response);
 
     const allOfferedServices = [...offeredCuttingServices, ...offeredColorationServices, ...offeredShavingServices];
 
@@ -186,12 +184,19 @@ const Confirmdate = () => {
                 </div>
             }
             {
-                isServerError &&
-                <div className="col-1-1">
-                    <span className="error-msg" role="alert">
-                        Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
-                    </span>
-                </div>
+                isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data && errorApi.response.data.message
+                    ?
+                    <div className="col-1-1">
+                        <span className="error-msg" role="alert">
+                            {errorApi.response.data.message}
+                        </span>
+                    </div>
+                    :
+                    <div className="col-1-1">
+                        <span className="error-msg" role="alert">
+                            Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
+                        </span>
+                    </div>
             }
             <div className="col-1-1">
                 <button
