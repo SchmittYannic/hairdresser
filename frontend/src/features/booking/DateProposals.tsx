@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import useServiceContext from "../../hooks/useServiceContext"
 import { FreeTimeslotType } from "../../utils/types";
 import DateSlot from "./DateSlot";
+import { parseTime } from "../../utils/functions";
 
 const DateProposals = () => {
-    const { appointment, freeTimeslots } = useServiceContext();
+    const { appointment, filterTime, freeTimeslots } = useServiceContext();
     const [slots, setSlots] = useState<FreeTimeslotType[]>([]);
 
     const getFreeSlotsOfDay = (date: Date) => {
@@ -16,13 +17,19 @@ const DateProposals = () => {
         let freeSlots = []
 
         for (let timeslot of freeTimeslots) {
-            const startDate = new Date(timeslot.startDate)
+            const endDate = new Date(timeslot.endDate);
+            const startDate = new Date(timeslot.startDate);
             const startDay = ("0" + startDate.getDate()).slice(-2);
             const startMonth = ("0" + (startDate.getMonth() + 1)).slice(-2);
             const startYear = startDate.getFullYear();
             const startDateString = startDay + "." + startMonth + "." + startYear;
 
-            if (startDateString === dateString) {
+            const filterTimeMin = parseTime(filterTime.min);
+            const filterTimeMax = parseTime(filterTime.max);
+            const startDateTime = parseTime(("0" + startDate.getHours()).slice(-2) + ":" + ("0" + startDate.getMinutes()).slice(-2));
+            const endDateTime = parseTime(("0" + endDate.getHours()).slice(-2) + ":" + ("0" + endDate.getMinutes()).slice(-2));
+
+            if (startDateString === dateString && startDateTime >= filterTimeMin && endDateTime <= filterTimeMax) {
                 freeSlots.push(timeslot);
             }
         }
@@ -36,7 +43,7 @@ const DateProposals = () => {
         } else {
             setSlots([]);
         }
-    }, [appointment]);
+    }, [appointment, filterTime]);
 
     return (
         <>
