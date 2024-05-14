@@ -14,7 +14,14 @@ import {
 const Confirmdate = () => {
 
     const { setActiveTab, userInfo } = useSessionContext();
-    const { appointment, serviceInfo, remarks, setRemarks } = useServiceContext();
+    const {
+        appointment,
+        serviceInfo,
+        selectedEmployee,
+        remarks,
+        setRemarks
+    } = useServiceContext();
+
     const {
         mutate,
         isLoading,
@@ -23,6 +30,7 @@ const Confirmdate = () => {
         data: responseApi,
         error: errorApi,
     } = useCreateAppointment();
+
     const [textareaValue, setTextareaValue] = useState(remarks);
 
     const allOfferedServices = [...offeredCuttingServices, ...offeredColorationServices, ...offeredShavingServices];
@@ -52,7 +60,7 @@ const Confirmdate = () => {
     const handleNextButtonClicked = () => {
         mutate({
             customer: userInfo.userId,
-            employee: serviceInfo.employee_id,
+            employee: selectedEmployee,
             service_name: serviceInfo.service_name,
             duration: serviceInfo.service_duration,
             start: appointment,
