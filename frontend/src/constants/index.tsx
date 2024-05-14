@@ -17,6 +17,7 @@ import {
     salon2,
     salon3,
 } from "../assets"
+import { EmployeeType, OfferedServiceType } from "../utils/types";
 
 export const weekdaysAbr = [
     "So.",
@@ -28,7 +29,7 @@ export const weekdaysAbr = [
     "Sa.",
 ] as const;
 
-const availableServices = [
+export const availableServices = [
     "Schneiden",
     "KindU6",
     "KindU12",
@@ -40,23 +41,12 @@ const availableServices = [
     "Coloration",
 ] as const;
 
-type availableServicesKeyType = typeof availableServices[number];
-
-const availableEmployees = [
+export const availableEmployees = [
     "66401720b8fb65815722ab38",
     "66403f93eef48844b222489c",
 ] as const;
 
-type availableEmployeesKeyType = typeof availableEmployees[number];
-
-export type employeeType = {
-    id: availableEmployeesKeyType,
-    firstname: string,
-    lastname: string,
-    skills: availableServicesKeyType[]
-};
-
-export const employees: employeeType[] = [
+export const employees: EmployeeType[] = [
     {
         id: "66401720b8fb65815722ab38",
         firstname: "Mirjam",
@@ -94,8 +84,6 @@ export const proposalDateRangeValues = [
     "17:30",
     "18:00",
 ] as const;
-
-export type proposalDateRangeValuesType = typeof proposalDateRangeValues[number];
 
 type ImageSliderObjectType = {
     id: number,
@@ -380,14 +368,6 @@ export const jobspageSliderImgs1: ImageSliderObjectType[] = [
     },
 ];
 
-export type OfferedServiceType = {
-    service_id: number,
-    service_name: availableServicesKeyType,
-    service_label: string,
-    service_duration: number,
-    employees: string[],
-    service_info?: ReactElement,
-}
 
 export const offeredCuttingServices: OfferedServiceType[] = [
     {

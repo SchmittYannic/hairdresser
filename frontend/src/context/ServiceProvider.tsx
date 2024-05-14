@@ -1,8 +1,8 @@
 import { PropsWithChildren, ReactElement, createContext, useState } from "react"
 import useGetFreeSlots from "../hooks/useGetFreeSlots"
 import { UseMutateFunction } from "react-query"
-import { FilterFreeSlotDataType, FreeTimeslotType } from "../utils/types"
-import { proposalDateRangeValues, proposalDateRangeValuesType } from "../constants"
+import { FilterFreeSlotDataType, FreeTimeslotType, FilterTimeType } from "../utils/types"
+import { proposalDateRangeValues } from "../constants"
 
 type ServiceInfoType = {
     service_name: string,
@@ -18,11 +18,6 @@ const defaultServiceInfo: ServiceInfoType = {
     employee_id: "",
     employee_firstname: "",
     employee_lastname: "",
-}
-
-export type FilterTimeType = {
-    min: proposalDateRangeValuesType,
-    max: proposalDateRangeValuesType,
 }
 
 const defaultFilterTime: FilterTimeType = {

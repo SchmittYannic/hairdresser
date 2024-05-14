@@ -4,7 +4,8 @@ import { ImCheckmark } from "react-icons/im";
 import useServiceContext from "../../../hooks/useServiceContext";
 import Dialog from "../../../components/ui/Dialog"
 import { staffarbitrary } from "../../../assets";
-import { OfferedServiceType, employeeType, employees } from "../../../constants";
+import { EmployeeType, OfferedServiceType } from "../../../utils/types";
+import { employees } from "../../../constants";
 
 type ServiceDialogPropsType = {
     service: OfferedServiceType,
@@ -24,7 +25,7 @@ const ServiceDialog = ({ service }: ServiceDialogPropsType) => {
         }
     }
 
-    const handleEmployeeClicked = (e: MouseEvent, employee: employeeType | null) => {
+    const handleEmployeeClicked = (e: MouseEvent, employee: EmployeeType | null) => {
         e.stopPropagation();
         setServiceInfo((prev) => {
             const newState = { ...prev }

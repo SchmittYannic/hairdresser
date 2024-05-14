@@ -2,9 +2,9 @@ import { DayPicker } from "react-day-picker"
 import { de } from "date-fns/locale";
 import useSessionContext from "../../hooks/useSessionContext";
 import useServiceContext from "../../hooks/useServiceContext";
-import { FilterTimeType } from "../../context/ServiceProvider";
 import DateProposals from "./DateProposals";
 import MultiRangeSlider from "../../components/ui/MultiRangeSlider";
+import { FilterTimeType } from "../../utils/types";
 import { proposalDateRangeValues } from "../../constants";
 import "./Calendar.scss"
 

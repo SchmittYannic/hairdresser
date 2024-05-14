@@ -1,3 +1,5 @@
+import { availableEmployees, proposalDateRangeValues, availableServices } from "../constants"
+
 export type UserDataType = {
     title: string,
     email: string,
@@ -42,4 +44,31 @@ export type FreeTimeslotType = {
     employee: string,
     startDate: Date,
     endDate: Date,
+}
+
+export type AvailableEmployeesKeyType = typeof availableEmployees[number];
+
+export type AvailableServicesKeyType = typeof availableServices[number];
+
+export type EmployeeType = {
+    id: AvailableEmployeesKeyType,
+    firstname: string,
+    lastname: string,
+    skills: AvailableServicesKeyType[],
+};
+
+export type OfferedServiceType = {
+    service_id: number,
+    service_name: AvailableServicesKeyType,
+    service_label: string,
+    service_duration: number,
+    employees: string[],
+    service_info?: ReactElement,
+}
+
+export type ProposalDateRangeValuesType = typeof proposalDateRangeValues[number];
+
+export type FilterTimeType = {
+    min: ProposalDateRangeValuesType,
+    max: ProposalDateRangeValuesType,
 }
