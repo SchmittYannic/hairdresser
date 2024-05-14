@@ -5,11 +5,10 @@ import useSessionContext from "../../hooks/useSessionContext";
 import useCreateAppointment from "../../hooks/useCreateAppointment";
 import AsyncButton from "../../components/ui/AsyncButton"
 import {
-    offeredColorationServices,
-    offeredCuttingServices,
-    offeredShavingServices,
-    weekdaysAbr
+    allServicesInfo,
+    weekdaysAbr,
 } from "../../constants";
+import { AllServicesInfoType } from "../../utils/types";
 
 const Confirmdate = () => {
 
@@ -33,9 +32,10 @@ const Confirmdate = () => {
 
     const [textareaValue, setTextareaValue] = useState(remarks);
 
-    const allOfferedServices = [...offeredCuttingServices, ...offeredColorationServices, ...offeredShavingServices];
-
-    const service = allOfferedServices.filter(service => service.service_name === serviceInfo.service_name)[0];
+    const service: {
+        service_label: string,
+        service_duration: number,
+    } = allServicesInfo[serviceInfo.service_name as keyof AllServicesInfoType];
 
     const day = appointment ? appointment.getDay() : NaN;
     const abrDay = weekdaysAbr[day];
