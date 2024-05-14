@@ -69,17 +69,24 @@ export const hasUpcomingAppointments = async (customer) => {
 export const moveExpiredAppointments = async (db) => {
     try {
         const appointmentsCollection = db.collection("appointments");
-        //console.log(appointmentsCollection)
-        const archivedAppointmentsCollection = db.collection("archivedappointments");
-        //console.log(archivedAppointmentsCollection)
 
+        const archivedAppointmentsCollection = db.collection("archivedappointments");
+
+        // Fetch expired appointments
         const expiredAppointments = await appointmentsCollection.find({ end: { $lt: new Date() } }).toArray();
 
-        await archivedAppointmentsCollection.insertMany(expiredAppointments);
+        // Modify each expired appointment object to remove "remarks" property
+        const modifiedAppointments = expiredAppointments.map(appointment => {
+            const { remarks, ...rest } = appointment;
+            return rest;
+        });
+
+        await archivedAppointmentsCollection.insertMany(modifiedAppointments);
 
         await appointmentsCollection.deleteMany({ _id: { $in: expiredAppointments.map(appt => appt._id) } })
-        console.log('Expired appointments moved to archivedAppointments collection.');
+
+        console.log("Expired appointments moved to archivedAppointments collection.");
     } catch (err) {
-        logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log');
+        logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, "mongoErrLog.log");
     }
 };
