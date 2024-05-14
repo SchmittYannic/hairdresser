@@ -8,6 +8,7 @@ import MultiRangeSlider from "../../components/ui/MultiRangeSlider";
 import { FilterTimeType } from "../../utils/types";
 import { proposalDateRangeValues } from "../../constants";
 import "./Calendar.scss"
+import useWindowSize from "../../hooks/useWindowSize";
 
 const Bookdate = () => {
 
@@ -20,6 +21,9 @@ const Bookdate = () => {
         setSelectedEmployee,
         freeTimeslots,
     } = useServiceContext();
+
+    const windowSize = useWindowSize();
+    const isLgScreen = windowSize.width && windowSize.width > 640 ? true : false;
 
     const noDateSelected = appointment ? appointment.getHours() === 0 : true;
 
@@ -128,25 +132,28 @@ const Bookdate = () => {
                             Termine verfügbar
                         </span>
                     </div>
-                    <div className="proposalsFilterContainer">
-                        <span className="label">
-                            Hier können Sie den Zeitraum Ihrer Verfügbarkeit einschränken
-                        </span>
-                        <div className="proposalsRangeSlider">
-                            <div className="proposalsRangeSliderLabel">
-                                {filterTime.min}
-                            </div>
-                            <MultiRangeSlider
-                                min="08:00"
-                                max="18:00"
-                                rangeValues={proposalDateRangeValues}
-                                onChange={handleMultiRangeSliderChange}
-                            />
-                            <div className="proposalsRangeSliderLabel">
-                                {filterTime.max}
+                    {
+                        isLgScreen &&
+                        <div className="proposalsFilterContainer">
+                            <span className="label">
+                                Hier können Sie den Zeitraum Ihrer Verfügbarkeit einschränken
+                            </span>
+                            <div className="proposalsRangeSlider">
+                                <div className="proposalsRangeSliderLabel">
+                                    {filterTime.min}
+                                </div>
+                                <MultiRangeSlider
+                                    min="08:00"
+                                    max="18:00"
+                                    rangeValues={proposalDateRangeValues}
+                                    onChange={handleMultiRangeSliderChange}
+                                />
+                                <div className="proposalsRangeSliderLabel">
+                                    {filterTime.max}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div>
                 <div className="col-2-2">
                     <span className="captionLabel">

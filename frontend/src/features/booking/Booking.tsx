@@ -3,6 +3,7 @@ import { MdLogout } from "react-icons/md";
 import { ImCheckmark } from "react-icons/im";
 import useSessionContext from "../../hooks/useSessionContext";
 import useLogout from "../../hooks/useLogout";
+import useWindowSize from "../../hooks/useWindowSize";
 import Login from "./Login";
 import Register from "./Register";
 import ResetPassword from "./ResetPassword";
@@ -16,6 +17,8 @@ const Booking = () => {
 
     const { activeTab, setActiveTab } = useSessionContext();
     const { mutate } = useLogout();
+    const windowSize = useWindowSize();
+    const isLgScreen = windowSize.width && windowSize.width > 640 ? true : false;
 
     const isDashboard = (activeTab === "dashboard" || activeTab === "editUser" || activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
     const isAppointmentBooking = (activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
@@ -56,7 +59,7 @@ const Booking = () => {
                             {activeTab === "login" && "Hier können Sie Ihre nächsten Termine schnell und einfach online buchen - rund um die Uhr, auch am Wochenende."}
                         </span>
                         {
-                            isAppointmentBooking &&
+                            isAppointmentBooking && isLgScreen &&
                             <div className="progressBar">
                                 <div className="progressSteps">
                                     <div className="step">
