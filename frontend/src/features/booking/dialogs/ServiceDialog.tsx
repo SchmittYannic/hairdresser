@@ -34,9 +34,11 @@ const ServiceDialog = ({ service }: ServiceDialogPropsType) => {
             newState["service_name"] = service.service_name
             newState["service_duration"] = service.service_duration
             if (employee) {
+                newState["employee_id"] = employee.id
                 newState["employee_firstname"] = employee.firstname
                 newState["employee_lastname"] = employee.lastname
             } else {
+                newState["employee_id"] = ""
                 newState["employee_firstname"] = ""
                 newState["employee_lastname"] = ""
             }
