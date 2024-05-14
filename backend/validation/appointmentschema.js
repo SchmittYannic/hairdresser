@@ -67,6 +67,7 @@ export const endschema = Joi.date()
 export const remarksschema = Joi.string()
     .label("remarks")
     .max(255)
+    .allow("")
     .messages({
         "string.max": "Bemerkung darf nicht länger als 255 Zeichen sein",
     });
