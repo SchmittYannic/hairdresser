@@ -1,16 +1,13 @@
 import { useState, useRef, ChangeEvent, useCallback, useEffect } from "react";
 import "./MultiRangeSlider.scss"
 
-//T extends string | number | symbol
 type MultiRangeSliderPropsType<T extends string | number> = {
     min: T;
     max: T;
     onChange: (values: { min: T, max: T }) => void;
-    rangeValues?: T[];
+    rangeValues?: T[] | readonly T[];
     step?: number;
 };
-
-//type RequireSameType<T, U> = T extends U ? (U extends T ? T : never) : never; //RequireSameType<T, T>
 
 const MultiRangeSlider = <T extends string | number>({
     min,
@@ -19,9 +16,12 @@ const MultiRangeSlider = <T extends string | number>({
     rangeValues,
     step = 1
 }: MultiRangeSliderPropsType<T>) => {
+    if (rangeValues && rangeValues.length && (!rangeValues.includes(min) || !rangeValues.includes(max))) {
+        throw Error("min and max need to be included inside rangeValues array");
+    }
 
-    const minRange = rangeValues && rangeValues.length !== 0 ? 0 : min;
-    const maxRange = rangeValues && rangeValues.length !== 0 ? rangeValues.length - 1 : max;
+    const minRange = rangeValues && rangeValues.length !== 0 ? rangeValues.indexOf(min) : min;
+    const maxRange = rangeValues && rangeValues.length !== 0 ? rangeValues.indexOf(max) : max;
     const stepRange = rangeValues && rangeValues.length !== 0 ? 1 : step;
 
     const [minVal, setMinVal] = useState<number>(+minRange);
@@ -71,14 +71,8 @@ const MultiRangeSlider = <T extends string | number>({
     }, [maxVal, getPercent]);
 
     useEffect(() => {
-        // if (rangeValues && rangeValues.length) {
-        //     onChange({ min: rangeValues[minVal], max: rangeValues[maxVal] })
-        // } else {
-        //     onChange({ min: minVal as T, max: maxVal as T });
-        // }
         onChange({ min: displayMin as T, max: displayMax as T })
-    }, [minVal, maxVal, onChange]);
-
+    }, [minVal, maxVal]);
 
     return (
         <div className="multi-slider-container">
