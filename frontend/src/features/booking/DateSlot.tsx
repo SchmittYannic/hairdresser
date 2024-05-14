@@ -9,7 +9,7 @@ type DateSlotPropsType = {
 }
 
 const DateSlot = ({ slot }: DateSlotPropsType) => {
-    const { appointment, setAppointment } = useServiceContext();
+    const { appointment, setAppointment, setSelectedEmployee } = useServiceContext();
     const [selected, setSelected] = useState(false);
 
     const endDate = new Date(slot.endDate);
@@ -30,9 +30,11 @@ const DateSlot = ({ slot }: DateSlotPropsType) => {
             resetDate.setMilliseconds(0);
             setAppointment(resetDate);
             setSelected(false);
+            setSelectedEmployee("");
         } else {
             setAppointment(startDate);
             setSelected(true);
+            setSelectedEmployee(slot.employee);
         }
     }
 
