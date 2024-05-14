@@ -47,6 +47,9 @@ const DateSlot = ({ slot }: DateSlotPropsType) => {
             <span className="time">
                 {starttime} - {endtime}
             </span>
+            <span className="staff">
+                {slot.employeeFirstname} {slot.employeeLastname}
+            </span>
             {
                 selected &&
                 <span className="icon-container">
