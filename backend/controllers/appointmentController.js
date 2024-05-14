@@ -1,9 +1,35 @@
 import { appointmentschema, durationschema, startschema, employeeschema } from "../validation/appointmentschema.js"
-import { parseError, isAppointmentConflict, hasUpcomingAppointments } from "../utils/helpers.js";
+import { parseError, isAppointmentConflict, hasUpcomingAppointments, getEarliestAppointment } from "../utils/helpers.js";
 import User from "../models/User.js";
 import Appointment from "../models/Appointment.js";
 import { generateFreeTimeSlots } from "../utils/generateFreeSlots.js";
 import { availableEmployees, employeesInfo } from "../config/constants.js";
+
+// @desc Get upcoming apointment of user
+// @route GET /appointment
+// @access Private
+const getUpcomingAppointmentOfUser = async (req, res) => {
+    const cookieInfo = {
+        cookie_expires: req.session.cookie._expires,
+        cookie_originalMaxAge: req.session.cookie.originalMaxAge,
+    }
+
+    try {
+        const { userId } = req.session.user;
+
+        const foundAppointments = await Appointment.find({ customer: userId, end: { $gt: new Date() } });
+
+        if (!foundAppointments) {
+            return res.status(200).json({ message: "keine gebuchten Termine", nextAppointment: [], cookieInfo })
+        }
+
+        const earliestAppointment = getEarliestAppointment(foundAppointments);
+
+        return res.status(200).json({ message: "Gebuchte Termine gefunden", nextAppointment: earliestAppointment, cookieInfo })
+    } catch (error) {
+        return res.status(400).json({ message: "Fehler bei Abfrage nach Terminen", cookieInfo })
+    }
+}
 
 // @desc Create new appointment
 // @route POST /appointment
@@ -138,6 +164,7 @@ const getAllFreeTimeSlotsByEmployee = async (req, res) => {
 }
 
 export {
+    getUpcomingAppointmentOfUser,
     createNewAppointment,
     getAllFreeTimeSlotsByEmployee,
 }
