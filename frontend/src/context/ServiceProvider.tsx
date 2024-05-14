@@ -30,6 +30,8 @@ type ServiceContextType = {
     setServiceInfo: React.Dispatch<React.SetStateAction<ServiceInfoType>>,
     appointment: Date | undefined,
     setAppointment: React.Dispatch<React.SetStateAction<Date | undefined>>,
+    selectedEmployee: string,
+    setSelectedEmployee: React.Dispatch<React.SetStateAction<string>>,
     filterTime: FilterTimeType,
     setFilterTime: React.Dispatch<React.SetStateAction<FilterTimeType>>,
     remarks: string,
@@ -46,6 +48,8 @@ const initContextState = {
     setServiceInfo: () => { },
     appointment: undefined,
     setAppointment: () => { },
+    selectedEmployee: "",
+    setSelectedEmployee: () => { },
     filterTime: defaultFilterTime,
     setFilterTime: () => { },
     remarks: "",
@@ -62,6 +66,7 @@ export const ServiceContext = createContext<ServiceContextType>(initContextState
 export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement => {
     const [serviceInfo, setServiceInfo] = useState<ServiceInfoType>(defaultServiceInfo);
     const [appointment, setAppointment] = useState<Date | undefined>(undefined);
+    const [selectedEmployee, setSelectedEmployee] = useState<string>("");
     const [filterTime, setFilterTime] = useState<FilterTimeType>(defaultFilterTime);
     const [remarks, setRemarks] = useState<string>("");
     const {
@@ -83,6 +88,8 @@ export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement =
                 setServiceInfo,
                 appointment,
                 setAppointment,
+                selectedEmployee,
+                setSelectedEmployee,
                 filterTime,
                 setFilterTime,
                 remarks,
