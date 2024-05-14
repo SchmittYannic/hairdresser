@@ -16,6 +16,7 @@ const Services = () => {
         isGetFreeSlotsError,
         isGetFreeSlotsLoading,
         setAppointment,
+        setRemarks,
     } = useServiceContext();
     const { activeTab, setActiveTab } = useSessionContext();
 
@@ -35,6 +36,7 @@ const Services = () => {
         return () => {
             resetServiceInfo();
             setAppointment(undefined);
+            setRemarks("");
         }
     }, [])
 
