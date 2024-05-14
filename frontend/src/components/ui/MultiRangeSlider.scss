@@ -10,6 +10,7 @@
     border: none;
     border-radius: 5px;
     height: var(--container-height);
+    min-width: calc(var(--thumb-width) * 1.05);
     flex: 1 1 auto;
     position: relative;
 }
