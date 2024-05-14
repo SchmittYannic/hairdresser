@@ -1,4 +1,4 @@
-import { openingtimes, weekdays } from "../config/constants.js";
+import { employeesInfo, openingtimes, weekdays } from "../config/constants.js";
 
 const getOpeningTimes = (dayofweek) => {
     const { openingtime, closingtime } = openingtimes[dayofweek]
@@ -62,7 +62,13 @@ const generateTimeSlotsOfDay = (date, duration, employee) => {
         //if appointmentEnd would fall after closingtime break the loop
         if (appointmentEnd > closingtimeDate) break
         //push to timeslot
-        timeSlots.push({ employee: employee, startDate: currentTime, endDate: appointmentEnd });
+        timeSlots.push({
+            employee: employee,
+            employeeFirstname: employeesInfo[employee].firstname,
+            employeeLastname: employeesInfo[employee].lastname,
+            startDate: currentTime,
+            endDate: appointmentEnd
+        });
         currentTime = appointmentEnd;
     }
 
