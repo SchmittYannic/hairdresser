@@ -22,6 +22,24 @@ export const birthdayToString = (date) => {
     return date.toLocaleDateString("de-DE", options)
 };
 
+export const getEarliestAppointment = (arr) => {
+    if (arr.length === 0) return null;
+
+    let earliestDateObj = arr[0];
+    let earliestDate = arr[0].start; // new Date(arr[0].start);
+
+    // Loop through the array to find the earliest date
+    for (let i = 1; i < arr.length; i++) {
+        const currentDate = arr[i].start;
+        if (currentDate < earliestDate) {
+            earliestDate = currentDate;
+            earliestDateObj = arr[i];
+        }
+    }
+
+    return earliestDateObj;
+}
+
 export const isAppointmentConflict = async (employee, customer, start, end) => {
     try {
         // Check if there are any appointments that overlap with the given start and end times
