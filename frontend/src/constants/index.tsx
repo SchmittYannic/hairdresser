@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import {
+    mirjamschmid,
     kevinmurphyproduct,
     kevinmurphyproduct2,
     hairproducts1,
@@ -16,6 +17,9 @@ import {
     salon1,
     salon2,
     salon3,
+    hannahgeier,
+    ninahelm,
+    simonehomann,
 } from "../assets"
 import { EmployeeType, OfferedServiceType } from "../utils/types";
 
@@ -43,7 +47,9 @@ export const availableServices = [
 
 export const availableEmployees = [
     "66401720b8fb65815722ab38",
+    "6642f2eb23c54c42bf7d7f30",
     "66403f93eef48844b222489c",
+    "6642f2ca23c54c42bf7d7f2d",
 ] as const;
 
 export const employees: EmployeeType[] = [
@@ -52,12 +58,65 @@ export const employees: EmployeeType[] = [
         firstname: "Mirjam",
         lastname: "Schmid",
         skills: ["Schneiden", "KindU12"],
+        img: mirjamschmid,
+        imglink: "https://unsplash.com/de/fotos/frau-in-weiss-blau-kariertem-hemd-jzz_3jWMzHA",
+        imgtitle: "Foto von Rivage auf Unsplash",
+        description: [
+            "KEVIN.MURPHY Spezialistin",
+            "Blow Dry",
+            "Der perfekte Haarschnitt",
+            "Klassisches und modisches Styling",
+            "Tipps für zuhause",
+        ],
+        quote: "Als Ladeninhaberin sorge ich für eine angenehme Atmosphäre und die permanente, trendorientierte Weiterbildung meines Teams.",
+    },
+    {
+        id: "6642f2eb23c54c42bf7d7f30",
+        firstname: "Nina",
+        lastname: "Helm",
+        skills: ["Schneiden"],
+        img: ninahelm,
+        imglink: "https://unsplash.com/de/fotos/frau-im-weissen-rundhalshemd-lachelnd-IF9TK5Uy-KI",
+        imgtitle: "Foto von Jake Nackos auf Unsplash",
+        description: [
+            "Educator/ Key für KEVIN.MURPHY COLOR.ME und SHOWPONY",
+            "Balayage Spezialistin",
+            "Haarverlängerung und Haarverdichtung",
+            "Herrenhaarschnitte",
+            "Brautstyling",
+        ],
+        quote: "Mein Beruf ist meine Berufung. Bei mir ist man keine schnelle Nummer.",
     },
     {
         id: "66403f93eef48844b222489c",
         firstname: "Hannah",
         lastname: "Geier",
         skills: ["Schneiden", "TeenU14"],
+        img: hannahgeier,
+        imglink: "https://www.freepik.com/free-photo/portrait-beautiful-young-woman-glasses-wearing-eyewear-smiling-looking-happy-trying-new_146536451.htm",
+        imgtitle: "Image by freepik",
+        description: [
+            "Farb und Strähnen Spezialistin",
+            "Schnitte aller Art",
+            "Naturlocken",
+            "Flechtfrisuren und Braids",
+        ],
+        quote: "Mein Beruf ist meine große Leidenschaft und ich liebe es wenn meine Kunden mit einen Lächeln gehen.",
+    },
+    {
+        id: "6642f2ca23c54c42bf7d7f2d",
+        firstname: "Simone",
+        lastname: "Homann",
+        skills: ["Schneiden"],
+        img: simonehomann,
+        imglink: "https://unsplash.com/de/fotos/frau-tragt-schwarzes-langarmeliges-hemd-mit-rundhalsausschnitt-Zz5LQe-VSMY",
+        imgtitle: "Foto von Stephanie Liverani auf Unsplash",
+        description: [
+            "Klassische Frisuren",
+            "Traditionelle Wasser- und Dauerwelle",
+            "Hochsteckfrisuren, und alles was Ihr Herz begehrt",
+        ],
+        quote: "Ich bin immer auf Zack und freue mich auf neue Erfahrungen.",
     },
 ];
 

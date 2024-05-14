@@ -2,7 +2,9 @@ const requiredMsg = "Bitte ausfüllen";
 
 const availableEmployees = [
     "66401720b8fb65815722ab38",
+    "6642f2eb23c54c42bf7d7f30",
     "66403f93eef48844b222489c",
+    "6642f2ca23c54c42bf7d7f2d",
 ];
 
 const availableCustomers = [
