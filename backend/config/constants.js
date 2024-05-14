@@ -65,6 +65,29 @@ const openingtimes = {
     },
 };
 
+const employeesInfo = {
+    "66401720b8fb65815722ab38": {
+        firstname: "Mirjam",
+        lastname: "Schmid",
+        skills: ["Schneiden", "KindU12"],
+    },
+    "6642f2eb23c54c42bf7d7f30": {
+        firstname: "Nina",
+        lastname: "Helm",
+        skills: ["Schneiden"],
+    },
+    "66403f93eef48844b222489c": {
+        firstname: "Hannah",
+        lastname: "Geier",
+        skills: ["Schneiden", "TeenU14"],
+    },
+    "6642f2ca23c54c42bf7d7f2d": {
+        firstname: "Simone",
+        lastname: "Homann",
+        skills: ["Schneiden"],
+    }
+};
+
 export {
     availableCustomers,
     availableEmployees,
@@ -72,4 +95,5 @@ export {
     requiredMsg,
     weekdays,
     openingtimes,
+    employeesInfo,
 }
