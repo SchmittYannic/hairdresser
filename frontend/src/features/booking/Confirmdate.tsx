@@ -1,9 +1,30 @@
-import AsyncButton from "../../components/ui/AsyncButton"
+import useServiceContext from "../../hooks/useServiceContext";
 import useSessionContext from "../../hooks/useSessionContext";
+import AsyncButton from "../../components/ui/AsyncButton"
+import {
+    offeredColorationServices,
+    offeredCuttingServices,
+    offeredShavingServices,
+    weekdaysAbr
+} from "../../constants";
 
 const Confirmdate = () => {
 
-    const { setActiveTab } = useSessionContext();
+    const { setActiveTab, userInfo } = useSessionContext();
+    const { appointment, serviceInfo } = useServiceContext();
+
+    const allOfferedServices = [...offeredCuttingServices, ...offeredColorationServices, ...offeredShavingServices];
+
+    const service = allOfferedServices.filter(service => service.service_name === serviceInfo.service_name)[0];
+
+    const day = appointment ? appointment.getDay() : NaN;
+    const abrDay = weekdaysAbr[day];
+    const options: Intl.DateTimeFormatOptions = {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+    };
+    const dateString = appointment?.toLocaleDateString("de-DE", options);
 
     const handleBackButtonClicked = () => {
         setActiveTab("bookdate");
@@ -25,35 +46,35 @@ const Confirmdate = () => {
             </div>
             <div className="col-2-1">
                 <div className="form">
-                    <div className="formRow">
+                    <div className="bookingFormRow ">
                         <span className="bookingFormLabel">
                             Termin
                         </span>
                         <div className="bookingFormField">
                             <span className="label">
-                                Test
+                                {abrDay} {dateString}
                                 <br />
                                 Test
                             </span>
                         </div>
                     </div>
-                    <div className="formRow">
+                    <div className="bookingFormRow ">
                         <span className="bookingFormLabel">
                             Dienstleistungen
                         </span>
                         <div className="bookingFormField">
                             <span className="label">
                                 <div className="service">
-                                    <i>Schneiden</i>
+                                    <i>{serviceInfo.service_name}</i>
                                     <br />
-                                    Schneiden (30 min.)
+                                    {service.service_label}
                                     <br />
-                                    bei xyz
+                                    bei {serviceInfo.employee_firstname} {serviceInfo.employee_lastname}
                                 </div>
                             </span>
                         </div>
                     </div>
-                    <div className="formRow">
+                    <div className="bookingFormRow ">
                         <span className="bookingFormLabel">
                             Änderung / Absage
                         </span>
@@ -67,42 +88,51 @@ const Confirmdate = () => {
             </div>
             <div className="col-2-2">
                 <div className="form">
-                    <div className="formRow">
+                    <div className="bookingFormRow ">
                         <span className="bookingFormLabel">
                             Name
                         </span>
                         <div className="bookingFormField">
                             <span className="label">
-                                xyz
+                                {userInfo.firstname} {userInfo.lastname}
                             </span>
                         </div>
                     </div>
-                    <div className="formRow">
+                    <div className="bookingFormRow ">
                         <span className="bookingFormLabel">
                             E-Mail-Adresse
                         </span>
                         <div className="bookingFormField">
                             <span className="label">
                                 <div className="service">
-                                    email
+                                    {userInfo.email}
                                 </div>
                             </span>
                         </div>
                     </div>
-                    <div className="formRow">
+                    <div className="bookingFormRow ">
                         <span className="bookingFormLabel">
                             Handynummer
                         </span>
                         <div className="bookingFormField">
                             <span className="label">
-                                nummer
+                                {userInfo.phonenumber}
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="clear-row"></div>
-            <div className="col-2-1"></div>
+            <div className="col-2-1">
+                <div className="form">
+                    <span className="bookingFormLabel remarksLabel">
+                        Möchten Sie uns noch etwas mitteilen?
+                    </span>
+                    <div className="remarksTextarea textfield">
+                        <textarea maxLength={255}></textarea>
+                    </div>
+                </div>
+            </div>
             <div className="col-2-2"></div>
             <div className="clear-row"></div>
             <div className="col-1-1">
