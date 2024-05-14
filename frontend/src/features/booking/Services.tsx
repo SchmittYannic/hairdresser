@@ -21,7 +21,6 @@ const Services = () => {
     const { activeTab, setActiveTab } = useSessionContext();
 
     const handleBackButtonClicked = () => {
-        resetServiceInfo();
         setActiveTab("dashboard");
     };
 
@@ -29,6 +28,7 @@ const Services = () => {
         triggerGetFreeSlots({
             employee: serviceInfo.employee_id,
             duration: serviceInfo.service_duration,
+            service_name: serviceInfo.service_name,
         });
     };
 
