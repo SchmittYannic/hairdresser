@@ -43,6 +43,8 @@ export type FilterFreeSlotDataType = {
 
 export type FreeTimeslotType = {
     employee: string,
+    employeeFirstname: string,
+    employeeLastname: string,
     startDate: Date,
     endDate: Date,
 }
