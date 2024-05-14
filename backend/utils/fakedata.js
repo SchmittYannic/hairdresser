@@ -1,5 +1,4 @@
 import Joi from "joi"
-import { faker } from "@faker-js/faker"
 import {
     durationschema,
     servicenameschema,
@@ -7,6 +6,7 @@ import {
     endschema,
     customerschema,
     employeeschema,
+    remarksschema,
 } from "../validation/appointmentschema.js"
 import { isAppointmentConflict } from "./helpers.js";
 import Appointment from "../models/Appointment.js";
@@ -14,6 +14,7 @@ import {
     availableCustomers,
     availableServices,
     availableEmployees,
+    employeesInfo,
 } from "../config/constants.js";
 
 
@@ -35,21 +36,32 @@ const fakeschema = Joi.object({
     start: startschema.required(),
     end: endschema.required(),
     duration: durationschema.required(),
+    remarks: remarksschema.required(),
 })
 
-const generateRandomTime = () => {
-    const hour = Math.floor(Math.random() * 10) + 8; // Random hour between 8 and 17
-    const minute = Math.floor(Math.random() * 2) * 30; // 0 or 30 for 30-minute steps
-    return `${hour}:${minute.toString().padStart(2, "0")}`;
+const getRandomArrayElement = (arr) => {
+    // Check if the array is empty
+    if (arr.length === 0) {
+        throw new Error("Array is empty");
+    }
+
+    // Generate a random index within the bounds of the array length
+    const randomIndex = Math.floor(Math.random() * arr.length);
+
+    // Return the randomly selected element
+    return arr[randomIndex];
 }
 
 const generateRandomDate = () => {
-    const randomTime = generateRandomTime();
-    const now = new Date()
-    let randomDate = faker.date.soon({ refDate: now, days: 90 });
+    const now = new Date();
+    const maxDaysOffset = 30;
+    const hours = Math.floor(Math.random() * 10) + 8; // Random hour between 8 and 17
+    const minutes = Math.floor(Math.random() * 2) * 30; // 0 or 30 for 30-minute steps
+    const randomMillis = Math.floor(Math.random() * (maxDaysOffset * 24 * 60 * 60 * 1000));
+    let randomDate = new Date(now.getTime() + randomMillis);
     // Set time of the randomDate to the generated randomTime
-    randomDate.setHours(parseInt(randomTime.split(':')[0]));
-    randomDate.setMinutes(parseInt(randomTime.split(':')[1]));
+    randomDate.setHours(hours);
+    randomDate.setMinutes(minutes);
     randomDate.setSeconds(0);
     randomDate.setMilliseconds(0);
     return randomDate;
@@ -76,7 +88,7 @@ const isWithinOpeningHours = (date) => {
     return false;
 }
 
-function generateRandomStartDate() {
+const generateRandomStartDate = () => {
     let randomStartDate = generateRandomDate()
     // Check if the generated date is within opening hours
     while (!isWithinOpeningHours(randomStartDate)) {
@@ -90,14 +102,17 @@ const generateAppointmentData = () => {
     const start = generateRandomStartDate();
     const duration = 30;
     const end = new Date(start.getTime() + duration * 60000);
+    const employee = getRandomArrayElement(availableEmployees);
+    const employeeSkill = employeesInfo[employee].skills;
 
     const result = {
-        customer: faker.helpers.arrayElement(availableCustomers),
-        employee: faker.helpers.arrayElement(availableEmployees),
-        service_name: faker.helpers.arrayElement(availableServices),
+        customer: getRandomArrayElement(availableCustomers),
+        employee: employee,
+        service_name: getRandomArrayElement(employeeSkill),
         duration,
         start,
         end,
+        remarks: "",
     };
 
     const { error, value } = fakeschema.validate(result);
