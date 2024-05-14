@@ -39,7 +39,14 @@ const DateProposals = () => {
 
     useEffect(() => {
         if (appointment) {
-            setSlots(getFreeSlotsOfDay(appointment));
+            const freeSlotsOfDay = getFreeSlotsOfDay(appointment);
+            freeSlotsOfDay.sort((a, b) => {
+                const dateA = new Date(a.startDate);
+                const dateB = new Date(b.startDate);
+
+                return dateA.getTime() - dateB.getTime()
+            })
+            setSlots(freeSlotsOfDay);
         } else {
             setSlots([]);
         }
