@@ -890,6 +890,20 @@ hr {
     }
 }
 
+.submitPage {
+    .label {
+        display: inline-block;
+        width: 100%;
+        font-weight: 600;
+        margin: 0;
+        padding: 10px 0 0 0;
+    }
+
+    .service {
+        margin-bottom: 10px;
+    }
+}
+
 @media screen and (max-width: 965px) {
     #booking {
         min-height: unset;
