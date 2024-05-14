@@ -7,6 +7,8 @@ import {
     useState,
 } from "react";
 import useLogout from "../hooks/useLogout";
+import useGetNextAppointment from "../hooks/useGetNextAppointment";
+import { AppointmentType } from "../utils/types";
 
 type UserInfoType = {
     userId: string,
@@ -36,6 +38,7 @@ type SessionContextType = {
     activeTab: activeTabType,
     setActiveTab: React.Dispatch<React.SetStateAction<activeTabType>>,
     resetState: Function,
+    nextAppointment: AppointmentType[],
 }
 
 const defaultUserInfo: UserInfoType = {
@@ -66,16 +69,17 @@ const initContextState = {
     activeTab: defaultActiveTab,
     setActiveTab: () => { },
     resetState: () => { },
+    nextAppointment: [],
 };
 
 export const SessionContext = createContext<SessionContextType>(initContextState);
 
 export const SessionProvider = ({ children }: PropsWithChildren): ReactElement => {
-
-    const { mutate: triggerLogout } = useLogout()
+    const { mutate: triggerLogout } = useLogout();
+    const { data, isError: isNextAppointmentError } = useGetNextAppointment();
     const [userInfo, setUserInfo] = useState<UserInfoType>(defaultUserInfo);
     const [cookieInfo, setCookieInfo] = useState<CookieInfoType>(defaultCookieInfo);
-    const [activeTab, setActiveTab] = useState<activeTabType>(defaultActiveTab)
+    const [activeTab, setActiveTab] = useState<activeTabType>(defaultActiveTab);
     const timeout: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> = useRef<ReturnType<typeof setTimeout>>();
 
     const resetState = () => {
@@ -122,6 +126,7 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
                 activeTab,
                 setActiveTab,
                 resetState,
+                nextAppointment: isNextAppointmentError || !data ? [] : data.nextAppointment,
             }}
         >
             {children}
