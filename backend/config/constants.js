@@ -69,22 +69,22 @@ const employeesInfo = {
     "66401720b8fb65815722ab38": {
         firstname: "Mirjam",
         lastname: "Schmid",
-        skills: ["Schneiden", "KindU12"],
+        skills: ["Schneiden", "KindU12", "TeenU14", "Greyblending", "Dauerwelle", "Coloration"],
     },
     "6642f2eb23c54c42bf7d7f30": {
         firstname: "Nina",
         lastname: "Helm",
-        skills: ["Schneiden"],
+        skills: ["Schneiden", "KindU6", "KindU12", "TeenU14", "Cornrows", "Rasur"],
     },
     "66403f93eef48844b222489c": {
         firstname: "Hannah",
         lastname: "Geier",
-        skills: ["Schneiden", "TeenU14"],
+        skills: ["Schneiden", "TeenU14", "Cornrows", "Rasur", "Greyblending", "Dauerwelle", "Coloration"],
     },
     "6642f2ca23c54c42bf7d7f2d": {
         firstname: "Simone",
         lastname: "Homann",
-        skills: ["Schneiden"],
+        skills: ["Schneiden", "TeenU14", "Cornrows", "Rasur"],
     }
 };
 
