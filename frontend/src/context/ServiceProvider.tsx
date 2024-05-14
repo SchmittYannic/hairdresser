@@ -32,6 +32,8 @@ type ServiceContextType = {
     setAppointment: React.Dispatch<React.SetStateAction<Date | undefined>>,
     filterTime: FilterTimeType,
     setFilterTime: React.Dispatch<React.SetStateAction<FilterTimeType>>,
+    remarks: string,
+    setRemarks: React.Dispatch<React.SetStateAction<string>>,
     resetServiceInfo: () => void,
     triggerGetFreeSlots: UseMutateFunction<any, unknown, FilterFreeSlotDataType, unknown>,
     isGetFreeSlotsError: boolean,
@@ -46,6 +48,8 @@ const initContextState = {
     setAppointment: () => { },
     filterTime: defaultFilterTime,
     setFilterTime: () => { },
+    remarks: "",
+    setRemarks: () => { },
     resetServiceInfo: () => { },
     triggerGetFreeSlots: () => { },
     isGetFreeSlotsError: false,
@@ -59,6 +63,7 @@ export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement =
     const [serviceInfo, setServiceInfo] = useState<ServiceInfoType>(defaultServiceInfo);
     const [appointment, setAppointment] = useState<Date | undefined>(undefined);
     const [filterTime, setFilterTime] = useState<FilterTimeType>(defaultFilterTime);
+    const [remarks, setRemarks] = useState<string>("");
     const {
         mutate: triggerGetFreeSlots,
         isError: isGetFreeSlotsError,
@@ -80,6 +85,8 @@ export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement =
                 setAppointment,
                 filterTime,
                 setFilterTime,
+                remarks,
+                setRemarks,
                 resetServiceInfo,
                 triggerGetFreeSlots,
                 isGetFreeSlotsError,
