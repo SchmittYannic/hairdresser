@@ -3,6 +3,7 @@ import { de } from "date-fns/locale";
 import useSessionContext from "../../hooks/useSessionContext";
 import useServiceContext from "../../hooks/useServiceContext";
 import DateProposals from "./DateProposals";
+import MultiRangeSlider from "../../components/ui/MultiRangeSlider";
 import "./Calendar.scss"
 
 const Bookdate = () => {
@@ -97,6 +98,25 @@ const Bookdate = () => {
                     <span className="freeInfo">
                         Termine verfügbar
                     </span>
+                </div>
+                <div className="proposalsFilterContainer">
+                    <span className="label">
+                        Hier können Sie den Zeitraum Ihrer Verfügbarkeit einschränken
+                    </span>
+                    <div className="proposalsRangeSlider">
+                        <div className="proposalsRangeSliderLabel">
+                            Test
+                        </div>
+                        <MultiRangeSlider
+                            min="08:00"
+                            max={"08:00"}
+                            rangeValues={["08:00", "08:30", "09:00", "09:30", "10:00", "10:30"]}
+                            onChange={({ min, max }: { min: string, max: string }) => console.log(`min = ${min}, max = ${max}`)}
+                        />
+                        <div className="proposalsRangeSliderLabel">
+                            Test
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="col-2-2">
