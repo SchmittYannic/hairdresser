@@ -64,6 +64,13 @@ export const endschema = Joi.date()
         "any.required": "Enddatum ist erforderlich",
     })
 
+export const remarksschema = Joi.string()
+    .label("remarks")
+    .max(255)
+    .messages({
+        "string.max": "Bemerkung darf nicht länger als 255 Zeichen sein",
+    });
+
 export const appointmentschema = Joi.object().keys({
     customer: customerschema.required(),
     employee: employeeschema.required(),
@@ -71,4 +78,5 @@ export const appointmentschema = Joi.object().keys({
     start: startschema.required(),
     end: endschema.required(),
     duration: durationschema.required(),
+    remarks: remarksschema,
 })

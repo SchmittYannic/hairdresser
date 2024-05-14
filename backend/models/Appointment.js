@@ -37,6 +37,10 @@ const appointmentSchema = new mongoose.Schema(
                 message: () => `End time is not equal to the specified duration after the start time`
             }
         },
+        remarks: {
+            type: String,
+            default: "",
+        }
     },
     {
         timestamps: true,

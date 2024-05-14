@@ -46,6 +46,7 @@ const createNewAppointment = async (req, res) => {
             service_name,
             duration,
             start,
+            remarks,
         } = req.body;
 
         if (req.session.user.userId !== customer) {
@@ -69,6 +70,7 @@ const createNewAppointment = async (req, res) => {
             duration,
             start: startAsDate,
             end: endAsDate,
+            remarks,
         });
 
         const foundCustomer = await User.findById(customer).lean().exec();
@@ -102,6 +104,7 @@ const createNewAppointment = async (req, res) => {
             duration,
             start: startAsDate,
             end: endAsDate,
+            remarks: remarks ? remarks : "",
         })
 
         if (!appointment) {
