@@ -25,7 +25,8 @@ const EditUser = () => {
         register,
         handleSubmit,
         setError,
-        formState: { errors },
+        formState: { errors, isSubmitSuccessful },
+        reset,
     } = useForm<EditUserType>({
         resolver: yupResolver(Edituserschema),
     });
@@ -72,7 +73,16 @@ const EditUser = () => {
         setError(errorApi.response.data.context.label, {
             message: errorApi.response.data.message,
         })
-    }, [setError, isError])
+    }, [setError, isError]);
+
+    useEffect(() => {
+        reset({
+            birthday: "",
+            oldpassword: "",
+            password: "",
+            passwordrepeat: "",
+        })
+    }, [isSubmitSuccessful]);
 
     return (
         <div className="page">
