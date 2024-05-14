@@ -20,7 +20,7 @@ const Bookdate = () => {
         freeTimeslots,
     } = useServiceContext();
 
-    const isSlotSelected = appointment?.getHours() !== 0;
+    const noDateSelected = appointment ? appointment.getHours() === 0 : true;
 
     const handleBackButtonClicked = () => {
         setActiveTab("services");
@@ -161,7 +161,7 @@ const Bookdate = () => {
                         className="bookingFormButton"
                         type="button"
                         onClick={handleNextButtonClicked}
-                        disabled={!isSlotSelected}
+                        disabled={noDateSelected}
                     >
                         <span>Weiter</span>
                     </button>
