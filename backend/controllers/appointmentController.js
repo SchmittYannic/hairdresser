@@ -25,7 +25,7 @@ const getUpcomingAppointmentOfUser = async (req, res) => {
 
         const earliestAppointment = getEarliestAppointment(foundAppointments);
 
-        return res.status(200).json({ message: "Gebuchte Termine gefunden", nextAppointment: earliestAppointment, cookieInfo })
+        return res.status(200).json({ message: "Gebuchte Termine gefunden", nextAppointment: [earliestAppointment], cookieInfo })
     } catch (error) {
         return res.status(400).json({ message: "Fehler bei Abfrage nach Terminen", cookieInfo })
     }
