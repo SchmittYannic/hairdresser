@@ -77,9 +77,12 @@ const ServiceDialog = ({ service }: ServiceDialogPropsType) => {
                     <span className="serviceLabel">
                         {service.service_label}
                     </span>
-                    <span className={`staffLabel${serviceInfo.service_name !== service.service_name ? " excluded" : ""}`}>
-                        - {serviceInfo.employee_firstname} {serviceInfo.employee_lastname}
-                    </span>
+                    {
+                        serviceInfo.employee_id &&
+                        <span className={`staffLabel${serviceInfo.service_name !== service.service_name ? " excluded" : ""}`}>
+                            - {serviceInfo.employee_firstname} {serviceInfo.employee_lastname}
+                        </span>
+                    }
                 </div>
                 {
                     service.service_info &&
