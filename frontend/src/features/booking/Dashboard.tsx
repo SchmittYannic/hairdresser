@@ -3,6 +3,7 @@ import useSessionContext from "../../hooks/useSessionContext"
 import EditUser from "./EditUser";
 import Services from "./Services";
 import Appointment from "./Appointment";
+import ArchivedAppointment from "./ArchivedAppointment";
 
 const Dashboard = () => {
 
@@ -49,7 +50,7 @@ const Dashboard = () => {
                         <span className="captionLabel">
                             Ihre nächsten Termine
                         </span>
-                        <span className={`appointmentList list${nextAppointment.length === 0 ? " exluded" : ""}`}>
+                        <span className={`appointmentList${nextAppointment.length === 0 ? " exluded" : ""}`}>
                             {nextAppointment.map((appointment) =>
                                 <Appointment
                                     key={appointment._id}
@@ -96,7 +97,24 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="col-2-2">
-
+                    <div className="pastAppointmentsContainer ">
+                        <span className="captionLabel">
+                            Ihre vergangenen Termine
+                        </span>
+                        <span className={`archivedAppointmentList list${nextAppointment.length === 0 ? " exluded" : ""}`}>
+                            {nextAppointment.map((appointment) =>
+                                <ArchivedAppointment
+                                    key={appointment._id}
+                                    appointment={appointment}
+                                />
+                            )}
+                        </span>
+                        <div className="historyContainer">
+                            <a href="">
+                                weitere anzeigen...
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div className="clear-row"></div>
             </div>

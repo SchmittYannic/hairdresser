@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
-import { allServicesInfo, employeesInfo, weekdaysAbr } from "../../constants";
 import { AllServicesInfoType, AppointmentType, AvailableServicesKeyType, EmployeesInfoType } from "../../utils/types"
+import { allServicesInfo, employeesInfo, weekdaysAbr } from "../../constants";
 
 type AppointmentPropsType = {
     appointment: AppointmentType,
 }
 
-const Appointment = ({ appointment }: AppointmentPropsType) => {
+const ArchivedAppointment = ({ appointment }: AppointmentPropsType) => {
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
     const service: {
@@ -39,8 +39,10 @@ const Appointment = ({ appointment }: AppointmentPropsType) => {
     const endDateTime = endDateHours + ":" + endDateMinutes;
 
     return (
-        <div className="list-item">
-            <div className="appointmentListItem">
+        <div
+            className="list-item"
+        >
+            <div className="appointmentListItem completed">
                 <button
                     className="bookingButton plusButton"
                     type="button"
@@ -54,19 +56,34 @@ const Appointment = ({ appointment }: AppointmentPropsType) => {
                     <span className="title">
                         {abrDay} {dateString}
                         <br />
-                        {startDateTime} - {endDateTime}
-                    </span>
-
-                    <span className="service">
-                        <i>{appointment.service_name}</i>
-                        <br />
-                        {employee.firstname} {employee.lastname}
-                        <br />
+                        {startDateTime} - {endDateTime} Uhr | abgeschlossen
                     </span>
                 </div>
+                {
+                    isDetailsOpen &&
+                    <div className="details">
+                        <span className="services">
+                            <i>{appointment.service_name}</i>
+                            <br />
+                            {service.service_label}
+                            <br />
+                            Bei {employee.firstname} {employee.lastname}
+                            <br />
+                        </span>
+                        <div className="dateContainer">
+                            <span className="dateLabel">
+                                Reserviert am:
+                            </span>
+                            <span className="dateField">
+                                Mi. 14.12.2022 11:25
+                            </span>
+                        </div>
+                        <div className="clear-row"></div>
+                    </div>
+                }
             </div>
         </div>
     )
 }
 
-export default Appointment
+export default ArchivedAppointment
