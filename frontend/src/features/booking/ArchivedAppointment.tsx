@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
 import { AllServicesInfoType, AppointmentType, AvailableServicesKeyType, EmployeesInfoType } from "../../utils/types"
-import { allServicesInfo, employeesInfo, weekdaysAbr } from "../../constants";
+import { allServicesInfo, employeesInfo, weekdays } from "../../constants";
 
 type AppointmentPropsType = {
     appointment: AppointmentType,
@@ -23,7 +23,7 @@ const ArchivedAppointment = ({ appointment }: AppointmentPropsType) => {
 
     const startDate = new Date(appointment.start);
     const day = startDate.getDay();
-    const abrDay = weekdaysAbr[day];
+    const abrDay = weekdays[day];
     const options: Intl.DateTimeFormatOptions = {
         day: "2-digit",
         month: "2-digit",

@@ -33,6 +33,16 @@ export const weekdaysAbr = [
     "Sa.",
 ] as const;
 
+export const weekdays = [
+    "Sonntag",
+    "Montage",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag",
+    "Samstag",
+] as const;
+
 export const availableServices = [
     "Schneiden",
     "KindU6",

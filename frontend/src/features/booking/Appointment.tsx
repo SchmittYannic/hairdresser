@@ -10,10 +10,10 @@ type AppointmentPropsType = {
 const Appointment = ({ appointment }: AppointmentPropsType) => {
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
-    const service: {
-        service_label: string,
-        service_duration: number,
-    } = allServicesInfo[appointment.service_name as keyof AllServicesInfoType];
+    // const service: {
+    //     service_label: string,
+    //     service_duration: number,
+    // } = allServicesInfo[appointment.service_name as keyof AllServicesInfoType];
 
     const employee: {
         firstname: string,
