@@ -980,6 +980,10 @@ hr {
             background: none !important;
             font-size: 24px;
             color: #DAC8BC;
+
+            &:hover {
+                color: #f4efeb;
+            }
         }
 
         .details {
@@ -1036,6 +1040,10 @@ hr {
             background: none !important;
             font-size: 24px;
             color: #DAC8BC;
+
+            &:hover {
+                color: #f4efeb;
+            }
         }
 
         .header-container {
