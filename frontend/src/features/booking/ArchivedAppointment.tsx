@@ -4,7 +4,7 @@ import { AllServicesInfoType, AppointmentType, AvailableServicesKeyType, Employe
 import { allServicesInfo, employeesInfo, weekdays } from "../../constants";
 
 type AppointmentPropsType = {
-    appointment: AppointmentType,
+    appointment: Omit<AppointmentType, "remarks">,
 }
 
 const ArchivedAppointment = ({ appointment }: AppointmentPropsType) => {
