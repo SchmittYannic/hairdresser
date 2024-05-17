@@ -40,6 +40,24 @@ export const getEarliestAppointment = (arr) => {
     return earliestDateObj;
 }
 
+export const sortByDate = (arr, property, sortOrder = "asc") => {
+    if (sortOrder === "asc") {
+        arr.sort((a, b) => {
+            const dateA = new Date(a[property]);
+            const dateB = new Date(b[property]);
+            return dateA.getTime() - dateB.getTime()
+        })
+    } else if (sortOrder === "desc") {
+        arr.sort((a, b) => {
+            const dateA = new Date(a[property]);
+            const dateB = new Date(b[property]);
+            return dateB.getTime() - dateA.getTime()
+        })
+    } else {
+        throw Error("Error in sortByDate: unknown sortOrder. Can only be asc or desc")
+    }
+}
+
 export const isAppointmentConflict = async (employee, customer, start, end) => {
     try {
         // Check if there are any appointments that overlap with the given start and end times
