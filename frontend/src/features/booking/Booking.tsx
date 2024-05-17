@@ -175,6 +175,7 @@ const Booking = () => {
                                 type="button"
                                 onClick={handleLogoutYesClicked}
                                 isLoading={isLogoutLoading}
+                                disabled={isLogoutLoading}
                             >
                                 <span className="icon-container">
                                     <ImCheckmark aria-hidden />
