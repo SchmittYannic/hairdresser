@@ -9,6 +9,7 @@ import {
 import useLogout from "../hooks/useLogout";
 import useGetNextAppointment from "../hooks/useGetNextAppointment";
 import { AppointmentType } from "../utils/types";
+import useGetArchivedAppointments from "../hooks/useGetArchivedAppointments";
 
 type UserInfoType = {
     userId: string,
@@ -39,6 +40,9 @@ type SessionContextType = {
     setActiveTab: React.Dispatch<React.SetStateAction<activeTabType>>,
     resetState: Function,
     nextAppointment: AppointmentType[],
+    archivedAppointments: Omit<AppointmentType, "remarks">[],
+    isArchivedAppointmentsLoading: boolean,
+    isArchivedAppointmentsError: boolean,
 }
 
 const defaultUserInfo: UserInfoType = {
@@ -70,6 +74,9 @@ const initContextState = {
     setActiveTab: () => { },
     resetState: () => { },
     nextAppointment: [],
+    archivedAppointments: [],
+    isArchivedAppointmentsLoading: false,
+    isArchivedAppointmentsError: false,
 };
 
 export const SessionContext = createContext<SessionContextType>(initContextState);
@@ -77,6 +84,11 @@ export const SessionContext = createContext<SessionContextType>(initContextState
 export const SessionProvider = ({ children }: PropsWithChildren): ReactElement => {
     const { mutate: triggerLogout } = useLogout();
     const { data, isError: isNextAppointmentError } = useGetNextAppointment();
+    const {
+        data: archivedAppointmentsData,
+        isError: isArchivedAppointmentsError,
+        isLoading: isArchivedAppointmentsLoading
+    } = useGetArchivedAppointments();
     const [userInfo, setUserInfo] = useState<UserInfoType>(defaultUserInfo);
     const [cookieInfo, setCookieInfo] = useState<CookieInfoType>(defaultCookieInfo);
     const [activeTab, setActiveTab] = useState<activeTabType>(defaultActiveTab);
@@ -127,6 +139,9 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
                 setActiveTab,
                 resetState,
                 nextAppointment: isNextAppointmentError || !data ? [] : data.nextAppointment,
+                archivedAppointments: isArchivedAppointmentsError || !archivedAppointmentsData ? [] : archivedAppointmentsData.archivedAppointments,
+                isArchivedAppointmentsLoading,
+                isArchivedAppointmentsError,
             }}
         >
             {children}
