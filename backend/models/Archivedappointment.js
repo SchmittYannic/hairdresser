@@ -37,6 +37,10 @@ const archivedappointmentSchema = new mongoose.Schema(
                 message: () => `End time is not equal to the specified duration after the start time`
             }
         },
+        reservedAt: {
+            type: Date,
+            required: true,
+        }
     },
     {
         timestamps: true,
