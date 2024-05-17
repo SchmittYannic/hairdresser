@@ -45,7 +45,7 @@ type SessionContextType = {
     isNextAppointmentLoading: boolean,
     isNextAppointmentSuccess: boolean,
     refetchNextAppointment: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>,
-    archivedAppointments: Omit<AppointmentType, "remarks">[],
+    archivedAppointments: (Omit<AppointmentType, 'remarks'> & { reservedAt: Date })[],
     isArchivedAppointmentsLoading: boolean,
     isArchivedAppointmentsError: boolean,
     isArchivedAppointmentsSuccess: boolean,
