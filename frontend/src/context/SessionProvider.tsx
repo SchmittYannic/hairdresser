@@ -6,10 +6,11 @@ import {
     useRef,
     useState,
 } from "react";
+import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from "react-query";
 import useLogout from "../hooks/useLogout";
 import useGetNextAppointment from "../hooks/useGetNextAppointment";
-import { AppointmentType } from "../utils/types";
 import useGetArchivedAppointments from "../hooks/useGetArchivedAppointments";
+import { AppointmentType } from "../utils/types";
 
 type UserInfoType = {
     userId: string,
@@ -40,9 +41,15 @@ type SessionContextType = {
     setActiveTab: React.Dispatch<React.SetStateAction<activeTabType>>,
     resetState: Function,
     nextAppointment: AppointmentType[],
+    isNextAppointmentError: boolean,
+    isNextAppointmentLoading: boolean,
+    isNextAppointmentSuccess: boolean,
+    refetchNextAppointment: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>,
     archivedAppointments: Omit<AppointmentType, "remarks">[],
     isArchivedAppointmentsLoading: boolean,
     isArchivedAppointmentsError: boolean,
+    isArchivedAppointmentsSuccess: boolean,
+    refetchArchivedAppointments: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>,
 }
 
 const defaultUserInfo: UserInfoType = {
@@ -65,6 +72,23 @@ const defaultCookieInfo: CookieInfoType = {
 
 const defaultActiveTab: activeTabType = "login";
 
+const defaultRefetch: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>> =
+    async () => {
+        return {
+            data: undefined,
+            error: null,
+            isError: false,
+            isFetched: false,
+            isFetchedAfterMount: false,
+            isFetching: false,
+            isLoading: false,
+            isRefetching: false,
+            isStale: true,
+            status: 'idle',
+            // Add other properties if necessary based on QueryObserverResult type
+        } as QueryObserverResult<any, unknown>;
+    };
+
 const initContextState = {
     userInfo: defaultUserInfo,
     setUserInfo: () => { },
@@ -74,20 +98,34 @@ const initContextState = {
     setActiveTab: () => { },
     resetState: () => { },
     nextAppointment: [],
+    isNextAppointmentError: false,
+    isNextAppointmentLoading: false,
+    isNextAppointmentSuccess: false,
+    refetchNextAppointment: defaultRefetch,
     archivedAppointments: [],
     isArchivedAppointmentsLoading: false,
     isArchivedAppointmentsError: false,
+    isArchivedAppointmentsSuccess: false,
+    refetchArchivedAppointments: defaultRefetch,
 };
 
 export const SessionContext = createContext<SessionContextType>(initContextState);
 
 export const SessionProvider = ({ children }: PropsWithChildren): ReactElement => {
     const { mutate: triggerLogout } = useLogout();
-    const { data, isError: isNextAppointmentError } = useGetNextAppointment();
+    const {
+        data: nextAppointmentData,
+        isError: isNextAppointmentError,
+        isLoading: isNextAppointmentLoading,
+        isSuccess: isNextAppointmentSuccess,
+        refetch: refetchNextAppointment,
+    } = useGetNextAppointment();
     const {
         data: archivedAppointmentsData,
         isError: isArchivedAppointmentsError,
-        isLoading: isArchivedAppointmentsLoading
+        isLoading: isArchivedAppointmentsLoading,
+        isSuccess: isArchivedAppointmentsSuccess,
+        refetch: refetchArchivedAppointments,
     } = useGetArchivedAppointments();
     const [userInfo, setUserInfo] = useState<UserInfoType>(defaultUserInfo);
     const [cookieInfo, setCookieInfo] = useState<CookieInfoType>(defaultCookieInfo);
@@ -138,10 +176,16 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
                 activeTab,
                 setActiveTab,
                 resetState,
-                nextAppointment: isNextAppointmentError || !data ? [] : data.nextAppointment,
+                nextAppointment: isNextAppointmentError || !nextAppointmentData ? [] : nextAppointmentData.nextAppointment,
+                isNextAppointmentError,
+                isNextAppointmentLoading,
+                isNextAppointmentSuccess,
+                refetchNextAppointment,
                 archivedAppointments: isArchivedAppointmentsError || !archivedAppointmentsData ? [] : archivedAppointmentsData.archivedAppointments,
                 isArchivedAppointmentsLoading,
                 isArchivedAppointmentsError,
+                isArchivedAppointmentsSuccess,
+                refetchArchivedAppointments,
             }}
         >
             {children}
