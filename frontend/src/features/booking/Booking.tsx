@@ -20,7 +20,7 @@ const Booking = () => {
     const windowSize = useWindowSize();
     const isLgScreen = windowSize.width && windowSize.width > 640 ? true : false;
 
-    const isDashboard = (activeTab === "dashboard" || activeTab === "editUser" || activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
+    const isDashboard = (activeTab === "dashboard" || activeTab === "editUser" || activeTab === "pastappointments" || activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
     const isAppointmentBooking = (activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
 
     const handleLogoutClicked = () => {
@@ -43,7 +43,7 @@ const Booking = () => {
                     />
                 </div>
             </header>
-            <main className={`booking-content${activeTab === "reset" ? " small" : ""}`}>
+            <main className={`booking-content${activeTab === "reset" || activeTab === "pastappointments" ? " small" : ""}`}>
                 <div className="pageHeader">
                     <div className="col-1-1">
                         <span className="pageHeaderCaption">
@@ -53,6 +53,7 @@ const Booking = () => {
                             {activeTab === "agb" && "AGB und Datenschutzerklärung"}
                             {activeTab === "dashboard" && "Terminübersicht"}
                             {activeTab === "editUser" && "Benachrichtigungen und Kontaktdaten ändern"}
+                            {activeTab === "pastappointments" && "Vergangene Termine"}
                             {isAppointmentBooking && "Neuer Termin"}
                         </span>
                         <span className="pageHeaderInfo">

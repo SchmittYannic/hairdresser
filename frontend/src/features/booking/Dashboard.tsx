@@ -5,6 +5,7 @@ import Services from "./Services";
 import Appointment from "./Appointment";
 import ArchivedAppointment from "./ArchivedAppointment";
 import ClipLoader from "../../components/ui/ClipLoader";
+import PastAppointments from "./PastAppointments";
 
 const Dashboard = () => {
 
@@ -31,6 +32,11 @@ const Dashboard = () => {
     const handleEditUserClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         setActiveTab("editUser");
+    };
+
+    const handlePastAppointmentsClicked = (e: MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        setActiveTab("pastappointments");
     }
 
     useEffect(() => {
@@ -164,7 +170,10 @@ const Dashboard = () => {
                                     )}
                                 </span>
                                 <div className="historyContainer">
-                                    <a href="">
+                                    <a
+                                        href=""
+                                        onClick={handlePastAppointmentsClicked}
+                                    >
                                         weitere anzeigen...
                                     </a>
                                 </div>
@@ -187,6 +196,7 @@ const Dashboard = () => {
                 <div className="clear-row"></div>
             </div>
             {activeTab === "editUser" && <EditUser />}
+            {activeTab === "pastappointments" && <PastAppointments />}
             {isAppointmentBooking && <Services />}
         </>
     )
