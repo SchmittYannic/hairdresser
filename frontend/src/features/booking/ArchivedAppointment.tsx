@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
 import { AllServicesInfoType, AppointmentType, AvailableServicesKeyType, EmployeesInfoType } from "../../utils/types"
-import { allServicesInfo, employeesInfo, weekdays } from "../../constants";
+import { allServicesInfo, employeesInfo, weekdays, weekdaysAbr } from "../../constants";
 
 type AppointmentPropsType = {
-    appointment: Omit<AppointmentType, "remarks">,
+    appointment: Omit<AppointmentType, "remarks"> & { reservedAt: Date },
 }
 
 const ArchivedAppointment = ({ appointment }: AppointmentPropsType) => {
@@ -33,10 +33,19 @@ const ArchivedAppointment = ({ appointment }: AppointmentPropsType) => {
     const startDateHours = ("0" + startDate.getHours()).slice(-2);
     const startDateMinutes = ("0" + startDate.getMinutes()).slice(-2);
     const startDateTime = startDateHours + ":" + startDateMinutes;
+
     const endDate = new Date(appointment.end);
     const endDateHours = ("0" + endDate.getHours()).slice(-2);
     const endDateMinutes = ("0" + endDate.getMinutes()).slice(-2);
     const endDateTime = endDateHours + ":" + endDateMinutes;
+
+    const reservedDate = new Date(appointment.reservedAt);
+    const reservedDateDay = reservedDate.getDay();
+    const reservedDateAbrDay = weekdaysAbr[reservedDateDay];
+    const reservedDateString = reservedDate.toLocaleDateString("de-DE", options);
+    const reservedDateHours = ("0" + reservedDate.getHours()).slice(-2);
+    const reservedDateMinutes = ("0" + reservedDate.getMinutes()).slice(-2);
+    const reservedDateTime = reservedDateHours + ":" + reservedDateMinutes;
 
     return (
         <div
@@ -75,7 +84,7 @@ const ArchivedAppointment = ({ appointment }: AppointmentPropsType) => {
                                 Reserviert am:
                             </span>
                             <span className="dateField">
-                                Mi. 14.12.2022 11:25
+                                {reservedDateAbrDay} {reservedDateString} {reservedDateTime}
                             </span>
                         </div>
                         <div className="clear-row"></div>
