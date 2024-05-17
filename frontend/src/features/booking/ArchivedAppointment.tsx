@@ -81,7 +81,7 @@ const ArchivedAppointment = ({ appointment }: AppointmentPropsType) => {
                         </span>
                         <div className="dateContainer">
                             <span className="dateLabel">
-                                Reserviert am:
+                                Reserviert am:&nbsp;
                             </span>
                             <span className="dateField">
                                 {reservedDateAbrDay} {reservedDateString} {reservedDateTime}
