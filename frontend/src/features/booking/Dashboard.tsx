@@ -4,6 +4,7 @@ import EditUser from "./EditUser";
 import Services from "./Services";
 import Appointment from "./Appointment";
 import ArchivedAppointment from "./ArchivedAppointment";
+import ClipLoader from "../../components/ui/ClipLoader";
 
 const Dashboard = () => {
 
@@ -13,6 +14,9 @@ const Dashboard = () => {
         setActiveTab,
         nextAppointment,
         archivedAppointments,
+        isArchivedAppointmentsLoading,
+        isArchivedAppointmentsError,
+        isArchivedAppointmentsSuccess,
         refetchArchivedAppointments,
     } = useSessionContext();
 
@@ -114,19 +118,46 @@ const Dashboard = () => {
                         <span className="captionLabel">
                             Ihre vergangenen Termine
                         </span>
-                        <span className={`archivedAppointmentList list${nextAppointment.length === 0 ? " exluded" : ""}`}>
-                            {limitArchivedAppointments.map((appointment) =>
-                                <ArchivedAppointment
-                                    key={appointment._id}
-                                    appointment={appointment}
+                        {
+                            isArchivedAppointmentsLoading &&
+                            <div className="dashboardCliploader">
+                                <ClipLoader
+                                    loading={isArchivedAppointmentsLoading}
+                                    color="rgb(209,213,219)"
+                                    size={30}
                                 />
-                            )}
-                        </span>
-                        <div className="historyContainer">
-                            <a href="">
-                                weitere anzeigen...
-                            </a>
-                        </div>
+                            </div>
+                        }
+                        {
+                            isArchivedAppointmentsSuccess && limitArchivedAppointments.length > 0 &&
+                            <>
+                                <span className={`archivedAppointmentList list${nextAppointment.length === 0 ? " exluded" : ""}`}>
+                                    {limitArchivedAppointments.map((appointment) =>
+                                        <ArchivedAppointment
+                                            key={appointment._id}
+                                            appointment={appointment}
+                                        />
+                                    )}
+                                </span>
+                                <div className="historyContainer">
+                                    <a href="">
+                                        weitere anzeigen...
+                                    </a>
+                                </div>
+                            </>
+                        }
+                        {
+                            isArchivedAppointmentsSuccess && limitArchivedAppointments.length === 0 &&
+                            <span className="noAppointmentsLabel">
+                                - keine archivierten Termine -
+                            </span>
+                        }
+                        {
+                            isArchivedAppointmentsError &&
+                            <span className="error-msg" role="alert">
+                                Fehler bei Abfrage nach archivierten Terminen.
+                            </span>
+                        }
                     </div>
                 </div>
                 <div className="clear-row"></div>
