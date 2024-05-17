@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect } from "react";
 import useSessionContext from "../../hooks/useSessionContext"
 import EditUser from "./EditUser";
 import Services from "./Services";
@@ -7,14 +7,27 @@ import ArchivedAppointment from "./ArchivedAppointment";
 
 const Dashboard = () => {
 
-    const { userInfo, activeTab, setActiveTab, nextAppointment, archivedAppointments } = useSessionContext();
+    const {
+        userInfo,
+        activeTab,
+        setActiveTab,
+        nextAppointment,
+        archivedAppointments,
+        refetchArchivedAppointments,
+    } = useSessionContext();
 
     const isAppointmentBooking = (activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
+
+    const limitArchivedAppointments = archivedAppointments.length >= 3 ? archivedAppointments.slice(0, 3) : archivedAppointments;
 
     const handleEditUserClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         setActiveTab("editUser");
     }
+
+    useEffect(() => {
+        refetchArchivedAppointments();
+    }, []);
 
     return (
         <>
@@ -102,7 +115,7 @@ const Dashboard = () => {
                             Ihre vergangenen Termine
                         </span>
                         <span className={`archivedAppointmentList list${nextAppointment.length === 0 ? " exluded" : ""}`}>
-                            {archivedAppointments.map((appointment) =>
+                            {limitArchivedAppointments.map((appointment) =>
                                 <ArchivedAppointment
                                     key={appointment._id}
                                     appointment={appointment}
