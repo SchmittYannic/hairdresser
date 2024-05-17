@@ -1,4 +1,4 @@
-import { HTMLAttributes, PropsWithChildren, useEffect, useRef, useState, MouseEvent } from "react"
+import { HTMLAttributes, PropsWithChildren, useEffect, useRef, useState, MouseEvent, KeyboardEvent } from "react"
 import ReactDOM from "react-dom";
 import FocusTrap from "focus-trap-react"
 import { MdClose } from "react-icons/md";
@@ -17,6 +17,12 @@ const Dialog = ({
     const handleCloseClicked = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         setDialog(false);
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+            setDialog(false);
+        }
     }
 
     useEffect(() => {
@@ -30,7 +36,11 @@ const Dialog = ({
 
     return ReactDOM.createPortal(
         <FocusTrap>
-            <div className={`dialog__background ${className}`} {...rest}>
+            <div
+                className={`dialog__background ${className}`}
+                onKeyDown={handleKeyDown}
+                {...rest}
+            >
                 <div
                     id="dialog"
                     className="dialog"
