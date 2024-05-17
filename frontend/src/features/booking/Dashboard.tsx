@@ -4,8 +4,8 @@ import EditUser from "./EditUser";
 import Services from "./Services";
 import Appointment from "./Appointment";
 import ArchivedAppointment from "./ArchivedAppointment";
-import ClipLoader from "../../components/ui/ClipLoader";
 import PastAppointments from "./PastAppointments";
+import ClipLoader from "../../components/ui/ClipLoader";
 
 const Dashboard = () => {
 
