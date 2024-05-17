@@ -1,36 +1,56 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { MdLogout } from "react-icons/md";
+import { FaPlus } from "react-icons/fa";
 import { ImCheckmark } from "react-icons/im";
 import useSessionContext from "../../hooks/useSessionContext";
-import useLogout from "../../hooks/useLogout";
 import useWindowSize from "../../hooks/useWindowSize";
+import useLogout from "../../hooks/useLogout";
 import Login from "./Login";
 import Register from "./Register";
 import ResetPassword from "./ResetPassword";
 import AGB from "./AGB";
 import Dashboard from "./Dashboard";
 import Countdown from "../../components/Countdown";
+import AsyncButton from "../../components/ui/AsyncButton";
+import Dialog from "../../components/ui/Dialog";
 import { logo } from "../../assets";
 import "./Booking.scss";
 
 const Booking = () => {
 
     const { activeTab, setActiveTab } = useSessionContext();
-    const { mutate } = useLogout();
+    const {
+        mutate: triggerLogout,
+        isLoading: isLogoutLoading,
+    } = useLogout();
     const windowSize = useWindowSize();
     const isLgScreen = windowSize.width && windowSize.width > 640 ? true : false;
+    const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
     const isDashboard = (activeTab === "dashboard" || activeTab === "editUser" || activeTab === "pastappointments" || activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
     const isAppointmentBooking = (activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
 
     const handleLogoutClicked = () => {
-        mutate();
-    }
+        setIsLogoutDialogOpen(true);
+    };
+
+    const handleLogoutNoClicked = () => {
+        setIsLogoutDialogOpen(false);
+    };
+
+    const handleLogoutYesClicked = () => {
+        setIsLogoutDialogOpen(false);
+        triggerLogout();
+    };
 
     const handleStep1Clicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         setActiveTab("services");
-    }
+    };
+
+    useEffect(() => {
+        return () => setIsLogoutDialogOpen(false);
+    }, []);
 
     return (
         <div id="booking">
@@ -137,6 +157,48 @@ const Booking = () => {
                     {(activeTab === "register" || activeTab === "agb") && <AGB />}
                     {isDashboard && <Dashboard />}
                 </div>
+
+                {
+                    isLogoutDialogOpen && isDashboard &&
+                    <Dialog setDialog={setIsLogoutDialogOpen}>
+                        <div className="dialog__caption ">
+                            Terminbuch beenden
+                        </div>
+                        <div className="dialog__content">
+                            <span className="label">
+                                Wollen Sie sich aus dem Terminbuch ausloggen?
+                            </span>
+                        </div>
+                        <div className="dialog__button__container">
+                            <AsyncButton
+                                className="bookingFormButton"
+                                type="button"
+                                onClick={handleLogoutYesClicked}
+                                isLoading={isLogoutLoading}
+                            >
+                                <span className="icon-container">
+                                    <ImCheckmark aria-hidden />
+                                </span>
+                                <span className="icon-gap">
+                                    ja
+                                </span>
+                            </AsyncButton>
+                            <button
+                                className="bookingFormButton"
+                                type="button"
+                                onClick={handleLogoutNoClicked}
+                            >
+                                <span className="icon-container">
+                                    <FaPlus aria-hidden style={{ transform: "rotate(45deg)" }} />
+                                </span>
+                                <span className="icon-gap">
+                                    nein
+                                </span>
+                            </button>
+                        </div>
+                    </Dialog>
+                }
+
                 <div className="bookingFooter"></div>
             </main>
         </div>
