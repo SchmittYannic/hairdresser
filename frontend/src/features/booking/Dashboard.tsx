@@ -7,7 +7,7 @@ import ArchivedAppointment from "./ArchivedAppointment";
 
 const Dashboard = () => {
 
-    const { userInfo, activeTab, setActiveTab, nextAppointment } = useSessionContext();
+    const { userInfo, activeTab, setActiveTab, nextAppointment, archivedAppointments } = useSessionContext();
 
     const isAppointmentBooking = (activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
 
@@ -82,7 +82,7 @@ const Dashboard = () => {
                             </button>
                             <div className="clear-row"></div>
                         </div>
-                        <span className="infoLabel">
+                        {/* <span className="infoLabel">
                             Sie können auch einen Termin für eine andere Person (Partner, Kinder, Angehörige) buchen.
                         </span>
                         <div className="buttonRow">
@@ -93,7 +93,7 @@ const Dashboard = () => {
                                 <span>Andere Person</span>
                             </button>
                             <div className="clear-row"></div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="col-2-2">
@@ -102,7 +102,7 @@ const Dashboard = () => {
                             Ihre vergangenen Termine
                         </span>
                         <span className={`archivedAppointmentList list${nextAppointment.length === 0 ? " exluded" : ""}`}>
-                            {nextAppointment.map((appointment) =>
+                            {archivedAppointments.map((appointment) =>
                                 <ArchivedAppointment
                                     key={appointment._id}
                                     appointment={appointment}
