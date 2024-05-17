@@ -111,15 +111,24 @@ export const moveExpiredAppointments = async (db) => {
         // Fetch expired appointments
         const expiredAppointments = await appointmentsCollection.find({ end: { $lt: new Date() } }).toArray();
 
+        const now = new Date();
+
         // Modify each expired appointment object to remove "remarks" property
         const modifiedAppointments = expiredAppointments.map(appointment => {
-            const { remarks, ...rest } = appointment;
-            return rest;
+            const { remarks, createdAt, updatedAt, ...rest } = appointment;
+            const archivedAppointment = {
+                ...rest,
+                reservedAt: createdAt, //maybe this should be updatedAt in the future
+                createdAt: now,
+                updatedAt: now,
+            };
+
+            return archivedAppointment;
         });
 
         await archivedAppointmentsCollection.insertMany(modifiedAppointments);
 
-        await appointmentsCollection.deleteMany({ _id: { $in: expiredAppointments.map(appt => appt._id) } })
+        await appointmentsCollection.deleteMany({ _id: { $in: expiredAppointments.map(appt => appt._id) } });
 
         console.log("Expired appointments moved to archivedAppointments collection.");
     } catch (err) {
