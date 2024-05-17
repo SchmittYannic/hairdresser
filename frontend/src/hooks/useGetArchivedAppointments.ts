@@ -14,6 +14,7 @@ const useGetArchivedAppointments = () => {
     return useQuery({
         queryKey: ["archivedAppointments"],
         queryFn: getArchivedAppointments,
+        enabled: false,
         onSuccess: ({ cookieInfo }) => {
             setCookieInfo(cookieInfo);
         },
