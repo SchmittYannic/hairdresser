@@ -486,7 +486,7 @@ export const allServicesInfo: AllServicesInfoType = {
         service_label: "Rasur (ca. 30 min.)",
         service_duration: 30,
     },
-    Grayblending: {
+    Greyblending: {
         service_label: "Greyblending (ca. 30 min.)",
         service_duration: 30,
     },
