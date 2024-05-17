@@ -112,7 +112,9 @@ const initContextState = {
 export const SessionContext = createContext<SessionContextType>(initContextState);
 
 export const SessionProvider = ({ children }: PropsWithChildren): ReactElement => {
-    const { mutate: triggerLogout } = useLogout();
+    const {
+        mutate: triggerLogout,
+    } = useLogout();
     const {
         data: nextAppointmentData,
         isError: isNextAppointmentError,
@@ -164,7 +166,7 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
                 setActiveTab("dashboard")
             }
         }
-    }, [userInfo])
+    }, [userInfo]);
 
     return (
         <SessionContext.Provider
