@@ -14,6 +14,7 @@ const useGetNextAppointment = () => {
     return useQuery({
         queryKey: ["nextAppointment"],
         queryFn: getNextAppointment,
+        enabled: false,
         onSuccess: ({ cookieInfo }) => {
             setCookieInfo(cookieInfo);
         },
