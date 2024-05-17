@@ -12,7 +12,6 @@ import { isAppointmentConflict } from "./helpers.js";
 import Appointment from "../models/Appointment.js";
 import {
     availableCustomers,
-    availableServices,
     availableEmployees,
     employeesInfo,
 } from "../config/constants.js";
