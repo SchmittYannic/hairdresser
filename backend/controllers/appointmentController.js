@@ -119,6 +119,42 @@ const createNewAppointment = async (req, res) => {
     }
 };
 
+// @desc Delete appointment
+// @route DELETE /appointment
+// @access Private
+const deleteAppointment = async (req, res) => {
+    const cookieInfo = {
+        cookie_expires: req.session.cookie._expires,
+        cookie_originalMaxAge: req.session.cookie.originalMaxAge,
+    }
+    try {
+        const { userId } = req.session.user
+        const appointmentId = req.params.id
+
+        const foundAppointment = await Appointment.findById(appointmentId).exec();
+
+        if (!foundAppointment) {
+            return res.status(400).json({ message: "Kein Termin in Datenbank gefunden", cookieInfo })
+        }
+
+        if (!foundAppointment.customer.equals(userId)) {
+            return res.status(401).json({ message: "Keine Autorisierung für Löschung des Termins vorhanden", cookieInfo })
+        }
+
+        /* Hier etwas machen im Fall, dass Termin innerhalb der nächsten 24 Stunden */
+
+        const result = await foundAppointment.deleteOne();
+
+        if (!result) {
+            return res.status(400).json({ message: "Fehler bei Löschung des Termins aus Datenbank", cookieInfo })
+        }
+
+        return res.status(200).json({ message: "Termin erfolgreich storniert", cookieInfo })
+    } catch (error) {
+        return res.status(400).json({ message: "Fehler bei Löschung des Termins", cookieInfo })
+    }
+}
+
 // @desc Get all upcoming appointments filtered by employee
 // @route POST /appointment/filter
 // @access Private
@@ -191,6 +227,7 @@ const getArchivedAppointmentsOfUser = async (req, res) => {
 export {
     getUpcomingAppointmentOfUser,
     createNewAppointment,
+    deleteAppointment,
     getAllFreeTimeSlotsByEmployee,
     getArchivedAppointmentsOfUser,
 }

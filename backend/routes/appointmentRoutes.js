@@ -5,6 +5,7 @@ import {
     createNewAppointment,
     getAllFreeTimeSlotsByEmployee,
     getArchivedAppointmentsOfUser,
+    deleteAppointment,
 } from "../controllers/appointmentController.js";
 
 const router = express.Router();
@@ -12,6 +13,9 @@ const router = express.Router();
 router.route("/")
     .get(requireAuth, getUpcomingAppointmentOfUser)
     .post(requireAuth, createNewAppointment)
+
+router.route("/resource/:id")
+    .delete(requireAuth, deleteAppointment)
 
 router.route("/filter")
     .post(requireAuth, getAllFreeTimeSlotsByEmployee)
