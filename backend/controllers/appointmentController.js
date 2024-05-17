@@ -1,9 +1,10 @@
 import { appointmentschema, durationschema, startschema, employeeschema } from "../validation/appointmentschema.js"
-import { parseError, isAppointmentConflict, hasUpcomingAppointments, getEarliestAppointment } from "../utils/helpers.js";
+import { parseError, isAppointmentConflict, hasUpcomingAppointments, getEarliestAppointment, sortByDate } from "../utils/helpers.js";
 import User from "../models/User.js";
 import Appointment from "../models/Appointment.js";
 import { generateFreeTimeSlots } from "../utils/generateFreeSlots.js";
 import { availableEmployees, employeesInfo } from "../config/constants.js";
+import Archivedappointment from "../models/Archivedappointment.js";
 
 // @desc Get upcoming apointment of user
 // @route GET /appointment
@@ -17,7 +18,7 @@ const getUpcomingAppointmentOfUser = async (req, res) => {
     try {
         const { userId } = req.session.user;
 
-        const foundAppointments = await Appointment.find({ customer: userId, end: { $gt: new Date() } });
+        const foundAppointments = await Appointment.find({ customer: userId, end: { $gt: new Date() } }).lean().exec();
 
         if (!foundAppointments) {
             return res.status(200).json({ message: "keine gebuchten Termine", nextAppointment: [], cookieInfo })
@@ -163,8 +164,33 @@ const getAllFreeTimeSlotsByEmployee = async (req, res) => {
     }
 }
 
+// @desc Get archived apointments of user
+// @route GET /appointment/archive
+// @access Private
+const getArchivedAppointmentsOfUser = async (req, res) => {
+    const cookieInfo = {
+        cookie_expires: req.session.cookie._expires,
+        cookie_originalMaxAge: req.session.cookie.originalMaxAge,
+    }
+    try {
+        const { userId } = req.session.user;
+        const foundAppointments = await Archivedappointment.find({ customer: userId }).lean().exec();
+
+        if (!foundAppointments) {
+            return res.status(200).json({ message: "keine archivierten Termine", archivedAppointments: [], cookieInfo })
+        }
+
+        sortByDate(foundAppointments, "start", "desc");
+
+        return res.status(200).json({ message: "Archivierte Termine gefunden", archivedAppointments: foundAppointments, cookieInfo })
+    } catch (error) {
+        return res.status(400).json({ message: "Fehler bei Abfrage nach archivierten Terminen", cookieInfo })
+    }
+}
+
 export {
     getUpcomingAppointmentOfUser,
     createNewAppointment,
     getAllFreeTimeSlotsByEmployee,
+    getArchivedAppointmentsOfUser,
 }

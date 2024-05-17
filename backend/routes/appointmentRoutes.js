@@ -4,6 +4,7 @@ import {
     getUpcomingAppointmentOfUser,
     createNewAppointment,
     getAllFreeTimeSlotsByEmployee,
+    getArchivedAppointmentsOfUser,
 } from "../controllers/appointmentController.js";
 
 const router = express.Router();
@@ -14,5 +15,8 @@ router.route("/")
 
 router.route("/filter")
     .post(requireAuth, getAllFreeTimeSlotsByEmployee)
+
+router.route("/archive")
+    .get(requireAuth, getArchivedAppointmentsOfUser)
 
 export default router;
