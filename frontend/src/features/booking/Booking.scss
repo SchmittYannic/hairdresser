@@ -1061,6 +1061,15 @@ hr {
             padding-top: 20px;
             cursor: pointer;
         }
+
+        .dateLabel {
+            flex: 0 0 110px;
+        }
+
+        .dateField {
+            flex: 1 1 auto;
+            font-weight: 700;
+        }
     }
 }
 
