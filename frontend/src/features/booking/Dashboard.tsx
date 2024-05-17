@@ -13,6 +13,10 @@ const Dashboard = () => {
         activeTab,
         setActiveTab,
         nextAppointment,
+        isNextAppointmentLoading,
+        isNextAppointmentError,
+        isNextAppointmentSuccess,
+        refetchNextAppointment,
         archivedAppointments,
         isArchivedAppointmentsLoading,
         isArchivedAppointmentsError,
@@ -30,6 +34,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
+        refetchNextAppointment();
         refetchArchivedAppointments();
     }, []);
 
@@ -67,18 +72,37 @@ const Dashboard = () => {
                         <span className="captionLabel">
                             Ihre nächsten Termine
                         </span>
-                        <span className={`appointmentList${nextAppointment.length === 0 ? " exluded" : ""}`}>
-                            {nextAppointment.map((appointment) =>
-                                <Appointment
-                                    key={appointment._id}
-                                    appointment={appointment}
-                                />
-                            )}
-                        </span>
                         {
-                            nextAppointment.length === 0 &&
+                            isNextAppointmentLoading &&
+                            <div className="dashboardCliploader">
+                                <ClipLoader
+                                    loading={isArchivedAppointmentsLoading}
+                                    color="rgb(209,213,219)"
+                                    size={30}
+                                />
+                            </div>
+                        }
+                        {
+                            isNextAppointmentSuccess && nextAppointment.length !== 0 &&
+                            <span className={`appointmentList`}>
+                                {nextAppointment.map((appointment) =>
+                                    <Appointment
+                                        key={appointment._id}
+                                        appointment={appointment}
+                                    />
+                                )}
+                            </span>
+                        }
+                        {
+                            isNextAppointmentSuccess && nextAppointment.length === 0 &&
                             <span className="noAppointmentsLabel">
                                 - keine gebuchten Termine -
+                            </span>
+                        }
+                        {
+                            isNextAppointmentError &&
+                            <span className="error-msg" role="alert">
+                                Fehler bei Abfrage nach Terminen.
                             </span>
                         }
                     </div>
@@ -129,9 +153,9 @@ const Dashboard = () => {
                             </div>
                         }
                         {
-                            isArchivedAppointmentsSuccess && limitArchivedAppointments.length > 0 &&
+                            isArchivedAppointmentsSuccess && limitArchivedAppointments.length !== 0 &&
                             <>
-                                <span className={`archivedAppointmentList list${nextAppointment.length === 0 ? " exluded" : ""}`}>
+                                <span className={`archivedAppointmentList list`}>
                                     {limitArchivedAppointments.map((appointment) =>
                                         <ArchivedAppointment
                                             key={appointment._id}
