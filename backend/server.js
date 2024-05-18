@@ -17,7 +17,7 @@ import authRoutes from "./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js"
 import { moveExpiredAppointments } from "./utils/helpers.js";
 import { insertFakeData } from "./utils/fakedata.js";
-import MongoStore from "connect-mongo"
+import { promisify } from "util";
 
 /* Configurations */
 dotenv.config();
@@ -29,26 +29,7 @@ const PORT = process.env.PORT || 3500;
 console.log(process.env.NODE_ENV);
 connectDB();
 const db = mongoose.connection;
-app.use(session({
-    name: process.env.SESS_NAME,
-    secret: process.env.SESS_SECRET,
-    proxy: true,
-    saveUninitialized: false, //This complies with laws that require permission before setting a cookie.
-    resave: true,
-    rolling: true,
-    store: MongoStore.create({
-        client: db.getClient(),
-        collection: "session",
-        ttl: parseInt(process.env.SESS_LIFETIME) ?? 20 * 60 //time to life in seconds.
-    }),
-    cookie: {
-        domain: ".project-domain.de",
-        sameSite: "none",
-        secure: process.env.NODE_ENV === "production",
-        maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
-        httpOnly: true,
-    }
-}));
+app.use(session(sessionConfig(db)));
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
