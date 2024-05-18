@@ -16,6 +16,7 @@ const getUpcomingAppointmentOfUser = async (req, res) => {
     }
 
     try {
+        console.log("UpcomingAppointment: ", req.session)
         const { userId } = req.session.user;
 
         const foundAppointments = await Appointment.find({ customer: userId, end: { $gt: new Date() } }).lean().exec();
