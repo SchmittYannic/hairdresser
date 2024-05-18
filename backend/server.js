@@ -37,6 +37,8 @@ app.use(session(sessionConfig(db)));
 app.use((req, res, next) => {
     console.log('Session ID:', req.sessionID);
     console.log('Session ID2:', req.session.sessionID);
+    console.log('Session user:', req.user);
+    console.log('Session user2:', req.session.user);
     console.log('Session Data:', req.session);
     next();
 });
