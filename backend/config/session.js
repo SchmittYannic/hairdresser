@@ -1,21 +1,20 @@
 import MongoStore from "connect-mongo"
 
-const cookieDev = {
-    sameSite: "none",
-    secure: false,
-    maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
-    httpOnly: true,
-}
-
-const cookieProd = {
-    domain: ".project-domain.de",
-    sameSite: "none",
-    secure: process.env.NODE_ENV === "production",
-    maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
-    httpOnly: true,
-}
-
 const sessionConfig = (db) => {
+
+    const cookieSetting = process.env.NODE_ENV === "production" ? {
+        domain: ".project-domain.de",
+        sameSite: "none",
+        secure: true,
+        maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
+        httpOnly: true,
+    } : {
+        sameSite: "none",
+        secure: false,
+        maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
+        httpOnly: true,
+    }
+
     return {
         name: process.env.SESS_NAME,
         secret: process.env.SESS_SECRET,
@@ -28,13 +27,7 @@ const sessionConfig = (db) => {
             collection: "session",
             ttl: parseInt(process.env.SESS_LIFETIME) ?? 20 * 60 //time to life in seconds.
         }),
-        cookie: {
-            domain: ".project-domain.de",
-            sameSite: "none",
-            secure: process.env.NODE_ENV === "production",
-            maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
-            httpOnly: true,
-        }
+        cookie: cookieSetting
     }
 }
 
