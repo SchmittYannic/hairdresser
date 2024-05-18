@@ -1,5 +1,6 @@
 const requireAuth = (req, res, next) => {
-    console.log(req.session)
+    console.log("session: ", req.session)
+    console.log("user: ", req.session.user)
 
     if (req.session && req.session.user) {
         next();

@@ -1,9 +1,27 @@
 import MongoStore from "connect-mongo"
 
+const cookieDev = {
+    //domain: ".project-domain.de",
+    sameSite: "none",
+    secure: false,
+    //secure: process.env.NODE_ENV === "production",
+    maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
+    httpOnly: true,
+}
+
+const cookieProd = {
+    domain: ".project-domain.de",
+    sameSite: "none",
+    secure: process.env.NODE_ENV === "production",
+    maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
+    httpOnly: true,
+}
+
 const sessionConfig = (db) => {
     return {
         name: process.env.SESS_NAME,
         secret: process.env.SESS_SECRET,
+        proxy: true,
         saveUninitialized: false, //This complies with laws that require permission before setting a cookie.
         resave: true,
         rolling: true,
