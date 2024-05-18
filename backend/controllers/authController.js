@@ -25,6 +25,7 @@ const login = async (req, res) => {
 
         const sessionUser = sessionizeUser(foundUser)
         req.session.user = sessionUser
+        req.session.save()
 
         const userInfo = {
             ...sessionUser,
