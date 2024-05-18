@@ -12,11 +12,15 @@ const sessionConfig = (db) => {
             collection: "session",
             ttl: parseInt(process.env.SESS_LIFETIME) ?? 20 * 60 //time to life in seconds.
         }),
-        cookie: {
-            sameSite: "none",
-            secure: true, //process.env.NODE_ENV === "production",
-            maxAge: parseInt(process.env.SESS_LIFETIME) * 1000
-        }
+        sameSite: "none",
+        secure: true,
+        maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
+        httpOnly: true,
+        // cookie: {
+        //     sameSite: "none",
+        //     secure: true, //process.env.NODE_ENV === "production",
+        //     maxAge: parseInt(process.env.SESS_LIFETIME) * 1000
+        // }
     }
 }
 
