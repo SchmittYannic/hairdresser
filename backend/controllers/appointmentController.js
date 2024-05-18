@@ -20,7 +20,7 @@ const getUpcomingAppointmentOfUser = async (req, res) => {
 
         const foundAppointments = await Appointment.find({ customer: userId, end: { $gt: new Date() } }).lean().exec();
 
-        if (!foundAppointments) {
+        if (!foundAppointments || foundAppointments.length === 0) {
             return res.status(200).json({ message: "keine gebuchten Termine", nextAppointment: [], cookieInfo })
         }
 
