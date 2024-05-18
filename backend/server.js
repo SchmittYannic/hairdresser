@@ -29,11 +29,17 @@ const PORT = process.env.PORT || 3500;
 console.log(process.env.NODE_ENV);
 connectDB();
 const db = mongoose.connection;
-app.use(session(sessionConfig(db)));
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(session(sessionConfig(db)));
+app.use((req, res, next) => {
+    console.log('Session ID:', req.sessionID);
+    console.log('Session ID2:', req.session.sessionID);
+    console.log('Session Data:', req.session);
+    next();
+});
 app.set("trust proxy", 1);
 // app.use((req, _res, next) => {
 //     req.session.saveAsync = promisify(req.session.save.bind(req.session));
