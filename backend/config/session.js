@@ -14,7 +14,7 @@ const sessionConfig = (db) => {
         }),
         cookie: {
             sameSite: "none",
-            secure: process.env.NODE_ENV === "production",
+            secure: false, //process.env.NODE_ENV === "production",
             maxAge: parseInt(process.env.SESS_LIFETIME) * 1000
         }
     }
