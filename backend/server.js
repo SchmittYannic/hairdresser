@@ -17,7 +17,6 @@ import authRoutes from "./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js"
 import { moveExpiredAppointments } from "./utils/helpers.js";
 import { insertFakeData } from "./utils/fakedata.js";
-import { promisify } from "util";
 
 /* Configurations */
 dotenv.config();
@@ -34,34 +33,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(session(sessionConfig(db)));
-app.use((req, res, next) => {
-    console.log('Session ID:', req.sessionID);
-    console.log('Session ID2:', req.session.sessionID);
-    console.log('Session user:', req.user);
-    console.log('Session user2:', req.session.user);
-    console.log('Session Data:', req.session);
-    next();
-});
 app.set("trust proxy", 1);
-// app.use((req, _res, next) => {
-//     req.session.saveAsync = promisify(req.session.save.bind(req.session));
-//     next();
-// });
 cron.schedule("0 0 * * * *", async () => await moveExpiredAppointments(db));
-//cron.schedule("*/10 * * * * *", async () => await insertFakeData(10))
-// app.use(function (req, res, next) {
-//     res.header('Access-Control-Allow-Credentials', true);
-//     res.header('Access-Control-Allow-Origin', req.headers.origin);
-//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Set-Cookie');
-//     next();
-// });
-// app.options('*', function (req, res) {
-//     //res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Set-Cookie');
-//     res.status(200).send();
-// });
 
 /* ROUTES */
 app.use("/", rootRoute);

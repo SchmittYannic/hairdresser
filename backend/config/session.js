@@ -1,10 +1,8 @@
 import MongoStore from "connect-mongo"
 
 const cookieDev = {
-    //domain: ".project-domain.de",
     sameSite: "none",
     secure: false,
-    //secure: process.env.NODE_ENV === "production",
     maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
     httpOnly: true,
 }
