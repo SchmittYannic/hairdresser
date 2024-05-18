@@ -390,7 +390,7 @@ const Register = () => {
                     </div>
                 }
                 {
-                    isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.context && errorApi.response.data.context.key === undefined &&
+                    isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.context === undefined &&
                     <div className="col-1-1">
                         <span className="error-msg" role="alert">
                             {errorApi.response.data.message}

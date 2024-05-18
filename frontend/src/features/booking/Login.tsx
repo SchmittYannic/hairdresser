@@ -120,7 +120,7 @@ const Login = () => {
                         </a>
                         <div className="clear-row"></div>
                         {
-                            isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.context && errorApi.response.data.context.key === undefined &&
+                            isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.context === undefined &&
                             <span
                                 className="error-msg"
                                 role="alert"
