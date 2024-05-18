@@ -56,6 +56,7 @@ const DateSlot = ({ slot }: DateSlotPropsType) => {
                     <ImCheckmark aria-hidden />
                 </span>
             }
+            <div className="clear-row"></div>
         </div>
     )
 }
