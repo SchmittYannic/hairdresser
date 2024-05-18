@@ -43,7 +43,7 @@ const login = async (req, res) => {
             cookie_originalMaxAge: req.session.cookie.originalMaxAge,
         }
 
-        //res.set('Set-Cookie', `${process.env.SESS_NAME}=${req.sessionID}; Secure; HttpOnly; SameSite=None`);
+        res.set('Set-Cookie', `${process.env.SESS_NAME}=${req.sessionID}; Secure; HttpOnly; SameSite=None`);
 
         return res.status(200).json({ message: "login success", userInfo, cookieInfo })
     } catch (err) {
