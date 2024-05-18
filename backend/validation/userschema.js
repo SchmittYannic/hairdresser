@@ -2,6 +2,8 @@ import Joi from "joi";
 
 export const emailschema = Joi.string()
     .email()
+    .pattern(new RegExp(/^\S.*\S$|^\S$/))
+    .message("Email darf nicht mit Leerzeichen beginnen oder enden.")
     .required()
     .label("email")
     .messages({
@@ -12,6 +14,8 @@ export const emailschema = Joi.string()
 
 export const passwordschema = Joi.string()
     .label("password")
+    .pattern(new RegExp(/^\S*$/))
+    .message("Passwort darf keine Leerzeichen enthalten")
     .pattern(new RegExp(/^.{6,16}$/))
     .message("Password must be between 6 and 16 characters long")
     .pattern(new RegExp(/.*[A-Z].*/))
@@ -31,6 +35,8 @@ export const passwordschema = Joi.string()
 export const lastnameschema = Joi.string()
     .label("lastname")
     .max(80)
+    .pattern(new RegExp(/^\S.*\S$|^\S$/))
+    .message("Nachname darf nicht mit Leerzeichen beginnen oder enden.")
     .required()
     .messages({
         "string.max": "Lastname cant be longer than 80 characters",
@@ -41,9 +47,12 @@ export const lastnameschema = Joi.string()
 export const firstnameschema = Joi.string()
     .label("firstname")
     .max(80)
+    .pattern(new RegExp(/^\S.*\S$|^\S$/))
+    .message("Vorname darf nicht mit Leerzeichen beginnen oder enden.")
     .required()
     .messages({
         "string.max": "Firstname cant be longer than 80 characters",
+        "string.trim": "Vorname darf nicht mit Leerzeichen beginnen oder enden",
         "string.empty": "Firstname is required",
         "any.required": "Firstname is required",
     });
@@ -70,6 +79,8 @@ export const birthdayschema = Joi.date()
 
 export const phonenumberschema = Joi.string()
     .label("phonenumber")
+    .pattern(new RegExp(/^\S*$/))
+    .message("Handynummer darf keine Leerzeichen enthalten")
     .pattern(new RegExp(/^\d+$/))
     .message("Phonenumber must only consist of numbers")
     .pattern(new RegExp(/^\d{7,15}$/))
