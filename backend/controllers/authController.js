@@ -26,8 +26,6 @@ const login = async (req, res) => {
         const sessionUser = sessionizeUser(foundUser)
         req.session.user = sessionUser
 
-        await req.session.saveAsync();
-
         const userInfo = {
             ...sessionUser,
             title: foundUser.title,
@@ -45,9 +43,7 @@ const login = async (req, res) => {
             cookie_originalMaxAge: req.session.cookie.originalMaxAge,
         }
 
-        //res.set('Set-Cookie', `${process.env.SESS_NAME}=${req.sessionID}; Secure; HttpOnly; SameSite=None`);
-
-        return res.status(200).send({ message: "login success", userInfo, cookieInfo })
+        return res.status(200).json({ message: "login success", userInfo, cookieInfo })
     } catch (err) {
         return res.status(400).send(parseError(err));
     }
