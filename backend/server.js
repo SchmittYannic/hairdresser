@@ -17,6 +17,7 @@ import authRoutes from "./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js"
 import { moveExpiredAppointments } from "./utils/helpers.js";
 import { insertFakeData } from "./utils/fakedata.js";
+import { promisify } from "util";
 
 /* Configurations */
 dotenv.config();
@@ -34,6 +35,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.set("trust proxy", 1);
 app.use(session(sessionConfig(db)));
+app.use((req, _res, next) => {
+    req.session.saveAsync = promisify(req.session.save.bind(req.session));
+    next();
+});
 cron.schedule("0 0 * * * *", async () => await moveExpiredAppointments(db));
 //cron.schedule("*/10 * * * * *", async () => await insertFakeData(10))
 // app.use(function (req, res, next) {
