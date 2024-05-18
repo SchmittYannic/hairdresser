@@ -29,12 +29,12 @@ const PORT = process.env.PORT || 3500;
 console.log(process.env.NODE_ENV);
 connectDB();
 const db = mongoose.connection;
+app.use(session(sessionConfig(db)));
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.set("trust proxy", 1);
-app.use(session(sessionConfig(db)));
 // app.use((req, _res, next) => {
 //     req.session.saveAsync = promisify(req.session.save.bind(req.session));
 //     next();
