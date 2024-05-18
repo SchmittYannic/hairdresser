@@ -17,6 +17,7 @@ const sessionConfig = (db) => {
             secure: true, //process.env.NODE_ENV === "production",
             maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
             httpOnly: true,
+            partitioned: true,
         }
     }
 }
