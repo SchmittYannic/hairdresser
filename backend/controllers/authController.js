@@ -26,7 +26,6 @@ const login = async (req, res) => {
         const sessionUser = sessionizeUser(foundUser)
         req.session.user = sessionUser
 
-        await req.session.saveAsync();
         console.log("saved user: ", req.session.user)
 
         const userInfo = {
