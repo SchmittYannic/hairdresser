@@ -151,6 +151,12 @@ const updateUser = async (req, res) => {
 
         if (email !== foundUser.email) {
             await emailschema.validateAsync(email);
+
+            const duplicateEmail = await User.findOne({ email: email.toLowerCase() }).lean().exec();
+
+            if (duplicateEmail) {
+                return res.status(409).json({ message: "E-Mail wird bereits verwendet", context: { label: "email" } });
+            }
             foundUser.email = email
         }
         if (title !== foundUser.title) {
