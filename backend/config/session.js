@@ -13,8 +13,9 @@ const sessionConfig = (db) => {
             ttl: parseInt(process.env.SESS_LIFETIME) ?? 20 * 60 //time to life in seconds.
         }),
         cookie: {
+            domain: "https://hairdresser-363l.onrender.com",
             sameSite: "none",
-            secure: true, //process.env.NODE_ENV === "production",
+            secure: process.env.NODE_ENV === "production",
             maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
             httpOnly: true,
             partitioned: true,
