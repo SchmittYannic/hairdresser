@@ -6,7 +6,7 @@ import { AppointmentDataType } from "../utils/types"
 
 
 const useCreateAppointment = () => {
-    const { setCookieInfo } = useSessionContext()
+    const { setCookieInfo, setActiveTab, refetchNextAppointment } = useSessionContext();
 
     const createAppointment = async (appointmentData: AppointmentDataType) => {
         const response = await api.post("/appointment", appointmentData, { withCredentials: true })
@@ -17,6 +17,8 @@ const useCreateAppointment = () => {
         mutationFn: createAppointment,
         onSuccess: ({ cookieInfo }) => {
             setCookieInfo(cookieInfo);
+            setActiveTab("dashboard");
+            refetchNextAppointment();
         },
         onError: (error) => {
             if (isAxiosError(error) && error.response) {

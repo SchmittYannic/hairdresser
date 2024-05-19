@@ -62,7 +62,7 @@ const Confirmdate = () => {
         setActiveTab("bookdate");
     };
 
-    const handleNextButtonClicked = () => {
+    const handleConfirmButtonClicked = () => {
         mutate({
             customer: userInfo.userId,
             employee: selectedEmployee,
@@ -230,7 +230,7 @@ const Confirmdate = () => {
                 <AsyncButton
                     className="bookingFormButton"
                     type="button"
-                    onClick={handleNextButtonClicked}
+                    onClick={handleConfirmButtonClicked}
                     isLoading={isLoading}
                     disabled={isLoading}
                 >
