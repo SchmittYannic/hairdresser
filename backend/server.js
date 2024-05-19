@@ -35,6 +35,7 @@ app.use(express.json());
 app.use(session(sessionConfig(db)));
 app.set("trust proxy", 1);
 cron.schedule("0 0 * * * *", async () => await moveExpiredAppointments(db));
+//cron.schedule("*/10 * * * * *", async () => await insertFakeData(20))
 
 /* ROUTES */
 app.use("/", rootRoute);
