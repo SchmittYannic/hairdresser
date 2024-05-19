@@ -10,15 +10,15 @@ const generateTimeSlotsOfDay = (date, duration, employee) => {
     const dayOfWeek = weekdays[dayIndex];
     const { openingtime, closingtime } = getOpeningTimes(dayOfWeek);
     //if not open today return empty array
-    if (openingtime === "" || closingtime === "") return []
+    if (!openingtime || !closingtime) return []
 
     //construct closingtime Date
-    const closingtimeParts = closingtime.split(":");
-    const closingTimeHours = parseInt(closingtimeParts[0]);
-    const closingTimeMinutes = parseInt(closingtimeParts[1]);
+    // const closingtimeParts = closingtime.split(":");
+    // const closingTimeHours = parseInt(closingtimeParts[0]);
+    // const closingTimeMinutes = parseInt(closingtimeParts[1]);
     const closingtimeDate = new Date(date.getTime());
-    closingtimeDate.setHours(closingTimeHours);
-    closingtimeDate.setMinutes(closingTimeMinutes);
+    closingtimeDate.setHours(closingtime.getHours());
+    closingtimeDate.setMinutes(closingtime.getMinutes());
     closingtimeDate.setSeconds(0);
     closingtimeDate.setMilliseconds(0);
 
@@ -27,15 +27,15 @@ const generateTimeSlotsOfDay = (date, duration, employee) => {
     //construct startingtime Date
     const hours = date.getHours();
     const minutes = date.getMinutes();
-    const openingtimeParts = openingtime.split(":");
-    const openingtimeHours = parseInt(openingtimeParts[0]);
-    const openingtimeMinutes = parseInt(openingtimeParts[1]);
+    // const openingtimeParts = openingtime.split(":");
+    // const openingtimeHours = parseInt(openingtimeParts[0]);
+    // const openingtimeMinutes = parseInt(openingtimeParts[1]);
     let currentTime = new Date(date.getTime());
 
     //if the time of currentTime is before the openingtime then set the time to the opening time
-    if (hours < openingtimeHours || (hours === openingtimeHours && minutes < openingtimeMinutes)) {
-        currentTime.setHours(openingtimeHours);
-        currentTime.setMinutes(openingtimeMinutes);
+    if (hours < openingtime.getHours() || (hours === openingtime.getHours() && minutes < openingtime.getMinutes())) {
+        currentTime.setHours(openingtime.getHours());
+        currentTime.setMinutes(openingtime.getMinutes());
         currentTime.setSeconds(0);
         currentTime.setMilliseconds(0);
     } else {
