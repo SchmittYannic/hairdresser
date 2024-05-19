@@ -45,8 +45,8 @@ export type FreeTimeslotType = {
     employee: string,
     employeeFirstname: string,
     employeeLastname: string,
-    startDate: string,
-    endDate: string,
+    startDate: Date,
+    endDate: Date,
 }
 
 export type AppointmentDataType = {
