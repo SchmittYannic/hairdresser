@@ -43,32 +43,32 @@ const weekdays = [
 
 const openingtimes = {
     monday: {
-        openingtime: undefined,
-        closingtime: undefined,
+        openingtime: "",
+        closingtime: "",
     },
     tuesday: {
-        openingtime: new Date(Date.UTC(0, 0, 0, 7, 30)),
-        closingtime: new Date(Date.UTC(0, 0, 0, 17, 0)),
+        openingtime: "08:30",
+        closingtime: "18:00",
     },
     wednesday: {
-        openingtime: new Date(Date.UTC(0, 0, 0, 7, 30)),
-        closingtime: new Date(Date.UTC(0, 0, 0, 17, 0)),
+        openingtime: "08:30",
+        closingtime: "18:00",
     },
     thursday: {
-        openingtime: new Date(Date.UTC(0, 0, 0, 7, 30)),
-        closingtime: new Date(Date.UTC(0, 0, 0, 17, 0)),
+        openingtime: "08:30",
+        closingtime: "18:00",
     },
     friday: {
-        openingtime: new Date(Date.UTC(0, 0, 0, 7, 30)),
-        closingtime: new Date(Date.UTC(0, 0, 0, 17, 0)),
+        openingtime: "08:30",
+        closingtime: "18:00",
     },
     saturday: {
-        openingtime: new Date(Date.UTC(0, 0, 0, 7, 30)),
-        closingtime: new Date(Date.UTC(0, 0, 0, 17, 0)),
+        openingtime: "08:00",
+        closingtime: "13:00",
     },
     sunday: {
-        openingtime: undefined,
-        closingtime: undefined,
+        openingtime: "",
+        closingtime: "",
     },
 };
 
