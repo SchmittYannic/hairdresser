@@ -7,6 +7,7 @@ import { parseTime } from "../../utils/functions";
 const DateProposals = () => {
     const { calendarDay, filterTime, freeTimeslots } = useServiceContext();
     const [slots, setSlots] = useState<FreeTimeslotType[]>([]);
+    console.log(freeTimeslots)
 
     const getFreeSlotsOfDay = (date: Date) => {
         const day = ("0" + date.getDate()).slice(-2);
