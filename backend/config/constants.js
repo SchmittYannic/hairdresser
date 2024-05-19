@@ -10,6 +10,13 @@ const availableEmployees = [
 const availableCustomers = [
     "663d237c7d1a2c31d6b93f78",
     "663eab633c669f771382674e",
+    "66487c4b5449f171e57fbc6d",
+    "66487e0e0daf9b1d94aed31e",
+    "66488557cc66dcca2fbd3e63",
+    "664886bfbc82571d3bf5ca69",
+    "6648872a0a2b60302384ed29",
+    "664887986291b8beda1f513f",
+    "664888193d648080743038af",
 ];
 
 const availableServices = [
