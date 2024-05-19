@@ -2,8 +2,6 @@ import { ImCheckmark } from "react-icons/im";
 import useAppointmentContext from "../../hooks/useAppointmentContext";
 import { weekdaysAbr } from "../../constants";
 import { FreeTimeslotType } from "../../utils/types";
-import { parseISO } from "date-fns";
-import { toZonedTime } from "date-fns-tz";
 
 type DateSlotPropsType = {
     slot: FreeTimeslotType
@@ -18,18 +16,16 @@ const DateSlot = ({ slot }: DateSlotPropsType) => {
         resetAppointmentContext,
     } = useAppointmentContext();
 
-    const timeZone = String(import.meta.env.VITE_TIMEZONE) ?? "Europe/Berlin";
-
-    const endDate = toZonedTime(parseISO(slot.endDate), timeZone) //new Date(slot.endDate);
-    const startDate = toZonedTime(parseISO(slot.startDate), timeZone) //new Date(slot.startDate);
+    const endDate = new Date(slot.endDate);
+    const startDate = new Date(slot.startDate);
     const startDateString = startDate.toISOString().slice(0, 10);
     const startDateParts = startDateString.split("-");
     const formatedDate = startDateParts[2] + "." + startDateParts[1] + "." + startDateParts[0];
     const starttime = startDate.toLocaleTimeString().slice(0, 5);
     const endtime = endDate.toLocaleTimeString().slice(0, 5);
 
-    console.log(endDate)
-    console.log(startDate)
+    console.log(slot.startDate)
+    console.log(slot.endDate)
 
     const isSelected = appointment && appointment.getTime() === startDate.getTime() && selectedEmployee === slot.employee;
 
