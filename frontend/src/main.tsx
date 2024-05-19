@@ -6,6 +6,7 @@ import App from "./App.tsx"
 import ScrollToTop from "./components/ScrollToTop.tsx"
 import { SessionProvider } from "./context/SessionProvider.tsx"
 import { ServiceProvider } from "./context/ServiceProvider.tsx"
+import { AppointmentProvider } from "./context/AppointmentProvider.tsx"
 
 const queryClient = new QueryClient();
 
@@ -22,9 +23,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <QueryClientProvider client={queryClient}>
                     <SessionProvider>
                         <ServiceProvider>
-                            <Routes>
-                                <Route path="/*" element={<App />} />
-                            </Routes>
+                            <AppointmentProvider>
+                                <Routes>
+                                    <Route path="/*" element={<App />} />
+                                </Routes>
+                            </AppointmentProvider>
                         </ServiceProvider>
                     </SessionProvider>
                 </QueryClientProvider>

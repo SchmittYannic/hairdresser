@@ -1,38 +1,59 @@
 import { DayPicker, SelectSingleEventHandler } from "react-day-picker"
 import { de } from "date-fns/locale";
+import useWindowSize from "../../hooks/useWindowSize";
 import useSessionContext from "../../hooks/useSessionContext";
 import useServiceContext from "../../hooks/useServiceContext";
+import useAppointmentContext from "../../hooks/useAppointmentContext";
 import DateProposals from "./DateProposals";
 import Confirmdate from "./Confirmdate";
 import MultiRangeSlider from "../../components/ui/MultiRangeSlider";
 import { FilterTimeType } from "../../utils/types";
 import { proposalDateRangeValues } from "../../constants";
 import "./Calendar.scss"
-import useWindowSize from "../../hooks/useWindowSize";
+
+const NextButton = () => {
+    const {
+        setActiveTab,
+    } = useSessionContext();
+
+    const { appointment } = useAppointmentContext();
+
+    const handleNextButtonClicked = () => {
+        setActiveTab("confirmdate");
+    };
+
+    return (
+        <button
+            className="bookingFormButton"
+            type="button"
+            onClick={handleNextButtonClicked}
+            disabled={!appointment}
+        >
+            <span>Weiter</span>
+        </button>
+    )
+}
 
 const Bookdate = () => {
 
-    const { activeTab, setActiveTab } = useSessionContext();
     const {
-        appointment,
-        setAppointment,
+        activeTab,
+        setActiveTab,
+    } = useSessionContext();
+
+    const {
+        calendarDay,
+        setCalendarDay,
         filterTime,
         setFilterTime,
-        setSelectedEmployee,
         freeTimeslots,
     } = useServiceContext();
 
     const windowSize = useWindowSize();
     const isLgScreen = windowSize.width && windowSize.width > 640 ? true : false;
 
-    const noDateSelected = appointment ? appointment.getHours() === 0 : true;
-
     const handleBackButtonClicked = () => {
         setActiveTab("services");
-    };
-
-    const handleNextButtonClicked = () => {
-        setActiveTab("confirmdate");
     };
 
     const handleMultiRangeSliderChange = ({ min, max }: FilterTimeType) => {
@@ -43,8 +64,7 @@ const Bookdate = () => {
     };
 
     const handleSelectCalendar: SelectSingleEventHandler = (day: Date | undefined) => {
-        setSelectedEmployee("");
-        setAppointment(day);
+        setCalendarDay(day);
     }
 
     const isPastDate = (date: Date) => {
@@ -120,7 +140,7 @@ const Bookdate = () => {
                             futureDate: "future-date",
                             booked: "booked",
                         }}
-                        selected={appointment}
+                        selected={calendarDay}
                         onSelect={handleSelectCalendar}
                         locale={de}
                     />
@@ -170,14 +190,7 @@ const Bookdate = () => {
                     >
                         <span>Zurück</span>
                     </button>
-                    <button
-                        className="bookingFormButton"
-                        type="button"
-                        onClick={handleNextButtonClicked}
-                        disabled={noDateSelected}
-                    >
-                        <span>Weiter</span>
-                    </button>
+                    <NextButton />
                 </div>
             </div>
             {activeTab === "confirmdate" && <Confirmdate />}

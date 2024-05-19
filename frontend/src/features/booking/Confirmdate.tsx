@@ -2,24 +2,29 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { isAxiosError } from "axios";
 import useServiceContext from "../../hooks/useServiceContext";
 import useSessionContext from "../../hooks/useSessionContext";
+import useAppointmentContext from "../../hooks/useAppointmentContext";
 import useCreateAppointment from "../../hooks/useCreateAppointment";
 import AsyncButton from "../../components/ui/AsyncButton"
-import {
-    allServicesInfo,
-    weekdaysAbr,
-} from "../../constants";
+import { allServicesInfo, weekdaysAbr, } from "../../constants";
 import { AllServicesInfoType } from "../../utils/types";
 
 const Confirmdate = () => {
 
-    const { setActiveTab, userInfo } = useSessionContext();
+    const {
+        setActiveTab,
+        userInfo,
+    } = useSessionContext();
+
+    const {
+        serviceInfo,
+    } = useServiceContext();
+
     const {
         appointment,
-        serviceInfo,
         selectedEmployee,
         remarks,
-        setRemarks
-    } = useServiceContext();
+        setRemarks,
+    } = useAppointmentContext();
 
     const {
         mutate,
@@ -69,7 +74,7 @@ const Confirmdate = () => {
     }
 
     const handleTextareaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        setTextareaValue(event.target.value)
+        setTextareaValue(event.target.value);
     }
 
     useEffect(() => {

@@ -28,15 +28,12 @@ const defaultFilterTime: FilterTimeType = {
 type ServiceContextType = {
     serviceInfo: ServiceInfoType,
     setServiceInfo: React.Dispatch<React.SetStateAction<ServiceInfoType>>,
-    appointment: Date | undefined,
-    setAppointment: React.Dispatch<React.SetStateAction<Date | undefined>>,
-    selectedEmployee: string,
-    setSelectedEmployee: React.Dispatch<React.SetStateAction<string>>,
+    calendarDay: Date | undefined,
+    setCalendarDay: React.Dispatch<React.SetStateAction<Date | undefined>>,
     filterTime: FilterTimeType,
     setFilterTime: React.Dispatch<React.SetStateAction<FilterTimeType>>,
-    remarks: string,
-    setRemarks: React.Dispatch<React.SetStateAction<string>>,
     resetServiceInfo: () => void,
+    resetServiceContext: () => void,
     triggerGetFreeSlots: UseMutateFunction<any, unknown, FilterFreeSlotDataType, unknown>,
     isGetFreeSlotsError: boolean,
     isGetFreeSlotsLoading: boolean,
@@ -46,15 +43,12 @@ type ServiceContextType = {
 const initContextState = {
     serviceInfo: defaultServiceInfo,
     setServiceInfo: () => { },
-    appointment: undefined,
-    setAppointment: () => { },
-    selectedEmployee: "",
-    setSelectedEmployee: () => { },
+    calendarDay: undefined,
+    setCalendarDay: () => { },
     filterTime: defaultFilterTime,
     setFilterTime: () => { },
-    remarks: "",
-    setRemarks: () => { },
     resetServiceInfo: () => { },
+    resetServiceContext: () => { },
     triggerGetFreeSlots: () => { },
     isGetFreeSlotsError: false,
     isGetFreeSlotsLoading: false,
@@ -65,10 +59,8 @@ export const ServiceContext = createContext<ServiceContextType>(initContextState
 
 export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement => {
     const [serviceInfo, setServiceInfo] = useState<ServiceInfoType>(defaultServiceInfo);
-    const [appointment, setAppointment] = useState<Date | undefined>(undefined);
-    const [selectedEmployee, setSelectedEmployee] = useState<string>("");
+    const [calendarDay, setCalendarDay] = useState<Date | undefined>(undefined);
     const [filterTime, setFilterTime] = useState<FilterTimeType>(defaultFilterTime);
-    const [remarks, setRemarks] = useState<string>("");
     const {
         mutate: triggerGetFreeSlots,
         isError: isGetFreeSlotsError,
@@ -81,20 +73,23 @@ export const ServiceProvider = ({ children }: PropsWithChildren): ReactElement =
         setServiceInfo(defaultServiceInfo);
     }
 
+    const resetServiceContext = () => {
+        resetServiceInfo();
+        setCalendarDay(undefined);
+        setFilterTime(defaultFilterTime)
+    }
+
     return (
         <ServiceContext.Provider
             value={{
                 serviceInfo,
                 setServiceInfo,
-                appointment,
-                setAppointment,
-                selectedEmployee,
-                setSelectedEmployee,
+                calendarDay,
+                setCalendarDay,
                 filterTime,
                 setFilterTime,
-                remarks,
-                setRemarks,
                 resetServiceInfo,
+                resetServiceContext,
                 triggerGetFreeSlots,
                 isGetFreeSlotsError,
                 isGetFreeSlotsLoading,

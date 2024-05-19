@@ -2,6 +2,7 @@ import { useState, MouseEvent } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { ImCheckmark } from "react-icons/im";
 import useServiceContext from "../../../hooks/useServiceContext";
+import useAppointmentContext from "../../../hooks/useAppointmentContext";
 import Dialog from "../../../components/ui/Dialog"
 import { staffarbitrary } from "../../../assets";
 import { EmployeeType, OfferedServiceType } from "../../../utils/types";
@@ -16,22 +17,23 @@ const ServiceDialog = ({ service }: ServiceDialogPropsType) => {
     const {
         serviceInfo,
         setServiceInfo,
-        resetServiceInfo,
-        setAppointment,
-        setSelectedEmployee,
+        resetServiceContext,
     } = useServiceContext();
+
+    const {
+        resetAppointmentContext,
+    } = useAppointmentContext();
 
     const [isOpen, setIsOpen] = useState(false);
     const [isInfoOpen, setIsInfoOpen] = useState(false);
 
     const handleServiceClicked = () => {
-        setAppointment(undefined); //reset appointment in case user went back to step 1 and selected new option
-        setSelectedEmployee(""); //reset selectedEmployee in case user went back to step 1 and selected new option
+        resetAppointmentContext(); //reset appointment in case user went back to step 1 and selected new option
 
         if (serviceInfo.service_name === service.service_name) {
-            resetServiceInfo()
+            resetServiceContext(); // reset ServiceContext when service deselected
         } else {
-            setIsOpen(true)
+            setIsOpen(true);
         }
     }
 

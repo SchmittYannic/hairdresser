@@ -5,7 +5,7 @@ import DateSlot from "./DateSlot";
 import { parseTime } from "../../utils/functions";
 
 const DateProposals = () => {
-    const { appointment, filterTime, freeTimeslots } = useServiceContext();
+    const { calendarDay, filterTime, freeTimeslots } = useServiceContext();
     const [slots, setSlots] = useState<FreeTimeslotType[]>([]);
 
     const getFreeSlotsOfDay = (date: Date) => {
@@ -38,8 +38,8 @@ const DateProposals = () => {
     };
 
     useEffect(() => {
-        if (appointment) {
-            const freeSlotsOfDay = getFreeSlotsOfDay(appointment);
+        if (calendarDay) {
+            const freeSlotsOfDay = getFreeSlotsOfDay(calendarDay);
             freeSlotsOfDay.sort((a, b) => {
                 const dateA = new Date(a.startDate);
                 const dateB = new Date(b.startDate);
@@ -50,15 +50,15 @@ const DateProposals = () => {
         } else {
             setSlots([]);
         }
-    }, [appointment, filterTime]);
+    }, [calendarDay, filterTime]);
 
     return (
         <>
-            <div className={`proposalsFeedback${!appointment || (appointment && slots.length === 0) ? "" : " excluded"}`}>
+            <div className={`proposalsFeedback${!calendarDay || (calendarDay && slots.length === 0) ? "" : " excluded"}`}>
                 <hr className="horizontal-ruler" />
                 <span className="infoLabel">
-                    {!appointment && "Sie haben noch keinen Tag gewählt"}
-                    {appointment && slots.length === 0 && "Keine freien Termine an diesem Tag"}
+                    {!calendarDay && "Sie haben noch keinen Tag gewählt"}
+                    {calendarDay && slots.length === 0 && "Keine freien Termine an diesem Tag"}
                 </span>
                 <hr className="horizontal-ruler" />
             </div>

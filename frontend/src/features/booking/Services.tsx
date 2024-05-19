@@ -1,23 +1,20 @@
+import { useEffect } from "react";
 import { offeredColorationServices, offeredCuttingServices, offeredShavingServices } from "../../constants";
 import useServiceContext from "../../hooks/useServiceContext";
 import useSessionContext from "../../hooks/useSessionContext";
 import ServiceDialog from "./dialogs/ServiceDialog";
 import AsyncButton from "../../components/ui/AsyncButton";
 import Bookdate from "./Bookdate";
-import { useEffect } from "react";
 
 
 const Services = () => {
 
     const {
         serviceInfo,
-        resetServiceInfo,
+        resetServiceContext,
         triggerGetFreeSlots,
         isGetFreeSlotsError,
         isGetFreeSlotsLoading,
-        setAppointment,
-        setSelectedEmployee,
-        setRemarks,
     } = useServiceContext();
 
     const { activeTab, setActiveTab } = useSessionContext();
@@ -35,13 +32,11 @@ const Services = () => {
     };
 
     useEffect(() => {
+        // reset Service and Appointment contexts when Services Component dismounts -> user leaves booking process
         return () => {
-            resetServiceInfo();
-            setAppointment(undefined);
-            setSelectedEmployee("");
-            setRemarks("");
+            resetServiceContext();
         }
-    }, [])
+    }, []);
 
     return (
         <>
