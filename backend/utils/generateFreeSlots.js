@@ -22,8 +22,6 @@ const generateTimeSlotsOfDay = (date, duration, employee) => {
     closingtimeDate.setSeconds(0);
     closingtimeDate.setMilliseconds(0);
 
-    console.log("closingtimeDate: ", closingtimeDate)
-
     //construct startingtime Date
     const hours = date.getHours();
     const minutes = date.getMinutes();

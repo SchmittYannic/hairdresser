@@ -24,9 +24,6 @@ const DateSlot = ({ slot }: DateSlotPropsType) => {
     const starttime = startDate.toLocaleTimeString().slice(0, 5);
     const endtime = endDate.toLocaleTimeString().slice(0, 5);
 
-    console.log(slot.startDate)
-    console.log(slot.endDate)
-
     const isSelected = appointment && appointment.getTime() === startDate.getTime() && selectedEmployee === slot.employee;
 
     const handleSlotClicked = () => {
