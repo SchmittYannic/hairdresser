@@ -93,12 +93,15 @@ const EditUser = () => {
                     </span>
                     <div className="bookingForm">
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="editGenderSelectbox"
+                                className="bookingFormLabel"
+                            >
                                 Anrede
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <select
-                                    id="genderSelectbox"
+                                    id="editGenderSelectbox"
                                     className={`bookingSelectbox${errors.title ? " error" : ""}`}
                                     {...register("title")}
                                     defaultValue={userInfo.title}
@@ -122,14 +125,18 @@ const EditUser = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="editLastname"
+                                className="bookingFormLabel"
+                            >
                                 Nachname
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.lastname ? " error" : ""}`}
                                 >
                                     <input
+                                        id="editLastname"
                                         autoCapitalize="none"
                                         type="text"
                                         maxLength={80}
@@ -146,14 +153,18 @@ const EditUser = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="editFirstname"
+                                className="bookingFormLabel"
+                            >
                                 Vorname
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.firstname ? " error" : ""}`}
                                 >
                                     <input
+                                        id="editFirstname"
                                         autoCapitalize="none"
                                         type="text"
                                         maxLength={80}
@@ -170,14 +181,18 @@ const EditUser = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="editBirthday"
+                                className="bookingFormLabel"
+                            >
                                 Geburtstag
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.birthday ? " error" : ""}`}
                                 >
                                     <input
+                                        id="editBirthday"
                                         autoCapitalize="none"
                                         type="text"
                                         placeholder="tt.mm.jjjj"
@@ -194,14 +209,18 @@ const EditUser = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="editEmail"
+                                className="bookingFormLabel"
+                            >
                                 E-Mail-Adresse
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.email ? " error" : ""}`}
                                 >
                                     <input
+                                        id="editEmail"
                                         autoCapitalize="none"
                                         type="text"
                                         maxLength={80}
@@ -218,14 +237,18 @@ const EditUser = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="editPhonenumber"
+                                className="bookingFormLabel"
+                            >
                                 Handynummer
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.phonenumber ? " error" : ""}`}
                                 >
                                     <input
+                                        id="editPhonenumber"
                                         autoCapitalize="none"
                                         type="text"
                                         maxLength={80}
@@ -249,14 +272,18 @@ const EditUser = () => {
                     </span>
                     <div className="bookingForm">
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="editOldpassword"
+                                className="bookingFormLabel"
+                            >
                                 Altes Passwort
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.oldpassword ? " error" : ""}`}
                                 >
                                     <input
+                                        id="editOldpassword"
                                         autoCapitalize="none"
                                         type="password"
                                         maxLength={80}
@@ -273,14 +300,18 @@ const EditUser = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="editPassword"
+                                className="bookingFormLabel"
+                            >
                                 Neues Passwort
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.password ? " error" : ""}`}
                                 >
                                     <input
+                                        id="editPassword"
                                         autoCapitalize="none"
                                         type="password"
                                         maxLength={80}
@@ -297,14 +328,18 @@ const EditUser = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="editPasswordrepeat"
+                                className="bookingFormLabel"
+                            >
                                 Passwort wiederholen
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.passwordrepeat ? " error" : ""}`}
                                 >
                                     <input
+                                        id="editPasswordrepeat"
                                         autoCapitalize="none"
                                         type="password"
                                         maxLength={80}

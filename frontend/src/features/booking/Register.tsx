@@ -96,9 +96,12 @@ const Register = () => {
                     </span>
                     <div className="bookingForm">
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="genderSelectbox"
+                                className="bookingFormLabel"
+                            >
                                 Anrede
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <select
                                     id="genderSelectbox"
@@ -127,14 +130,18 @@ const Register = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="registerLastname"
+                                className="bookingFormLabel"
+                            >
                                 Nachname
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.lastname ? " error" : ""}`}
                                 >
                                     <input
+                                        id="registerLastname"
                                         autoCapitalize="none"
                                         type="text"
                                         maxLength={80}
@@ -150,14 +157,18 @@ const Register = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="registerFirstname"
+                                className="bookingFormLabel"
+                            >
                                 Vorname
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.firstname ? " error" : ""}`}
                                 >
                                     <input
+                                        id="registerFirstname"
                                         autoCapitalize="none"
                                         type="text"
                                         maxLength={80}
@@ -173,14 +184,18 @@ const Register = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="registerBirthday"
+                                className="bookingFormLabel"
+                            >
                                 Geburtstag
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.birthday ? " error" : ""}`}
                                 >
                                     <input
+                                        id="registerBirthday"
                                         autoCapitalize="none"
                                         type="text"
                                         placeholder="tt.mm.jjjj"
@@ -197,14 +212,18 @@ const Register = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="registerEmail"
+                                className="bookingFormLabel"
+                            >
                                 E-Mail-Adresse
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.email ? " error" : ""}`}
                                 >
                                     <input
+                                        id="registerEmail"
                                         autoCapitalize="none"
                                         type="text"
                                         maxLength={80}
@@ -220,14 +239,18 @@ const Register = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="registerPhonenumber"
+                                className="bookingFormLabel"
+                            >
                                 Handynummer
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.phonenumber ? " error" : ""}`}
                                 >
                                     <input
+                                        id="registerPhonenumber"
                                         autoCapitalize="none"
                                         type="text"
                                         maxLength={80}
@@ -251,14 +274,18 @@ const Register = () => {
                     </span>
                     <div className="bookingForm">
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="registerPassword"
+                                className="bookingFormLabel"
+                            >
                                 Passwort
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.password ? " error" : ""}`}
                                 >
                                     <input
+                                        id="registerPassword"
                                         autoCapitalize="none"
                                         type="password"
                                         maxLength={80}
@@ -275,14 +302,18 @@ const Register = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="registerPasswordrepeat"
+                                className="bookingFormLabel"
+                            >
                                 Passwort wiederholen
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div
                                     className={`textfield${errors.passwordrepeat ? " error" : ""}`}
                                 >
                                     <input
+                                        id="registerPasswordrepeat"
                                         autoCapitalize="none"
                                         type="password"
                                         maxLength={80}

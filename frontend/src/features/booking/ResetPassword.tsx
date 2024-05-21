@@ -12,12 +12,16 @@ const ResetPassword = () => {
                 </span>
                 <form className="bookingForm">
                     <div className="bookingFormRow">
-                        <span className="bookingFormLabel">
+                        <label
+                            htmlFor="resetEmail"
+                            className="bookingFormLabel"
+                        >
                             E-Mail-Adresse
-                        </span>
+                        </label>
                         <div className="bookingFormField">
                             <div className="textfield">
                                 <input
+                                    id="resetEmail"
                                     autoCapitalize="none"
                                     type="text"
                                     maxLength={80}

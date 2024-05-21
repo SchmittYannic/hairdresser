@@ -176,11 +176,15 @@ const Confirmdate = () => {
             <div className="clear-row"></div>
             <div className="col-2-1">
                 <div className="form">
-                    <span className="bookingFormLabel remarksLabel">
+                    <label
+                        htmlFor="remarksTextarea"
+                        className="bookingFormLabel remarksLabel"
+                    >
                         Möchten Sie uns noch etwas mitteilen?
-                    </span>
+                    </label>
                     <div className="remarksTextarea textfield">
                         <textarea
+                            id="remarksTextarea"
                             value={textareaValue}
                             onChange={handleTextareaChange}
                             maxLength={255}

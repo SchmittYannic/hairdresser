@@ -66,12 +66,16 @@ const Login = () => {
                     </span>
                     <div className="bookingForm">
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="loginEmail"
+                                className="bookingFormLabel"
+                            >
                                 E-Mail-Adresse
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div className={`textfield${errors.email ? " error" : ""}`}>
                                     <input
+                                        id="loginEmail"
                                         autoCapitalize="none"
                                         type="text"
                                         maxLength={80}
@@ -87,12 +91,16 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="bookingFormRow">
-                            <span className="bookingFormLabel">
+                            <label
+                                htmlFor="loginPassword"
+                                className="bookingFormLabel"
+                            >
                                 Passwort
-                            </span>
+                            </label>
                             <div className="bookingFormField">
                                 <div className={`textfield${errors.password ? " error" : ""}`}>
                                     <input
+                                        id="loginPassword"
                                         autoCapitalize="none"
                                         type="password"
                                         autoComplete="on"
