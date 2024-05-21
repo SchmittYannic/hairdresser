@@ -18,6 +18,7 @@ const PersistLogin = () => {
         retry: false,
         refetchOnWindowFocus: false,
         onSuccess: ({ userInfo, cookieInfo }) => {
+            if (!userInfo || !cookieInfo) return
             setUserInfo(userInfo);
             setCookieInfo(cookieInfo);
         },
