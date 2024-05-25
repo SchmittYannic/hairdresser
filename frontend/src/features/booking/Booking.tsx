@@ -27,8 +27,9 @@ const Booking = () => {
     const isLgScreen = windowSize.width && windowSize.width > 640 ? true : false;
     const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
-    const isDashboard = (activeTab === "dashboard" || activeTab === "editUser" || activeTab === "pastappointments" || activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
+    const isDashboard = (activeTab === "dashboard" || activeTab === "editUser" || activeTab === "deleteUser" || activeTab === "pastappointments" || activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
     const isAppointmentBooking = (activeTab === "services" || activeTab === "bookdate" || activeTab === "confirmdate");
+    const isSmallPage = activeTab === "reset" || activeTab === "pastappointments" || activeTab === "deleteUser"
 
     const handleLogoutClicked = () => {
         setIsLogoutDialogOpen(true);
@@ -63,7 +64,7 @@ const Booking = () => {
                     />
                 </div>
             </header>
-            <main className={`booking-content${activeTab === "reset" || activeTab === "pastappointments" ? " small" : ""}`}>
+            <main className={`booking-content${isSmallPage ? " small" : ""}`}>
                 <div className="pageHeader">
                     <div className="col-1-1">
                         <span className="pageHeaderCaption">
@@ -73,6 +74,7 @@ const Booking = () => {
                             {activeTab === "agb" && "AGB und Datenschutzerklärung"}
                             {activeTab === "dashboard" && "Terminübersicht"}
                             {activeTab === "editUser" && "Benachrichtigungen und Kontaktdaten ändern"}
+                            {activeTab === "deleteUser" && "Konto löschen"}
                             {activeTab === "pastappointments" && "Vergangene Termine"}
                             {isAppointmentBooking && "Neuer Termin"}
                         </span>
@@ -125,13 +127,13 @@ const Booking = () => {
                             </div>
                         }
                         {
-                            isDashboard &&
+                            isDashboard && !isSmallPage &&
                             <div className="sessionTimeoutLabelContainer">
                                 <Countdown />
                             </div>
                         }
                         {
-                            isDashboard &&
+                            isDashboard && !isSmallPage &&
                             <div className="headerButtonContainer">
                                 <button
                                     className="inverseButton bookingButton logoutButton"

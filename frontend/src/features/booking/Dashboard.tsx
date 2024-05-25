@@ -1,6 +1,7 @@
 import { MouseEvent, useEffect } from "react";
 import useSessionContext from "../../hooks/useSessionContext"
 import EditUser from "./EditUser";
+import DeleteUser from "./DeleteUser";
 import Services from "./Services";
 import Appointment from "./Appointment";
 import ArchivedAppointment from "./ArchivedAppointment";
@@ -195,7 +196,8 @@ const Dashboard = () => {
                 </div>
                 <div className="clear-row"></div>
             </div>
-            {activeTab === "editUser" && <EditUser />}
+            {(activeTab === "editUser" || activeTab === "deleteUser") && <EditUser />}
+            {activeTab === "deleteUser" && <DeleteUser />}
             {activeTab === "pastappointments" && <PastAppointments />}
             {isAppointmentBooking && <Services />}
         </>
