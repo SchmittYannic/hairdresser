@@ -212,7 +212,53 @@ const updateUser = async (req, res) => {
     }
 }
 
+// @desc Deletes user
+// @route PATCH /users/delete
+// @access Private
+const deleteUser = async (req, res) => {
+    const cookieInfo = {
+        cookie_expires: req.session.cookie._expires,
+        cookie_originalMaxAge: req.session.cookie.originalMaxAge,
+    }
+
+    try {
+        const { userId } = req.session.user;
+        const { password } = req.body;
+
+        if (!password) {
+            return res.status(400).json({ message: "Accountlöschung muss mit Passwort bestätigt werden", context: { label: "password" }, cookieInfo });
+        }
+
+        const foundUser = await User.findById(userId).exec();
+
+        if (!foundUser) {
+            return res.status(400).json({ message: "Konnte Nutzer id nicht in Datenbank finden", cookieInfo });
+        }
+
+        const match = await bcrypt.compare(password, foundUser.password);
+
+        if (!match) {
+            return res.status(401).json({ message: "Ungültiges Passwort", context: { label: "password" }, cookieInfo });
+        }
+
+        const result = await foundUser.deleteOne();
+
+        if (!result) {
+            return res.status(400).json({ message: "Fehler bei Löschung des Accounts aus Datenbank", cookieInfo })
+        }
+
+        req.session.destroy(err => {
+            if (err) throw (err);
+            res.clearCookie(process.env.SESS_NAME);
+            res.status(200).json({ message: "Account erfolgreich gelöscht" });
+        });
+    } catch (error) {
+        return res.status(400).json({ message: "Fehler bei Löschung des Accounts", cookieInfo })
+    }
+}
+
 export {
     createNewUser,
     updateUser,
+    deleteUser,
 }
