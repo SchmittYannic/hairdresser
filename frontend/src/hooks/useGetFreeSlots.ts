@@ -19,7 +19,7 @@ const useGetFreeSlots = () => {
             if (isAxiosError(error) && error.response) {
                 console.error(error.response.data.message)
             } else {
-                console.error("An error occured in useCreateNewUser")
+                console.error("An error occured in useGetFreeSlots")
             }
         },
         onSuccess: ({ cookieInfo }) => {

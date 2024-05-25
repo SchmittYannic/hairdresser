@@ -21,7 +21,7 @@ const useDeleteAppointment = () => {
             if (isAxiosError(error) && error.response) {
                 console.error(error.response.data.message)
             } else {
-                console.error("An error occured in useLogin")
+                console.error("An error occured in useDeleteAppointment")
             }
         },
     })
