@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, MouseEvent } from "react";
 import { isAxiosError } from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -10,7 +10,7 @@ import useUpdateUser from "../../hooks/useUpdateUser";
 
 const EditUser = () => {
 
-    const { userInfo, setActiveTab } = useSessionContext();
+    const { userInfo, activeTab, setActiveTab } = useSessionContext();
 
     const {
         mutate,
@@ -63,6 +63,11 @@ const EditUser = () => {
 
     const isServerError = (isError && !isAxiosError(errorApi) || isError && isAxiosError(errorApi) && !errorApi.response);
 
+    const handleDeleteAccountClicked = (e: MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        setActiveTab("deleteUser");
+    }
+
     useEffect(() => {
         if (!isError) return
         if (!isAxiosError(errorApi)) return
@@ -85,7 +90,7 @@ const EditUser = () => {
     }, [isSubmitSuccessful]);
 
     return (
-        <div className="page">
+        <div className={`page${activeTab !== "editUser" ? " excluded" : ""}`}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="col-2-1">
                     <span className="captionLabel">
@@ -401,7 +406,10 @@ const EditUser = () => {
                         </div>
                         <div className="container"></div>
                         <span className="deleteAccountLabel">
-                            <a href="">
+                            <a
+                                href=""
+                                onClick={handleDeleteAccountClicked}
+                            >
                                 Konto löschen
                             </a>
                         </span>
