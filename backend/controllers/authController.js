@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt"
 import User from "../models/User.js"
 import loginschema from "../validation/loginschema.js"
+import { emailschema } from "../validation/userschema.js";
 import { sessionizeUser, parseError, birthdayToString } from "../utils/helpers.js";
 
 // @desc login
@@ -109,8 +110,32 @@ const loggedIn = async ({ session }, res) => {
     }
 }
 
+// @desc resetPasswordEmail
+// @route POST /
+// @access Public
+const resetPasswordEmail = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        await emailschema.validateAsync(email);
+
+        const foundUser = await User.findOne({ email: email.toLowerCase() }).lean().exec();
+
+        if (!foundUser) {
+            return res.status(400).json({ message: "Email ist nicht registriert", context: { label: "email" } });
+        }
+
+        //send email with token
+
+        return res.status(200).json({ message: "Email mit Anleitung zur Wiederherstellung des Passworts gesendet" });
+    } catch (err) {
+        return res.status(400).send({ ...parseError(err) });
+    }
+}
+
 export {
     login,
     logout,
     loggedIn,
+    resetPasswordEmail,
 }
