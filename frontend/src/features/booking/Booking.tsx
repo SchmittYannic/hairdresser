@@ -13,8 +13,6 @@ import Dashboard from "./Dashboard";
 import Countdown from "../../components/Countdown";
 import AsyncButton from "../../components/ui/AsyncButton";
 import Dialog from "../../components/ui/Dialog";
-import { logo } from "../../assets";
-import "./Booking.scss";
 
 const Booking = () => {
 
@@ -54,157 +52,146 @@ const Booking = () => {
     }, []);
 
     return (
-        <div id="booking">
-            <header className="header">
-                <div className="headerInlay">
-                    <img
-                        className="headerImage"
-                        src={logo}
-                        alt="hairdresser logo"
-                    />
-                </div>
-            </header>
-            <main className={`booking-content${isSmallPage ? " small" : ""}`}>
-                <div className="pageHeader">
-                    <div className="col-1-1">
-                        <span className="pageHeaderCaption">
-                            {activeTab === "login" && "Willkommen auf unserem Online-Terminbuch!"}
-                            {activeTab === "register" && "Registrierung"}
-                            {activeTab === "reset" && "Passwort zurücksetzen"}
-                            {activeTab === "agb" && "AGB und Datenschutzerklärung"}
-                            {activeTab === "dashboard" && "Terminübersicht"}
-                            {activeTab === "editUser" && "Benachrichtigungen und Kontaktdaten ändern"}
-                            {activeTab === "deleteUser" && "Konto löschen"}
-                            {activeTab === "pastappointments" && "Vergangene Termine"}
-                            {isAppointmentBooking && "Neuer Termin"}
-                        </span>
-                        <span className="pageHeaderInfo">
-                            {activeTab === "login" && "Hier können Sie Ihre nächsten Termine schnell und einfach online buchen - rund um die Uhr, auch am Wochenende."}
-                        </span>
-                        {
-                            isAppointmentBooking && isLgScreen &&
-                            <div className="progressBar">
-                                <div className="progressSteps">
-                                    <div className="step">
-                                        <a
-                                            className={`${activeTab === "services" ? "act" : "done"}`}
-                                            href=""
-                                            onClick={activeTab !== "services" ? handleStep1Clicked : () => { }}
-                                        >
-                                            {activeTab === "services"
-                                                ? 1 :
-                                                <span className="icon-container">
-                                                    <ImCheckmark aria-hidden />
-                                                </span>
-                                            }
-                                        </a>
-                                        <span>Leistungen wählen</span>
-                                    </div>
-                                    <div className="step">
-                                        <a
-                                            className={`${activeTab === "bookdate" ? "act" : activeTab === "services" ? "" : "done"}`}
-                                            href=""
-                                        >
-                                            {(activeTab === "bookdate" || activeTab === "services")
-                                                ? 2 :
-                                                <span className="icon-container">
-                                                    <ImCheckmark aria-hidden />
-                                                </span>
-                                            }
-                                        </a>
-                                        <span>Termin wählen</span>
-                                    </div>
-                                    <div className="step">
-                                        <a
-                                            className={`${activeTab === "confirmdate" ? "act" : ""}`}
-                                            href=""
-                                        >
-                                            3
-                                        </a>
-                                        <span>Termin bestätigen</span>
-                                    </div>
+        <main className={`booking-content${isSmallPage ? " small" : ""}`}>
+            <div className="pageHeader">
+                <div className="col-1-1">
+                    <span className="pageHeaderCaption">
+                        {activeTab === "login" && "Willkommen auf unserem Online-Terminbuch!"}
+                        {activeTab === "register" && "Registrierung"}
+                        {activeTab === "reset" && "Passwort zurücksetzen"}
+                        {activeTab === "agb" && "AGB und Datenschutzerklärung"}
+                        {activeTab === "dashboard" && "Terminübersicht"}
+                        {activeTab === "editUser" && "Benachrichtigungen und Kontaktdaten ändern"}
+                        {activeTab === "deleteUser" && "Konto löschen"}
+                        {activeTab === "pastappointments" && "Vergangene Termine"}
+                        {isAppointmentBooking && "Neuer Termin"}
+                    </span>
+                    <span className="pageHeaderInfo">
+                        {activeTab === "login" && "Hier können Sie Ihre nächsten Termine schnell und einfach online buchen - rund um die Uhr, auch am Wochenende."}
+                    </span>
+                    {
+                        isAppointmentBooking && isLgScreen &&
+                        <div className="progressBar">
+                            <div className="progressSteps">
+                                <div className="step">
+                                    <a
+                                        className={`${activeTab === "services" ? "act" : "done"}`}
+                                        href=""
+                                        onClick={activeTab !== "services" ? handleStep1Clicked : () => { }}
+                                    >
+                                        {activeTab === "services"
+                                            ? 1 :
+                                            <span className="icon-container">
+                                                <ImCheckmark aria-hidden />
+                                            </span>
+                                        }
+                                    </a>
+                                    <span>Leistungen wählen</span>
+                                </div>
+                                <div className="step">
+                                    <a
+                                        className={`${activeTab === "bookdate" ? "act" : activeTab === "services" ? "" : "done"}`}
+                                        href=""
+                                    >
+                                        {(activeTab === "bookdate" || activeTab === "services")
+                                            ? 2 :
+                                            <span className="icon-container">
+                                                <ImCheckmark aria-hidden />
+                                            </span>
+                                        }
+                                    </a>
+                                    <span>Termin wählen</span>
+                                </div>
+                                <div className="step">
+                                    <a
+                                        className={`${activeTab === "confirmdate" ? "act" : ""}`}
+                                        href=""
+                                    >
+                                        3
+                                    </a>
+                                    <span>Termin bestätigen</span>
                                 </div>
                             </div>
-                        }
-                        {
-                            isDashboard && !isSmallPage &&
-                            <div className="sessionTimeoutLabelContainer">
-                                <Countdown />
-                            </div>
-                        }
-                        {
-                            isDashboard && !isSmallPage &&
-                            <div className="headerButtonContainer">
-                                <button
-                                    className="inverseButton bookingButton logoutButton"
-                                    type="button"
-                                    onClick={handleLogoutClicked}
-                                >
-                                    <span className="icon-container">
-                                        <MdLogout aria-hidden />
-                                    </span>
-                                    <span className="icon-gap">
-                                        Abmelden
-                                    </span>
-                                </button>
-                            </div>
-                        }
-                        <hr className="horizontal-ruler" />
-                    </div>
-                </div>
-                <div className="pageMaster">
-                    {activeTab === "login" && <Login />}
-                    {activeTab === "reset" && <ResetPasswordEmail />}
-                    {(activeTab === "register" || activeTab === "agb") && <Register />}
-                    {(activeTab === "register" || activeTab === "agb") && <AGB />}
-                    {isDashboard && <Dashboard />}
-                </div>
-
-                {
-                    isLogoutDialogOpen && isDashboard &&
-                    <Dialog setDialog={setIsLogoutDialogOpen}>
-                        <div className="dialog__caption ">
-                            Terminbuch beenden
                         </div>
-                        <div className="dialog__content">
-                            <span className="label">
-                                Wollen Sie sich aus dem Terminbuch ausloggen?
-                            </span>
+                    }
+                    {
+                        isDashboard && !isSmallPage &&
+                        <div className="sessionTimeoutLabelContainer">
+                            <Countdown />
                         </div>
-                        <div className="dialog__button__container">
-                            <AsyncButton
-                                className="bookingFormButton"
-                                type="button"
-                                onClick={handleLogoutYesClicked}
-                                isLoading={isLogoutLoading}
-                                disabled={isLogoutLoading}
-                            >
-                                <span className="icon-container">
-                                    <ImCheckmark aria-hidden />
-                                </span>
-                                <span className="icon-gap">
-                                    ja
-                                </span>
-                            </AsyncButton>
+                    }
+                    {
+                        isDashboard && !isSmallPage &&
+                        <div className="headerButtonContainer">
                             <button
-                                className="bookingFormButton"
+                                className="inverseButton bookingButton logoutButton"
                                 type="button"
-                                onClick={handleLogoutNoClicked}
+                                onClick={handleLogoutClicked}
                             >
                                 <span className="icon-container">
-                                    <FaPlus aria-hidden style={{ transform: "rotate(45deg)" }} />
+                                    <MdLogout aria-hidden />
                                 </span>
                                 <span className="icon-gap">
-                                    nein
+                                    Abmelden
                                 </span>
                             </button>
                         </div>
-                    </Dialog>
-                }
+                    }
+                    <hr className="horizontal-ruler" />
+                </div>
+            </div>
+            <div className="pageMaster">
+                {activeTab === "login" && <Login />}
+                {activeTab === "reset" && <ResetPasswordEmail />}
+                {(activeTab === "register" || activeTab === "agb") && <Register />}
+                {(activeTab === "register" || activeTab === "agb") && <AGB />}
+                {isDashboard && <Dashboard />}
+            </div>
 
-                <div className="bookingFooter"></div>
-            </main>
-        </div>
+            {
+                isLogoutDialogOpen && isDashboard &&
+                <Dialog setDialog={setIsLogoutDialogOpen}>
+                    <div className="dialog__caption ">
+                        Terminbuch beenden
+                    </div>
+                    <div className="dialog__content">
+                        <span className="label">
+                            Wollen Sie sich aus dem Terminbuch ausloggen?
+                        </span>
+                    </div>
+                    <div className="dialog__button__container">
+                        <AsyncButton
+                            className="bookingFormButton"
+                            type="button"
+                            onClick={handleLogoutYesClicked}
+                            isLoading={isLogoutLoading}
+                            disabled={isLogoutLoading}
+                        >
+                            <span className="icon-container">
+                                <ImCheckmark aria-hidden />
+                            </span>
+                            <span className="icon-gap">
+                                ja
+                            </span>
+                        </AsyncButton>
+                        <button
+                            className="bookingFormButton"
+                            type="button"
+                            onClick={handleLogoutNoClicked}
+                        >
+                            <span className="icon-container">
+                                <FaPlus aria-hidden style={{ transform: "rotate(45deg)" }} />
+                            </span>
+                            <span className="icon-gap">
+                                nein
+                            </span>
+                        </button>
+                    </div>
+                </Dialog>
+            }
+
+            <div className="bookingFooter"></div>
+        </main>
     )
 }
 
