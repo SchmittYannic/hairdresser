@@ -1,6 +1,9 @@
-import bcrypt from "bcrypt"
-import User from "../models/User.js"
-import loginschema from "../validation/loginschema.js"
+import nodemailer from "nodemailer";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import User from "../models/User.js";
+import Resetpasswordtoken from "../models/Resetpasswordtoken.js";
+import loginschema from "../validation/loginschema.js";
 import { emailschema } from "../validation/userschema.js";
 import { sessionizeUser, parseError, birthdayToString } from "../utils/helpers.js";
 
@@ -113,7 +116,7 @@ const loggedIn = async ({ session }, res) => {
 // @desc resetPasswordEmail
 // @route POST /
 // @access Public
-const resetPasswordEmail = async (req, res) => {
+const resetPasswordEmail = async (req, res, next) => {
     try {
         const { email } = req.body;
 
@@ -125,12 +128,91 @@ const resetPasswordEmail = async (req, res) => {
             return res.status(400).json({ message: "Email ist nicht registriert", context: { label: "email" } });
         }
 
-        //send email with token
+        if (foundUser.roles.includes("Employee") || foundUser.roles.includes("Admin")) {
+            return res.status(401).json({ message: "Unauthorized - Kontaktieren Sie den Headadmin für eine Wiederherstellung des Passworts" });
+        }
 
-        return res.status(200).json({ message: "Email mit Anleitung zur Wiederherstellung des Passworts gesendet" });
+        const resetPasswordToken = jwt.sign(
+            {
+                "UserInfo": {
+                    "userId": foundUser._id,
+                }
+            },
+            process.env.RESET_PASSWORD_TOKEN_SECRET,
+            {
+                expiresIn: process.env.EXPIRATION_RESET_TOKEN + "s"
+            }
+        );
+
+        const userToken = await Resetpasswordtoken.findOne({ user: foundUser._id }).exec();
+
+        if (!userToken) {
+            const createdToken = await Resetpasswordtoken.create({ user: foundUser._id, resetPasswordToken });
+            if (createdToken) {
+                req.resetPasswordToken = resetPasswordToken;
+                req.email = foundUser.email;
+                next();
+            } else {
+                return res.status(400).json({ message: "Fehler bei Erstellung und Speicherung des Tokens in Datenbank" });
+            }
+        } else {
+            userToken.resetPasswordToken = resetPasswordToken;
+            userToken.createdAt = Date.now();
+            const updatedToken = await userToken.save();
+            if (updatedToken) {
+                req.resetPasswordToken = resetPasswordToken;
+                req.email = foundUser.email;
+                next();
+            } else {
+                return res.status(400).json({ message: "Fehler bei Änderung und Speicherung des Tokens in Datenbank" });
+            }
+        }
     } catch (err) {
         return res.status(400).send({ ...parseError(err) });
     }
+}
+
+const sendResetPasswordEmail = (req, res) => {
+    const { resetPasswordToken, email } = req;
+
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: process.env.BUSINESS_EMAIL_ADDRESS,
+            pass: process.env.BUSINESS_EMAIL_PASSWORD,
+        }
+    });
+
+    const url = process.env.FRONTEND_URL;
+
+    const mailOptions = {
+        from: `hairdresser <${process.env.BUSINESS_EMAIL_ADDRESS}>`,
+        to: email,
+        subject: "hairdresser Password Reset",
+        text: `Sie haben eine Passwortzurücksetzung beantragt.
+        Bitte folgen Sie dem angegebenen Link, um Ihr Passwort zurückzusetzen.
+
+        ${url}/reset/${resetPasswordToken} 
+
+        Wenn Sie keinen Reset angefordert haben, können Sie sich gerne hier an unseren Support wenden:
+        INSERT HERE`,
+        html: `<p>Sie haben eine Passwortzurücksetzung beantragt.
+        Bitte folgen Sie dem angegebenen Link, um Ihr Passwort zurückzusetzen.</p>
+
+        <a href="${url}/reset/${resetPasswordToken} " target="_blank">Passwort zurücksetzen</a>
+
+        <p>Wenn Sie keinen Reset angefordert haben, können Sie sich gerne hier an unseren Support wenden:</p>
+        <a href="INSERT HERE" target="_blank">Support Kontaktieren</a>`,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            logEvents(`ResetPasswordEmail Error for: ${email}`, "MailErrorLog.log");
+            return res.status(400).json({ message: "E-Mail konnte nicht gesendet werden. Bitte wenden Sie sich an den Support" });
+        } else {
+            return res.status(200).json({ message: "Eine E-Mail mit Anweisungen zum Zurücksetzen Ihres Passworts wurde gesendet" });
+        }
+    });
 }
 
 export {
@@ -138,4 +220,5 @@ export {
     logout,
     loggedIn,
     resetPasswordEmail,
+    sendResetPasswordEmail,
 }
