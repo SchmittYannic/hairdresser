@@ -1,7 +1,8 @@
 import { ComponentType, Suspense, lazy } from "react";
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import PersistLogin from "./features/auth/PersistLogin"
 import Layout from "./components/Layout"
+import LayoutBooking from "./features/booking/LayoutBooking";
 
 const withSuspense = <P extends object>(
 	Component: ComponentType<P>
@@ -22,12 +23,16 @@ const Kontaktpage = withSuspense(lazy(() => import("./components/Kontaktpage" /*
 const Impressum = withSuspense(lazy(() => import("./components/Impressum" /* webpackChunkName: "Impressum" */)));
 const Datenschutz = withSuspense(lazy(() => import("./components/Datenschutz" /* webpackChunkName: "Datenschutz" */)));
 const Booking = withSuspense(lazy(() => import("./features/booking/Booking" /* webpackChunkName: "Booking" */)));
+const ResetPassword = withSuspense(lazy(() => import("./features/booking/ResetPassword" /* webpackChunkName: "ResetPassword" */)));
 
 const App = () => {
 	return (
 		<Routes>
 			<Route element={<PersistLogin />}>
-				<Route path="/terminbuch/termine" element={<Booking />} />
+				<Route path="/terminbuch/termine" element={<LayoutBooking />}>
+					<Route index element={<Booking />} />
+					<Route path="reset/:resetPasswordToken" element={<ResetPassword />} />
+				</Route>
 			</Route>
 			<Route path="/" element={<Layout />} >
 				<Route index element={<Frontpage />} />
@@ -41,6 +46,9 @@ const App = () => {
 				<Route path="impressum" element={<Impressum />} />
 				<Route path="datenschutzerklaerung" element={<Datenschutz />} />
 			</Route>
+
+			{/* if route doesnt exist redirect back to frontpage */}
+			<Route path="*" element={<Navigate to="/" />} />
 		</Routes>
 	)
 }
