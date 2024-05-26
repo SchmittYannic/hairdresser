@@ -20,6 +20,11 @@ export type LoginDataType = {
     password: string,
 }
 
+export type ResetPasswordType = {
+    password: string,
+    passwordrepeat: string,
+}
+
 export type EditUserType = {
     title: string,
     email: string,
