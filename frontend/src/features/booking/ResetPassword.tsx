@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { isAxiosError } from "axios";
 import useSessionContext from "../../hooks/useSessionContext";
 import useResetPasswordEmail from "../../hooks/useResetPasswordEmail";
-import { resetpasswordschema } from "../../validation/Userschema";
+import ResetPasswordEmailschema from "../../validation/ResetPasswordEmailschema";
 import AsyncButton from "../../components/ui/AsyncButton";
 
 const ResetPassword = () => {
@@ -28,7 +28,7 @@ const ResetPassword = () => {
         formState: { errors },
         reset: resetForm,
     } = useForm<{ email: string }>({
-        resolver: yupResolver(resetpasswordschema),
+        resolver: yupResolver(ResetPasswordEmailschema),
     });
 
     const onSubmit: SubmitHandler<{ email: string }> = (data) => {
