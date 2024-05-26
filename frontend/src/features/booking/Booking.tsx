@@ -7,7 +7,7 @@ import useWindowSize from "../../hooks/useWindowSize";
 import useLogout from "../../hooks/useLogout";
 import Login from "./Login";
 import Register from "./Register";
-import ResetPassword from "./ResetPassword";
+import ResetPasswordEmail from "./ResetPasswordEmail";
 import AGB from "./AGB";
 import Dashboard from "./Dashboard";
 import Countdown from "../../components/Countdown";
@@ -154,7 +154,7 @@ const Booking = () => {
                 </div>
                 <div className="pageMaster">
                     {activeTab === "login" && <Login />}
-                    {activeTab === "reset" && <ResetPassword />}
+                    {activeTab === "reset" && <ResetPasswordEmail />}
                     {(activeTab === "register" || activeTab === "agb") && <Register />}
                     {(activeTab === "register" || activeTab === "agb") && <AGB />}
                     {isDashboard && <Dashboard />}
