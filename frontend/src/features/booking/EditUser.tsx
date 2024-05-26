@@ -25,7 +25,7 @@ const EditUser = () => {
         register,
         handleSubmit,
         setError,
-        formState: { errors, isSubmitSuccessful },
+        formState: { errors },
         reset,
     } = useForm<EditUserType>({
         resolver: yupResolver(Edituserschema),
@@ -81,13 +81,14 @@ const EditUser = () => {
     }, [setError, isError]);
 
     useEffect(() => {
+        if (!isSuccess) return
         reset({
             birthday: "",
             oldpassword: "",
             password: "",
             passwordrepeat: "",
         })
-    }, [isSubmitSuccessful]);
+    }, [isSuccess]);
 
     return (
         <div className={`page${activeTab !== "editUser" ? " excluded" : ""}`}>
