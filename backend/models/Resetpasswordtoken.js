@@ -14,11 +14,9 @@ const resetPasswordTokenSchema = new mongoose.Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            expires: process.env.EXPIRATION_RESET_TOKEN + "s"
+            expires: parseInt(process.env.EXPIRATION_RESET_TOKEN), //in seconds
         },
     }
 );
-
-resetPasswordTokenSchema.index({ createdAt: 1 }, { expireAfterSeconds: parseInt(process.env.EXPIRATION_RESET_TOKEN) });
 
 export default mongoose.model("Resetpasswordtoken", resetPasswordTokenSchema);
