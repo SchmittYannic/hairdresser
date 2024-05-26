@@ -1,5 +1,13 @@
 import express from "express";
-import { login, logout, loggedIn, resetPasswordEmail, sendResetPasswordEmail } from "../controllers/authController.js";
+import {
+    login,
+    logout,
+    loggedIn,
+    resetPasswordEmail,
+    sendResetPasswordEmail,
+    isResetTokenValid,
+    resetPassword,
+} from "../controllers/authController.js";
 import requireAuth from "../middleware/requireAuth.js"
 
 const router = express.Router();
@@ -11,5 +19,9 @@ router.route("/")
 
 router.route("/reset")
     .post(resetPasswordEmail, sendResetPasswordEmail)
+
+router.route("/reset/:resetPasswordToken")
+    .get(isResetTokenValid)
+    .patch(resetPassword)
 
 export default router;
