@@ -8,8 +8,8 @@ export const emailschema = Joi.string()
     .label("email")
     .messages({
         "string.email": "ungültiges Email-Format",
-        "string.empty": "Email is required",
-        "any.required": "Email is required"
+        "string.empty": "Email ist erforderlich",
+        "any.required": "Email ist erforderlich"
     });
 
 export const passwordschema = Joi.string()
@@ -17,19 +17,19 @@ export const passwordschema = Joi.string()
     .pattern(new RegExp(/^\S*$/))
     .message("Passwort darf keine Leerzeichen enthalten")
     .pattern(new RegExp(/^.{6,16}$/))
-    .message("Password must be between 6 and 16 characters long")
+    .message("Passwort muss zwischen 6 und 16 Zeichen lang sein")
     .pattern(new RegExp(/.*[A-Z].*/))
-    .message("Password must contain at least one uppercase letter")
+    .message("Passwort muss mindestens einen Großbuchstaben enthalten")
     .pattern(new RegExp(/.*[a-z].*/))
-    .message("Password must contain at least one lowercase letter")
+    .message("Passwort muss mindestens einen Kleinbuchstaben enthalten")
     .pattern(new RegExp(/.*\d.*/))
-    .message("Password must contain at least one digit")
+    .message("Passwort muss mindestens eine Ziffer enthalten")
     .pattern(new RegExp(/.*[!@#$%^&*_\-].*/))
-    .message("Password must contain at least one special character")
+    .message("Passwort muss mindestens ein Sonderzeichen enthalten")
     .required()
     .messages({
-        "string.empty": "Password is required",
-        "any.required": "Password is required"
+        "string.empty": "Passwort ist erforderlich",
+        "any.required": "Passwort ist erforderlich"
     });
 
 export const lastnameschema = Joi.string()
@@ -39,9 +39,9 @@ export const lastnameschema = Joi.string()
     .message("Nachname darf nicht mit Leerzeichen beginnen oder enden.")
     .required()
     .messages({
-        "string.max": "Lastname cant be longer than 80 characters",
-        "string.empty": "Lastname is required",
-        "any.required": "Lastname is required",
+        "string.max": "Nachname darf nicht mehr als 80 Zeichen lang sein",
+        "string.empty": "Nachname ist erforderlich",
+        "any.required": "Nachname ist erforderlich",
     });
 
 export const firstnameschema = Joi.string()
@@ -51,19 +51,19 @@ export const firstnameschema = Joi.string()
     .message("Vorname darf nicht mit Leerzeichen beginnen oder enden.")
     .required()
     .messages({
-        "string.max": "Firstname cant be longer than 80 characters",
+        "string.max": "Vorname darf nicht mehr als 80 Zeichen lang sein",
         "string.trim": "Vorname darf nicht mit Leerzeichen beginnen oder enden",
-        "string.empty": "Firstname is required",
-        "any.required": "Firstname is required",
+        "string.empty": "Vorname ist erforderlich",
+        "any.required": "Vorname ist erforderlich",
     });
 
 export const titleschema = Joi.string()
     .label("title")
     .pattern(new RegExp(/^(Herr|Frau|Divers)$/))
     .messages({
-        "string.pattern.base": "Title must be either Herr, Frau or Divers",
-        "string.empty": "Title is required",
-        "any.required": "Title is required",
+        "string.pattern.base": "Titel kann nur Herr, Frau oder Divers sein",
+        "string.empty": "Titel ist erforderlich",
+        "any.required": "Titel ist erforderlich",
     })
     .required()
 
@@ -72,9 +72,9 @@ export const birthdayschema = Joi.date()
     .less("now")
     .required()
     .messages({
-        "date.base": "Birthday is required",
-        "date.less": "Birthday cant be in the future",
-        "any.required": "Birthday is required",
+        "date.base": "Geburtstag ist erforderlich",
+        "date.less": "Geburtstag kann nicht in der Zukunft liegen",
+        "any.required": "Geburtstag ist erforderlich",
     })
 
 export const phonenumberschema = Joi.string()
@@ -82,33 +82,33 @@ export const phonenumberschema = Joi.string()
     .pattern(new RegExp(/^\S*$/))
     .message("Handynummer darf keine Leerzeichen enthalten")
     .pattern(new RegExp(/^\d+$/))
-    .message("Phonenumber must only consist of numbers")
+    .message("Handynummer darf nur aus Zahlen bestehen")
     .pattern(new RegExp(/^\d{7,15}$/))
-    .message("Phonenumber must be between 7 and 15 digits long")
+    .message("Handynummer muss zwischen 7 und 15 Zeichen lang sein")
     .required()
     .messages({
-        "any.required": "Phonenumber is required",
+        "any.required": "Handynummer ist erforderlich",
     })
 
 export const reminderemailschema = Joi.boolean()
     .label("reminderemail")
     .required()
     .messages({
-        "any.required": "Reminder email optionfield is required"
+        "any.required": "Das Optionsfeld für Terminerinnerung ist erforderlich"
     })
 
 export const birthdayemailschema = Joi.boolean()
     .label("birthdayemail")
     .required()
     .messages({
-        "any.required": "Birthday email optionfield is required"
+        "any.required": "Das Optionsfeld für Geburtstagsemail ist erforderlich"
     })
 
 export const newsletterschema = Joi.boolean()
     .label("newsletter")
     .required()
     .messages({
-        "any.required": "Newsletter optionfield is required"
+        "any.required": "Das Optionsfeld für Newsletter ist erforderlich"
     })
 
 export const userschema = Joi.object().keys({
