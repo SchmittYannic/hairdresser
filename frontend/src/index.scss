@@ -920,6 +920,87 @@ body .designRow>.container>.col {
         overflow: hidden;
         vertical-align: middle;
     }
+
+    .closeBtn {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        text-decoration: none;
+        width: 44px;
+        height: 44px;
+    }
+
+    &.modal {
+        width: 600px;
+        min-height: 200px;
+        max-height: 80vh;
+        top: 10vh;
+        left: 50%;
+        margin-left: -300px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        font-size: 12px;
+        line-height: 1.5em;
+
+        .headline {
+            font-family: Open Sans;
+            color: #000;
+            font-size: 30px;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .closeBtn {
+            color: rgb(249, 249, 249);
+            background-color: transparent;
+            font-size: 30px;
+            width: 30px;
+            height: 30px;
+
+            svg {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateY(-50%) translateX(-50%);
+            }
+        }
+    }
+}
+
+.modal {
+    background-color: rgb(252, 161, 156);
+    background-image: url("/trenner2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    border-style: double;
+    border-left-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-right-width: 5px;
+    border-color: #e1e0e0;
+    padding-left: 30px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 30px;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.bounceInDown {
+    -webkit-animation-name: bounceInDown;
+    animation-name: bounceInDown;
+}
+
+.bounceOutUp {
+    -webkit-animation-name: bounceOutUp;
+    animation-name: bounceOutUp;
 }
 
 #e7bok {
@@ -1006,6 +1087,14 @@ body .designRow>.container>.col {
     #header-logo {
         max-width: 60%;
     }
+
+    .engagement.modal .headline {
+        font-size: 26px;
+    }
+
+    .engagement.modal .bodytext {
+        font-size: 12px;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -1040,6 +1129,30 @@ body .designRow>.container>.col {
         margin-top: 19px;
         padding-left: 35px;
         padding-right: 35px;
+    }
+
+    .modal {
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+    }
+
+    .engagement.modal {
+        width: 90%;
+        margin-left: -45%;
+    }
+
+    .engagement.modal .headline {
+        font-size: 18px;
+        line-height: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .engagement.modal .bodytext {
+        font-size: 10px;
+        line-height: 1.3em;
+        margin-bottom: 10px;
     }
 }
 
@@ -1121,5 +1234,64 @@ body .designRow>.container>.col {
 @media only screen and (min-width: 0px) and (max-width: 767px) {
     .hidden-sm {
         display: none !important;
+    }
+}
+
+@keyframes bounceInDown {
+
+    60%,
+    75%,
+    90%,
+    0%,
+    100% {
+        -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+        animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    }
+
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -3000px, 0);
+        transform: translate3d(0, -3000px, 0);
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 25px, 0);
+        transform: translate3d(0, 25px, 0);
+    }
+
+    75% {
+        -webkit-transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -10px, 0);
+    }
+
+    90% {
+        -webkit-transform: translate3d(0, 5px, 0);
+        transform: translate3d(0, 5px, 0);
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes bounceOutUp {
+    20% {
+        -webkit-transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -10px, 0);
+    }
+
+    40%,
+    45% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 20px, 0);
+        transform: translate3d(0, 20px, 0);
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -2000px, 0);
+        transform: translate3d(0, -2000px, 0);
     }
 }

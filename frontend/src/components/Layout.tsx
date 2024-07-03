@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Outlet, Link } from "react-router-dom"
 import { IoIosArrowUp } from "react-icons/io";
 import { FaRegCalendarCheck } from "react-icons/fa6";
+import { MdClose } from "react-icons/md";
 import Header from "./Header"
 import Footer from "./Footer"
 import "../index.scss"
@@ -10,6 +11,8 @@ const Layout = () => {
 
     const ref = useRef(null);
     const [isInView, setIsInView] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(true);
+    const [modalAnimation, setModalAnimation] = useState<"bounceInDown" | "bounceOutUp">("bounceInDown");
 
     const handleButtonClicked = () => {
         window.scrollTo({
@@ -17,6 +20,13 @@ const Layout = () => {
             left: 0,
             behavior: "smooth"
         });
+    };
+
+    const handleModalCloseClicked = () => {
+        setModalAnimation("bounceOutUp");
+        setTimeout(() => {
+            setIsModalVisible(false);
+        }, 1000);
     };
 
     useEffect(() => {
@@ -30,6 +40,14 @@ const Layout = () => {
         observer.observe(ref.current);
         return () => observer.disconnect();
     }, []);
+
+    // useEffect(() => {
+    //     const timeout = setTimeout(() => {
+    //         handleModalCloseClicked();
+    //     }, 10000);
+
+    //     return () => clearTimeout(timeout)
+    // }, [handleModalCloseClicked]);
 
     return (
         <div className="container w-full">
@@ -61,6 +79,30 @@ const Layout = () => {
                             <FaRegCalendarCheck aria-hidden />
                         </span>
                     </Link>
+                </div>
+
+                <div
+                    className={`engagement simpleinfomercial modal animated ${modalAnimation}`}
+                    style={{ display: isModalVisible ? "block" : "none" }}
+                >
+                    <button
+                        className="closeBtn"
+                        type="button"
+                        onClick={handleModalCloseClicked}
+                        title="Modal schließen"
+                    >
+                        <MdClose aria-hidden />
+                    </button>
+                    <div className="content">
+                        <h2 className="headline">
+                            Demo Applikation
+                        </h2>
+                        <div className="bodytext">
+                            <p>
+
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
