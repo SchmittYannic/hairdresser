@@ -10,7 +10,7 @@ import Loginschema from "../../validation/Loginschema";
 
 const Login = () => {
 
-    const { setActiveTab } = useSessionContext();
+    const { setActiveTab, setIsCookieConsent } = useSessionContext();
     const { mutate, isLoading, isError, error: errorApi } = useLogin();
 
     const {
@@ -39,7 +39,7 @@ const Login = () => {
             type: "emailNotFound",
             message: errorApi.response.data.message,
         })
-    }, [setError, isError])
+    }, [setError, isError]);
 
     useEffect(() => {
         if (!isError) return
@@ -52,7 +52,17 @@ const Login = () => {
             type: "passwortNoMatch",
             message: errorApi.response.data.message,
         })
-    }, [setError, isError])
+    }, [setError, isError]);
+
+    useEffect(() => {
+        if (!isError) return
+        if (!isAxiosError(errorApi)) return
+        if (!errorApi.response) return
+        if (!errorApi.response.data.context) return
+        if (errorApi.response.data.context.key !== "CookieConsent") return
+
+        setIsCookieConsent(false);
+    }, [isError]);
 
     return (
         <div className="page">
@@ -128,7 +138,7 @@ const Login = () => {
                         </a>
                         <div className="clear-row"></div>
                         {
-                            isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.context === undefined &&
+                            isError && isAxiosError(errorApi) && errorApi.response && (errorApi.response.data.context === undefined || errorApi.response.data.context.key === "CookieConsent") &&
                             <span
                                 className="error-msg"
                                 role="alert"
