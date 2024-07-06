@@ -7,7 +7,6 @@ import "src/features/booking/Booking.scss";
 const LayoutBooking = () => {
 
     const { isCookieConsent } = useSessionContext();
-    console.log(isCookieConsent)
 
     return (
         <div id="booking">
