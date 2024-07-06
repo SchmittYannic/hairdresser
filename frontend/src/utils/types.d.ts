@@ -122,3 +122,5 @@ export type FilterTimeType = {
     min: ProposalDateRangeValuesType,
     max: ProposalDateRangeValuesType,
 }
+
+export type SameSiteOptionType = "none" | "None" | "lax" | "Lax" | "strict" | "Strict" | undefined;
