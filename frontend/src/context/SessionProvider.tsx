@@ -8,6 +8,7 @@ import {
 } from "react";
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from "react-query";
 import Cookies from "js-cookie";
+import { isAxiosError } from "axios";
 import useLogout from "src/hooks/useLogout";
 import useGetNextAppointment from "src/hooks/useGetNextAppointment";
 import useGetArchivedAppointments from "src/hooks/useGetArchivedAppointments";
@@ -125,6 +126,7 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
         isError: isNextAppointmentError,
         isLoading: isNextAppointmentLoading,
         isSuccess: isNextAppointmentSuccess,
+        error: nextAppointmentError,
         refetch: refetchNextAppointment,
     } = useGetNextAppointment();
     const {
@@ -132,6 +134,7 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
         isError: isArchivedAppointmentsError,
         isLoading: isArchivedAppointmentsLoading,
         isSuccess: isArchivedAppointmentsSuccess,
+        error: archivedAppointmentsError,
         refetch: refetchArchivedAppointments,
     } = useGetArchivedAppointments();
     const [userInfo, setUserInfo] = useState<UserInfoType>(defaultUserInfo);
@@ -173,6 +176,22 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
             }
         }
     }, [userInfo]);
+
+    useEffect(() => {
+        if (!isNextAppointmentError) return
+        if (!isAxiosError(nextAppointmentError)) return
+        if (!nextAppointmentError.response) return
+        if (nextAppointmentError.response.status !== 401) return
+        resetState();
+    }, [nextAppointmentError, isNextAppointmentError]);
+
+    useEffect(() => {
+        if (!isArchivedAppointmentsError) return
+        if (!isAxiosError(archivedAppointmentsError)) return
+        if (!archivedAppointmentsError.response) return
+        if (archivedAppointmentsError.response.status !== 401) return
+        resetState();
+    }, [archivedAppointmentsError, isArchivedAppointmentsError]);
 
     return (
         <SessionContext.Provider
