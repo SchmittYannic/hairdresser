@@ -13,6 +13,19 @@ import { sessionizeUser, parseError, birthdayToString } from "../utils/helpers.j
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
+        const { CookieConsent } = req.cookies;
+
+        if (!CookieConsent) {
+            return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
+        }
+
+        const CookieConsentParsed = JSON.parse(CookieConsent);
+
+        if (!CookieConsentParsed.necessary) {
+            res.clearCookie("CookieConsent");
+            return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
+        }
+
         await loginschema.validateAsync({ email, password });
 
         const foundUser = await User.findOne({ email: email.toLowerCase() }).lean().exec();
