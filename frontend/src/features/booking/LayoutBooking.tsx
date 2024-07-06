@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom"
-import { useState } from "react";
-import Cookies from "js-cookie";
+import useSessionContext from "src/hooks/useSessionContext";
 import CookieConsent from "src/components/CookieConsent";
 import { logo } from "src/assets"
 import "src/features/booking/Booking.scss";
 
 const LayoutBooking = () => {
 
-    const [isCookieConsent, setIsCookieConsent] = useState(typeof Cookies.get("CookieConsent") === "string" ? true : false);
+    const { isCookieConsent } = useSessionContext();
+    console.log(isCookieConsent)
 
     return (
         <div id="booking">
@@ -22,7 +22,7 @@ const LayoutBooking = () => {
             </header>
 
             <Outlet />
-            {!isCookieConsent && <CookieConsent callback={setIsCookieConsent} />}
+            {!isCookieConsent && <CookieConsent />}
         </div>
     )
 }

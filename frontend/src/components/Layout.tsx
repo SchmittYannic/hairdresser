@@ -3,7 +3,7 @@ import { Outlet, Link } from "react-router-dom"
 import { IoIosArrowUp } from "react-icons/io";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import { MdClose } from "react-icons/md";
-import Cookies from "js-cookie";
+import useSessionContext from "src/hooks/useSessionContext";
 import Header from "./Header"
 import Footer from "./Footer"
 import CookieConsent from "src/components/CookieConsent";
@@ -11,11 +11,11 @@ import "../index.scss"
 
 const Layout = () => {
 
+    const { isCookieConsent } = useSessionContext();
     const ref = useRef(null);
     const [isInView, setIsInView] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(true);
     const [modalAnimation, setModalAnimation] = useState<"bounceInDown" | "bounceOutUp">("bounceInDown");
-    const [isCookieConsent, setIsCookieConsent] = useState(typeof Cookies.get("CookieConsent") === "string" ? true : false);
 
     const handleButtonClicked = () => {
         window.scrollTo({
@@ -59,7 +59,7 @@ const Layout = () => {
                 <div ref={ref}></div>
                 <Outlet />
                 <Footer />
-                {!isCookieConsent && <CookieConsent callback={setIsCookieConsent} />}
+                {!isCookieConsent && <CookieConsent />}
                 <button
                     className={`scrollIcon bottom_right${isInView ? " hidden" : " visible"}`}
                     type="button"

@@ -7,10 +7,11 @@ import {
     useState,
 } from "react";
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from "react-query";
-import useLogout from "../hooks/useLogout";
-import useGetNextAppointment from "../hooks/useGetNextAppointment";
-import useGetArchivedAppointments from "../hooks/useGetArchivedAppointments";
-import { AppointmentType } from "../utils/types";
+import Cookies from "js-cookie";
+import useLogout from "src/hooks/useLogout";
+import useGetNextAppointment from "src/hooks/useGetNextAppointment";
+import useGetArchivedAppointments from "src/hooks/useGetArchivedAppointments";
+import { AppointmentType } from "src/utils/types";
 
 type UserInfoType = {
     userId: string,
@@ -39,6 +40,8 @@ type SessionContextType = {
     setCookieInfo: React.Dispatch<React.SetStateAction<CookieInfoType>>,
     activeTab: activeTabType,
     setActiveTab: React.Dispatch<React.SetStateAction<activeTabType>>,
+    isCookieConsent: boolean,
+    setIsCookieConsent: React.Dispatch<React.SetStateAction<boolean>>,
     resetState: Function,
     nextAppointment: AppointmentType[],
     isNextAppointmentError: boolean,
@@ -96,6 +99,8 @@ const initContextState = {
     setCookieInfo: () => { },
     activeTab: defaultActiveTab,
     setActiveTab: () => { },
+    isCookieConsent: false,
+    setIsCookieConsent: () => { },
     resetState: () => { },
     nextAppointment: [],
     isNextAppointmentError: false,
@@ -132,6 +137,7 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
     const [userInfo, setUserInfo] = useState<UserInfoType>(defaultUserInfo);
     const [cookieInfo, setCookieInfo] = useState<CookieInfoType>(defaultCookieInfo);
     const [activeTab, setActiveTab] = useState<activeTabType>(defaultActiveTab);
+    const [isCookieConsent, setIsCookieConsent] = useState(typeof Cookies.get("CookieConsent") === "string" ? true : false);
     const timeout: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> = useRef<ReturnType<typeof setTimeout>>();
 
     const resetState = () => {
@@ -177,6 +183,8 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
                 setCookieInfo,
                 activeTab,
                 setActiveTab,
+                isCookieConsent,
+                setIsCookieConsent,
                 resetState,
                 nextAppointment: isNextAppointmentError || !nextAppointmentData ? [] : nextAppointmentData.nextAppointment,
                 isNextAppointmentError,
