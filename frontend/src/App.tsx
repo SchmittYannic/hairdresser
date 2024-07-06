@@ -1,8 +1,8 @@
-import { ComponentType, Suspense, lazy } from "react";
+import { ComponentType, Suspense, lazy } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
-import PersistLogin from "./features/auth/PersistLogin"
-import Layout from "./components/Layout"
-import LayoutBooking from "./features/booking/LayoutBooking";
+import PersistLogin from "src/features/auth/PersistLogin"
+import Layout from "src/components/Layout"
+import LayoutBooking from "src/features/booking/LayoutBooking"
 
 const withSuspense = <P extends object>(
 	Component: ComponentType<P>
@@ -12,18 +12,18 @@ const withSuspense = <P extends object>(
 	</Suspense>
 );
 
-const Frontpage = withSuspense(lazy(() => import("./components/Frontpage" /* webpackChunkName: "Frontpage" */)));
-const Bookingpage = withSuspense(lazy(() => import("./components/Bookingpage" /* webpackChunkName: "Bookingpage" */)));
-const Stylingpage = withSuspense(lazy(() => import("./components/Stylingpage" /* webpackChunkName: "Stylingpage" */)));
-const Colourpage = withSuspense(lazy(() => import("./components/Colourpage" /* webpackChunkName: "Colourpage" */)));
-const Salonpage = withSuspense(lazy(() => import("./components/Salonpage" /* webpackChunkName: "Salonpage" */)));
-const Teampage = withSuspense(lazy(() => import("./components/Teampage" /* webpackChunkName: "Teampage" */)));
-const Jobspage = withSuspense(lazy(() => import("./components/Jobspage" /* webpackChunkName: "Jobspage" */)));
-const Kontaktpage = withSuspense(lazy(() => import("./components/Kontaktpage" /* webpackChunkName: "Kontaktpage" */)));
-const Impressum = withSuspense(lazy(() => import("./components/Impressum" /* webpackChunkName: "Impressum" */)));
-const Datenschutz = withSuspense(lazy(() => import("./components/Datenschutz" /* webpackChunkName: "Datenschutz" */)));
-const Booking = withSuspense(lazy(() => import("./features/booking/Booking" /* webpackChunkName: "Booking" */)));
-const ResetPassword = withSuspense(lazy(() => import("./features/booking/ResetPassword" /* webpackChunkName: "ResetPassword" */)));
+const Frontpage = withSuspense(lazy(() => import("src/features/companywebsite/Frontpage" /* webpackChunkName: "Frontpage" */)));
+const Bookingpage = withSuspense(lazy(() => import("src/features/companywebsite/Bookingpage" /* webpackChunkName: "Bookingpage" */)));
+const Stylingpage = withSuspense(lazy(() => import("src/features/companywebsite/Stylingpage" /* webpackChunkName: "Stylingpage" */)));
+const Colourpage = withSuspense(lazy(() => import("src/features/companywebsite/Colourpage" /* webpackChunkName: "Colourpage" */)));
+const Salonpage = withSuspense(lazy(() => import("src/features/companywebsite/Salonpage" /* webpackChunkName: "Salonpage" */)));
+const Teampage = withSuspense(lazy(() => import("src/features/companywebsite/Teampage" /* webpackChunkName: "Teampage" */)));
+const Jobspage = withSuspense(lazy(() => import("src/features/companywebsite/Jobspage" /* webpackChunkName: "Jobspage" */)));
+const Kontaktpage = withSuspense(lazy(() => import("src/features/companywebsite/Kontaktpage" /* webpackChunkName: "Kontaktpage" */)));
+const Impressum = withSuspense(lazy(() => import("src/features/companywebsite/Impressum" /* webpackChunkName: "Impressum" */)));
+const Datenschutz = withSuspense(lazy(() => import("src/features/companywebsite/Datenschutz" /* webpackChunkName: "Datenschutz" */)));
+const Booking = withSuspense(lazy(() => import("src/features/booking/Booking" /* webpackChunkName: "Booking" */)));
+const ResetPassword = withSuspense(lazy(() => import("src/features/booking/ResetPassword" /* webpackChunkName: "ResetPassword" */)));
 
 const App = () => {
 	return (
