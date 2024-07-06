@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import path from "path";
 import express from "express";
+import cookieParser from "cookie-parser";
 import connectDB from "./config/dbConn.js";
 import mongoose from "mongoose";
 import session from "express-session";
@@ -32,6 +33,7 @@ app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cookieParser())
 app.use(session(sessionConfig(db)));
 app.set("trust proxy", 1);
 cron.schedule("0 0 * * * *", async () => await moveExpiredAppointments(db));
