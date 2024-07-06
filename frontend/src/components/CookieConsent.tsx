@@ -2,6 +2,7 @@ import { useRef } from "react"
 import { MdCookie } from "react-icons/md"
 import useScrolledToBottom from "src/hooks/useScrolledToBottom"
 import Cookies from "js-cookie";
+import { SameSiteOptionType } from "src/utils/types";
 import "src/components/CookieConsent.scss"
 
 type CookieConsentPropsType = {
@@ -19,7 +20,20 @@ const CookieConsent = ({ callback }: CookieConsentPropsType) => {
             necessary: true,
         };
 
-        Cookies.set("CookieConsent", JSON.stringify(preferences), { expires: 7 });
+        const isProd = String(import.meta.env.PROD) ?? false;
+
+        const cookieOptions = isProd ? {
+            expires: 7,
+            domain: ".project-domain.de",
+            sameSite: "none" as SameSiteOptionType,
+            secure: true,
+        } : {
+            expires: 7,
+            sameSite: "none" as SameSiteOptionType,
+            secure: false,
+        }
+
+        Cookies.set("CookieConsent", JSON.stringify(preferences), cookieOptions);
         callback(true);
     };
 
