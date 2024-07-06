@@ -1,4 +1,4 @@
-import "./Datenschutz.scss"
+import "src/features/companywebsite/Datenschutz.scss"
 
 const Datenschutz = () => {
     return (

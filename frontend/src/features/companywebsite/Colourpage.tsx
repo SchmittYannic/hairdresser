@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 import { FaInstagram } from "react-icons/fa"
-import ImageSlider from "./ImageSlider"
-import useWindowSize from "../hooks/useWindowSize"
-import { vorhernachher, colorme } from "../assets"
-import { colourpageSliderImgs, colourpageSliderImgs2, colourpageSliderImgs3 } from "../constants"
-import "./Colourpage.scss"
+import ImageSlider from "src/components/ImageSlider"
+import useWindowSize from "src/hooks/useWindowSize"
+import { vorhernachher, colorme } from "src/assets"
+import { colourpageSliderImgs, colourpageSliderImgs2, colourpageSliderImgs3 } from "src/constants"
+import "src/features/companywebsite/Colourpage.scss"
 
 const Colourpage = () => {
 

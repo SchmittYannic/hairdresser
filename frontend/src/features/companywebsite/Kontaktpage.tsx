@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 import { FaInstagram, FaFacebookF, FaEnvelope } from "react-icons/fa"
-import { besuch } from "../assets"
-import { insertSpace, isOpenNow } from "../utils/functions";
-import Kontaktform from "./Kontaktform";
-import "./Kontaktpage.scss"
+import { besuch } from "src/assets"
+import { insertSpace, isOpenNow } from "src/utils/functions"
+import Kontaktform from "src/components/Kontaktform"
+import "src/features/companywebsite/Kontaktpage.scss"
 
 const Kontaktpage = () => {
 

@@ -1,9 +1,9 @@
-import { heart } from "../assets"
-import { jobspageSliderImgs1 } from "../constants"
-import useWindowSize from "../hooks/useWindowSize"
-import Applicationform from "./Applicationform"
-import ImageSlider from "./ImageSlider"
-import "./Jobspage.scss"
+import { heart } from "src/assets"
+import { jobspageSliderImgs1 } from "src/constants"
+import useWindowSize from "src/hooks/useWindowSize"
+import Applicationform from "src/components/Applicationform"
+import ImageSlider from "src/components/ImageSlider"
+import "src/features/companywebsite/Jobspage.scss"
 
 const Jobspage = () => {
 

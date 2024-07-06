@@ -1,8 +1,8 @@
-import ImageSlider from "./ImageSlider"
-import useWindowSize from "../hooks/useWindowSize"
-import { salonpageSliderImgs1, salonpageSliderImgs2 } from "../constants"
-import { mirjamschmidsquare } from "../assets"
-import "./Salonpage.scss"
+import ImageSlider from "src/components/ImageSlider"
+import useWindowSize from "src/hooks/useWindowSize"
+import { salonpageSliderImgs1, salonpageSliderImgs2 } from "src/constants"
+import { mirjamschmidsquare } from "src/assets"
+import "src/features/companywebsite/Salonpage.scss"
 
 const Salonpage = () => {
 

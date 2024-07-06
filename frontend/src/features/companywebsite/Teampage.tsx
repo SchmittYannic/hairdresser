@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
-import Employee from "./Employee"
-import { employees } from "../constants"
-import { teamgeist } from "../assets"
-import "./Teampage.scss"
+import Employee from "src/components/Employee"
+import { employees } from "src/constants"
+import { teamgeist } from "src/assets"
+import "src/features/companywebsite/Teampage.scss"
 
 const Teampage = () => {
     return (

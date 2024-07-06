@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
-import ImageSlider from "./ImageSlider"
-import useWindowSize from "../hooks/useWindowSize"
-import { teamgeist } from "../assets"
-import { bookingpageSliderImgs } from "../constants"
-import { insertSpace } from "../utils/functions"
-import "./Bookingpage.scss"
+import ImageSlider from "src/components/ImageSlider"
+import useWindowSize from "src/hooks/useWindowSize"
+import { teamgeist } from "src/assets"
+import { bookingpageSliderImgs } from "src/constants"
+import { insertSpace } from "src/utils/functions"
+import "src/features/companywebsite/Bookingpage.scss"
 
 const Bookingpage = () => {
 

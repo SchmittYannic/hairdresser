@@ -8,9 +8,9 @@ import {
     heart,
     hairproduct,
     ninahelmsquare,
-} from "../assets"
-import { insertSpace } from "../utils/functions"
-import "./Frontpage.scss"
+} from "src/assets"
+import { insertSpace } from "src/utils/functions"
+import "src/features/companywebsite/Frontpage.scss"
 
 const Frontpage = () => {
 

@@ -1,4 +1,4 @@
-import "./Impressum.scss"
+import "src/features/companywebsite/Impressum.scss"
 
 const Impressum = () => {
 

@@ -1,9 +1,9 @@
 import { FaInstagram } from "react-icons/fa"
-import ImageSlider from "./ImageSlider"
-import useWindowSize from "../hooks/useWindowSize"
-import { vorhernachher, showpony } from "../assets"
-import { stylingpageSliderImgs, stylingpageSliderImgs2 } from "../constants"
-import "./Stylingpage.scss"
+import ImageSlider from "src/components/ImageSlider"
+import useWindowSize from "src/hooks/useWindowSize"
+import { vorhernachher, showpony } from "src/assets"
+import { stylingpageSliderImgs, stylingpageSliderImgs2 } from "src/constants"
+import "src/features/companywebsite/Stylingpage.scss"
 
 const Stylingpage = () => {
 
