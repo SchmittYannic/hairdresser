@@ -19,7 +19,19 @@ const createNewUser = async (req, res) => {
             reminderemail,
             birthdayemail,
             newsletter,
-        } = req.body
+        } = req.body;
+        const { CookieConsent } = req.cookies;
+
+        if (!CookieConsent) {
+            return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
+        }
+
+        const CookieConsentParsed = JSON.parse(CookieConsent);
+
+        if (!CookieConsentParsed.necessary) {
+            res.clearCookie("CookieConsent");
+            return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
+        }
 
         await userschema.validateAsync({
             title,
