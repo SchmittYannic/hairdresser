@@ -9,7 +9,7 @@ import Registerschema from "../../validation/Registerschema"
 import { UserDataType } from "../../utils/types";
 
 const Register = () => {
-    const { activeTab, setActiveTab } = useSessionContext()
+    const { activeTab, setActiveTab, setIsCookieConsent } = useSessionContext();
 
     const {
         mutate,
@@ -85,7 +85,17 @@ const Register = () => {
             type: "inuse",
             message: errorApi.response.data.message,
         })
-    }, [setError, isError])
+    }, [setError, isError]);
+
+    useEffect(() => {
+        if (!isError) return
+        if (!isAxiosError(errorApi)) return
+        if (!errorApi.response) return
+        if (!errorApi.response.data.context) return
+        if (errorApi.response.data.context.key !== "CookieConsent") return
+
+        setIsCookieConsent(false);
+    }, [isError]);
 
     return (
         <div className={`page${activeTab === "register" ? "" : " excluded"}`}>
@@ -421,7 +431,7 @@ const Register = () => {
                     </div>
                 }
                 {
-                    isError && isAxiosError(errorApi) && errorApi.response && errorApi.response.data.context === undefined &&
+                    isError && isAxiosError(errorApi) && errorApi.response && (errorApi.response.data.context === undefined || errorApi.response.data.context.key === "CookieConsent") &&
                     <div className="col-1-1">
                         <span className="error-msg" role="alert">
                             {errorApi.response.data.message}
