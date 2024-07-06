@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom"
-import { logo } from "../../assets"
-import "./Booking.scss";
+import CookieConsent from "src/components/CookieConsent";
+import { logo } from "src/assets"
+import "src/features/booking/Booking.scss";
 
 const LayoutBooking = () => {
     return (
@@ -16,6 +17,7 @@ const LayoutBooking = () => {
             </header>
 
             <Outlet />
+            <CookieConsent />
         </div>
     )
 }

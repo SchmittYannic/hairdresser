@@ -5,6 +5,7 @@ import { FaRegCalendarCheck } from "react-icons/fa6";
 import { MdClose } from "react-icons/md";
 import Header from "./Header"
 import Footer from "./Footer"
+import CookieConsent from "src/components/CookieConsent";
 import "../index.scss"
 
 const Layout = () => {
@@ -56,6 +57,7 @@ const Layout = () => {
                 <div ref={ref}></div>
                 <Outlet />
                 <Footer />
+                <CookieConsent />
                 <button
                     className={`scrollIcon bottom_right${isInView ? " hidden" : " visible"}`}
                     type="button"
