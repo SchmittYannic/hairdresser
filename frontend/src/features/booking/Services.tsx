@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { offeredColorationServices, offeredCuttingServices, offeredShavingServices } from "../../constants";
-import useServiceContext from "../../hooks/useServiceContext";
-import useSessionContext from "../../hooks/useSessionContext";
-import ServiceDialog from "./dialogs/ServiceDialog";
-import AsyncButton from "../../components/ui/AsyncButton";
-import Bookdate from "./Bookdate";
+import { offeredColorationServices, offeredCuttingServices, offeredShavingServices } from "src/constants";
+import useServiceContext from "src/hooks/useServiceContext";
+import useSessionContext from "src/hooks/useSessionContext";
+import ServiceDialog from "src/features/booking/ServiceDialog";
+import AsyncButton from "src/components/ui/AsyncButton";
+import Bookdate from "src/features/booking/Bookdate";
 
 
 const Services = () => {

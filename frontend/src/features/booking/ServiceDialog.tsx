@@ -1,12 +1,12 @@
 import { useState, MouseEvent } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { ImCheckmark } from "react-icons/im";
-import useServiceContext from "../../../hooks/useServiceContext";
-import useAppointmentContext from "../../../hooks/useAppointmentContext";
-import Dialog from "../../../components/ui/Dialog"
-import { staffarbitrary } from "../../../assets";
-import { EmployeeType, OfferedServiceType } from "../../../utils/types";
-import { employees } from "../../../constants";
+import useServiceContext from "src/hooks/useServiceContext";
+import useAppointmentContext from "src/hooks/useAppointmentContext";
+import Dialog from "src/components/ui/Dialog"
+import { staffarbitrary } from "src/assets";
+import { EmployeeType, OfferedServiceType } from "src/utils/types";
+import { employees } from "src/constants";
 
 type ServiceDialogPropsType = {
     service: OfferedServiceType,
