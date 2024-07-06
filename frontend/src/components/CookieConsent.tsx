@@ -1,12 +1,27 @@
 import { useRef } from "react"
 import { MdCookie } from "react-icons/md"
 import useScrolledToBottom from "src/hooks/useScrolledToBottom"
+import Cookies from "js-cookie";
 import "src/components/CookieConsent.scss"
 
-const CookieConsent = () => {
+type CookieConsentPropsType = {
+    callback: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const CookieConsent = ({ callback }: CookieConsentPropsType) => {
 
     const ref = useRef<HTMLDivElement>(null);
     const isScrolledToBottom = useScrolledToBottom(ref);
+
+    const handleAcceptClicked = () => {
+        const preferences = {
+            timestamp: new Date().toISOString(),
+            necessary: true,
+        };
+
+        Cookies.set("CookieConsent", JSON.stringify(preferences), { expires: 7 });
+        callback(true);
+    };
 
     return (
         <div className="cookie-consent">
@@ -36,6 +51,7 @@ const CookieConsent = () => {
                             <button
                                 className="cookie-consent-action-btn"
                                 type="button"
+                                onClick={handleAcceptClicked}
                             >
                                 Einverstanden
                             </button>
