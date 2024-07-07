@@ -1,0 +1,40 @@
+.skeleton-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #e0e0e0;
+    background: linear-gradient(100deg, rgba(232, 232, 232, 1) 20%, rgba(250, 250, 250, 1) 50%, rgba(232, 232, 232, 1) 60%);
+    background-size: 1000px 1000px;
+    animation: placeholderShimmer 1.5s linear infinite forwards;
+}
+
+.lazy-load-background {
+    position: relative;
+    overflow: hidden;
+}
+
+.lazy-load-background-image {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+
+    &.loaded {
+        opacity: 1;
+    }
+}
+
+@keyframes placeholderShimmer {
+    0% {
+        background-position: -500px 0;
+    }
+
+    100% {
+        background-position: 500px 0;
+    }
+}
