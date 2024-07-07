@@ -1,4 +1,5 @@
-import { EmployeeType } from "../utils/types"
+import ImageComponent from "src/components/ui/ImageComponent"
+import { EmployeeType } from "src/utils/types"
 
 
 type EmployeePropsType = {
@@ -14,10 +15,12 @@ const Employee = ({ employee }: EmployeePropsType) => {
                 target="_blank"
                 title={employee.imgtitle}
             >
-                <img
+                <ImageComponent
                     className="module image portrait"
                     src={employee.img}
                     alt={employee.firstname + " " + employee.lastname}
+                    loading="lazy"
+                    width="100%"
                 />
             </a>
             <div className="module text name-headline">

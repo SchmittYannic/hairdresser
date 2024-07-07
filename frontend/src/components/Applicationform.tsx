@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent, useRef } from "react"
 import { Link } from "react-router-dom"
-import { bewerbung } from "../assets"
-import "./Applicationform.scss"
+import ImageComponent from "src/components/ui/ImageComponent"
+import { bewerbung } from "src/assets"
+import "src/components/Applicationform.scss"
 
 const Applicationform = () => {
 
@@ -41,11 +42,13 @@ const Applicationform = () => {
             <div className="container w-full">
                 <div className="col col-md-7 col-sm-12 col-lg-3 hidden-md hidden-sm"></div>
                 <div id="c4379" className="col col-md-12 col-sm-12 col-lg-6">
-                    <img
+                    <ImageComponent
                         id="m1261"
                         className="module image"
                         src={bewerbung}
                         alt="Ihre Bewerbung"
+                        loading="lazy"
+                        width="100%"
                     />
 
                     <form

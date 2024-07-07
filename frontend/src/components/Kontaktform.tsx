@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom"
-import { kontaktformular } from "../assets"
-import "./Kontaktform.scss"
+import ImageComponent from "src/components/ui/ImageComponent"
+import { kontaktformular } from "src/assets"
+import "src/components/Kontaktform.scss"
 
 const Kontaktform = () => {
     return (
         <div id="c1954" className="col col-lg-6 col-sm-12 col-md-12">
-            <img
+            <ImageComponent
                 id="m4169"
                 className="module image"
                 src={kontaktformular}
                 alt="kontaktformular"
+                loading="lazy"
+                width="100%"
             />
             <div id="m2016" className="module text">
                 <p>
