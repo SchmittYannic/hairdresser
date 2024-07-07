@@ -70,27 +70,12 @@
     padding-right: 100px;
 }
 
-#layout-a-image1 {
-    background-color: rgba(216, 198, 185, 0.31);
-    background-image: url("/showponyproduct.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
-}
-
 #layout-a-text2 {
     background-color: rgba(230, 219, 215, 0.3);
     padding-left: 100px;
     padding-top: 100px;
     padding-bottom: 100px;
     padding-right: 100px;
-}
-
-#layout-a-image2 {
-    background-image: url("/kevinmurphyproduct.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
 }
 
 #layout-a-text3 {
@@ -100,26 +85,12 @@
     padding-right: 100px;
 }
 
-#layout-a-image3 {
-    background-image: url("/kevinmurphyproduct2.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
-}
-
 #layout-a-text4 {
     background-color: rgba(230, 219, 215, 0.17);
     padding-left: 100px;
     padding-top: 100px;
     padding-bottom: 100px;
     padding-right: 100px;
-}
-
-#layout-a-image4 {
-    background-image: url("/salon1.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
 }
 
 #product-of-month-title-section {
@@ -257,10 +228,10 @@
         margin-right: auto;
     }
 
-    #layout-a-image1,
-    #layout-a-image2,
-    #layout-a-image3,
-    #layout-a-image4 {
+    #layout-a-image1 .lazy-load-background-image,
+    #layout-a-image2 .lazy-load-background-image,
+    #layout-a-image3 .lazy-load-background-image,
+    #layout-a-image4 .lazy-load-background-image {
         margin-left: 0px;
         margin-right: 0px;
         border-style: solid;

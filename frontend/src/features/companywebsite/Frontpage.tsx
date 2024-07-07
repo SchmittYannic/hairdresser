@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { FaPhone } from "react-icons/fa6"
 import ImageComponent from "src/components/ui/ImageComponent"
+import BgImageComponent from "src/components/ui/BgImageComponent"
 import {
     showpony,
     kreativ,
@@ -148,25 +149,29 @@ const Frontpage = () => {
                                 />
                             </div>
 
-                            <a
+                            <BgImageComponent
+                                imageUrl="showponyproduct.webp"
                                 id="layout-a-image1"
-                                className="col col-md-6 col-lg-6 col-sm-12"
+                                className="col col-md-6 col-lg-6 col-sm-12 p-0"
                                 href="https://www.freepik.com/free-photo/aloe-vera-cucumber-with-beauty-cream_4514527.htm"
                                 target="_blank"
                                 title="Image by freepik"
-                            ></a>
+                            >
+                            </BgImageComponent>
                         </div>
                     </div>
 
                     <div className="row">
                         <div className="container w-full">
-                            <a
+                            <BgImageComponent
+                                imageUrl="/kevinmurphyproduct.webp"
                                 id="layout-a-image2"
-                                className="col col-md-6 col-lg-6 col-sm-12"
+                                className="col col-md-6 col-lg-6 col-sm-12 p-0"
                                 href="https://unsplash.com/de/fotos/zwei-weisse-und-schwarz-etikettierte-flaschen-EekAcoEhYGU"
                                 target="_blank"
                                 title="Foto von Nick Scott auf Unsplash"
-                            ></a>
+                            >
+                            </BgImageComponent>
 
                             <div id="layout-a-text2" className="col col-md-6 col-lg-6 col-sm-12">
                                 <div className="module text">
@@ -259,25 +264,29 @@ const Frontpage = () => {
                                     width="100%"
                                 />
                             </div>
-                            <a
+                            <BgImageComponent
+                                imageUrl="/kevinmurphyproduct2.webp"
                                 id="layout-a-image3"
-                                className="col col-md-6 col-lg-6 col-sm-12"
+                                className="col col-md-6 col-lg-6 col-sm-12 p-0"
                                 href="https://unsplash.com/de/fotos/weisse-und-rosa-etikettierte-flaschen-Yo6tVaQHAho"
                                 target="_blank"
                                 title="Foto von Nick Scott auf Unsplash"
-                            ></a>
+                            >
+                            </BgImageComponent>
                         </div>
                     </div>
 
                     <div className="row">
                         <div className="container w-full">
-                            <a
+                            <BgImageComponent
+                                imageUrl="/salon1.webp"
                                 id="layout-a-image4"
-                                className="col col-md-6 col-lg-6 col-sm-12"
+                                className="col col-md-6 col-lg-6 col-sm-12 p-0"
                                 href="https://unsplash.com/de/fotos/foto-der-innenansicht-des-salons-PtOfbGkU3uI"
                                 target="_blank"
                                 title="Foto von Guilherme Petri auf Unsplash"
-                            ></a>
+                            >
+                            </BgImageComponent>
                             <div id="layout-a-text4" className="col col-md-6 col-lg-6 col-sm-12">
                                 <div className="module text">
                                     <h2 className="headline">
