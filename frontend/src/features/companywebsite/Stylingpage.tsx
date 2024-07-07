@@ -1,6 +1,7 @@
 import { FaInstagram } from "react-icons/fa"
-import ImageSlider from "src/components/ImageSlider"
 import useWindowSize from "src/hooks/useWindowSize"
+import ImageSlider from "src/components/ImageSlider"
+import ImageComponent from "src/components/ui/ImageComponent"
 import { vorhernachher, showpony } from "src/assets"
 import { stylingpageSliderImgs, stylingpageSliderImgs2 } from "src/constants"
 import "src/features/companywebsite/Stylingpage.scss"
@@ -34,7 +35,7 @@ const Stylingpage = () => {
                                             title={imgObj.title}
                                             tabIndex={-1}
                                         >
-                                            <img
+                                            <ImageComponent
                                                 className="image-slider-img"
                                                 src={imgObj.src}
                                                 alt={imgObj.alt}
@@ -226,7 +227,7 @@ const Stylingpage = () => {
                                                 title={imgObj.title}
                                                 tabIndex={-1}
                                             >
-                                                <img
+                                                <ImageComponent
                                                     className="image-slider-img"
                                                     src={imgObj.src}
                                                     alt={imgObj.alt}

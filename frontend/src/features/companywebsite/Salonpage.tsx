@@ -1,5 +1,6 @@
-import ImageSlider from "src/components/ImageSlider"
 import useWindowSize from "src/hooks/useWindowSize"
+import ImageSlider from "src/components/ImageSlider"
+import ImageComponent from "src/components/ui/ImageComponent"
 import { salonpageSliderImgs1, salonpageSliderImgs2 } from "src/constants"
 import { mirjamschmidsquare } from "src/assets"
 import "src/features/companywebsite/Salonpage.scss"
@@ -33,7 +34,7 @@ const Salonpage = () => {
                                     title={imgObj.title}
                                     tabIndex={-1}
                                 >
-                                    <img
+                                    <ImageComponent
                                         className="image-slider-img"
                                         src={imgObj.src}
                                         alt={imgObj.alt}

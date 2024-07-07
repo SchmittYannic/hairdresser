@@ -3,6 +3,7 @@ import { jobspageSliderImgs1 } from "src/constants"
 import useWindowSize from "src/hooks/useWindowSize"
 import Applicationform from "src/components/Applicationform"
 import ImageSlider from "src/components/ImageSlider"
+import ImageComponent from "src/components/ui/ImageComponent"
 import "src/features/companywebsite/Jobspage.scss"
 
 const Jobspage = () => {
@@ -128,7 +129,7 @@ const Jobspage = () => {
                                             title={imgObj.title}
                                             tabIndex={-1}
                                         >
-                                            <img
+                                            <ImageComponent
                                                 className="image-slider-img"
                                                 src={imgObj.src}
                                                 alt={imgObj.alt}

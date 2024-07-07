@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 import { FaInstagram } from "react-icons/fa"
-import ImageSlider from "src/components/ImageSlider"
 import useWindowSize from "src/hooks/useWindowSize"
+import ImageSlider from "src/components/ImageSlider"
+import ImageComponent from "src/components/ui/ImageComponent"
 import { vorhernachher, colorme } from "src/assets"
 import { colourpageSliderImgs, colourpageSliderImgs2, colourpageSliderImgs3 } from "src/constants"
 import "src/features/companywebsite/Colourpage.scss"
@@ -35,7 +36,7 @@ const Colourpage = () => {
                                             title={imgObj.title}
                                             tabIndex={-1}
                                         >
-                                            <img
+                                            <ImageComponent
                                                 className="image-slider-img"
                                                 src={imgObj.src}
                                                 alt={imgObj.alt}
@@ -209,7 +210,7 @@ const Colourpage = () => {
                                                 title={imgObj.title}
                                                 tabIndex={-1}
                                             >
-                                                <img
+                                                <ImageComponent
                                                     className="image-slider-img"
                                                     src={imgObj.src}
                                                     alt={imgObj.alt}
@@ -257,7 +258,7 @@ const Colourpage = () => {
                                             title={imgObj.title}
                                             tabIndex={-1}
                                         >
-                                            <img
+                                            <ImageComponent
                                                 className="image-slider-img"
                                                 src={imgObj.src}
                                                 alt={imgObj.alt}

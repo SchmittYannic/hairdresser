@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
-import ImageSlider from "src/components/ImageSlider"
 import useWindowSize from "src/hooks/useWindowSize"
+import ImageSlider from "src/components/ImageSlider"
+import ImageComponent from "src/components/ui/ImageComponent"
 import { teamgeist } from "src/assets"
 import { bookingpageSliderImgs } from "src/constants"
 import { insertSpace } from "src/utils/functions"
@@ -130,7 +131,7 @@ const Bookingpage = () => {
                                             title={imgObj.title}
                                             tabIndex={-1}
                                         >
-                                            <img
+                                            <ImageComponent
                                                 className="image-slider-img"
                                                 src={imgObj.src}
                                                 alt={imgObj.alt}
