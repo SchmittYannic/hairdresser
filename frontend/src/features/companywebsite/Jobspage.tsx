@@ -49,11 +49,13 @@ const Jobspage = () => {
                     <div id="r1680" className="row">
                         <div className="container container-fixed">
                             <div className="col col-sm-12">
-                                <img
+                                <ImageComponent
                                     id="m1995"
                                     className="module image"
                                     src={heart}
                                     alt="Herz"
+                                    loading="lazy"
+                                    width="100%"
                                 />
                             </div>
                         </div>
@@ -133,6 +135,8 @@ const Jobspage = () => {
                                                 className="image-slider-img"
                                                 src={imgObj.src}
                                                 alt={imgObj.alt}
+                                                loading="lazy"
+                                                width="100%"
                                             />
                                         </a>
                                     )}
