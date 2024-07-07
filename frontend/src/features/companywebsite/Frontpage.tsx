@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { FaPhone } from "react-icons/fa6"
+import ImageComponent from "src/components/ui/ImageComponent"
 import {
     showpony,
     kreativ,
@@ -137,11 +138,13 @@ const Frontpage = () => {
                                     <span>Mehr Über Showpony</span>
                                 </Link>
 
-                                <img
+                                <ImageComponent
                                     id="showponyImg"
                                     className="module image"
                                     src={showpony}
                                     alt="showpony logo"
+                                    loading="lazy"
+                                    width="100%"
                                 />
                             </div>
 
@@ -187,11 +190,13 @@ const Frontpage = () => {
                                         Vorher-/Nacher-Bilder
                                     </span>
                                 </Link>
-                                <img
+                                <ImageComponent
                                     id="kreativImg"
                                     className="module image"
                                     src={kreativ}
                                     alt="kreativ"
+                                    loading="lazy"
+                                    width="100%"
                                 />
                             </div>
                         </div>
@@ -245,11 +250,13 @@ const Frontpage = () => {
                                 >
                                     <span>Farbe in Bildern</span>
                                 </Link>
-                                <img
+                                <ImageComponent
                                     id="modernImg"
                                     className="module image"
                                     src={modern}
                                     alt="modern"
+                                    loading="lazy"
+                                    width="100%"
                                 />
                             </div>
                             <a
@@ -295,11 +302,13 @@ const Frontpage = () => {
                                 >
                                     <span>Schauen Sie bei uns rein</span>
                                 </Link>
-                                <img
+                                <ImageComponent
                                     id="professionellImg"
                                     className="module image"
                                     src={professionell}
                                     alt="professionell"
+                                    loading="lazy"
+                                    width="100%"
                                 />
                             </div>
                         </div>
@@ -320,11 +329,13 @@ const Frontpage = () => {
                                 </div>
                             </div>
                             <div className="col col-lg-6 col-md-5 col-sm-12">
-                                <img
+                                <ImageComponent
                                     id="heartImg"
                                     className="module image"
                                     src={heart}
                                     alt="Herz"
+                                    loading="lazy"
+                                    width="100%"
                                 />
                             </div>
                         </div>
@@ -343,11 +354,13 @@ const Frontpage = () => {
                                     target="_blank"
                                     title="Foto von Jake Nackos auf Unsplash"
                                 >
-                                    <img
+                                    <ImageComponent
                                         id="m1276"
                                         className="module image"
                                         src={ninahelmsquare}
                                         alt="hairdresser portrait"
+                                        loading="lazy"
+                                        width="100%"
                                     />
                                 </a>
                                 <div id="m1492" className="module text">
@@ -372,11 +385,13 @@ const Frontpage = () => {
                                     target="_blank"
                                     title="Foto von Dmitry Vechorko auf Unsplash"
                                 >
-                                    <img
+                                    <ImageComponent
                                         id="pomImg"
                                         className="module image"
                                         src={hairproduct}
                                         alt="hairproduct"
+                                        loading="lazy"
+                                        width="100%"
                                     />
                                 </a>
                                 <Link
