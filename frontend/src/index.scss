@@ -225,6 +225,10 @@ textarea {
     width: 100%;
 }
 
+.p-0 {
+    padding: 0 !important;
+}
+
 .bold {
     font-weight: bold;
 }
@@ -1234,16 +1238,6 @@ body .designRow>.container>.col {
 @media only screen and (min-width: 0px) and (max-width: 767px) {
     .hidden-sm {
         display: none !important;
-    }
-}
-
-@keyframes placeholderShimmer {
-    0% {
-        background-position: -500px 0;
-    }
-
-    100% {
-        background-position: 500px 0;
     }
 }
 
