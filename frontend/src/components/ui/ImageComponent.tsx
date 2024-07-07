@@ -1,4 +1,5 @@
 import { useState, useEffect, CSSProperties } from "react";
+import "src/components/ui/ImageComponent.scss"
 
 type ImageComponentPropsType = {
     src: string;
@@ -54,21 +55,7 @@ const ImageComponent = ({
                 loading={loading}
                 onLoad={() => setLoaded(true)}
             />
-            {!loaded && (
-                <div
-                    style={{
-                        width: "100%",
-                        height: "100%",
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        backgroundColor: "#e0e0e0",
-                        background: "linear-gradient(100deg,rgba(232,232,232,1) 20%,rgba(250,250,250,1) 50%,rgba(232,232,232,1) 60%)",
-                        backgroundSize: "1000px 1000px",
-                        animation: "placeholderShimmer 1.5s linear infinite forwards",
-                    }}
-                />
-            )}
+            {!loaded && <div className="skeleton-img" />}
         </div>
     );
 };
