@@ -4,12 +4,18 @@ import "src/components/ui/ImageComponent.scss"
 type BgImageComponentPropsType = PropsWithChildren<{
     imageUrl: string;
     className?: string;
+    backgroundRepeat?: string;
+    backgroundSize?: string;
+    backgroundPosition?: string;
 }> & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "className">
 
 const BgImageComponent = ({
     imageUrl,
     children,
     className,
+    backgroundRepeat = "no-repeat",
+    backgroundSize = "cover",
+    backgroundPosition = "50% 50%",
     ...props
 }: BgImageComponentPropsType) => {
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -63,6 +69,11 @@ const BgImageComponent = ({
             <div
                 ref={imageRef}
                 className={`lazy-load-background-image ${imageLoaded ? "loaded" : ""}`}
+                style={{
+                    backgroundRepeat,
+                    backgroundSize,
+                    backgroundPosition,
+                }}
             >
                 {children}
             </div>
