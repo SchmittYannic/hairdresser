@@ -3,6 +3,7 @@ import { FaInstagram } from "react-icons/fa"
 import useWindowSize from "src/hooks/useWindowSize"
 import ImageSlider from "src/components/ImageSlider"
 import ImageComponent from "src/components/ui/ImageComponent"
+import BgImageComponent from "src/components/ui/BgImageComponent"
 import { vorhernachher, colorme } from "src/assets"
 import { colourpageSliderImgs, colourpageSliderImgs2, colourpageSliderImgs3 } from "src/constants"
 import "src/features/companywebsite/Colourpage.scss"
@@ -40,6 +41,8 @@ const Colourpage = () => {
                                                 className="image-slider-img"
                                                 src={imgObj.src}
                                                 alt={imgObj.alt}
+                                                loading="lazy"
+                                                width="100%"
                                             />
                                         </a>
                                     )}
@@ -104,13 +107,15 @@ const Colourpage = () => {
 
                     <div id="instagram-section-colourpage" className="row">
                         <div className="container w-full">
-                            <a
+                            <BgImageComponent
+                                imageUrl="/instagramimg.webp"
                                 id="instagramImg-colourpage"
-                                className="col col-md-6 col-lg-6 col-sm-12"
+                                className="col col-md-6 col-lg-6 col-sm-12 p-0"
                                 href="https://www.freepik.com/free-photo/hairdresser-using-electric-trimmer-cutting-client39s-hair_27258635.htm#fromView=search&page=1&position=14&uuid=c0e9aa56-ca74-497d-a564-6d42eedc1330"
                                 target="_blank"
                                 title="Image by freepik"
-                            ></a>
+                            >
+                            </BgImageComponent>
                             <div
                                 id="instagramText-colourpage"
                                 className="col col-md-6 col-lg-6 col-sm-12"
@@ -150,11 +155,13 @@ const Colourpage = () => {
                                         Zum Instagram-Profil
                                     </span>
                                 </a>
-                                <img
+                                <ImageComponent
                                     id="vorhernachherImg-colourpage"
                                     className="module image"
                                     src={vorhernachher}
                                     alt="vorhernachher"
+                                    loading="lazy"
+                                    width="100%"
                                 />
                             </div>
                         </div>
@@ -214,6 +221,8 @@ const Colourpage = () => {
                                                     className="image-slider-img"
                                                     src={imgObj.src}
                                                     alt={imgObj.alt}
+                                                    loading="lazy"
+                                                    width="100%"
                                                 />
                                             </a>
                                         )}
@@ -262,6 +271,8 @@ const Colourpage = () => {
                                                 className="image-slider-img"
                                                 src={imgObj.src}
                                                 alt={imgObj.alt}
+                                                loading="lazy"
+                                                width="100%"
                                             />
                                         </a>
                                     )}
