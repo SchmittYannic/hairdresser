@@ -63,7 +63,6 @@ const BgImageComponent = ({
     return (
         <a
             className={`lazy-load-background ${className}`}
-            role="img"
             {...props}
         >
             <div
