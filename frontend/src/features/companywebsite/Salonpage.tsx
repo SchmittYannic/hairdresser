@@ -38,6 +38,8 @@ const Salonpage = () => {
                                         className="image-slider-img"
                                         src={imgObj.src}
                                         alt={imgObj.alt}
+                                        loading="lazy"
+                                        width="100%"
                                     />
                                 </a>
                             )}
@@ -75,11 +77,13 @@ const Salonpage = () => {
                                     target="_blank"
                                     title="Foto von Rivage auf Unsplash"
                                 >
-                                    <img
+                                    <ImageComponent
                                         id="m3421"
                                         className="module image"
                                         src={mirjamschmidsquare}
                                         alt="Inhaberin Mirjam Schmid"
+                                        loading="lazy"
+                                        width="100%"
                                     />
                                 </a>
                             </div>
@@ -137,10 +141,12 @@ const Salonpage = () => {
                                             title={imgObj.title}
                                             tabIndex={-1}
                                         >
-                                            <img
+                                            <ImageComponent
                                                 className="image-slider-img"
                                                 src={imgObj.src}
                                                 alt={imgObj.alt}
+                                                loading="lazy"
+                                                width="100%"
                                             />
                                         </a>
                                     )}
