@@ -31,14 +31,6 @@
     padding-bottom: 0px;
 }
 
-#teamImg-bookingpage {
-    background-color: rgba(230, 219, 215, 0.3);
-    background-image: url("/teamimgvertical.webp");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: 50% 50%;
-}
-
 #teamText-bookingpage {
     background-color: rgba(230, 219, 215, 0.3);
     border-style: solid;
@@ -96,7 +88,7 @@
         margin-right: auto;
     }
 
-    #teamImg-bookingpage {
+    #teamImg-bookingpage .lazy-load-background-image {
         padding-top: 250px;
         padding-bottom: 250px;
     }

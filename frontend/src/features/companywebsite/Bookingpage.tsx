@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import useWindowSize from "src/hooks/useWindowSize"
 import ImageSlider from "src/components/ImageSlider"
 import ImageComponent from "src/components/ui/ImageComponent"
+import BgImageComponent from "src/components/ui/BgImageComponent"
 import { teamgeist } from "src/assets"
 import { bookingpageSliderImgs } from "src/constants"
 import { insertSpace } from "src/utils/functions"
@@ -65,13 +66,16 @@ const Bookingpage = () => {
 
                     <div id="team-section-bookingpage" className="row">
                         <div className="container w-full">
-                            <a
+                            <BgImageComponent
+                                imageUrl="/teamimgvertical.webp"
                                 id="teamImg-bookingpage"
-                                className="col col-md-6 col-lg-6 col-sm-12"
+                                className="col col-md-6 col-lg-6 col-sm-12 p-0"
                                 href="https://www.freepik.com/free-photo/people-taking-selfie-together-registration-day_18301092.htm"
                                 target="_blank"
                                 title="Image by freepik"
-                            ></a>
+                                backgroundSize="contain"
+                            >
+                            </BgImageComponent>
                             <div
                                 id="teamText-bookingpage"
                                 className="col col-md-6 col-lg-6 col-sm-12"
@@ -101,11 +105,13 @@ const Bookingpage = () => {
                                         Lernen Sie uns kennen
                                     </span>
                                 </Link>
-                                <img
+                                <ImageComponent
                                     id="teamgeistImg"
                                     className="module image"
                                     src={teamgeist}
                                     alt="teamgeist"
+                                    loading="lazy"
+                                    width="100%"
                                 />
                             </div>
                         </div>
@@ -135,6 +141,8 @@ const Bookingpage = () => {
                                                 className="image-slider-img"
                                                 src={imgObj.src}
                                                 alt={imgObj.alt}
+                                                loading="lazy"
+                                                width="100%"
                                             />
                                         </a>
                                     )}
