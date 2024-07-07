@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { FaInstagram, FaFacebookF, FaEnvelope } from "react-icons/fa"
+import ImageComponent from "src/components/ui/ImageComponent"
 import { besuch } from "src/assets"
 import { insertSpace, isOpenNow } from "src/utils/functions"
 import Kontaktform from "src/components/Kontaktform"
@@ -21,11 +22,13 @@ const Kontaktpage = () => {
                     <div id="r1099" className="row">
                         <div className="container container-fixed">
                             <div className="col col-md-12 col-lg-12 col-sm-12">
-                                <img
+                                <ImageComponent
                                     id="m3265"
                                     className="module image"
                                     src={besuch}
                                     alt="Wann lernen wir uns kennen?"
+                                    loading="lazy"
+                                    width="100%"
                                 />
                             </div>
                         </div>
