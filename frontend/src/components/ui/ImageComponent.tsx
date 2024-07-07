@@ -1,26 +1,25 @@
-import { useState, useEffect, CSSProperties } from "react";
+import { useState, useEffect, CSSProperties, ImgHTMLAttributes } from "react";
 import "src/components/ui/ImageComponent.scss"
 
 type ImageComponentPropsType = {
     src: string;
-    alt: string;
     width?: number | string;
     height?: number | string;
     className?: string;
     id?: string;
     style?: CSSProperties;
     loading?: "lazy" | "eager";
-};
+} & Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "id" | "className" | "style" | "loading" | "onLoad" | "width" | "height">
 
 const ImageComponent = ({
     src,
-    alt,
     width,
     height,
     className,
     id,
     style,
     loading = "lazy",
+    ...props
 }: ImageComponentPropsType) => {
     const [loaded, setLoaded] = useState(false);
 
@@ -45,7 +44,6 @@ const ImageComponent = ({
         >
             <img
                 src={src}
-                alt={alt}
                 width={width}
                 height={height}
                 style={{
@@ -54,6 +52,7 @@ const ImageComponent = ({
                 }}
                 loading={loading}
                 onLoad={() => setLoaded(true)}
+                {...props}
             />
             {!loaded && <div className="skeleton-img" />}
         </div>
