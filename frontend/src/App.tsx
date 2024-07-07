@@ -1,4 +1,4 @@
-import { ComponentType, Suspense, lazy } from "react"
+import { ComponentType, Suspense, lazy, useEffect } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import PersistLogin from "src/features/auth/PersistLogin"
 import Layout from "src/components/Layout"
@@ -26,6 +26,13 @@ const Booking = withSuspense(lazy(() => import("src/features/booking/Booking" /*
 const ResetPassword = withSuspense(lazy(() => import("src/features/booking/ResetPassword" /* webpackChunkName: "ResetPassword" */)));
 
 const App = () => {
+
+	// preload teamimg.webp
+	useEffect(() => {
+		const img = new Image();
+		img.src = "/teamimg.webp";
+	}, []);
+
 	return (
 		<Routes>
 			<Route element={<PersistLogin />}>
