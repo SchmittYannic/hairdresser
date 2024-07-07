@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import Employee from "src/components/Employee"
+import ImageComponent from "src/components/ui/ImageComponent"
 import { employees } from "src/constants"
 import { teamgeist } from "src/assets"
 import "src/features/companywebsite/Teampage.scss"
@@ -68,11 +69,13 @@ const Teampage = () => {
                                 </div>
                                 <div className="module autospacer"></div>
                                 <div className="flexWrap">
-                                    <img
+                                    <ImageComponent
                                         id="m4734"
                                         className="module image"
                                         src={teamgeist}
                                         alt="teamgeist"
+                                        loading="lazy"
+                                        width="100%"
                                     />
                                 </div>
                             </div>
