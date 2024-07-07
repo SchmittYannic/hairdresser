@@ -45,13 +45,6 @@
     padding-bottom: 0px;
 }
 
-#instagramImg-stylingpage {
-    background-image: url("/instagramimg.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
-}
-
 #instagramText-stylingpage {
     border-color: v.$primaryBgColor;
     padding-left: 100px;
@@ -125,7 +118,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-    #instagramImg-stylingpage {
+    #instagramImg-stylingpage .lazy-load-background-image {
         margin-left: 0px;
         margin-right: 0px;
         border-style: solid;
