@@ -11,7 +11,7 @@ const oldpassword = Yup.string()
 
 const password = Yup.string()
     .max(80, "Passwort darf nicht mehr als 80 Zeichen lang sein")
-    .matches(/^.{0}$|^.{6,16}$/, "Passwort muss zwischen 6 und 16 Zeichen lang sein")
+    .matches(/^.{0}$|^.{6,80}$/, "Passwort muss zwischen 6 und 80 Zeichen lang sein")
     .matches(/^(?=.*[A-Z]).*|^$/, "Passwort muss mindestens einen Großbuchstaben enthalten")
     .matches(/^(?=.*[A-Z]).*|^$/, "Passwort muss mindestens einen Kleinbuchstaben enthalten")
     .matches(/^(?=.*\d).*|^$/, "Passwort muss mindestens eine Ziffer enthalten")

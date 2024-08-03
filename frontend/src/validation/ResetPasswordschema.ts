@@ -5,7 +5,7 @@ const requiredMsg = "Bitte ausfüllen";
 const password = Yup.string()
     .required(requiredMsg)
     .max(80, "Passwort darf nicht mehr als 80 Zeichen lang sein")
-    .matches(/^.{6,16}$/, "Passwort muss zwischen 6 und 16 Zeichen lang sein")
+    .matches(/^.{6,80}$/, "Passwort muss zwischen 6 und 80 Zeichen lang sein")
     .matches(/.*[A-Z].*/, "Passwort muss mindestens einen Großbuchstaben enthalten")
     .matches(/.*[a-z].*/, "Passwort muss mindestens einen Kleinbuchstaben enthalten")
     .matches(/.*\d.*/, "Passwort muss mindestens eine Ziffer enthalten")
