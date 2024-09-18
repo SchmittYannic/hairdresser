@@ -3,13 +3,29 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import PersistLogin from "src/features/auth/PersistLogin"
 import Layout from "src/components/Layout"
 import LayoutBooking from "src/features/booking/LayoutBooking"
+import ErrorBoundary from "src/components/ErrorBoundary"
+import ClipLoader from "src/components/ui/ClipLoader"
+
+const Fallback = () => {
+	return (
+		<main className="error-main">
+			<ClipLoader
+				color={"rgb(209,213,219)"}
+				loading={true}
+				size={30}
+			/>
+		</main>
+	)
+}
 
 const withSuspense = <P extends object>(
 	Component: ComponentType<P>
 ): React.FC<P> => (props) => (
-	<Suspense fallback={<div>Loading...</div>}>
-		<Component {...props} />
-	</Suspense>
+	<ErrorBoundary>
+		<Suspense fallback={<Fallback />}>
+			<Component {...props} />
+		</Suspense>
+	</ErrorBoundary>
 );
 
 const Frontpage = withSuspense(lazy(() => import("src/features/companywebsite/Frontpage" /* webpackChunkName: "Frontpage" */)));

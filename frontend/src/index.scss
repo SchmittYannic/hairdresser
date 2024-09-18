@@ -253,6 +253,12 @@ textarea {
     color: v.$tertiaryColor;
 }
 
+.error-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .col {
     position: relative;
     padding-left: 15px;
