@@ -1,9 +1,3 @@
-const allowedOrigins = [
-    "http://localhost:5173",
-    "https://hairdresser-363l.onrender.com",
-    "https://www.project-domain.de",
-    "https://project-domain.de",
-    "https://hairdresser.project-domain.de",
-];
+const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
 
 export default allowedOrigins;
