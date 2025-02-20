@@ -92,7 +92,7 @@ The frontend uses a `.env` file for configuration. Here are the required environ
 - `VITE_IMPRESSUM_CITY`: City displayed in Impressum.
 
 
-Running the Frontend
+### Running the Frontend
 
 Make sure to create the aforementioned `.env` file for configuration.
 
