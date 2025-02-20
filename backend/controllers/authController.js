@@ -7,10 +7,23 @@ import loginschema from "../validation/loginschema.js";
 import { emailschema, passwordschema } from "../validation/userschema.js";
 import { sessionizeUser, parseError, birthdayToString } from "../utils/helpers.js";
 
-// @desc login
-// @route POST /
-// @access Public
-const login = async (req, res) => {
+/**
+ * @async
+ * @function login
+ * @description Handles user login.
+ * @route POST /
+ * @access Public
+ 
+ * @param {Object} req - The request object.
+ * @param {Object} req.body - The body of the request.
+ * @param {string} req.body.email - The email of the user.
+ * @param {string} req.body.password - The password of the user.
+ * @param {Object} req.cookies - The cookies of the request.
+ * @param {string} req.cookies.cookieConsent - The cookie consent status.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves to void.
+ */
+async function login(req, res) {
     try {
         const { email, password } = req.body;
         const { cookieConsent } = req.cookies;
@@ -40,8 +53,8 @@ const login = async (req, res) => {
             return res.status(401).json({ message: "Ungültiges Passwort", context: { key: "password" } });
         }
 
-        const sessionUser = sessionizeUser(foundUser)
-        req.session.user = sessionUser
+        const sessionUser = sessionizeUser(foundUser);
+        req.session.user = sessionUser;
 
         const userInfo = {
             ...sessionUser,
@@ -53,24 +66,35 @@ const login = async (req, res) => {
             reminderemail: foundUser.reminderemail,
             birthdayemail: foundUser.birthdayemail,
             newsletter: foundUser.newsletter,
-        }
+        };
 
         const cookieInfo = {
             cookie_expires: req.session.cookie._expires,
             cookie_originalMaxAge: req.session.cookie.originalMaxAge,
-        }
+        };
 
-        return res.status(200).json({ message: "login success", userInfo, cookieInfo })
+        return res.status(200).json({ message: "login success", userInfo, cookieInfo });
     } catch (err) {
         return res.status(400).send(parseError(err));
     }
 }
 
-// @desc logout
-// @route DELETE /
-// @access Private
-const logout = (req, res) => {
-    const { session } = req
+
+/**
+ * @async
+ * @function logout
+ * @description Logs out the user by destroying the session and clearing the session cookie.
+ * @route DELETE /
+ * @access Private
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} req.session - The session object.
+ * @param {Object} res - The response object.
+ * @returns {void}
+ * @throws {Error} If there is an error destroying the session or if the session is already expired.
+ */
+function logout(req, res) {
+    const { session } = req;
 
     try {
         const user = session.user;
@@ -90,23 +114,33 @@ const logout = (req, res) => {
     }
 }
 
-// @desc loggedIn
-// @route GET /
-// @access Public
-const loggedIn = async ({ session }, res) => {
+/**
+ * @async
+ * @function loggedIn
+ * @description Checks if the user is logged in by verifying the session. 
+ * If the user is logged in, returns user information and cookie details. 
+ * If the user is not logged in, returns a message indicating the user is not logged in.
+ * @route GET /
+ * @access Public
+ * 
+ * @param {Object} session - The session object containing user session data.
+ * @param {Object} res - The response object to send the response.
+ * @returns {Promise<Object>} The response object with user information and cookie details or an error message.
+ */
+async function loggedIn({ session }, res) {
     try {
         if (!session || !session.user) {
-            return res.status(200).json({ message: "Nutzer nicht angemeldet" })
+            return res.status(200).json({ message: "Nutzer nicht angemeldet" });
         }
 
-        const { userId } = session.user
+        const { userId } = session.user;
 
         const foundUser = await User.findById(userId).lean().exec();
 
         const cookieInfo = {
             cookie_expires: session.cookie._expires,
             cookie_originalMaxAge: session.cookie.originalMaxAge,
-        }
+        };
 
         const userInfo = {
             ...session.user,
@@ -118,7 +152,7 @@ const loggedIn = async ({ session }, res) => {
             reminderemail: foundUser.reminderemail,
             birthdayemail: foundUser.birthdayemail,
             newsletter: foundUser.newsletter,
-        }
+        };
 
         return res.status(200).json({ message: "Nutzer ist noch angemeldet", userInfo, cookieInfo });
     } catch (error) {
@@ -126,10 +160,22 @@ const loggedIn = async ({ session }, res) => {
     }
 }
 
-// @desc resetPasswordEmail
-// @route POST /reset
-// @access Public
-const resetPasswordEmail = async (req, res, next) => {
+/**
+ * @async
+ * @function resetPasswordEmail
+ * @description Handles the process of sending a reset password email.
+ * @route POST /reset
+ * @access Public
+ 
+ * @param {Object} req - The request object.
+ * @param {Object} req.body - The body of the request.
+ * @param {string} req.body.email - The email address of the user requesting the password reset.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Promise<void>} Sends a response with the status and message or calls the next middleware function.
+ * @throws {Error} Returns a 400 status with an error message if an error occurs.
+ */
+async function resetPasswordEmail(req, res, next) {
     try {
         const { email } = req.body;
 
@@ -185,7 +231,18 @@ const resetPasswordEmail = async (req, res, next) => {
     }
 }
 
-const sendResetPasswordEmail = (req, res) => {
+/**
+ * @async
+ * @function resetPasswordEmail
+ * @description Sends a password reset email to the user.
+ *
+ * @param {Object} req - The request object.
+ * @param {string} req.resetPasswordToken - The token for resetting the password.
+ * @param {string} req.email - The email address of the user.
+ * @param {Object} res - The response object.
+ * @returns {Object} - A JSON response indicating the success or failure of the email sending process.
+ */
+function sendResetPasswordEmail(req, res) {
     const { resetPasswordToken, email } = req;
 
     const transporter = nodemailer.createTransport({
@@ -228,10 +285,20 @@ const sendResetPasswordEmail = (req, res) => {
     });
 }
 
-// @desc resetPasswordEmail
-// @route GET /reset/:resetPasswordToken
-// @access Public
-const isResetTokenValid = async (req, res) => {
+/**
+ * @async
+ * @function isResetTokenValid
+ * @description Validates the reset password token.
+ * @route GET /reset/:resetPasswordToken
+ * @access Public
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} req.params - The request parameters.
+ * @param {string} req.params.resetPasswordToken - The reset password token to validate.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves to void.
+ */
+async function isResetTokenValid(req, res) {
     try {
         const { resetPasswordToken } = req.params;
 
@@ -251,10 +318,25 @@ const isResetTokenValid = async (req, res) => {
     }
 }
 
-// @desc resetPasswordEmail
-// @route PATCH /reset/:resetPasswordToken
-// @access Public
-const resetPassword = async (req, res) => {
+/**
+ * @async
+ * @function isResetTokenValid
+ * @description Resets the user's password using a reset token.
+ * @route PATCH /reset/:resetPasswordToken
+ * @access Public
+ *
+ * @async
+ * @function resetPassword
+ * @param {Object} req - The request object.
+ * @param {Object} req.params - The request parameters.
+ * @param {string} req.params.resetPasswordToken - The token used to reset the password.
+ * @param {Object} req.body - The request body.
+ * @param {string} req.body.password - The new password to be set.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - Returns a promise that resolves to void.
+ * @throws {Error} - Throws an error if the password reset process fails.
+ */
+async function resetPassword(req, res) {
     try {
         const { resetPasswordToken } = req.params;
         const { password } = req.body;
@@ -290,10 +372,10 @@ const resetPassword = async (req, res) => {
         const result = await foundToken.deleteOne();
 
         if (!result) {
-            return res.status(400).json({ message: "Fehler bei Löschung des Tokens aus Datenbank" })
+            return res.status(400).json({ message: "Fehler bei Löschung des Tokens aus Datenbank" });
         }
 
-        return res.status(200).json({ message: "Passwort erfolgreich geändert" })
+        return res.status(200).json({ message: "Passwort erfolgreich geändert" });
     } catch (err) {
         return res.status(400).send({ ...parseError(err) });
     }
