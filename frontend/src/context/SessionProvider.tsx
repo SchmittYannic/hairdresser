@@ -140,7 +140,7 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
     const [userInfo, setUserInfo] = useState<UserInfoType>(defaultUserInfo);
     const [cookieInfo, setCookieInfo] = useState<CookieInfoType>(defaultCookieInfo);
     const [activeTab, setActiveTab] = useState<activeTabType>(defaultActiveTab);
-    const [isCookieConsent, setIsCookieConsent] = useState(typeof Cookies.get("CookieConsent") === "string" ? true : false);
+    const [isCookieConsent, setIsCookieConsent] = useState(typeof Cookies.get("cookieConsent") === "string" ? true : false);
     const timeout: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> = useRef<ReturnType<typeof setTimeout>>();
 
     const resetState = () => {

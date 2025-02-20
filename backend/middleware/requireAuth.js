@@ -1,21 +1,21 @@
 const requireAuth = (req, res, next) => {
     if (req.session && req.session.user) {
-        const { CookieConsent } = req.cookies;
+        const { cookieConsent } = req.cookies;
 
-        if (!CookieConsent) {
+        if (!cookieConsent) {
             req.session.destroy();
 
-            return res.status(401).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
+            return res.status(401).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "cookieConsent" } });
         }
 
-        const CookieConsentParsed = JSON.parse(CookieConsent);
+        const cookieConsentParsed = JSON.parse(cookieConsent);
 
-        if (!CookieConsentParsed.necessary) {
+        if (!cookieConsentParsed.necessary) {
 
             req.session.destroy();
 
-            res.clearCookie("CookieConsent");
-            return res.status(401).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
+            res.clearCookie("cookieConsent");
+            return res.status(401).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "cookieConsent" } });
         }
 
         next();

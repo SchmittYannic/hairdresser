@@ -59,7 +59,7 @@ const Login = () => {
         if (!isAxiosError(errorApi)) return
         if (!errorApi.response) return
         if (!errorApi.response.data.context) return
-        if (errorApi.response.data.context.key !== "CookieConsent") return
+        if (errorApi.response.data.context.key !== "cookieConsent") return
 
         setIsCookieConsent(false);
     }, [isError]);

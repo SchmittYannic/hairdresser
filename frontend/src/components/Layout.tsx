@@ -53,7 +53,7 @@ const Layout = () => {
     // }, [handleModalCloseClicked]);
 
     return (
-        <div className="container w-full">
+        <div className="container">
             <div className="col col-sm-12">
                 <Header />
                 <div ref={ref}></div>

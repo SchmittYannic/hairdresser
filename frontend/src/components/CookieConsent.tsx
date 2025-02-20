@@ -31,7 +31,7 @@ const CookieConsent = () => {
             secure: false,
         }
 
-        Cookies.set("CookieConsent", JSON.stringify(preferences), cookieOptions);
+        Cookies.set("cookieConsent", JSON.stringify(preferences), cookieOptions);
         setIsCookieConsent(true);
     };
 
