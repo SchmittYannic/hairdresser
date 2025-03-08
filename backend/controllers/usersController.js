@@ -32,17 +32,17 @@ async function createNewUser(req, res) {
         const {
             title, lastname, firstname, birthday, email, phonenumber, password, reminderemail, birthdayemail, newsletter,
         } = req.body;
-        const { cookieConsent } = req.cookies;
+        const { CookieConsent } = req.cookies;
 
-        if (!cookieConsent) {
-            return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "cookieConsent" } });
+        if (!CookieConsent) {
+            return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
         }
 
-        const cookieConsentParsed = JSON.parse(cookieConsent);
+        const CookieConsentParsed = JSON.parse(CookieConsent);
 
-        if (!cookieConsentParsed.necessary) {
-            res.clearCookie("cookieConsent");
-            return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "cookieConsent" } });
+        if (!CookieConsentParsed.necessary) {
+            res.clearCookie("CookieConsent");
+            return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
         }
 
         await userschema.validateAsync({
