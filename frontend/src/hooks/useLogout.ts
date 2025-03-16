@@ -15,6 +15,10 @@ const useLogout = () => {
         mutationFn: logout,
         onSettled: () => {
             resetState();
+
+            const bc = new BroadcastChannel("auth");
+            bc.postMessage({ type: "LOGOUT" });
+            bc.close();
         },
         onError: (error) => {
             if (isAxiosError(error) && error.response) {

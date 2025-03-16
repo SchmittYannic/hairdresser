@@ -1,5 +1,6 @@
 import { ComponentType, Suspense, lazy, useEffect } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
+import useSessionContext from "src/hooks/useSessionContext"
 import PersistLogin from "src/features/auth/PersistLogin"
 import Layout from "src/components/Layout"
 import LayoutBooking from "src/features/booking/LayoutBooking"
@@ -43,11 +44,27 @@ const ResetPassword = withSuspense(lazy(() => import("src/features/booking/Reset
 
 const App = () => {
 
+	const { resetState } = useSessionContext();
+
 	// preload teamimg.webp
 	useEffect(() => {
 		const img = new Image();
 		img.src = "/teamimg.webp";
 	}, []);
+
+	useEffect(() => {
+		const bc = new BroadcastChannel("auth");
+
+		bc.onmessage = (event) => {
+			if (event.data.type === "LOGOUT") {
+				resetState();
+			}
+		};
+
+		return () => {
+			bc.close();
+		};
+	}, [resetState]);
 
 	return (
 		<Routes>
