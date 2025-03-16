@@ -27,7 +27,7 @@ const CookieConsent = () => {
             secure: true,
         } : {
             expires: 7,
-            sameSite: "none" as SameSiteOptionType,
+            sameSite: "lax" as SameSiteOptionType,
             secure: false,
         }
 

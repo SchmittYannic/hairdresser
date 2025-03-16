@@ -9,7 +9,7 @@ const sessionConfig = (db) => {
         maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
         httpOnly: true,
     } : {
-        sameSite: "none",
+        sameSite: "lax",
         secure: false,
         maxAge: parseInt(process.env.SESS_LIFETIME) * 1000,
         httpOnly: true,

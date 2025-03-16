@@ -26,17 +26,22 @@ import { sessionizeUser, parseError, birthdayToString } from "../utils/helpers.j
 async function login(req, res) {
     try {
         const { email, password } = req.body;
-        const { CookieConsent } = req.cookies;
 
-        if (!CookieConsent) {
-            return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
-        }
+        const isProd = process.env.NODE_ENV === "production";
 
-        const CookieConsentParsed = JSON.parse(CookieConsent);
+        if (isProd) {
+            const { CookieConsent } = req.cookies;
 
-        if (!CookieConsentParsed.necessary) {
-            res.clearCookie("CookieConsent");
-            return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
+            if (!CookieConsent) {
+                return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
+            }
+
+            const CookieConsentParsed = JSON.parse(CookieConsent);
+
+            if (!CookieConsentParsed.necessary) {
+                res.clearCookie("CookieConsent");
+                return res.status(400).json({ message: "Bitte erlauben Sie essentielle Cookies", context: { key: "CookieConsent" } });
+            }
         }
 
         await loginschema.validateAsync({ email, password });
