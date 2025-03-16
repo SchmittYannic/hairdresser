@@ -341,6 +341,16 @@ body .designRow>.container>.col {
         background-color: rgba(216, 198, 185, 0.15);
         color: v.$tertiaryColor;
     }
+
+    .hidden {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .visible {
+        visibility: visible;
+        opacity: 1;
+    }
 }
 
 .divider {
@@ -658,12 +668,14 @@ body .designRow>.container>.col {
 }
 
 .form input[type="submit"],
-.login input[type="submit"] {
+.login input[type="submit"],
+.form .button[type="submit"] {
     width: auto;
     white-space: normal;
 }
 
-.form input[type="submit"] {
+.form input[type="submit"],
+.form .button[type="submit"] {
     display: table;
     margin-top: 0px;
     margin-right: auto;
@@ -1133,7 +1145,8 @@ body .designRow>.container>.col {
         width: 100% !important;
     }
 
-    .form input[type="submit"] {
+    .form input[type="submit"],
+    .form .button[type="submit"] {
         width: 100%;
         margin-left: auto;
         margin-top: 19px;

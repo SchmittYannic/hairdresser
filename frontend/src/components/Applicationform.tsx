@@ -1,12 +1,34 @@
-import { ChangeEvent, FormEvent, useRef } from "react"
+import { ChangeEvent, useRef } from "react"
 import { Link } from "react-router-dom"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { isAxiosError } from "axios";
+
+import useSaveNewApplication from "src/hooks/useSaveNewApplication"
 import ImageComponent from "src/components/ui/ImageComponent"
+import AsyncButton from "src/components/ui/AsyncButton"
 import { bewerbung } from "src/assets"
+import { ApplicationDataType } from "src/utils/types"
 import "src/components/Applicationform.scss"
 
 const Applicationform = () => {
 
-    const fileInputRef = useRef<HTMLInputElement>(null);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<ApplicationDataType>();
+
+    const {
+        mutate,
+        isLoading,
+        isError,
+        isSuccess,
+        error: errorApi,
+        data: responseApi,
+    } = useSaveNewApplication();
+
+    const isServerError = (isError && !isAxiosError(errorApi) || isError && isAxiosError(errorApi) && !errorApi.response);
+
     const selectedFileText = useRef<HTMLSpanElement>(null);
 
     const shopname = String(import.meta.env.VITE_SHOPNAME) ?? "hairdresser";
@@ -16,9 +38,12 @@ const Applicationform = () => {
 
     const noFileSelectedText = "Keine Datei ausgewählt";
 
+    const onSubmit: SubmitHandler<ApplicationDataType> = (data) => {
+        mutate(data);
+    };
+
     const handleSelectFileClicked = () => {
-        if (!fileInputRef.current) return
-        fileInputRef.current.click();
+        document.getElementById("m2893_field7")?.click();
     };
 
     const handleFileInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -31,10 +56,6 @@ const Applicationform = () => {
             const fileCount = target.files.length;
             el.innerText = fileCount === 1 ? target.files[0].name : fileCount + " Dateien ausgewählt";
         }
-    };
-
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
     }
 
     return (
@@ -58,7 +79,7 @@ const Applicationform = () => {
                         action="custom_form"
                         encType="multipart/form-data"
                         data-settings="margin=1"
-                        onSubmit={handleSubmit}
+                        onSubmit={handleSubmit(onSubmit)}
                     >
                         <div className="fields clear">
                             <div className="field w100">
@@ -66,11 +87,12 @@ const Applicationform = () => {
                                 <input
                                     id="m2893_field_0"
                                     type="text"
-                                    name="field_0"
                                     autoComplete="on"
                                     placeholder="Name*"
+                                    maxLength={80}
                                     required={true}
                                     aria-required={true}
+                                    {...register("field_0")}
                                 />
                             </div>
                             <div className="field w50">
@@ -78,11 +100,12 @@ const Applicationform = () => {
                                 <input
                                     id="m2893_field_1"
                                     type="text"
-                                    name="field_1"
                                     autoComplete="street-address"
                                     placeholder="Straße, Hausnummer*"
+                                    maxLength={80}
                                     required={true}
                                     aria-required={true}
+                                    {...register("field_1")}
                                 />
                             </div>
                             <div className="field w50">
@@ -90,11 +113,12 @@ const Applicationform = () => {
                                 <input
                                     id="m2893_field_2"
                                     type="text"
-                                    name="field_2"
                                     autoComplete="street-address"
                                     placeholder="PLZ, Ort*"
+                                    maxLength={80}
                                     required={true}
                                     aria-required={true}
+                                    {...register("field_2")}
                                 />
                             </div>
                             <div className="field w50">
@@ -102,11 +126,12 @@ const Applicationform = () => {
                                 <input
                                     id="m2893_field_3"
                                     type="text"
-                                    name="field_3"
                                     autoComplete="tel"
                                     placeholder="Telefon/Mobil*"
+                                    maxLength={80}
                                     required={true}
                                     aria-required={true}
+                                    {...register("field_3")}
                                 />
                             </div>
                             <div className="field w50">
@@ -114,11 +139,12 @@ const Applicationform = () => {
                                 <input
                                     id="m2893_field_4"
                                     type="text"
-                                    name="field_4"
                                     autoComplete="email"
                                     placeholder="Email*"
+                                    maxLength={80}
                                     required={true}
                                     aria-required={true}
+                                    {...register("field_4")}
                                 />
                             </div>
                             <div className="field w100">
@@ -126,21 +152,23 @@ const Applicationform = () => {
                                 <input
                                     id="m2893_field_5"
                                     type="text"
-                                    name="field_5"
                                     autoComplete="on"
                                     placeholder="Ich interessiere mich für eine Stelle als"
+                                    maxLength={80}
                                     required={true}
                                     aria-required={true}
+                                    {...register("field_5")}
                                 />
                             </div>
                             <div className="field w100">
                                 <label htmlFor="m2893_field6"></label>
                                 <textarea
                                     id="m2893_field_6"
-                                    name="field_6"
                                     placeholder="Ihre Nachricht an uns*"
+                                    maxLength={250}
                                     required={true}
                                     aria-required={true}
+                                    {...register("field_6")}
                                 ></textarea>
                             </div>
                             <div className="field w100">
@@ -148,12 +176,13 @@ const Applicationform = () => {
                                     Lebenslauf
                                 </label>
                                 <input
-                                    ref={fileInputRef}
                                     id="m2893_field7"
                                     type="file"
-                                    name="field_7[]"
                                     multiple={true}
-                                    onChange={handleFileInputChange}
+                                    {...register("field_7", {
+                                        onChange: handleFileInputChange,
+                                        required: "Mindestens eine Datei ist erforderlich",
+                                    })}
                                 />
                                 <div className="uploadWrapper">
                                     <button
@@ -171,6 +200,12 @@ const Applicationform = () => {
                                         {noFileSelectedText}
                                     </span>
                                 </div>
+                                {
+                                    errors.field_7 &&
+                                    <span className="error-label text-left" role="alert">
+                                        {errors.field_7.message}
+                                    </span>
+                                }
                             </div>
                         </div>
                         <div className="optins clear">
@@ -179,9 +214,9 @@ const Applicationform = () => {
                                     <input
                                         id="m2893_optin_field_0"
                                         type="checkbox"
-                                        name="optin_field_0"
-                                        value={1}
+                                        value={0}
                                         required
+                                        {...register("optin_field_0", { required: true })}
                                     />
                                     <label
                                         className="label_optin_field_0"
@@ -198,7 +233,35 @@ const Applicationform = () => {
                             </div>
                         </div>
                         <div id="errors_m2893"></div>
-                        <input className="button" type="submit" value="Bewerbung abschicken" />
+                        <AsyncButton
+                            className="button"
+                            type="submit"
+                            isLoading={isLoading}
+                            disabled={isLoading}
+                            style={{ position: "relative" }}
+                        >
+                            Bewerbung abschicken
+                        </AsyncButton>
+                        {
+                            isSuccess &&
+                            <span className="success-msg" role="alert">
+                                {responseApi.message}
+                            </span>
+                        }
+                        {
+                            isError && isAxiosError(errorApi) && errorApi.response && (errorApi.response.data.context === undefined || errorApi.response.data.context.key === "CookieConsent") &&
+                            <span className="error-msg" role="alert">
+                                {errorApi.response.data.message}
+                            </span>
+
+                        }
+                        {
+                            isServerError &&
+                            <span className="error-msg" role="alert">
+                                Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
+                            </span>
+
+                        }
                     </form>
 
                     <div id="m4148" className="module text">
