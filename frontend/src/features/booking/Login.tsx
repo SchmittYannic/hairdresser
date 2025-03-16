@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { isAxiosError } from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -12,6 +13,7 @@ const Login = () => {
 
     const { setActiveTab, setIsCookieConsent } = useSessionContext();
     const { mutate, isLoading, isError, error: errorApi } = useLogin();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const {
         register,
@@ -63,6 +65,16 @@ const Login = () => {
 
         setIsCookieConsent(false);
     }, [isError]);
+
+    useEffect(() => {
+        if (searchParams.get("error") === "unauthorized") {
+            setError("root", {
+                type: "sessionExpired",
+                message: "Your session has expired. Please log in again.",
+            });
+            setSearchParams({}, { replace: true }); // Remove error from URL after displaying
+        }
+    }, [searchParams, setSearchParams]);
 
     return (
         <div className="page">
@@ -137,6 +149,16 @@ const Login = () => {
                             Passwort vergessen?
                         </a>
                         <div className="clear-row"></div>
+                        {
+                            errors.root &&
+                            <span
+                                className="error-msg"
+                                role="alert"
+                                style={{ margin: "15px auto" }}
+                            >
+                                {errors.root.message}
+                            </span>
+                        }
                         {
                             isError && isAxiosError(errorApi) && errorApi.response && (errorApi.response.data.context === undefined || errorApi.response.data.context.key === "CookieConsent") &&
                             <span
