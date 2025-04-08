@@ -291,6 +291,12 @@ async function deleteUser(req, res) {
             return res.status(400).json({ message: "Accountlöschung muss mit Passwort bestätigt werden", context: { label: "password" }, cookieInfo });
         }
 
+        // Check if the user is protected
+        const nonDeletableIds = process.env.NON_DELETABLE_USER_IDS?.split(',') || [];
+        if (nonDeletableIds.includes(userId)) {
+            return res.status(403).json({ message: "Account ist vor einer Löschung geschützt" });
+        }
+
         const foundUser = await User.findById(userId).exec();
 
         if (!foundUser) {
