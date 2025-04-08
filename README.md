@@ -36,7 +36,7 @@ The backend uses a `.env` file for configuration. Here are the required environm
 
 - `NODE_ENV`: The environment in which the application is running (e.g., `development`, `production`).
 - `TZ`: The timezone for the application (e.g., `Europe/Berlin`).
-- `ALLOWED_ORIGINS`: All allowed origins for CORS as a comma seperated string (e.g., `http://localhost:5173,http://localhost:5200`)
+- `ALLOWED_ORIGINS`: All allowed origins for CORS as a comma seperated string (e.g., `http://localhost:5173,http://localhost:5200`).
 - `FRONTEND_URL`: The URL of the frontend application (e.g., `http://localhost:5173`).
 - `DATABASE_URI`: The URI for connecting to the MongoDB database.
 - `BCRYPT_SALT_ROUNDS`: The number of salt rounds for bcrypt hashing used to hash user passwords.
@@ -46,7 +46,8 @@ The backend uses a `.env` file for configuration. Here are the required environm
 - `RESET_PASSWORD_TOKEN_SECRET`: The secret key for signing reset password tokens.
 - `EXPIRATION_RESET_TOKEN`: The expiration time for reset password tokens in seconds.
 - `BUSINESS_EMAIL_ADDRESS`: The email address used to send automated emails from (f.e., for password resets). Using Gmail is recommended here.
-- `BUSINESS_EMAIL_PASSWORD`: The app password for the business email address, which enables the backend to send automated emails. 
+- `BUSINESS_EMAIL_PASSWORD`: The app password for the business email address, which enables the backend to send automated emails.
+- `NON_DELETABLE_USER_IDS`: All user ids that are protected from deletion as a comma seperated string (e.g., `64d128cd0b6a591f726d5abd,67214b3d82762ad0941456c4`).
 
 ### Running the Backend
 
