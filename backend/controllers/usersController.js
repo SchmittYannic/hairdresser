@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import Appointment from "../models/Appointment.js";
-import ArchivedAppointment from "../models/Archivedappointment.js";
+import Archivedappointment from "../models/Archivedappointment.js";
 import { userschema, passwordschema, birthdayschema, emailschema, titleschema, lastnameschema, firstnameschema, phonenumberschema, reminderemailschema, birthdayemailschema, newsletterschema } from "../validation/userschema.js";
 import { sessionizeUser, parseError, birthdayToString } from "../utils/helpers.js";
 
@@ -324,7 +324,7 @@ async function deleteUser(req, res) {
         await Appointment.deleteMany({ customer: userId }).session(clientSession);
 
         // Delete archived appointments
-        await ArchivedAppointment.deleteMany({ customer: userId }).session(clientSession);
+        await Archivedappointment.deleteMany({ customer: userId }).session(clientSession);
 
         const result = await foundUser.deleteOne().session(clientSession);;
 
