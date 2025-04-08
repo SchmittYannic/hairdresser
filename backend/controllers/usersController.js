@@ -1,5 +1,8 @@
+import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
+import Appointment from "../models/Appointment.js";
+import ArchivedAppointment from "../models/Archivedappointment.js";
 import { userschema, passwordschema, birthdayschema, emailschema, titleschema, lastnameschema, firstnameschema, phonenumberschema, reminderemailschema, birthdayemailschema, newsletterschema } from "../validation/userschema.js";
 import { sessionizeUser, parseError, birthdayToString } from "../utils/helpers.js";
 
@@ -283,37 +286,54 @@ async function deleteUser(req, res) {
         cookie_originalMaxAge: req.session.cookie.originalMaxAge,
     };
 
+    const clientSession = await mongoose.startSession();
+
     try {
         const { userId } = req.session.user;
         const { password } = req.body;
 
+        clientSession.startTransaction();
+
         if (!password) {
+            await clientSession.abortTransaction();
             return res.status(400).json({ message: "Accountlöschung muss mit Passwort bestätigt werden", context: { label: "password" }, cookieInfo });
         }
 
         // Check if the user is protected
         const nonDeletableIds = process.env.NON_DELETABLE_USER_IDS?.split(',') || [];
         if (nonDeletableIds.includes(userId)) {
+            await clientSession.abortTransaction();
             return res.status(403).json({ message: "Account ist vor einer Löschung geschützt" });
         }
 
         const foundUser = await User.findById(userId).exec();
 
         if (!foundUser) {
+            await clientSession.abortTransaction();
             return res.status(400).json({ message: "Konnte Nutzer id nicht in Datenbank finden", cookieInfo });
         }
 
         const match = await bcrypt.compare(password, foundUser.password);
 
         if (!match) {
+            await clientSession.abortTransaction();
             return res.status(401).json({ message: "Ungültiges Passwort", context: { label: "password" }, cookieInfo });
         }
 
-        const result = await foundUser.deleteOne();
+        // Delete active appointments
+        await Appointment.deleteMany({ customer: userId }).session(clientSession);
+
+        // Delete archived appointments
+        await ArchivedAppointment.deleteMany({ customer: userId }).session(clientSession);
+
+        const result = await foundUser.deleteOne().session(clientSession);;
 
         if (!result) {
+            await clientSession.abortTransaction();
             return res.status(500).json({ message: "Fehler bei Löschung des Accounts aus Datenbank", cookieInfo });
         }
+
+        await clientSession.commitTransaction();
 
         req.session.destroy(err => {
             if (err) throw (err);
@@ -321,6 +341,7 @@ async function deleteUser(req, res) {
             res.status(200).json({ message: "Account erfolgreich gelöscht" });
         });
     } catch (error) {
+        await clientSession.abortTransaction();
         return res.status(500).json({ message: "Fehler bei Löschung des Accounts", cookieInfo });
     }
 }
