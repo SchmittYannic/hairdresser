@@ -232,7 +232,48 @@ const Applicationform = () => {
                                 </div>
                             </div>
                         </div>
-                        <div id="errors_m2893"></div>
+                        <div id="errors_m2893">
+                            {
+                                isSuccess &&
+                                <span
+                                    className="success-msg"
+                                    role="alert"
+                                    style={{
+                                        marginTop: "0.5rem",
+                                        marginBottom: "0.5rem",
+                                    }}
+                                >
+                                    {responseApi.message}
+                                </span>
+                            }
+                            {
+                                isError && isAxiosError(errorApi) && errorApi.response && (errorApi.response.data.context === undefined || errorApi.response.data.context.key === "CookieConsent") &&
+                                <span
+                                    className="error-msg"
+                                    role="alert"
+                                    style={{
+                                        marginTop: "0.5rem",
+                                        marginBottom: "0.5rem",
+                                    }}
+                                >
+                                    {errorApi.response.data.message}
+                                </span>
+
+                            }
+                            {
+                                isServerError &&
+                                <span
+                                    className="error-msg"
+                                    role="alert"
+                                    style={{
+                                        marginTop: "0.5rem",
+                                        marginBottom: "0.5rem",
+                                    }}
+                                >
+                                    Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
+                                </span>
+                            }
+                        </div>
                         <AsyncButton
                             className="button"
                             type="submit"
@@ -242,26 +283,6 @@ const Applicationform = () => {
                         >
                             Bewerbung abschicken
                         </AsyncButton>
-                        {
-                            isSuccess &&
-                            <span className="success-msg" role="alert">
-                                {responseApi.message}
-                            </span>
-                        }
-                        {
-                            isError && isAxiosError(errorApi) && errorApi.response && (errorApi.response.data.context === undefined || errorApi.response.data.context.key === "CookieConsent") &&
-                            <span className="error-msg" role="alert">
-                                {errorApi.response.data.message}
-                            </span>
-
-                        }
-                        {
-                            isServerError &&
-                            <span className="error-msg" role="alert">
-                                Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
-                            </span>
-
-                        }
                     </form>
 
                     <div id="m4148" className="module text">
