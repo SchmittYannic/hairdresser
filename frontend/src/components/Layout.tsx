@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Outlet, Link } from "react-router-dom"
 import { IoIosArrowUp } from "react-icons/io";
 import { FaRegCalendarCheck } from "react-icons/fa6";
-import { MdClose } from "react-icons/md";
+//import { MdClose } from "react-icons/md";
 //import useSessionContext from "src/hooks/useSessionContext";
 import Header from "./Header"
 import Footer from "./Footer"
@@ -14,8 +14,8 @@ const Layout = () => {
     //const { isCookieConsent } = useSessionContext();
     const ref = useRef(null);
     const [isInView, setIsInView] = useState(false);
-    const [isModalVisible, setIsModalVisible] = useState(true);
-    const [modalAnimation, setModalAnimation] = useState<"bounceInDown" | "bounceOutUp">("bounceInDown");
+    //const [isModalVisible, setIsModalVisible] = useState(true);
+    //const [modalAnimation, setModalAnimation] = useState<"bounceInDown" | "bounceOutUp">("bounceInDown");
 
     const handleButtonClicked = () => {
         window.scrollTo({
@@ -25,12 +25,12 @@ const Layout = () => {
         });
     };
 
-    const handleModalCloseClicked = () => {
-        setModalAnimation("bounceOutUp");
-        setTimeout(() => {
-            setIsModalVisible(false);
-        }, 1000);
-    };
+    // const handleModalCloseClicked = () => {
+    //     setModalAnimation("bounceOutUp");
+    //     setTimeout(() => {
+    //         setIsModalVisible(false);
+    //     }, 1000);
+    // };
 
     useEffect(() => {
         if (!ref.current) return
@@ -85,7 +85,7 @@ const Layout = () => {
                     </Link>
                 </div>
 
-                <div
+                {/* <div
                     className={`engagement simpleinfomercial modal animated ${modalAnimation}`}
                     style={{ display: isModalVisible ? "block" : "none" }}
                 >
@@ -107,7 +107,7 @@ const Layout = () => {
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )
