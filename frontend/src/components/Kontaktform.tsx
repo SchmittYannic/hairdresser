@@ -1,9 +1,79 @@
-import { Link } from "react-router-dom"
-import ImageComponent from "src/components/ui/ImageComponent"
-import { kontaktformular } from "src/assets"
-import "src/components/Kontaktform.scss"
+import { Link } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
+import emailjs from "@emailjs/browser";
+
+import ImageComponent from "src/components/ui/ImageComponent";
+import { kontaktformular } from "src/assets";
+import "src/components/Kontaktform.scss";
+import { useState } from "react";
+import AsyncButton from "./ui/AsyncButton";
+
+type ContactFormDataType = {
+    field_0: string,
+    field_1: string,
+    field_2: string,
+    optin_field_0: boolean,
+}
 
 const Kontaktform = () => {
+
+    const serviceId = String(import.meta.env.VITE_EMAILJS_SERVICE_ID);
+    const templateId = String(import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+    const publicKey = String(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+
+    const myEmail = String(import.meta.env.VITE_IMPRESSUM_EMAIL);
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+    } = useForm<ContactFormDataType>();
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const onSubmit: SubmitHandler<ContactFormDataType> = async (data) => {
+        setIsLoading(true);
+        setIsError(false);
+        setIsSuccess(false);
+
+        try {
+            const {
+                field_0: name,
+                field_1: email,
+                field_2: message,
+            } = data;
+
+            await emailjs.send(
+                serviceId,
+                templateId,
+                {
+                    from_name: name,
+                    to_name: "hairdresserSupport",
+                    from_email: email,
+                    to_email: myEmail,
+                    subject: `message from ${name}`,
+                    message: message
+                },
+                publicKey,
+            );
+
+            setIsLoading(false);
+            reset({
+                field_0: "",
+                field_1: "",
+                field_2: "",
+                optin_field_0: false,
+            });
+            setIsSuccess(true);
+        } catch (err) {
+            setIsLoading(false);
+            setIsError(true);
+            setIsSuccess(false)
+        }
+    }
+
     return (
         <div id="c1954" className="col col-lg-6 col-sm-12 col-md-12">
             <ImageComponent
@@ -25,6 +95,7 @@ const Kontaktform = () => {
                 method="post"
                 action="kontaktformular"
                 data-settings="margin=1"
+                onSubmit={handleSubmit(onSubmit)}
             >
                 <div className="fields clear">
                     <div className="field w100">
@@ -32,11 +103,11 @@ const Kontaktform = () => {
                         <input
                             id="m3435_field_0"
                             type="text"
-                            name="field_0"
                             autoComplete="on"
                             placeholder="Ihr Name*"
                             required={true}
                             aria-required={true}
+                            {...register("field_0")}
                         />
                     </div>
                     <div className="field w100">
@@ -44,21 +115,21 @@ const Kontaktform = () => {
                         <input
                             id="m3435_field_1"
                             type="text"
-                            name="field_1"
                             autoComplete="email"
                             placeholder="Ihre Email-Adresse*"
                             required={true}
                             aria-required={true}
+                            {...register("field_1")}
                         />
                     </div>
                     <div className="field w100">
                         <label htmlFor="m3435_field2"></label>
                         <textarea
                             id="m3435_field_2"
-                            name="field_2"
                             placeholder="Ihre Nachricht an uns (keine Terminanfragen)*"
                             required={true}
                             aria-required={true}
+                            {...register("field_2")}
                         ></textarea>
                     </div>
                 </div>
@@ -68,9 +139,9 @@ const Kontaktform = () => {
                             <input
                                 id="m3435_optin_field_0"
                                 type="checkbox"
-                                name="optin_field_0"
                                 value={1}
                                 required
+                                {...register("optin_field_0", { required: true })}
                             />
                             <label
                                 className="label_optin_field_0"
@@ -86,8 +157,45 @@ const Kontaktform = () => {
                         </div>
                     </div>
                 </div>
-                <div id="errors_m3435"></div>
-                <input className="button" type="submit" value="Absenden" />
+                <div id="errors_m3435">
+                    {
+                        isError && (
+                            <span
+                                className="error-msg"
+                                role="alert"
+                                style={{
+                                    marginTop: "0.5rem",
+                                    marginBottom: "0.5rem",
+                                }}
+                            >
+                                Etwas ist schiefgelaufen. Versuchen Sie es später erneut.
+                            </span>
+                        )
+                    }
+                    {
+                        isSuccess && (
+                            <span
+                                className="success-msg"
+                                role="alert"
+                                style={{
+                                    marginTop: "0.5rem",
+                                    marginBottom: "0.5rem",
+                                }}
+                            >
+                                Nachricht versendet.
+                            </span>
+                        )
+                    }
+                </div>
+                <AsyncButton
+                    className="button"
+                    type="submit"
+                    isLoading={isLoading}
+                    disabled={isLoading}
+                    style={{ position: "relative" }}
+                >
+                    Absenden
+                </AsyncButton>
             </form>
         </div>
     )
