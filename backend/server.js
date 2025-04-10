@@ -38,7 +38,7 @@ app.use(cookieParser())
 app.use(session(sessionConfig(db)));
 app.set("trust proxy", 1);
 cron.schedule("0 0 * * * *", async () => await moveExpiredAppointments(db));
-//cron.schedule("*/10 * * * * *", async () => await insertFakeData(20))
+// cron.schedule("*/10 * * * * *", async () => await insertFakeData(20))
 
 /* ROUTES */
 app.use("/", rootRoute);
@@ -54,25 +54,25 @@ db.once("open", () => {
     console.log("Connected to MongoDB");
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-    // stream watching if document from users collection is deleted
-    const userDeleteStream = db.collection("users").watch([
-        { $match: { operationType: "delete" } }
-    ]);
+    // // stream watching if document from users collection is deleted
+    // const userDeleteStream = db.collection("users").watch([
+    //     { $match: { operationType: "delete" } }
+    // ]);
 
-    // whenever a user gets deleted trigger cascade delete for all associated active and archived appointments
-    userDeleteStream.on("change", async (change) => {
-        try {
-            const deletedUserId = change.documentKey._id;
+    // // whenever a user gets deleted trigger cascade delete for all associated active and archived appointments
+    // userDeleteStream.on("change", async (change) => {
+    //     try {
+    //         const deletedUserId = change.documentKey._id;
 
-            const appointmentsCollection = db.collection("appointments");
-            const archivedAppointmentsCollection = db.collection("archivedappointments");
+    //         const appointmentsCollection = db.collection("appointments");
+    //         const archivedAppointmentsCollection = db.collection("archivedappointments");
 
-            await appointmentsCollection.deleteMany({ customer: deletedUserId });
-            await archivedAppointmentsCollection.deleteMany({ customer: deletedUserId });
-        } catch (err) {
-            logEvents(`"userDeleteStream": ${change.documentKey._id}\t${err}`, "streamErrLog.log");
-        }
-    })
+    //         await appointmentsCollection.deleteMany({ customer: deletedUserId });
+    //         await archivedAppointmentsCollection.deleteMany({ customer: deletedUserId });
+    //     } catch (err) {
+    //         logEvents(`"userDeleteStream": ${change.documentKey._id}\t${err}`, "streamErrLog.log");
+    //     }
+    // })
 });
 
 // listen to error
