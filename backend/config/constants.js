@@ -41,57 +41,62 @@ const weekdays = [
     "saturday",
 ];
 
-const openingtimes = {
-    monday: {
-        openingtime: "",
-        closingtime: "",
-    },
-    tuesday: {
-        openingtime: "08:30",
-        closingtime: "18:00",
-    },
-    wednesday: {
-        openingtime: "08:30",
-        closingtime: "18:00",
-    },
-    thursday: {
-        openingtime: "08:30",
-        closingtime: "18:00",
-    },
-    friday: {
-        openingtime: "08:30",
-        closingtime: "18:00",
-    },
-    saturday: {
-        openingtime: "08:00",
-        closingtime: "13:00",
-    },
-    sunday: {
-        openingtime: "",
-        closingtime: "",
-    },
-};
-
 const employeesInfo = {
     "66401720b8fb65815722ab38": {
         firstname: "Mirjam",
         lastname: "Schmid",
         skills: ["Schneiden", "KindU12", "TeenU14", "Greyblending", "Dauerwelle", "Coloration"],
+        working_hours: {
+            "monday": { "start": null, "end": null },
+            "tuesday": { "start": "08:30", "end": "18:00" },
+            "wednesday": { "start": "08:30", "end": "18:00" },
+            "thursday": { "start": "08:30", "end": "18:00" },
+            "friday": { "start": "08:30", "end": "18:00" },
+            "saturday": { "start": "08:00", "end": "13:00" },
+            "sunday": { "start": null, "end": null }
+        },
     },
     "6642f2eb23c54c42bf7d7f30": {
         firstname: "Nina",
         lastname: "Helm",
         skills: ["Schneiden", "KindU6", "KindU12", "TeenU14", "Cornrows", "Rasur"],
+        working_hours: {
+            "monday": { "start": null, "end": null },
+            "tuesday": { "start": "08:30", "end": "15:00" },
+            "wednesday": { "start": "08:30", "end": "15:00" },
+            "thursday": { "start": "08:30", "end": "15:00" },
+            "friday": { "start": "08:30", "end": "15:00" },
+            "saturday": { "start": "08:00", "end": "13:00" },
+            "sunday": { "start": null, "end": null }
+        },
     },
     "66403f93eef48844b222489c": {
         firstname: "Hannah",
         lastname: "Geier",
         skills: ["Schneiden", "TeenU14", "Cornrows", "Rasur", "Greyblending", "Dauerwelle", "Coloration"],
+        working_hours: {
+            "monday": { "start": null, "end": null },
+            "tuesday": { "start": "08:30", "end": "18:00" },
+            "wednesday": { "start": "08:30", "end": "18:00" },
+            "thursday": { "start": "08:30", "end": "18:00" },
+            "friday": { "start": "08:30", "end": "18:00" },
+            "saturday": { "start": null, "end": null },
+            "sunday": { "start": null, "end": null }
+        },
     },
     "6642f2ca23c54c42bf7d7f2d": {
         firstname: "Simone",
         lastname: "Homann",
         skills: ["Schneiden", "TeenU14", "Cornrows", "Rasur"],
+        working_hours: {
+            "monday": { "start": null, "end": null },
+            "tuesday": { "start": "10:00", "end": "18:00" },
+            "wednesday": { "start": "10:00", "end": "18:00" },
+            "thursday": { "start": "10:00", "end": "18:00" },
+            "friday": { "start": "10:00", "end": "18:00" },
+            "saturday": { "start": "08:00", "end": "13:00" },
+            "sunday": { "start": null, "end": null }
+        },
     }
 };
 
@@ -101,6 +106,5 @@ export {
     availableServices,
     requiredMsg,
     weekdays,
-    openingtimes,
     employeesInfo,
 }
