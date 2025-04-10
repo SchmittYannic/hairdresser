@@ -14,6 +14,7 @@ import {
     availableCustomers,
     availableEmployees,
     employeesInfo,
+    weekdays,
 } from "../config/constants.js";
 
 
@@ -87,10 +88,37 @@ const isWithinOpeningHours = (date) => {
     return false;
 }
 
-const generateRandomStartDate = () => {
+const isWithinWorkingHours = (date, employee) => {
+    if (!employee) {
+        throw new Error("employee cannot be falsy in isWithinWorkingHours")
+    }
+
+    const dayOfWeek = weekdays[date.getDay()];
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const { working_hours } = employeesInfo[employee];
+    const { start, end } = working_hours[dayOfWeek];
+
+    if (!start || !end) return false
+
+    const timeToMinutes = (timeString) => {
+        const [hours, minutes] = timeString.split(":").map(Number);
+        return hours * 60 + minutes;
+    };
+
+    const startMinutes = timeToMinutes(start);
+    const endMinutes = timeToMinutes(end);
+
+    const currentTimeMinutes = hour * 60 + minute;
+
+    // Check if the current time is within the working hours range
+    return currentTimeMinutes >= startMinutes && currentTimeMinutes < endMinutes;
+}
+
+const generateRandomStartDate = (employee) => {
     let randomStartDate = generateRandomDate()
     // Check if the generated date is within opening hours
-    while (!isWithinOpeningHours(randomStartDate)) {
+    while (!isWithinWorkingHours(randomStartDate, employee)) {
         randomStartDate = generateRandomDate();
     }
 
@@ -98,11 +126,11 @@ const generateRandomStartDate = () => {
 }
 
 const generateAppointmentData = () => {
-    const start = generateRandomStartDate();
+    const employee = getRandomArrayElement(Object.keys(employeesInfo));
+    const employeeSkill = employeesInfo[employee].skills;
+    const start = generateRandomStartDate(employee);
     const duration = 30;
     const end = new Date(start.getTime() + duration * 60000);
-    const employee = getRandomArrayElement(availableEmployees);
-    const employeeSkill = employeesInfo[employee].skills;
 
     const result = {
         customer: getRandomArrayElement(availableCustomers),
