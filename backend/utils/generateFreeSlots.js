@@ -1,39 +1,34 @@
-import { employeesInfo, openingtimes, weekdays } from "../config/constants.js";
-
-const getOpeningTimes = (dayofweek) => {
-    const { openingtime, closingtime } = openingtimes[dayofweek]
-    return { openingtime, closingtime }
-};
+import { employeesInfo, weekdays } from "../config/constants.js";
 
 const generateTimeSlotsOfDay = (date, duration, employee) => {
     const dayIndex = date.getDay();
     const dayOfWeek = weekdays[dayIndex];
-    const { openingtime, closingtime } = getOpeningTimes(dayOfWeek);
+    const { start, end } = employeesInfo[employee]["working_hours"][dayOfWeek];
     //if not open today return empty array
-    if (openingtime === "" || closingtime === "") return []
+    if (start === null || end === null) return []
 
-    //construct closingtime Date
-    const closingtimeParts = closingtime.split(":");
-    const closingTimeHours = parseInt(closingtimeParts[0]);
-    const closingTimeMinutes = parseInt(closingtimeParts[1]);
-    const closingtimeDate = new Date(date.getTime());
-    closingtimeDate.setHours(closingTimeHours);
-    closingtimeDate.setMinutes(closingTimeMinutes);
-    closingtimeDate.setSeconds(0);
-    closingtimeDate.setMilliseconds(0);
+    //construct endTime Date
+    const endTimeParts = end.split(":");
+    const endTimeHours = parseInt(endTimeParts[0]);
+    const endTimeMinutes = parseInt(endTimeParts[1]);
+    const endTimeDate = new Date(date.getTime());
+    endTimeDate.setHours(endTimeHours);
+    endTimeDate.setMinutes(endTimeMinutes);
+    endTimeDate.setSeconds(0);
+    endTimeDate.setMilliseconds(0);
 
-    //construct startingtime Date
+    //construct startTime Date
     const hours = date.getHours();
     const minutes = date.getMinutes();
-    const openingtimeParts = openingtime.split(":");
-    const openingtimeHours = parseInt(openingtimeParts[0]);
-    const openingtimeMinutes = parseInt(openingtimeParts[1]);
+    const startTimeParts = start.split(":");
+    const startTimeHours = parseInt(startTimeParts[0]);
+    const startTimeMinutes = parseInt(startTimeParts[1]);
     let currentTime = new Date(date.getTime());
 
-    //if the time of currentTime is before the openingtime then set the time to the opening time
-    if (hours < openingtimeHours || (hours === openingtimeHours && minutes < openingtimeMinutes)) {
-        currentTime.setHours(openingtimeHours);
-        currentTime.setMinutes(openingtimeMinutes);
+    //if the time of currentTime is before the startTime then set the time to the start time
+    if (hours < startTimeHours || (hours === startTimeHours && minutes < startTimeMinutes)) {
+        currentTime.setHours(startTimeHours);
+        currentTime.setMinutes(startTimeMinutes);
         currentTime.setSeconds(0);
         currentTime.setMilliseconds(0);
     } else {
@@ -56,11 +51,11 @@ const generateTimeSlotsOfDay = (date, duration, employee) => {
 
     const timeSlots = [];
 
-    while (currentTime < closingtimeDate) {
+    while (currentTime < endTimeDate) {
         //construct appointmentEnd Date which is duration after currentTime
         const appointmentEnd = new Date(currentTime.getTime() + duration * 60000);
-        //if appointmentEnd would fall after closingtime break the loop
-        if (appointmentEnd > closingtimeDate) break
+        //if appointmentEnd would fall after endTime break the loop
+        if (appointmentEnd > endTimeDate) break
         //push to timeslot
         timeSlots.push({
             employee: employee,
