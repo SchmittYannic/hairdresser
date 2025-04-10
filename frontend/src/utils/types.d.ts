@@ -1,5 +1,16 @@
 import { availableEmployees, proposalDateRangeValues, availableServices, weekdaysEnglish } from "../constants"
 
+export type WeekdaysEnglishType = typeof weekdaysEnglish[number];
+
+export type StartEndTimesType = {
+    start: `${number}:${number}` | null,
+    end: `${number}:${number}` | null,
+}
+
+export type WeeklyStartEndTimesType = {
+    [key in WeekdaysEnglishType]: StartEndTimesType
+}
+
 export type UserDataType = {
     title: string,
     email: string,
@@ -43,7 +54,7 @@ export type EditUserType = {
 export type FilterFreeSlotDataType = {
     employee: string,
     duration: number,
-    service_name: string,
+    service_name: AvailableServicesKeyType | "",
 }
 
 export type FreeTimeslotType = {
@@ -93,11 +104,20 @@ export type EmployeeType = {
 };
 
 export type EmployeesInfoType = {
-    [key: AvailableEmployeesKeyType]: {
+    [key in AvailableEmployeesKeyType]: {
         firstname: string,
         lastname: string,
         skills: AvailableServicesKeyType[],
+        working_hours: WeeklyStartEndTimesType,
     }
+}
+
+export type ServiceInfoType = {
+    service_name: AvailableServicesKeyType | "",
+    service_duration: number,
+    employee_id: string,
+    employee_firstname: string,
+    employee_lastname: string,
 }
 
 export type AllServicesInfoType = {
@@ -135,13 +155,4 @@ export type ApplicationDataType = {
     field_6: string;
     field_7: FileList;
     optin_field_0: boolean;
-}
-
-export type WeekdaysEnglishType = typeof weekdaysEnglish[number];
-
-export type OpeningTimesType = {
-    [key in WeekdaysEnglishType]: {
-        openingtime: string,
-        closingtime: string,
-    }
 }
