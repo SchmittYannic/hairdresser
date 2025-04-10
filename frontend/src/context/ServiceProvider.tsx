@@ -1,16 +1,9 @@
 import { PropsWithChildren, ReactElement, createContext, useState } from "react"
-import useGetFreeSlots from "../hooks/useGetFreeSlots"
 import { UseMutateFunction } from "react-query"
-import { FilterFreeSlotDataType, FreeTimeslotType, FilterTimeType } from "../utils/types"
-import { proposalDateRangeValues } from "../constants"
 
-type ServiceInfoType = {
-    service_name: string,
-    service_duration: number,
-    employee_id: string,
-    employee_firstname: string,
-    employee_lastname: string,
-}
+import useGetFreeSlots from "src/hooks/useGetFreeSlots"
+import { FilterFreeSlotDataType, FreeTimeslotType, FilterTimeType, ServiceInfoType } from "src/utils/types"
+import { proposalDateRangeValues } from "src/constants"
 
 const defaultServiceInfo: ServiceInfoType = {
     service_name: "",
