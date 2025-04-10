@@ -5,8 +5,8 @@ import useSessionContext from "../../hooks/useSessionContext";
 import useAppointmentContext from "../../hooks/useAppointmentContext";
 import useCreateAppointment from "../../hooks/useCreateAppointment";
 import AsyncButton from "../../components/ui/AsyncButton"
-import { allServicesInfo, weekdaysAbr, } from "../../constants";
-import { AllServicesInfoType } from "../../utils/types";
+import { allServicesInfo, employeesInfo, weekdaysAbr, } from "../../constants";
+import { AllServicesInfoType, AvailableEmployeesKeyType } from "../../utils/types";
 
 const Confirmdate = () => {
 
@@ -57,6 +57,11 @@ const Confirmdate = () => {
     const endDateHours = endDate ? ("0" + endDate.getHours()).slice(-2) : "";
     const endDateMinutes = endDate ? ("0" + endDate.getMinutes()).slice(-2) : "";
     const endDateTime = endDate ? endDateHours + ":" + endDateMinutes : "";
+
+    const {
+        firstname: employeeFirstname,
+        lastname: employeeLastname,
+    } = employeesInfo[selectedEmployee as AvailableEmployeesKeyType]
 
     const handleBackButtonClicked = () => {
         setActiveTab("bookdate");
@@ -120,7 +125,7 @@ const Confirmdate = () => {
                                     <br />
                                     {service.service_label}
                                     <br />
-                                    bei {serviceInfo.employee_firstname} {serviceInfo.employee_lastname}
+                                    bei {employeeFirstname} {employeeLastname}
                                 </div>
                             </span>
                         </div>
