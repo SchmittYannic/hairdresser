@@ -127,6 +127,7 @@ const generateValidAppointmentData = async () => {
     try {
         let fakeAppointment = generateAppointmentData();
         let counter = 0;
+        if (!fakeAppointment) throw new Error("failed to create fake appointment")
         while (await isAppointmentConflict(fakeAppointment.employee, fakeAppointment.customer, fakeAppointment.start, fakeAppointment.end)) {
             fakeAppointment = generateAppointmentData();
             counter++;
@@ -149,6 +150,7 @@ export const insertFakeData = async (amount) => {
             const createAppointment = await Appointment.create(data);
             if (!createAppointment) throw Error("Error while creating appointment");
         }
+        console.log("fakedata inserted")
     } catch (error) {
         console.log(error)
     }
