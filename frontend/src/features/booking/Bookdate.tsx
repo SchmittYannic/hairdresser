@@ -9,8 +9,8 @@ import useAppointmentContext from "src/hooks/useAppointmentContext";
 import DateProposals from "src/features/booking/DateProposals";
 import Confirmdate from "src/features/booking/Confirmdate";
 import MultiRangeSlider from "src/components/ui/MultiRangeSlider";
-import { FilterTimeType, FreeTimeslotType, OpeningTimesType } from "src/utils/types";
-import { openingTimes, proposalDateRangeValues } from "src/constants";
+import { FilterTimeType, FreeTimeslotType } from "src/utils/types";
+import { proposalDateRangeValues } from "src/constants";
 import { getPossibleSlotsPerWeekday } from "src/utils/functions";
 import "src/features/booking/Calendar.scss"
 
@@ -101,20 +101,12 @@ const Bookdate = () => {
     //     return date > futureDate;
     // };
 
-    console.log(serviceInfo)
-
     const computeBookingMap = (
         freeTimeslots: FreeTimeslotType[],
         slotLength: number,
-        openingTimes: OpeningTimesType
     ): Map<string, number> => {
-        const slotsPerWeekday = getPossibleSlotsPerWeekday(openingTimes, slotLength);
-
-        //console.log("slotsPerWeekday: ", slotsPerWeekday)
-
+        const slotsPerWeekday = getPossibleSlotsPerWeekday(serviceInfo, slotLength);
         const dateCounts = new Map<string, number>();
-
-        //console.log("dateCounts: ", dateCounts)
 
         for (const slot of freeTimeslots) {
             const date = new Date(slot.startDate);
@@ -147,9 +139,6 @@ const Bookdate = () => {
             bookingMap.set(dayKey, bookedPercent);
         }
 
-        //console.log("bookingMap: ", bookingMap)
-
-
         return bookingMap;
     };
 
@@ -167,8 +156,8 @@ const Bookdate = () => {
     };
 
     const bookingMap = useMemo<Map<string, number>>(() => {
-        return computeBookingMap(freeTimeslots, 30, openingTimes)
-    }, [freeTimeslots, openingTimes]);
+        return computeBookingMap(freeTimeslots, 30)
+    }, [freeTimeslots]);
 
     const modifiers = useMemo(() => ({
         // pastDate: isPastDate,
