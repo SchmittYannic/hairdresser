@@ -1,15 +1,18 @@
+import { useMemo } from "react";
 import { DayPicker, SelectSingleEventHandler } from "react-day-picker"
 import { de } from "date-fns/locale";
-import useWindowSize from "../../hooks/useWindowSize";
-import useSessionContext from "../../hooks/useSessionContext";
-import useServiceContext from "../../hooks/useServiceContext";
-import useAppointmentContext from "../../hooks/useAppointmentContext";
-import DateProposals from "./DateProposals";
-import Confirmdate from "./Confirmdate";
-import MultiRangeSlider from "../../components/ui/MultiRangeSlider";
-import { FilterTimeType } from "../../utils/types";
-import { proposalDateRangeValues } from "../../constants";
-import "./Calendar.scss"
+
+import useWindowSize from "src/hooks/useWindowSize";
+import useSessionContext from "src/hooks/useSessionContext";
+import useServiceContext from "src/hooks/useServiceContext";
+import useAppointmentContext from "src/hooks/useAppointmentContext";
+import DateProposals from "src/features/booking/DateProposals";
+import Confirmdate from "src/features/booking/Confirmdate";
+import MultiRangeSlider from "src/components/ui/MultiRangeSlider";
+import { FilterTimeType, FreeTimeslotType, OpeningTimesType } from "src/utils/types";
+import { openingTimes, proposalDateRangeValues } from "src/constants";
+import { getPossibleSlotsPerWeekday } from "src/utils/functions";
+import "src/features/booking/Calendar.scss"
 
 const NextButton = () => {
     const {
@@ -47,6 +50,7 @@ const Bookdate = () => {
         filterTime,
         setFilterTime,
         freeTimeslots,
+        serviceInfo,
     } = useServiceContext();
 
     const windowSize = useWindowSize();
@@ -67,12 +71,12 @@ const Bookdate = () => {
         setCalendarDay(day);
     }
 
-    const isPastDate = (date: Date) => {
-        const today = new Date();
-        // Set hours, minutes, seconds, and milliseconds to 0 to compare dates without time
-        today.setHours(0, 0, 0, 0);
-        return date < today;
-    };
+    // const isPastDate = (date: Date) => {
+    //     const today = new Date();
+    //     // Set hours, minutes, seconds, and milliseconds to 0 to compare dates without time
+    //     today.setHours(0, 0, 0, 0);
+    //     return date < today;
+    // };
 
     const isSameDay = (date: Date): boolean => {
         const today = new Date();
@@ -85,39 +89,98 @@ const Bookdate = () => {
             date.getDate() === today.getDate();
     };
 
-    const isTooFarIntoFuture = (date: Date): boolean => {
-        // Get the current date
-        const currentDate = new Date();
+    // const isTooFarIntoFuture = (date: Date): boolean => {
+    //     // Get the current date
+    //     const currentDate = new Date();
 
-        // Calculate the date 2 months from now
-        const futureDate = new Date();
-        futureDate.setMonth(currentDate.getMonth() + 3);
+    //     // Calculate the date 2 months from now
+    //     const futureDate = new Date();
+    //     futureDate.setMonth(currentDate.getMonth() + 3);
 
-        // Compare the input date with the future date
-        return date > futureDate;
+    //     // Compare the input date with the future date
+    //     return date > futureDate;
+    // };
+
+    console.log(serviceInfo)
+
+    const computeBookingMap = (
+        freeTimeslots: FreeTimeslotType[],
+        slotLength: number,
+        openingTimes: OpeningTimesType
+    ): Map<string, number> => {
+        const slotsPerWeekday = getPossibleSlotsPerWeekday(openingTimes, slotLength);
+
+        //console.log("slotsPerWeekday: ", slotsPerWeekday)
+
+        const dateCounts = new Map<string, number>();
+
+        //console.log("dateCounts: ", dateCounts)
+
+        for (const slot of freeTimeslots) {
+            const date = new Date(slot.startDate);
+            const day = ("0" + date.getDate()).slice(-2);
+            const month = ("0" + (date.getMonth() + 1)).slice(-2);
+            const year = date.getFullYear();
+            const dateString = day + "." + month + "." + year;
+
+            dateCounts.set(dateString, (dateCounts.get(dateString) || 0) + 1);
+        }
+
+        const bookingMap = new Map<string, number>();
+
+        for (const [dayKey, availableCount] of dateCounts.entries()) {
+            const [day, month, year] = dayKey.split('.');
+            const dayNum = parseInt(day, 10);
+            const monthNum = parseInt(month, 10) - 1;
+            const yearNum = parseInt(year, 10);
+            const date = new Date(yearNum, monthNum, dayNum);
+
+            const weekday = date.getDay();
+            const slotsPerDay = slotsPerWeekday[weekday];
+
+            if (slotsPerDay === 0) {
+                bookingMap.set(dayKey, 100); // treat as fully booked / unavailable
+                continue;
+            }
+
+            const bookedPercent = ((slotsPerDay - availableCount) / slotsPerDay) * 100;
+            bookingMap.set(dayKey, bookedPercent);
+        }
+
+        //console.log("bookingMap: ", bookingMap)
+
+
+        return bookingMap;
     };
 
-    const isBooked = (date: Date) => {
-        const day = ("0" + date.getDate()).slice(-2);
-        const month = ("0" + (date.getMonth() + 1)).slice(-2);
-        const year = date.getFullYear();
-        const dateString = day + "." + month + "." + year;
+    const getBookingModifier = (bookingMap: Map<string, number>, lower: number, upper?: number) => {
+        return (date: Date) => {
+            const day = ("0" + date.getDate()).slice(-2);
+            const month = ("0" + (date.getMonth() + 1)).slice(-2);
+            const year = date.getFullYear();
+            const dateString = day + "." + month + "." + year;
 
-        //Iterate through each object
-        for (let timeslot of freeTimeslots) {
-            const startDate = new Date(timeslot.startDate)
-            const startDay = ("0" + startDate.getDate()).slice(-2);
-            const startMonth = ("0" + (startDate.getMonth() + 1)).slice(-2);
-            const startYear = startDate.getFullYear();
-            const startDateString = startDay + "." + startMonth + "." + startYear;
+            const percent = bookingMap.get(dateString) ?? 100; // assume 100% booked if missing
 
-            // Check if the startDate of the object is on the same date as the given date
-            if (startDateString === dateString) {
-                return false; // Object exists with a startDate on the given date
-            }
-        }
-        return true; // No object found with a startDate on the given date
-    }
+            return upper ? percent > lower && percent <= upper : percent >= lower;
+        };
+    };
+
+    const bookingMap = useMemo<Map<string, number>>(() => {
+        return computeBookingMap(freeTimeslots, 30, openingTimes)
+    }, [freeTimeslots, openingTimes]);
+
+    const modifiers = useMemo(() => ({
+        // pastDate: isPastDate,
+        today: isSameDay,
+        // futureDate: isTooFarIntoFuture,
+        booked0: getBookingModifier(bookingMap, 0, 20),
+        booked20: getBookingModifier(bookingMap, 20, 40),
+        booked40: getBookingModifier(bookingMap, 40, 60),
+        booked60: getBookingModifier(bookingMap, 60, 80),
+        booked80: getBookingModifier(bookingMap, 80, 99),
+        fullyBooked: getBookingModifier(bookingMap, 100),
+    }), [bookingMap]);
 
     return (
         <>
@@ -128,17 +191,17 @@ const Bookdate = () => {
                     </span>
                     <DayPicker
                         mode="single"
-                        modifiers={{
-                            pastDate: isPastDate,
-                            today: isSameDay,
-                            futureDate: isTooFarIntoFuture,
-                            booked: isBooked,
-                        }}
+                        modifiers={modifiers}
                         modifiersClassNames={{
-                            pastDate: "past-date",
+                            // pastDate: "past-date",
                             today: "today",
-                            futureDate: "future-date",
-                            booked: "booked",
+                            // futureDate: "future-date",
+                            booked0: "booked0",
+                            booked20: "booked20",
+                            booked40: "booked40",
+                            booked60: "booked60",
+                            booked80: "booked80",
+                            fullyBooked: "fullyBooked",
                         }}
                         selected={calendarDay}
                         onSelect={handleSelectCalendar}

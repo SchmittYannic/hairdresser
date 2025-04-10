@@ -81,9 +81,30 @@
 
     &.past-date,
     &.future-date,
-    &.booked {
-        background: #cccccc;
+    &.booked,
+    &.fullyBooked {
+        background: #999999;
         cursor: default;
+    }
+
+    &.booked0 {
+        background: #ffffff;
+    }
+
+    &.booked20 {
+        background: #FAFAFA;
+    }
+
+    &.booked40 {
+        background: #F0F0F0;
+    }
+
+    &.booked60 {
+        background: #DCDCDC;
+    }
+
+    &.booked80 {
+        background: #D0D0D0;
     }
 }
 
@@ -113,17 +134,29 @@
         margin-right: 5px;
         border-radius: 2px;
         vertical-align: middle;
-        background: #cccccc;
+        background: #999999;
     }
 
     .freeInfo::before {
         content: "";
         display: inline-block;
-        width: 20px;
+        width: 100px;
         height: 20px;
         margin-right: 5px;
         border-radius: 2px;
         vertical-align: middle;
-        background: #fff;
+        // background: #fff;
+        background: linear-gradient(to right,
+                #FFFFFF 0%, #FFFFFF 20%,
+                /* White for 0% */
+                #FAFAFA 20%, #FAFAFA 40%,
+                /* 20% booked */
+                #F0F0F0 40%, #F0F0F0 60%,
+                /* 40% booked */
+                #DCDCDC 60%, #DCDCDC 80%,
+                /* 60% booked */
+                #D0D0D0 80%, #D0D0D0 100%
+                /* 80% booked */
+            );
     }
 }

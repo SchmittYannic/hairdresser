@@ -1,4 +1,4 @@
-import { availableEmployees, proposalDateRangeValues, availableServices } from "../constants"
+import { availableEmployees, proposalDateRangeValues, availableServices, weekdaysEnglish } from "../constants"
 
 export type UserDataType = {
     title: string,
@@ -50,8 +50,8 @@ export type FreeTimeslotType = {
     employee: string,
     employeeFirstname: string,
     employeeLastname: string,
-    startDate: Date,
-    endDate: Date,
+    startDate: string,
+    endDate: string,
 }
 
 export type AppointmentDataType = {
@@ -135,4 +135,13 @@ export type ApplicationDataType = {
     field_6: string;
     field_7: FileList;
     optin_field_0: boolean;
+}
+
+export type WeekdaysEnglishType = typeof weekdaysEnglish[number];
+
+export type OpeningTimesType = {
+    [key in WeekdaysEnglishType]: {
+        openingtime: string,
+        closingtime: string,
+    }
 }

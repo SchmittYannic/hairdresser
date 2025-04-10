@@ -1,4 +1,8 @@
+import { differenceInMinutes } from "date-fns";
+
+import { weekdaysEnglish } from "src/constants";
 import { arrayChildrenType } from "../components/ImageSlider";
+import { OpeningTimesType } from "./types";
 
 const splitArray = (array: arrayChildrenType[], number: number): arrayChildrenType[][] => {
     const arrLength = array.length;
@@ -68,6 +72,28 @@ const parseTime = (timeString: string) => {
     return new Date(0, 0, 0, parseInt(hours), parseInt(minutes));
 }
 
+const getPossibleSlotsPerWeekday = (openingTimes: OpeningTimesType, slotLength: number = 30): Record<string, number> => {
+    const slotsMap: Record<string, number> = {};
+
+    weekdaysEnglish.forEach((day, index) => {
+        const { openingtime, closingtime } = openingTimes[day as keyof typeof openingTimes];
+
+        if (!openingtime || !closingtime) {
+            slotsMap[index] = 0;
+            return;
+        }
+
+        const start = parseTime(openingtime);
+        const end = parseTime(closingtime);
+        const minutesOpen = differenceInMinutes(end, start);
+
+        const possibleSlots = Math.floor(minutesOpen / slotLength);
+        slotsMap[index] = possibleSlots;
+    });
+
+    return slotsMap;
+};
+
 export {
     splitArray,
     repeatArray,
@@ -75,4 +101,5 @@ export {
     insertSpace,
     isOpenNow,
     parseTime,
+    getPossibleSlotsPerWeekday,
 }
