@@ -70,7 +70,10 @@
     border-spacing: 2px;
     background: #ffffff;
 
-    &:hover {
+    &:hover:not(.fullyBooked) {
+        padding: 8px 0px;
+        border: 2px solid #656565;
+        background: #ffffff;
         color: #DAC8BC;
     }
 
@@ -83,7 +86,7 @@
     &.future-date,
     &.booked,
     &.fullyBooked {
-        background: #999999;
+        background: #cccccc;
         cursor: default;
     }
 
@@ -92,25 +95,25 @@
     }
 
     &.booked20 {
-        background: #FAFAFA;
+        background: #F6EFEA;
     }
 
     &.booked40 {
-        background: #F0F0F0;
+        background: #EDE1D7;
     }
 
     &.booked60 {
-        background: #DCDCDC;
+        background: #E3D4C4;
     }
 
     &.booked80 {
-        background: #D0D0D0;
+        background: #DAC8BC;
     }
 }
 
 .rdp-day_selected {
-    background-color: #f4efeb !important;
-    color: #DAC8BC !important;
+    padding: 8px 0px;
+    border: 2px solid #B3B3B3;
 }
 
 .calendarLegend {
@@ -134,7 +137,7 @@
         margin-right: 5px;
         border-radius: 2px;
         vertical-align: middle;
-        background: #999999;
+        background: #cccccc;
     }
 
     .freeInfo::before {
@@ -149,13 +152,13 @@
         background: linear-gradient(to right,
                 #FFFFFF 0%, #FFFFFF 20%,
                 /* White for 0% */
-                #FAFAFA 20%, #FAFAFA 40%,
+                #F6EFEA 20%, #F6EFEA 40%,
                 /* 20% booked */
-                #F0F0F0 40%, #F0F0F0 60%,
+                #EDE1D7 40%, #EDE1D7 60%,
                 /* 40% booked */
-                #DCDCDC 60%, #DCDCDC 80%,
+                #E3D4C4 60%, #E3D4C4 80%,
                 /* 60% booked */
-                #D0D0D0 80%, #D0D0D0 100%
+                #DAC8BC 80%, #DAC8BC 100%
                 /* 80% booked */
             );
     }
