@@ -1,8 +1,8 @@
 import { differenceInMinutes } from "date-fns";
 
-import { weekdaysEnglish } from "src/constants";
+import { employeesInfo, weekdaysEnglish } from "src/constants";
 import { arrayChildrenType } from "../components/ImageSlider";
-import { OpeningTimesType } from "./types";
+import { EmployeesInfoType, ServiceInfoType, WeeklyStartEndTimesType } from "./types";
 
 const splitArray = (array: arrayChildrenType[], number: number): arrayChildrenType[][] => {
     const arrLength = array.length;
@@ -72,24 +72,53 @@ const parseTime = (timeString: string) => {
     return new Date(0, 0, 0, parseInt(hours), parseInt(minutes));
 }
 
-const getPossibleSlotsPerWeekday = (openingTimes: OpeningTimesType, slotLength: number = 30): Record<string, number> => {
+const getPossibleSlotsPerWeekday = (serviceInfo: ServiceInfoType, slotLength: number = 30): Record<string, number> => {
+    const { employee_id } = serviceInfo;
     const slotsMap: Record<string, number> = {};
 
-    weekdaysEnglish.forEach((day, index) => {
-        const { openingtime, closingtime } = openingTimes[day as keyof typeof openingTimes];
+    if (employee_id !== "") {
+        const { working_hours } = employeesInfo[employee_id as keyof EmployeesInfoType]
 
-        if (!openingtime || !closingtime) {
-            slotsMap[index] = 0;
-            return;
+        weekdaysEnglish.forEach((day, index) => {
+            const { start, end } = working_hours[day as keyof WeeklyStartEndTimesType];
+
+            if (!start || !end) {
+                slotsMap[index] = 0;
+                return;
+            }
+
+            const startTime = parseTime(start);
+            const endTime = parseTime(end);
+            const minutesOpen = differenceInMinutes(endTime, startTime);
+
+            const possibleSlots = Math.floor(minutesOpen / slotLength);
+            slotsMap[index] = possibleSlots;
+        })
+    } else {
+        const { service_name } = serviceInfo;
+
+        for (const employee in employeesInfo) {
+            const { skills, working_hours } = employeesInfo[employee as keyof EmployeesInfoType]
+
+            if (!(service_name !== "" && skills.includes(service_name))) continue
+
+            weekdaysEnglish.forEach((day, index) => {
+                const { start, end } = working_hours[day as keyof WeeklyStartEndTimesType];
+
+                if (!start || !end) {
+                    slotsMap[index] = slotsMap[index] || 0
+                    return;
+                }
+
+                const startTime = parseTime(start);
+                const endTime = parseTime(end);
+                const minutesOpen = differenceInMinutes(endTime, startTime);
+
+                const possibleSlots = Math.floor(minutesOpen / slotLength);
+                slotsMap[index] = (slotsMap[index] || 0) + possibleSlots;
+            })
         }
-
-        const start = parseTime(openingtime);
-        const end = parseTime(closingtime);
-        const minutesOpen = differenceInMinutes(end, start);
-
-        const possibleSlots = Math.floor(minutesOpen / slotLength);
-        slotsMap[index] = possibleSlots;
-    });
+    }
 
     return slotsMap;
 };
