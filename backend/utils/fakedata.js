@@ -54,7 +54,7 @@ const getRandomArrayElement = (arr) => {
 
 const generateRandomDate = () => {
     const now = new Date();
-    const maxDaysOffset = 30;
+    const maxDaysOffset = 45;
     const hours = Math.floor(Math.random() * 10) + 8; // Random hour between 8 and 17
     const minutes = Math.floor(Math.random() * 2) * 30; // 0 or 30 for 30-minute steps
     const randomMillis = Math.floor(Math.random() * (maxDaysOffset * 24 * 60 * 60 * 1000));
