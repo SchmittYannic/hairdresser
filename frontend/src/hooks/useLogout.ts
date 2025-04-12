@@ -16,9 +16,19 @@ const useLogout = () => {
         onSettled: () => {
             resetState();
 
-            // const bc = new BroadcastChannel("auth");
-            // bc.postMessage({ type: "LOGOUT" });
-            // bc.close();
+            try {
+                if ("BroadcastChannel" in window) {
+                    console.log("User Agent:", navigator.userAgent);
+                    console.log("BroadcastChannel in window?", "BroadcastChannel" in window);
+                    const bc = new BroadcastChannel("auth");
+                    bc.postMessage({ type: "LOGOUT" });
+                    bc.close();
+                } else {
+                    console.warn("BroadcastChannel not supported on this browser");
+                }
+            } catch (e) {
+                console.error("BroadcastChannel error during logout", e);
+            }
         },
         onError: (error) => {
             if (isAxiosError(error) && error.response) {
