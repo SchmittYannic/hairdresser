@@ -53,17 +53,17 @@ const App = () => {
 	}, []);
 
 	useEffect(() => {
-		// const bc = new BroadcastChannel("auth");
+		const bc = new BroadcastChannel("auth");
 
-		// bc.onmessage = (event) => {
-		// 	if (event.data.type === "LOGOUT") {
-		// 		resetState();
-		// 	}
-		// };
+		bc.onmessage = (event) => {
+			if (event.data.type === "LOGOUT") {
+				resetState();
+			}
+		};
 
-		// return () => {
-		// 	bc.close();
-		// };
+		return () => {
+			bc.close();
+		};
 	}, [resetState]);
 
 	return (
