@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useState } from "react";
+import { MouseEvent, useState } from "react";
 import { MdLogout } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import { ImCheckmark } from "react-icons/im";
@@ -47,9 +47,9 @@ const Booking = () => {
         setActiveTab("services");
     };
 
-    useEffect(() => {
-        return () => setIsLogoutDialogOpen(false);
-    }, []);
+    // useEffect(() => {
+    //     return () => setIsLogoutDialogOpen(false);
+    // }, []);
 
     return (
         <main className={`booking-content${isSmallPage ? " small" : ""}`}>
