@@ -163,7 +163,7 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
         timeout.current = setTimeout(() => {
             triggerLogout();
             resetState();
-            navigate("/terminbuch/termine?error=unauthorized");
+            //navigate("/terminbuch/termine?error=unauthorized");
         }, timediff);
 
         return () => {
