@@ -6,9 +6,11 @@ import {
     useRef,
     useState,
 } from "react";
+import { useNavigate } from "react-router-dom";
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from "react-query";
 import Cookies from "js-cookie";
 import { isAxiosError } from "axios";
+
 import useLogout from "src/hooks/useLogout";
 import useGetNextAppointment from "src/hooks/useGetNextAppointment";
 import useGetArchivedAppointments from "src/hooks/useGetArchivedAppointments";
@@ -118,6 +120,7 @@ const initContextState = {
 export const SessionContext = createContext<SessionContextType>(initContextState);
 
 export const SessionProvider = ({ children }: PropsWithChildren): ReactElement => {
+    const navigate = useNavigate();
 
     const {
         mutate: triggerLogout,
@@ -161,6 +164,7 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
         timeout.current = setTimeout(() => {
             triggerLogout();
             resetState();
+            navigate("/terminbuch/termine?error=unauthorized");
         }, timediff);
 
         return () => {
