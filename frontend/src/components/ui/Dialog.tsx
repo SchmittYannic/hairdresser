@@ -1,5 +1,4 @@
 import { HTMLAttributes, PropsWithChildren, useEffect, useRef, useState, MouseEvent, KeyboardEvent } from "react"
-import ReactDOM from "react-dom";
 import FocusTrap from "focus-trap-react"
 import { MdClose } from "react-icons/md";
 import "./Dialog.scss"
@@ -34,7 +33,7 @@ const Dialog = ({
         }
     }, []);
 
-    return ReactDOM.createPortal(
+    return (
         <FocusTrap>
             <div
                 className={`dialog__background ${className}`}
@@ -63,9 +62,41 @@ const Dialog = ({
 
                 </div>
             </div>
-        </FocusTrap>,
-        document.body
+        </FocusTrap>
     )
+
+    // return ReactDOM.createPortal(
+    //     <FocusTrap>
+    //         <div
+    //             className={`dialog__background ${className}`}
+    //             onKeyDown={handleKeyDown}
+    //             {...rest}
+    //         >
+    //             <div
+    //                 id="dialog"
+    //                 className="dialog"
+    //                 tabIndex={0}
+    //                 ref={ref}
+    //                 style={{ top: top }}
+    //             >
+    //                 <button
+    //                     className="dialog__close"
+    //                     type="button"
+    //                     onClick={handleCloseClicked}
+    //                     onKeyDown={(e) => e.key === "Enter" ? setDialog(false) : null}
+    //                 >
+    //                     <span className="icon-container">
+    //                         <MdClose aria-hidden />
+    //                     </span>
+    //                 </button>
+
+    //                 {children}
+
+    //             </div>
+    //         </div>
+    //     </FocusTrap>,
+    //     document.body
+    // )
 }
 
 export default Dialog
