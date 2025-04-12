@@ -13,7 +13,6 @@ import useLogout from "src/hooks/useLogout";
 import useGetNextAppointment from "src/hooks/useGetNextAppointment";
 import useGetArchivedAppointments from "src/hooks/useGetArchivedAppointments";
 import { AppointmentType } from "src/utils/types";
-import { useNavigate } from "react-router-dom";
 
 type UserInfoType = {
     userId: string,
@@ -119,7 +118,6 @@ const initContextState = {
 export const SessionContext = createContext<SessionContextType>(initContextState);
 
 export const SessionProvider = ({ children }: PropsWithChildren): ReactElement => {
-    const navigate = useNavigate();
 
     const {
         mutate: triggerLogout,
@@ -163,7 +161,6 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
         timeout.current = setTimeout(() => {
             triggerLogout();
             resetState();
-            //navigate("/terminbuch/termine?error=unauthorized");
         }, timediff);
 
         return () => {
