@@ -19,12 +19,10 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
         return { hasError: true };
     }
 
-    componentDidCatch(error: Error, errorInfo: any) {
-        // You can log the error or send it to an error reporting service here
-        //console.error("Error caught by ErrorBoundary:", error, errorInfo);
-        console.error("Caught error:", error);
-        console.error("Error info:", errorInfo);
-    }
+    // componentDidCatch(error: Error, errorInfo: any) {
+    //     // You can log the error or send it to an error reporting service here
+    //     console.error("Error caught by ErrorBoundary:", error, errorInfo);
+    // }
 
     render() {
         if (this.state.hasError) {
