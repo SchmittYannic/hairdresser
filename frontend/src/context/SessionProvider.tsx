@@ -173,13 +173,13 @@ export const SessionProvider = ({ children }: PropsWithChildren): ReactElement =
     }, [userInfo]);
 
     useEffect(() => {
-        if (userInfo.userId === "") {
-            setActiveTab("login")
-        } else {
-            if (activeTab === "login" || activeTab === "register" || activeTab === "reset" || activeTab === "agb") {
-                setActiveTab("dashboard")
-            }
-        }
+        // if (userInfo.userId === "") {
+        //     setActiveTab("login")
+        // } else {
+        //     if (activeTab === "login" || activeTab === "register" || activeTab === "reset" || activeTab === "agb") {
+        //         setActiveTab("dashboard")
+        //     }
+        // }
     }, [userInfo]);
 
     useEffect(() => {

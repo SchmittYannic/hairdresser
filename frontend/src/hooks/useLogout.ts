@@ -27,6 +27,7 @@ const useLogout = () => {
                 const bc = new BroadcastChannel("auth");
                 bc.postMessage({ type: "LOGOUT" });
                 bc.close();
+                console.log("[Logout] post-resetState complete");
             } catch (e) {
                 console.error("[Logout] post-resetState error", e);
             }
