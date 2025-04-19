@@ -25,6 +25,7 @@ const EditUser = () => {
         register,
         handleSubmit,
         setError,
+        watch,
         formState: { errors },
         reset,
     } = useForm<EditUserType>({
@@ -62,6 +63,34 @@ const EditUser = () => {
     }
 
     const isServerError = (isError && !isAxiosError(errorApi) || isError && isAxiosError(errorApi) && !errorApi.response);
+
+    const isTitleUnchanged = watch("title", userInfo.title) === userInfo.title;
+    const isLastnameUnchanged = watch("lastname", userInfo.lastname) === userInfo.lastname;
+    const isFirstnameUnchanged = watch("firstname", userInfo.firstname) === userInfo.firstname;
+    const isBirthdayUnchanged = watch("birthday", "") === "";
+    const isEmailUnchanged = watch("email", userInfo.email) === userInfo.email;
+    const isPhonenumberUnchanged = watch("phonenumber", userInfo.phonenumber) === userInfo.phonenumber;
+    const isOldPasswordEmpty = watch("oldpassword", "") === "";
+    const isPasswordEmpty = watch("password", "") === "";
+    const isPasswordRepeatEmpty = watch("passwordrepeat", "") === "";
+    const isReminderemailUnchanged = watch("reminderemail", userInfo.reminderemail) === userInfo.reminderemail;
+    const isBirthdayemailUnchanged = watch("birthdayemail", userInfo.birthdayemail) === userInfo.birthdayemail;
+    const isNewsletterUnchanged = watch("newsletter", userInfo.newsletter) === userInfo.newsletter;
+
+    const isUserInfoEdited = [
+        isTitleUnchanged,
+        isLastnameUnchanged,
+        isFirstnameUnchanged,
+        isBirthdayUnchanged,
+        isEmailUnchanged,
+        isPhonenumberUnchanged,
+        isOldPasswordEmpty,
+        isPasswordEmpty,
+        isPasswordRepeatEmpty,
+        isReminderemailUnchanged,
+        isBirthdayemailUnchanged,
+        isNewsletterUnchanged,
+    ].some(v => !v)
 
     const handleDeleteAccountClicked = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
@@ -445,7 +474,7 @@ const EditUser = () => {
                         className="contactSaveButton bookingFormButton"
                         type="submit"
                         isLoading={isLoading}
-                        disabled={isLoading}
+                        disabled={isLoading || !isUserInfoEdited}
                     >
                         Speichern
                     </AsyncButton>
