@@ -5,14 +5,14 @@ const api = axios.create({
 });
 
 // Global response interceptor to redirect to login page on 401
-api.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        if (error.response?.status === 401) {
-            window.location.href = "/terminbuch/termine?error=unauthorized";
-        }
-        return Promise.reject(error);
-    }
-);
+// api.interceptors.response.use(
+//     (response) => response,
+//     (error) => {
+//         if (error.response?.status === 401) {
+//             window.location.href = "/terminbuch/termine?error=unauthorized";
+//         }
+//         return Promise.reject(error);
+//     }
+// );
 
 export default api
