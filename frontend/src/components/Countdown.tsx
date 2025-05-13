@@ -9,7 +9,13 @@ const Countdown = () => {
         countDownDate - new Date().getTime()
     );
 
-    const remainingTimeInMin = Math.ceil(countDown / (1000 * 60))
+    const minutes = Math.floor(countDown / (1000 * 60));
+    const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
+
+    const display =
+        minutes >= 1
+            ? `Logout in: ${minutes} Min.`
+            : `Logout in: ${seconds} Sec.`;
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -21,7 +27,7 @@ const Countdown = () => {
 
     return (
         <span className="sessionTimeoutLabel">
-            Logout in: {remainingTimeInMin} Min.
+            {display}
         </span>
     )
 }
