@@ -40,6 +40,16 @@ export const getEarliestAppointment = (arr) => {
     return earliestDateObj;
 }
 
+export const getMaxBookingDaysAhead = () => {
+    const DEFAULT_MAX_BOOKING_DAYS_AHEAD = 45;
+    const rawMaxDays = parseInt(process.env.MAX_BOOKING_DAYS_AHEAD, 10);
+    const MAX_BOOKING_DAYS_AHEAD = Number.isInteger(rawMaxDays) && rawMaxDays > 0
+        ? rawMaxDays
+        : DEFAULT_MAX_BOOKING_DAYS_AHEAD;
+
+    return MAX_BOOKING_DAYS_AHEAD
+}
+
 export const sortByDate = (arr, property, sortOrder = "asc") => {
     if (sortOrder === "asc") {
         arr.sort((a, b) => {

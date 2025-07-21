@@ -1,5 +1,12 @@
 import { appointmentschema, durationschema, startschema, employeeschema } from "../validation/appointmentschema.js"
-import { parseError, isAppointmentConflict, hasUpcomingAppointments, getEarliestAppointment, sortByDate } from "../utils/helpers.js";
+import {
+    parseError,
+    isAppointmentConflict,
+    hasUpcomingAppointments,
+    getEarliestAppointment,
+    sortByDate,
+    getMaxBookingDaysAhead,
+} from "../utils/helpers.js";
 import User from "../models/User.js";
 import Appointment from "../models/Appointment.js";
 import { generateFreeTimeSlots } from "../utils/generateFreeSlots.js";
@@ -81,6 +88,8 @@ async function createNewAppointment(req, res) {
             customer, employee, service_name, duration, start, remarks,
         } = req.body;
 
+        const maxBookingDaysAhead = getMaxBookingDaysAhead();
+
         if (req.session.user.userId !== customer) {
             return res.status(401).json({ message: "Nicht autorisiert einen Termin zu buchen", cookieInfo });
         }
@@ -93,6 +102,17 @@ async function createNewAppointment(req, res) {
 
         if ((endAsDate - startAsDate) / 60000 !== parseInt(duration)) {
             return res.status(400).json({ message: "Enddatum muss duration minutes after Startdatum liegen", context: { key: "end" }, cookieInfo });
+        }
+
+        const now = new Date();
+        const maxDate = new Date();
+        maxDate.setDate(now.getDate() + maxBookingDaysAhead);
+
+        if (startAsDate > maxDate) {
+            return res.status(400).json({
+                message: `Termin darf maximal ${maxBookingDaysAhead} Tage im Voraus gebucht werden`,
+                cookieInfo,
+            });
         }
 
         await appointmentschema.validateAsync({
@@ -227,6 +247,9 @@ async function getAllFreeTimeSlotsByEmployee(req, res) {
 
     try {
         const { employee, duration, service_name } = req.body;
+
+        const maxBookingDaysAhead = getMaxBookingDaysAhead();
+
         if (!duration) {
             return res.status(400).json({ message: "Keine Dauer angegeben", cookieInfo });
         }
@@ -239,7 +262,7 @@ async function getAllFreeTimeSlotsByEmployee(req, res) {
             await employeeschema.validateAsync(employee);
             const foundAppointments = await Appointment.find({ employee });
 
-            const freeTimeslots = generateFreeTimeSlots(90, duration, foundAppointments, employee);
+            const freeTimeslots = generateFreeTimeSlots(maxBookingDaysAhead, duration, foundAppointments, employee);
 
             return res.status(200).json({ message: "okay", freeTimeslots, cookieInfo });
         } else {
@@ -249,7 +272,7 @@ async function getAllFreeTimeSlotsByEmployee(req, res) {
                 const employee = availableEmployees[idx];
                 if (employeesInfo[employee].skills.includes(service_name)) {
                     const foundAppointments = await Appointment.find({ employee });
-                    const freeTimeslotsByEmployee = generateFreeTimeSlots(90, duration, foundAppointments, employee);
+                    const freeTimeslotsByEmployee = generateFreeTimeSlots(maxBookingDaysAhead, duration, foundAppointments, employee);
                     freeTimeslots.push(...freeTimeslotsByEmployee);
                 }
             }
