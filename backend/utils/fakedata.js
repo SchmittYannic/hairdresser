@@ -1,4 +1,5 @@
 import Joi from "joi"
+import mongoose from "mongoose";
 import {
     durationschema,
     servicenameschema,
@@ -10,12 +11,15 @@ import {
 } from "../validation/appointmentschema.js"
 import { isAppointmentConflict } from "./helpers.js";
 import Appointment from "../models/Appointment.js";
+import User from "../models/User.js";
 import {
     availableCustomers,
     availableEmployees,
     employeesInfo,
     weekdays,
 } from "../config/constants.js";
+import { generateFreeTimeSlots } from "./generateFreeSlots.js";
+import { getMaxBookingDaysAhead } from "./helpers.js";
 
 
 const availableEmployeesRegex = new RegExp(`^(${availableEmployees.map(employee => employee.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`);
@@ -182,4 +186,68 @@ export const insertFakeData = async (amount) => {
     } catch (error) {
         console.log(error)
     }
+}
+
+function getFixedServiceForCustomer(customerId, skillsArray) {
+    const idStr = customerId.toString();
+    const hashBase = parseInt(idStr.slice(-4), 16); // nimmt die letzten 4 hex-Zeichen
+    const index = hashBase % skillsArray.length;
+    return skillsArray[index];
+}
+
+function shuffleArray(array) {
+    const copy = [...array];
+    for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+}
+
+export const generateDemoAdminAppointments = async () => {
+    try {
+        const demoAdminId = "687e51eda45abc802a17a8fb";
+        const serviceDuration = 30;
+        const maxBookingDaysAhead = getMaxBookingDaysAhead();
+        const demoAdminInfo = employeesInfo[demoAdminId];
+
+        const emailList = Array.from({ length: 280 }, (_, i) => `customer${i + 11}@test.de`);
+        const customers = await User.find({
+            email: { $in: emailList }
+        }).select("_id email").lean();
+        const customerIds = shuffleArray(customers.map(user => user._id));
+
+        const foundAppointments = await Appointment.find({ employee: demoAdminId });
+
+        const freeTimeslots = generateFreeTimeSlots(maxBookingDaysAhead, serviceDuration, foundAppointments, demoAdminId);
+
+        if (freeTimeslots.length < customerIds.length) {
+            throw new Error(`Nicht genug Slots (${slots.length}) für ${customerIds.length} Kunden`);
+        }
+
+        const appointments = [];
+
+        for (let i = 0; i < customerIds.length; i++) {
+            const appointment = {
+                customer: customerIds[i],
+                employee: new mongoose.Types.ObjectId(demoAdminId),
+                service_name: getFixedServiceForCustomer(customerIds[i], demoAdminInfo.skills),
+                duration: serviceDuration,
+                start: freeTimeslots[i].startDate,
+                end: freeTimeslots[i].endDate,
+                remarks: "",
+            }
+
+            const isAppointmentConflictResult = await isAppointmentConflict(appointment.employee, appointment.customer, appointment.start, appointment.end)
+
+            if (!isAppointmentConflictResult) {
+                appointments.push(appointment)
+            }
+        }
+
+        await Appointment.insertMany(appointments);
+    } catch (err) {
+        console.error("Error in generateDemoAdminAppointments:", err);
+    }
+
 }
