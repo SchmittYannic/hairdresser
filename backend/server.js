@@ -18,7 +18,7 @@ import authRoutes from "./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js";
 import { moveExpiredAppointments } from "./utils/helpers.js";
-import { insertFakeData } from "./utils/fakedata.js";
+// import { insertFakeData, generateDemoAdminAppointments } from "./utils/fakedata.js";
 
 /* Configurations */
 dotenv.config();
