@@ -42,6 +42,30 @@ const weekdays = [
 ];
 
 const employeesInfo = {
+    "687e51eda45abc802a17a8fb": {
+        firstname: "Tobias",
+        lastname: "Schneider",
+        skills: [
+            "Schneiden",
+            "KindU6",
+            "KindU12",
+            "TeenU14",
+            "Cornrows",
+            "Rasur",
+            "Greyblending",
+            "Dauerwelle",
+            "Coloration",
+        ],
+        working_hours: {
+            "monday": { "start": null, "end": null },
+            "tuesday": { "start": "08:30", "end": "18:00" },
+            "wednesday": { "start": "08:30", "end": "18:00" },
+            "thursday": { "start": "08:30", "end": "18:00" },
+            "friday": { "start": "08:30", "end": "18:00" },
+            "saturday": { "start": "08:30", "end": "13:00" },
+            "sunday": { "start": null, "end": null }
+        },
+    },
     "66401720b8fb65815722ab38": {
         firstname: "Mirjam",
         lastname: "Schmid",
