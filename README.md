@@ -48,6 +48,7 @@ The backend uses a `.env` file for configuration. Here are the required environm
 - `BUSINESS_EMAIL_ADDRESS`: The email address used to send automated emails from (f.e., for password resets). Using Gmail is recommended here.
 - `BUSINESS_EMAIL_PASSWORD`: The app password for the business email address, which enables the backend to send automated emails.
 - `NON_DELETABLE_USER_IDS`: All user ids that are protected from deletion as a comma seperated string (e.g., `64d128cd0b6a591f726d5abd,67214b3d82762ad0941456c4`).
+- `MAX_BOOKING_DAYS_AHEAD`: Amount of days a user can book an appoinment in advance (f.e., 45 for 45 days in advance an appointment can be scheduled.)
 
 ### Running the Backend
 
